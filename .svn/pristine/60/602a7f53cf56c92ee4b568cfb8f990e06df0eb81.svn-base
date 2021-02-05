@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>删除分享配置</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <link href="../../style/ShowTable.css" rel="stylesheet" />
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="    padding: 20px 20px 0 20px; text-align: center;">
+    <div>
+      <button class="btn btn-success" id="shareFac">分享设备</button>
+    </div>
+    <div style="    width: 80%;display: inline-block;text-align: left;">
+      <div style="">删除分享配置(该设备已分享过的用户)</div>
+      <div class="ShowTable" style="width:auto;text-align: center;    overflow-y: auto;margin-top: 10px;">
+        <table class="tabBox">
+          <thead>
+            <tr>
+              <td style="width:30px;">序号</td>
+              <td style="width:100px;">已分享的用户账号</td>
+              <td style="width:150px;">操作</td>
+            </tr>
+          </thead>
+          <tbody class="fangUlList">
+            <!-- <tr>
+                    <td >1</td>
+                    <td>13076920054</td>
+                    <td>2015-1-1 12:00:00</td>
+                    <td>点击了</td>
+                  </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="formBut">
+    <div class="form-group">
+      <div style="float:right;margin-right:30px;">
+        <!-- <input class="btn btn-primary" name="submitBtn" type="button" value="保存" id="btn_on"> -->
+        <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+      </div>
+      <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+    </div>
+    <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="">
+
+
+  </div>
+  <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script src="../../js/jquery-weui.js"></script>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+    var username = localStorage.getItem('userName')
+    var height = $(window).height();
+    console.log(height);
+    var mheight = height - 104 - 50;
+    $('.fangUlList').css('height', mheight)
+    //
+    $('#shareFac').click(function () {
+      layer.prompt({
+        title: '请输入要分享的账号',
+      }, function (value, index, elem) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/device/addRegisterDevice.action',
+          data: 'pid=' + global.pid + '&username=' + value + '&my_username=' + username,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (res) {
+            console.log(res)
+            var res = JSON.parse(res);
+            if (res.list[0].status == 'true') {
+              alert(res.list[0].mess)
+              location.reload()
+              layer.close(index);
+            } else {
+              alert(res.list[0].mess)
+            }
+          }
+        })
+      });
+    })
+    //http://p240647i77.qicp.vip/newEarlyWarn/WebProject/ShareUser.action?deviceId=0460043006205910
+    $.ajax({
+      tyle: 'get',
+      url: url + '/WebProject/ShareUser.action',
+      data: 'deviceId=' + global.devSignature,
+      error: function (error) {
+        console.log(error + '网络错误')
+      },
+      success: function (result) {
+        console.log(result)
+        var html = "";
+        if(result.length!=0){
+          for (var i = 0; i < result.length; i++) {
+            html += "<tr><td >" + (i + 1) + "</td><td>" + result[i] +
+            "</td><td><button class='btn btn-danger CloseRes' data-val='" +
+            result[i] + "'><i class='glyphicon glyphicon-remove ' style='float: left;top:4px;color:red' ></i>删除</button></td></tr>";
+          }
+        }else{
+          html="<tr><td colspan='3'>该设备暂无分享</td></tr>"
+        }
+        
+        $('.fangUlList').html(html);
+
+
+        $('.CloseRes').click(function () {
+          var username = $(this).attr('data-val');
+          console.log(username)
+          $.confirm({
+            title: '删除后无法修复,确定删除吗',
+            text: "删除分享吗",
+            onOK: function () {
+              $.ajax({
+                type: 'get',
+                url: url + '/WebProject/DeleteShareUserByDevice.action',
+                data: 'deviceId=' + global.devId +
+                  '&username=' + username + '&my_username=' + username,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  console.log(XMLHttpRequest);
+                  console.log(textStatus);
+                  console.log(errorThrown);
+                },
+                success: function (res) {
+                  console.log(res)
+                  if (res.status == 'true') {
+                    layer.open({
+                      content: res.mess
+                    })
+                    setTimeout(function () {
+                      location.reload();
+                    }, 1000)
+                  } else {
+                    layer.open({
+                      content: res.mess
+                    })
+                  }
+                }
+              })
+            }
+          })
+
+        })
+      }
+    })
+
+
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+    })
+  </script>
+</body>
+
+</html>

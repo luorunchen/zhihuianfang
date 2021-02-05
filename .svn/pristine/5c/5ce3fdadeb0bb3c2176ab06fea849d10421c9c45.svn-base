@@ -1,0 +1,742 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="css/BigData.css" rel="stylesheet" type="text/css" />
+    <link href="css/index.css" rel="stylesheet" type="text/css" />
+    <link href="css/index01.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.js"></script>
+    <link href="js/bstable/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="js/artDialog/skins/default.css" type="text/css" />
+    <link rel="stylesheet" href="css/default.css">
+    <script src="js/laydate.js"></script>
+    <script src="js/Home_page.js"></script>
+    <meta charset="UTF-8">
+    <title>大数据管理平台</title>
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 104%;
+            margin: 0;
+        }
+
+        .banStyle {
+            width: 50% !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="data_bodey">
+        <div class="index_nav">
+            <ul style="height: 30px; margin-bottom: 0px;">
+                <li class="l_left total_chose_fr nav_active">实时监测</li>
+                <li class="l_left total_chose_pl">统计分析一</li>
+                <li class="l_left total_chose_pl">统计分析二</li>
+                <li class="r_right total_chose_pl">统计分析三</li>
+                <li class="r_right total_chose_pl">统计分析四</li>
+                <li class="r_right total_chose_pl">统计分析五</li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="index_tabs">
+            <!--安防运作-->
+            <div class="inner" style="height: 109%;">
+                <div class="left_cage">
+                </div>
+                <div class="center_cage">
+                    <div class="dataAllBorder01 cage_cl"
+                        style="margin-top: 6.5% !important; height: 100%; position: relative;">
+                        <div class="dataAllBorder02" style="position: relative; overflow: hidden;">
+                            <!--标题栏-->
+                            <div class="map_title_box" style="height: 6%;z-index:999">
+                                <div class="map_title_innerbox">
+                                    <div class="map_title">实时地图</div>
+                                </div>
+                            </div>
+                            <div class="map" id="container" style='top:-24px;'></div>
+                            <div class="input-card">
+                                <h4>选择省份</h4>
+                                <select name="code-list" id='province' style="height: 28px;margin-right: 10px;"
+                                    onchange="search(this)">
+                                </select>
+                                <h4>选择城市</h4>
+                                <select name="code-list" id='city' style="height: 28px;margin-right: 10px;"
+                                    onchange="search(this)">
+                                </select>
+                                <h4>选择区县</h4>
+                                <select name="code-list" id='district' style="height: 28px;margin-right: 10px;"
+                                    onchange="search(this)">
+                                </select>
+                                <h4>选择街道市</h4>
+                                <select name="code-list" id='street' style="height: 28px;margin-right: 10px;"
+                                    onchange="search(this)">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right_cage" style="display: flex;justify-content: center;flex-wrap: wrap;">
+                    <!--顶部切换位置-->
+                    <div class="dataAllBorder01 cage_cl  check_increase banStyle"
+                        style=" margin-top: 6.5% !important;height: 46%;">
+                        <div class="map_title_box" style="height: 6%">
+                            <div class="map_title_innerbox">
+                                <div class="map_title" style='    width: 331px;background-size: 100% 100%;'>接入设备</div>
+                            </div>
+                        </div>
+                        <div class="dataAllBorder02 over_hide dataAllBorder20" id="over_top_left" style='    top: -24px !important;'>
+                        </div>
+                    </div>
+
+                    <div class="dataAllBorder01 cage_cl  check_increase banStyle"
+                        style=" margin-top: 6.5% !important;height: 46%;">
+                        <div class="map_title_box" style="height: 6%">
+                            <div class="map_title_innerbox">
+                                <div class="map_title" style='    width: 331px;background-size: 100% 100%;'>联网项目</div>
+                            </div>
+                        </div>
+                        <div class="dataAllBorder02 over_hide dataAllBorder20"  id="over_top_right" style='    top: -24px !important;'>
+                        </div>
+                    </div>
+                    <div class="dataAllBorder01 cage_cl  check_increase banStyle" style=" height: 46%;">
+                        <div class="map_title_box" style="height: 6%">
+                            <div class="map_title_innerbox">
+                                <div class="map_title" style='    width: 331px;background-size: 100% 100%;'>设备报警数</div>
+                            </div>
+                        </div>
+                        <div class="dataAllBorder02 over_hide dataAllBorder20" id="over_bottom_left" style='    top: -24px !important;'>
+                        </div>
+                    </div>
+                    <div class="dataAllBorder01 cage_cl  check_increase banStyle" style=" height: 46%;">
+                        <div class="dataAllBorder02 over_hide dataAllBorder20" id="over_bottom_right">
+                        </div>
+                    </div>
+                </div>
+                <div class="dataAllBorder01 cage_cl"
+                    style="margin-top: 0.6% !important; height: 51.3%;width: 53.6%;position: absolute;top: 455px;">
+                    <div class="dataAllBorder02" id="map_title_innerbox">
+                        <div class="map_title_box">
+                            <div class="map_title_innerbox">
+                                <div class="map_title" style="background-image: url(img/second_title.png);">分析数据一</div>
+                            </div>
+                        </div>
+                        <table id="table" style="width: 100%"></table>
+                    </div>
+
+                    <div class="dataAllBorder02" id="map_title_innerbox1" style="display: none; position: relative;">
+                        <div class="map_title_box">
+                            <div class="map_title_innerbox">
+                                <div class="map_title" style="background-image: url(img/second_title.png);">xxxxx条件扫描
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="tab_msg_box">
+                            <li class="tab_msg tab_msg01 tab_msg_current">xxxxx</li>
+                            <li class="tab_msg tab_msg02">xxx</li>
+                        </ul>
+                        <div class="table1">
+                            <table id="table1" style="width: 100%"></table>
+                        </div>
+                        <div class="table2" style=" display: none;">
+                            <table id="table2" style="width: 100%;"></table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+        src="https://webapi.amap.com/maps?v=1.4.15&key=61d156ed511837e863e050f3610f2d96&plugin=Map3D,AMap.DistrictSearch,AMap.DistrictLayer,AMap.Scale,AMap.ToolBar,">
+    </script>
+    <!-- <script src="https://a.amap.com/Loca/static/mock/adcodes.js"></script> -->
+    <script src="../js/echarts.js"></script>
+    <script>
+        var citySelect = document.getElementById('city');
+        var districtSelect = document.getElementById('district');
+        var areaSelect = document.getElementById('street');
+        var map = new AMap.Map("container", {
+            zoom: 4,
+            center: [114.412427, 33.303573],
+            pitch: 0,
+            viewMode: '3D',
+        });
+
+        var polygons = [];
+        // 
+        var opts = {
+            subdistrict: 1, //返回下一级行政区
+            showbiz: false //最后一级返回街道信息
+        };
+        district = new AMap.DistrictSearch(opts); //注意：需要使用插件同步
+        // console.log(district)
+        district.search('中国', function (status, result) {
+            if (status == 'complete') {
+                getData(result.districtList[0]);
+            }
+        });
+        var disProvince;
+
+        function getData(adcode, level) {
+            console.log(adcode)
+            map.clearMap();
+            var bounds = adcode.boundaries;
+            // console.log(bounds)
+            if (bounds) {
+                for (var i = 0, l = bounds.length; i < l; i++) {
+                    var polygon = new AMap.Polygon({
+                        map: map,
+                        strokeWeight: 1,
+                        strokeColor: '#0091ea',
+                        fillColor: '#fff',
+                        fillOpacity: 0.2,
+                        path: bounds[i]
+                    });
+                    polygons.push(polygon);
+                }
+                map.setFitView(); //地图自适应
+            }
+            if (level == 'province') {
+                initPro(adcode.adcode, 1,adcode.name)
+            } else if (level == 'city') {
+                initPro(adcode.adcode, 2,adcode.name)
+            } else if (level == 'district') {
+                initPro(adcode.adcode, 2,adcode.name)
+            }
+
+            //清空下一级别的下拉列表
+            if (level === 'province') {
+                citySelect.innerHTML = '';
+                districtSelect.innerHTML = '';
+                areaSelect.innerHTML = '';
+            } else if (level === 'city') {
+                districtSelect.innerHTML = '';
+                areaSelect.innerHTML = '';
+            } else if (level === 'district') {
+                areaSelect.innerHTML = '';
+            }
+
+            var subList = adcode.districtList;
+            // console.log(subList);
+            if (level === "street") {
+                var lng = [];
+                for (var i = 0, l = subList.length; i < l; i++) {
+                    lng.push([subList[i].center.Q, subList[i].center.P, subList[i].name])
+                }
+                // console.log(lng)
+                var infoWindow = new AMap.InfoWindow({
+                    offset: new AMap.Pixel(0, -30)
+                });
+                for (var i = 0, marker; i < lng.length; i++) {
+                    var marker = new AMap.Marker({
+                        position: lng[i],
+                        map: map
+                    });
+                    marker.content = (lng[i][2]);
+                    marker.on('click', markerClick);
+                    marker.emit('click', {
+                        target: marker
+                    });
+                }
+                // infoWindow.open(map,[123,25])
+                function markerClick(e) {
+                    infoWindow.setContent(e.target.content);
+                    infoWindow.open(map, e.target.getPosition());
+                }
+            } else {
+                if (subList) {
+                    var contentSub = new Option('--请选择--');
+                    var curlevel = subList[0].level;
+                    var curList = document.querySelector('#' + curlevel);
+                    curList.add(contentSub);
+                    var lng = [];
+                    for (var i = 0, l = subList.length; i < l; i++) {
+                        var name = subList[i].name;
+                        var levelSub = subList[i].level;
+                        var cityCode = subList[i].citycode;
+                        lng.push([subList[i].center.Q, subList[i].center.P, name])
+                        contentSub = new Option(name);
+                        contentSub.setAttribute("value", levelSub);
+                        contentSub.center = subList[i].center;
+                        contentSub.adcode = subList[i].adcode;
+                        curList.add(contentSub);
+
+                    }
+                    // console.log(lng)
+                    var infoWindow = new AMap.InfoWindow({
+                        offset: new AMap.Pixel(0, -30)
+                    });
+                    for (var i = 0, marker; i < lng.length; i++) {
+                        var marker = new AMap.Marker({
+                            position: lng[i],
+                            map: map
+                        });
+                        marker.content = (lng[i][2]);
+                        marker.on('click', markerClick);
+
+                    }
+                    // infoWindow.open(map,[123,25])
+                    function markerClick(e) {
+                        infoWindow.setContent(e.target.content);
+                        infoWindow.open(map, e.target.getPosition());
+                    }
+                }
+            }
+
+
+        }
+
+        function search(obj) {
+            // console.log(obj)
+            //清除地图上所有覆盖物
+            for (var i = 0, l = polygons.length; i < l; i++) {
+                polygons[i].setMap(null);
+            }
+            var option = obj[obj.options.selectedIndex];
+            var keyword = option.text; //关键字
+            var adcode = option.adcode;
+            district.setLevel(option.value); //行政区级别
+            district.setExtensions('all');
+            //行政区查询
+            //按照adcode进行查询可以保证数据返回的唯一性
+            district.search(adcode, function (status, result) {
+                if (status === 'complete') {
+                    getData(result.districtList[0], obj.id);
+                }
+            });
+        }
+        var disProvince;
+
+        function initPro(code, dep,name) {
+            projectJie(code,name)
+            faciltiyJie(code,name)
+            alarmNum(code,name)
+            dep = typeof dep == 'undefined' ? 2 : dep;
+            adCode = code;
+            depth = dep;
+
+            disProvince && disProvince.setMap(null);
+
+            disProvince = new AMap.DistrictLayer.Province({
+                zIndex: 12,
+                adcode: [code],
+                depth: dep,
+                strokeWeight: 2,
+                fillOpacity: 1,
+                fillColor: '#000',
+                strokeColor: '#000',
+                strokeStyle: 'solid',
+                opacity: 0.6,
+                styles: {
+                    'fill': function (properties) {
+                        // properties为可用于做样式映射的字段，包含
+                        // NAME_CHN:中文名称
+                        // adcode_pro
+                        // adcode_cit
+                        // adcode
+                        var adcode = properties.adcode;
+                        return getColorByAdcode(adcode);
+                    },
+
+                    'province-stroke': 'cornflowerblue',
+                    'city-stroke': 'block', // 中国地级市边界
+                    'county-stroke': 'rgba(0,0,0,0)' // 中国区县边界
+                    // 'county-stroke': 'block' // 中国区县边界
+                }
+            });
+
+            disProvince.setMap(map);
+        }
+        // 颜色辅助方法
+        var colors = {};
+        var getColorByAdcode = function (adcode) {
+            if (!colors[adcode]) {
+                var gb = Math.random() * 155 + 55;
+                colors[adcode] = 'rgb(' + gb + ',' + gb + ',55)';
+            }
+
+            return colors[adcode];
+        };
+        //http://localhost:8080/earlyWarn/admin/dataAnalysis/region_Project?username=13076920054&region=440300000000
+        var username = localStorage.getItem('userName');
+        function projectJie(region,name) {
+            console.log(name)
+            if (region == '1') {
+                var region = '1'
+            } else {
+                var region = region + '000000'
+            }
+            $.ajax({
+                type: 'get',
+                url: 'http://112.74.126.51/earlyWarn/admin/dataAnalysis/region_Project',
+                data: 'username=' + username + '&region=' + region,
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (res) {
+                    var acName=[];
+                    acName.push(name);
+                    console.log(acName)
+                    var data_x = [];
+                    var data_y = [];
+                    var data_code = [];
+                    for (var i = 0; i < res.length; i++) {
+                        data_x.push(res[i].address)
+                        data_y.push(res[i].num)
+                        data_code.push(res[i].ac_code)
+                    }
+                    var myChart = echarts.init(document.getElementById('over_top_right'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            x: 46,
+                            y: 30,
+                            x2: 32,
+                            y2: 80,
+                            borderWidth: 0
+                        },
+                        calculable: true,
+                        xAxis: [{
+                            type: 'category',
+                            data: data_x.length != 0?data_x:acName,
+                            splitLine: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF',
+                                    align: 'center'
+                                },
+                                interval: 0,
+                                formatter: function (value) {
+                                    //    return value.split("").join("\n");  
+                                    var ret = ""; //拼接加\n返回的类目项 
+                                    var maxLength = 2; //每项显示文字个数
+                                    var valLength = value.length; //X轴类目项的文字个数
+                                    var rowN = Math.ceil(valLength /
+                                        maxLength); //类目项需要换行的行数
+                                    if (rowN > 1) { //如果类目项的文字大于3,
+                                        for (var i = 0; i < rowN; i++) {
+                                            var temp = ""; //每次截取的字符串
+                                            var start = i * maxLength; //开始截取的位置
+                                            var end = start + maxLength; //结束截取的位置
+                                            //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                            temp = value.substring(start, end) + "\n";
+                                            ret += temp; //凭借最终的字符串
+                                        }
+                                        return ret;
+                                    } else {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            splitLine: {
+                                show: false
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF'
+                                }
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                        }],
+                        series: [{
+                            name: '区域项目数量',
+                            type: 'bar',
+                            barWidth: '30',
+                            data: data_y.length != 0?data_y:acName,
+                            itemStyle: {
+                                normal: {
+                                    color: "#269fec"
+                                }
+                            }
+
+                        }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            })
+        }
+        projectJie('1')
+
+        function faciltiyJie(region,name) {
+            if (region == '1') {
+                var region = '1'
+            } else {
+                var region = region + '000000'
+            }
+            $.ajax({
+                type: 'get',
+                url: 'http://112.74.126.51/earlyWarn/admin/dataAnalysis/region_Device',
+                data: 'username=' + username + '&region=' + region,
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (res) {
+                    console.log(res)
+                    var acName=[];
+                    acName.push(name);
+                    var data_x = [];
+                    var data_y = [];
+                    var data_code = [];
+                    for (var i = 0; i < res.length; i++) {
+                        data_x.push(res[i].address)
+                        data_y.push(res[i].num)
+                        data_code.push(res[i].ac_code)
+                    }
+                    var myChart = echarts.init(document.getElementById('over_top_left'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            x: 46,
+                            y: 30,
+                            x2: 32,
+                            y2: 80,
+                            borderWidth: 0
+                        },
+                        // legend:{
+                        //     type:'plain',
+                        //     textStyle:{
+                        //         color:'#CCE4FF'
+                        //     }
+                        // },
+                        calculable: true,
+                        xAxis: [{
+                            type: 'category',
+                            data: data_x.length != 0?data_x:acName,
+                            splitLine: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF',
+                                    align: 'center'
+                                },
+                                interval: 0,
+                                formatter: function (value) {
+                                    //    return value.split("").join("\n");  
+                                    var ret = ""; //拼接加\n返回的类目项 
+                                    var maxLength = 2; //每项显示文字个数
+                                    var valLength = value.length; //X轴类目项的文字个数
+                                    var rowN = Math.ceil(valLength /
+                                        maxLength); //类目项需要换行的行数
+                                    if (rowN > 1) { //如果类目项的文字大于3,
+                                        for (var i = 0; i < rowN; i++) {
+                                            var temp = ""; //每次截取的字符串
+                                            var start = i * maxLength; //开始截取的位置
+                                            var end = start + maxLength; //结束截取的位置
+                                            //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                            temp = value.substring(start, end) + "\n";
+                                            ret += temp; //凭借最终的字符串
+                                        }
+                                        return ret;
+                                    } else {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            splitLine: {
+                                show: false
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF'
+                                }
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                        }],
+                        series: [{
+                            name: '区域设备数量',
+                            type: 'bar',
+                            barWidth: '30',
+                            data: data_y.length != 0?data_y:acName,
+                            itemStyle: {
+                                normal: {
+                                    color: "#269fec"
+                                }
+                            }
+
+                        }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            })
+        }
+        faciltiyJie('1')
+        function alarmNum(region,name) {
+            if (region == '1') {
+                var region = '1'
+            } else {
+                var region = region + '000000'
+            }
+            $.ajax({
+                type: 'get',
+                url: 'http://112.74.126.51/earlyWarn/admin/dataAnalysis/device_Alarm',
+                data: 'username=' + username + '&region=' + region,
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (res) {
+                    console.log(res)
+                    var acName=[];
+                    acName.push(name);
+                    var data_x = [];
+                    var data_y = [];
+                    var data_code = [];
+                    for (var i = 0; i < res.length; i++) {
+                        data_x.push(res[i].address)
+                        data_y.push(res[i].num)
+                        data_code.push(res[i].ac_code)
+                    }
+                    var myChart = echarts.init(document.getElementById('over_bottom_left'));
+                    var option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                            }
+                        },
+                        grid: {
+                            x: 46,
+                            y: 30,
+                            x2: 32,
+                            y2: 80,
+                            borderWidth: 0
+                        },
+                        // legend:{
+                        //     type:'plain',
+                        //     textStyle:{
+                        //         color:'#CCE4FF'
+                        //     }
+                        // },
+                        calculable: true,
+                        xAxis: [{
+                            type: 'category',
+                            data: data_x.length != 0?data_x:acName,
+                            splitLine: {
+                                show: false
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF',
+                                    align: 'center'
+                                },
+                                interval: 0,
+                                formatter: function (value) {
+                                    //    return value.split("").join("\n");  
+                                    var ret = ""; //拼接加\n返回的类目项 
+                                    var maxLength = 2; //每项显示文字个数
+                                    var valLength = value.length; //X轴类目项的文字个数
+                                    var rowN = Math.ceil(valLength /
+                                        maxLength); //类目项需要换行的行数
+                                    if (rowN > 1) { //如果类目项的文字大于3,
+                                        for (var i = 0; i < rowN; i++) {
+                                            var temp = ""; //每次截取的字符串
+                                            var start = i * maxLength; //开始截取的位置
+                                            var end = start + maxLength; //结束截取的位置
+                                            //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                            temp = value.substring(start, end) + "\n";
+                                            ret += temp; //凭借最终的字符串
+                                        }
+                                        return ret;
+                                    } else {
+                                        return value;
+                                    }
+                                }
+                            }
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            splitLine: {
+                                show: false
+                            },
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#CCE4FF'
+                                }
+                            },
+                            axisLine: {
+                                lineStyle: {
+                                    color: '#fff'
+                                }
+                            },
+                        }],
+                        series: [{
+                            name: '设备报警数',
+                            type: 'bar',
+                            barWidth: '30',
+                            data: data_y.length != 0?data_y:acName,
+                            itemStyle: {
+                                normal: {
+                                    color: "#269fec"
+                                }
+                            }
+
+                        }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                }
+            })
+        }
+        alarmNum('1');
+    </script>
+    <script src="js/echart_index.js"></script>
+</body>
+
+</html>

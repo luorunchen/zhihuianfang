@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户信息</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/url_zhuan.js"></script>  
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js" type="text/javascript"></script>
+    <script src="../../js/FTool.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KijP02mbMQhSR8T4Qk82f9feXBbftwie"></script>
+
+    <script type="text/javascript">
+        function checkHELLO(field, rules, i, options) {
+            if (!/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i.test(field.val())) {
+                return "请输入有效的手机号码";
+            }
+        }
+    </script>
+
+
+    <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="bodyBox">
+
+        <form action="" class="form-horizontal" id="editForm" method="post">
+            <div class="formBody">
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="DevNumber">设备编号</label>
+                    <div class="col-xs-9">
+                        <!--//readonly="readonly"  只读-->
+                        <input class="form-control  " id="projName" name="DevNumber" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="leixing">设备类型</label>
+                    <div class="col-xs-9">
+                        <input id="leixing" name="leixing" type="hidden" value="" />
+                        <select class="form-control " id="lei_type" name="leixing">
+                            <option value=""></option>
+                            <option value="0">网关</option>
+                            <option value="2">烟感</option>
+                            <option value="3">电气</option>
+                            <option value="4">水压</option>
+                            <option value="5">消防主机</option>
+                            <option value="6">无线气感</option>
+                            <option value="7">粉尘设备</option>
+                            <option value="8">液位</option>
+                            <option value="9">录像</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="DevName">设备名称</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="info" name="DevName" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="JingWei">经纬度</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " readonly="readonly" id="JingWei" name="JingWei" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="Address">安装地址</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="address" name="Address" type="text" value="" />
+                        <span style="position: absolute;top: 0px;right: 39px;line-height: 34px;width: 45px;text-align: center;border:none;border-radius: 10px;background:#3cf;color:#fff" id="r-result">查询</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="changsuo">应用场所</label>
+                    <div class="col-xs-9">
+                        <input id="changsuo" name="changsuo" type="hidden" value="" />
+                        <select class="form-control " id="changsuo_type" >
+                            <option value=""></option>
+                            <option value="工厂">工厂</option>
+                            <option value="写字楼">写字楼</option>
+                            <option value="三小场所">三小场所</option>
+                            <option value="学校">学校</option>
+                            <option value="商城">商城</option>
+                            <option value="加油站">加油站</option>
+                            <option value="公园">公园</option>
+                            <option value="医院">医院</option>
+                            <option value="住宅区">住宅区</option>
+                            <option value="水库">水库</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="beizhu">备注</label>
+                    <div class="col-xs-9">
+                        <input class="form-control validate[required,funcCall[checkHELLO]]" id="beizhu" name="beizhu"
+                            type="text" value="" />
+                    </div>
+                </div>
+                <div style="width:100%;height:250px;">
+                    <div id="allmap" style="width:100%;height:250px;"></div>
+                 </div>
+
+            </div>
+            <div class="formBut">
+                <div class="form-group">
+                    <div style="float:right;margin-right:30px;"> <input class="btn btn-primary" name="submitBtn"
+                            type="button" value="保存" id="btn_on" />
+                        <input class="btn btn-default" name="goBackBtn" onclick="window.top.CloseCurrWin()"
+                            type="button" value="关闭" />
+                    </div>
+                    <div class="checkbox" style="float:right;margin-right:30px;">  </div>
+                </div>
+                <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="" />
+
+
+            </div>
+        </form>
+
+
+    </div>
+    <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+    <script src="../../js/bootstrap.min.js"></script>
+    <script>
+        var x=document.getElementById("dingwei");
+        function createMap(){
+            var map = new BMap.Map("allmap");  
+            var geoc = new BMap.Geocoder();   //地址解析对象  
+            var markersArray = [];  
+            var geolocation = new BMap.Geolocation();  
+            var point = new BMap.Point(114.046252, 22.640817);  
+            map.centerAndZoom(point, 12); // 中心点  
+            geolocation.getCurrentPosition(function (r) {  
+                var address = r.address.province + r.address.city + r.address.district + r.address.street + r.address.street_number; 
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {  
+                    var mk = new BMap.Marker(r.point);  
+                    map.addOverlay(mk);  
+                    map.panTo(r.point);  
+                    map.enableScrollWheelZoom(true);  
+                    // document.getElementById('lng').value = r.point.lng;  
+                    // document.getElementById('lat').value =  r.point.lat;  
+                    var dingwei=r.point.lng+','+r.point.lat;
+                    document.getElementById('address').value = address;  
+                    document.getElementById('JingWei').value = dingwei;  
+                }  
+                else {  
+                    alert('failed' + this.getStatus());  
+                }  
+            }, {enableHighAccuracy: true})  
+            map.addEventListener("click", showInfo);  
+            //清除标识  
+            function clearOverlays() {  
+                if (markersArray) {
+                    for (var i in markersArray) {  
+                        map.removeOverlay(markersArray[i])  
+                    }  
+                }  
+            } 
+            //地图上标注  
+            function addMarker(point) {     
+                var marker = new BMap.Marker(point);  
+                markersArray.push(marker);  
+                clearOverlays();  
+                map.addOverlay(marker);  
+            } 
+            //点击地图时间处理  
+            function showInfo(e) {  
+                console.log(e);
+                map.clearOverlays();
+                geoc.getLocation(e.point, function (rs) {  
+                    var addComp = rs.addressComponents;  
+                    var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;  
+                    console.log(address)
+                        // document.getElementById('lng').value = e.point.lng;  
+                        // document.getElementById('lat').value =  e.point.lat; 
+                        var dingwei=e.point.lng+','+e.point.lat;
+                        document.getElementById('address').value = address;   
+                        document.getElementById('JingWei').value = dingwei;   
+                });  
+                addMarker(e.point);  
+            }  
+            var localSearch = new BMap.LocalSearch(map);
+            localSearch.enableAutoViewport(); //允许自动调节窗体大小
+            function searchByStationName() {
+                map.clearOverlays();//清空原来的标注
+                var keyword = document.getElementById("address").value;
+                console.log(keyword);
+                    //setSearchCompleteCallback--->设置检索结束后的回调函数
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0);   // searchResult.Ar 数组中的第一个
+                    // document.getElementById("lng").value = poi.point.lng 
+                    // document.getElementById("lat").value= poi.point.lat;
+                    var dingwei=poi.point.lng+','+poi.point.lat;
+                    document.getElementById('JingWei').value = dingwei;   
+                    map.centerAndZoom(poi.point, 13);
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地方对应的经纬度
+                    map.addOverlay(marker);
+                });
+                localSearch.search(keyword);
+            } 
+            document.getElementById('r-result').onclick=function(){
+                searchByStationName();
+            }
+        }
+        createMap();
+        function getLocation(){
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function (r) {  
+            console.log(r);
+            var location=r.address.province+r.address.city+r.address.district+r.address.street+r.address.street_number;
+            //$('#localtion').val(location)
+            //$('#dingwei').val(position.coords.latitude + ',' + position.coords.longitude)
+            var locations= r.longitude +',' +r.latitude ;
+            console.log(locations);
+            var key="16e7b5568d36fe3ae4fb17a2deba37b0";
+            var coordsys='baidu'   
+            $.ajax({
+                type:'get',
+                url:'https://restapi.amap.com/v3/assistant/coordinate/convert',
+                data:'key='+key+'&locations='+locations+'&coordsys='+coordsys,
+                error:function(error){console.log(error)},
+                success:function(result){
+                console.log(result);
+                
+                var lat=result.locations.split(',')[0].substr(0,10);
+                var lng=result.locations.split(',')[1].substr(0,9);
+                $('#JingWei').val(lng + ',' + lat)
+                
+                }
+            })
+            })
+        }
+        //getLocation();
+         var projName=location.search.split('?')[1].split('=')[1];    //pid
+            console.log(projName);
+        $('#btn_on').click(function(){
+            var projName=location.search.split('?')[1].split('=')[1];    //pid
+            console.log(projName);
+            var devSignature=$('#projName').val().trim();   //设备编号
+            var devtype=$('#lei_type').val();   //设备类型          
+            var device_name=$('#info').val();   //设备名称       
+            var long_lat=$('#JingWei').val();   //经纬度 
+            var installLocation=$('#address').val();   //安装地址
+            var place=$('#changsuo_type').val();     //介绍
+            var devRemark=$('#beizhu').val();    //备注
+            var username=localStorage.getItem('userName');  //登陆账号
+            console.log(devSignature+'--'+devtype+'--'+device_name+'--'+long_lat+'--'+installLocation+'--'+place+'--'+devRemark+'--'+username);
+            var superiorEquipme="";   
+            var loopNumber="";   //loopNumber
+            var devId="";    //设备ID
+            var nfcType="";
+            var cycle="";
+            var nfcName="";
+            if(devSignature!=""&&devSignature.length==15){
+                $.ajax({
+                    type:'get',
+                    url:url+'/admin/device/check/addDevice.action',
+                    data:'projName='+projName+'&devSignature='+devSignature+'&username='+username+'&installLocation='+installLocation+'&long_lat='+long_lat+'&devtype='+devtype+'&device_name='+device_name+'&place='+place+'&superiorEquipme='+superiorEquipme+'&loopNumber='+loopNumber+'&devId='+devId+'&devRemark='+devRemark,
+                    error:function(error){console.log(error+'网络错误')},
+                    success:function(result){
+                        var res=JSON.parse(result);
+                        console.log(res);
+                        var data=res.list[0].mess;
+                        if(res.list[0].status=='true'){
+                            alert(res.list[0].mess)
+                            setTimeout(function(){
+                                window.top.location.reload();
+                            },2000);
+                            
+                        }else{
+                            alert(res.list[0].mess)
+                        }
+                    }
+                })
+            }else{
+                console.log(devSignature.length==15);
+                if(devSignature==""||devSignature.length!=15){
+                    alert('请输入正确的设备编号')
+                }
+            }
+        })    
+        function RefreshClick(){
+            window.location.reload();
+        }
+    </script>
+
+</body>
+
+</html>

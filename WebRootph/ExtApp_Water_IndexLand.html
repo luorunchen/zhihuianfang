@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+     <script src="js/jquery.min.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <link href="style/WaterCss.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        function detailShow(devBH, land) {
+            window.top.OpenThirdFrame("/ExtApp_Water_WaterDetail.html?devBH=" + devBH + "&land=" + land, 800, 600, "win", "实时数据");
+        }
+        function alarmShow(devBH,land) {
+            window.top.OpenThirdFrame("/ExtApp_Water_WaterAlarm.html?devBH=" + devBH + "&land=" + land, 650, 600, "win", "报警数据");
+        }
+        $(document).ready(function(){
+            setInterval(function () {
+                $.getJSON("/ExtApp/Water/WaterStatus",
+                      function (data) {
+                          $.each(data,function(i,v){
+                              var tbh = v.DevBH;
+                              var tland = v.Land;
+                              var tdev=$("[data-devBh='"+ tbh +tland+"']");
+                              tdev.removeClass("waterNormal");
+                              tdev.removeClass("waterAlarm");
+                              tdev.removeClass("waterOff");
+                              tdev.removeClass("splAlarm");
+                              tdev.removeClass("splNormal");
+                              tdev.removeClass("splOff");
+                              tdev.removeClass("xfscAlarm");
+                              tdev.removeClass("xfscNormal");
+                              tdev.removeClass("xfscOff");
+                              tdev.removeClass("gwsxAlarm");
+                              tdev.removeClass("gwsxNormal");
+                              tdev.removeClass("gwsxOff");
+                              if(v.Address=="室内消火栓"){
+                                 if(v.IsAlarm==true){
+                                        tdev.addClass("waterAlarm");
+                                  }else  if(v.IsOnLine==true){
+                                        tdev.addClass("waterNormal");
+                                 }else{
+                                        tdev.addClass("waterOff");
+                                    }
+                              }
+                              if (v.Address == "自动水喷淋") {
+                                  if (v.IsAlarm == true) {
+                                      tdev.addClass("splAlarm");
+                                  } else if (v.IsOnLine == true) {
+                                      tdev.addClass("splNormal");
+                                  } else {
+                                      tdev.addClass("splOff");
+                                  }
+                              }
+                              if (v.Address == "消防水池") {
+                                  if (v.IsAlarm == true) {
+                                      tdev.addClass("xfscAlarm");
+                                  } else if (v.IsOnLine == true) {
+                                      tdev.addClass("xfscNormal");
+                                  } else {
+                                      tdev.addClass("xfscOff");
+                                  }
+                              }
+                              if (v.Address == "高位水箱") {
+                                  if (v.IsAlarm == true) {
+                                      tdev.addClass("gwsxAlarm");
+                                  } else if (v.IsOnLine == true) {
+                                      tdev.addClass("gwsxNormal");
+                                  } else {
+                                      tdev.addClass("gwsxOff");
+                                  }
+                              }
+                          });
+                      });
+            },300000)});
+    </script>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+<body>
+<div class="waterBox">
+            <div class="waterItem">
+                <div  onclick="detailShow('MD1974','A');">
+                                <div class="waterPic gwsxAlarm" data-devBh="MD1974A"></div>
+                </div>
+                <div class="waterTitle">
+                    <div class="lineTitle">高位水箱</div>
+                </div>
+                    <div class="waterTitle waterBluk">
+                        <div class="lineTitle">设备号：MD1974</div>
+                        <div class="lineTitle">安装具体位置：</div>
+                            <div class="lineTitle" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">8号楼高位水箱</div>
+                    </div>
+                <div class="waterTitle">
+                    <div class="leftTitle">
+                        <input class="btn btn-success" type="button" value="详情" onclick="detailShow('MD1974','A');" />
+                    </div>
+                    <div class="rightTitle">
+                        <input class="btn btn-danger" type="button" value="报警记录" onclick="alarmShow('MD1974','A')" />
+                    </div>
+                </div>
+            </div>
+            <div class="waterItem">
+                <div  onclick="detailShow('MD1852','A');">
+                                <div class="waterPic waterAlarm" data-devBh="MD1852A"></div>
+                </div>
+                <div class="waterTitle">
+                    <div class="lineTitle">室内消火栓</div>
+                </div>
+                    <div class="waterTitle">
+                        <div class="lineTitle">设备号：MD1852</div>
+                        
+                        <div class="lineTitle">安装具体位置：</div>
+                            <div class="lineTitle" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">办公楼9楼实验消火栓</div>
+                        
+                    </div>
+                
+
+                <div class="waterTitle">
+                    <div class="leftTitle">
+                        <input class="btn btn-success" type="button" value="详情" onclick="detailShow('MD1852','A');" />
+                    </div>
+                    <div class="rightTitle">
+                        <input class="btn btn-danger" type="button" value="报警记录" onclick="alarmShow('MD1852','A')" />
+                    </div>
+                </div>
+            </div>
+            <div class="waterItem">
+                <div  onclick="detailShow('MD1871','B');">
+                                <div class="waterPic gwsxNormal" data-devBh="MD1871B"></div>
+                </div>
+                <div class="waterTitle">
+                    <div class="lineTitle">高位水箱</div>
+                </div>
+                    <div class="waterTitle waterBluk">
+                        <div class="lineTitle">设备号：MD1871</div>
+                        
+                        <div class="lineTitle">安装具体位置：</div>
+                            <div class="lineTitle" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">图书馆9楼高位水箱</div>
+                    </div>
+                
+
+                <div class="waterTitle">
+                    <div class="leftTitle">
+                        <input class="btn btn-success" type="button" value="详情" onclick="detailShow('MD1871','B');" />
+                    </div>
+                    <div class="rightTitle">
+                        <input class="btn btn-danger" type="button" value="报警记录" onclick="alarmShow('MD1871','B')" />
+                    </div>
+                </div>
+            </div>
+
+
+</div>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

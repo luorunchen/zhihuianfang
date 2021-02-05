@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/content.css">
+</script>
+</head>
+<body>
+    <div class="broadcastWrap">
+        <div class="broadcastBox fl">
+            <div>您的位置：</div>
+                <p>
+					<a href="#">首页</a>
+                     &gt; 
+					 <a href="#">消防宣传</a>
+                </p>
+        </div>
+    </div>
+    <div class="wrap" style="text-align:center;">
+        <div class="bodyBox fl" style="text-align:center;">
+                <h1 class="title">大理消防宣传大使走街串巷传授“防火经”[图]</h1>
+                <p class="info">发布时间：2018-08-30 16:02:25 | 来源：云南大理消防支队 | 作者：黎荧</p>
+                <div class="contentBox">
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire01.jpg"  title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire02.jpg"  title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire03.jpg"  title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire04.jpg"  title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire05.jpg" title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+						<img style="" src="./images/fire06.jpg"  title=""/>
+						</p>
+						<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">
+							<img style="" src="./images/fire07.jpg"  title=""/>
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px; text-align: center;">消防宣传大使上山下乡、走街串巷传授“防火经”
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px;">“老板，这里是消防安全通道，您的货物已经阻碍……”“请问您知道灭火器怎么使用吗？”连日来，大理各地消防宣传大使、消防志愿者穿梭在社区、市场、商场、居民家中，开展消防安全隐患排查，指导群众养成良好消防安全习惯，提高全民安全知识知晓率。
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px;">消防知识进村入户。全州消防宣传大使以3至5人为一组，深入各地农村发放消防宣传资料，通过村委会广播向村民讲解季节性用火用电安全常识。同时按照每人分片包保村民组的方式，挨家逐户帮助村民清理规整门前屋后柴草堆垛，全力清除潜在火灾隐患。
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px;">消防培 训形式多样。各级消防部门积极从宣传教育培训入手，全力提升消防宣传大使们的综合素质。通过定期组织大使们进红门参观、安全知识讲座等形式多样的学习培训，使他们了解掌握消防法律法规、基本的防、灭火及逃生自救知识，熟悉消防灭火器材的原理与使用，打牢大使们的消防理论和实践基础，为进一步有效消防宣传工作发挥积极的传作用。
+					</p>
+					<p style="text-indent: 2em; margin-bottom: 15px;">火灾隐患齐心查找。20余支消防宣传大使组成的宣传队先后深入沃尔玛超市、洱源星源商场、洱源红太阳购物广场、宾川四方街超市、巍山兰馨园酒店以及社区、集市、农贸市场等人员密集场所开展消防服务。重点对消防控制室、消防水泵房、自动灭火系统、疏散通道、防火卷帘、应急广播、应急照明和疏散指示标志以及员工“四个能力”掌握等内容开展检查。截至目前，共排查出火灾隐患60余条，帮助整改60余条，提出意见和建议20余条。
+					</p>
+				</div>
+
+        <div>
+
+    </div>
+
+    
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+*{padding:0;margin: 0;list-style: none;}
+li,ul,ol{text-decoration: none;}
+a{text-decoration: none;}
+body{font-family: "微软雅黑";font-size: 14px;}
+
+
+.MenuItem1{float: left;display: block;padding:0 10px; line-height:30px;   border: solid 1px #fff;cursor: pointer;
+    box-shadow: inset 0px 0px 30px #248ef4;text-align: center;color:#fff;background:url(../images/kjbg.png);margin:10px;border-radius:5px;}
+.MenuItem:hover > .MenuItem1{background: #000;}
+.MenuItem2{background: #000;}

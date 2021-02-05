@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用电设备详情</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/report.css" rel="stylesheet" />
+    <link href="style/MyToolBar.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/PrintArea.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/default.js"></script>
+    <link href="style/ElecDetailCss.css" rel="stylesheet"/>
+    <link href="style/ElecComCss.css" rel="stylesheet"/>
+    <!--<script src="js/ElecDetail.js"></script>-->
+    <script src="js/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="style/datepicker.css">
+<style>
+.king1{
+     cursor: pointer;
+}
+.king2{
+     cursor: pointer;
+}
+.king3{
+     cursor: pointer;
+}
+    .clicked{
+        color:#cccccc;
+    }
+    .clicked .inforValue{
+        color:#cccccc;
+    }
+</style>
+    <link href = "style/MDReport.css" rel = "stylesheet" />
+</head>
+<body>
+    <div class="ToolBarBox btn-toolbar">
+    </div>
+    <div class="reportBody">
+        <div class="InforRow">
+              <!--右侧-->
+            <div class="InforBox" style="width:50%;height:175px;margin:10px 25%;" id="ElecAlarm">
+            </div>
+        </div>
+        <div id="table_num">
+        </div>   
+    </div>
+  
+
+    <script type="text/javascript">
+        function alarmShow(AlarmType) {  
+            window.top.OpenFourFrame("./ExtApp/SElectric/ElecAlarm?devBH=ME34530&AlarmType=" + AlarmType, 650, 500, "win", "报警数据");
+        }
+
+        //点击历史报警
+        function historyAlarm(){           
+            window.top.OpenFourFrame("./ExtApp_SElectric_HostoryElecAlarm.html?", 800, 600, "win", "历史报警");
+        }
+        
+    </script>
+    
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        var devId=sessionStorage.getItem("DevBH");
+        var time=new Date();
+        var year=time.getFullYear();
+        var month=time.getMonth()+1;
+        var day=time.getDate();
+        var now = year +'-'+month+'-'+day;
+        function loadDay(day){
+            $.ajax({
+            type:'get',
+            data:'devId='+devId+'&lstDate='+day,
+            url:'http://118.89.29.100/earlyPlatform/admin/device/ElecData.action',
+                //  url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/device/ElecData.action',
+            dataType:'json',
+            error:function(err){
+                console.log('MDChart'+err);
+            },
+            success:function(result){
+            console.log(result);
+                var ElecDetail=result.DevData[0];
+                var data=result.Data[0];
+                  console.log(data);
+                var html='';
+                    html="<div class='inforLine'><div class='inforLabel'>设备编号:</div><div class='inforValue'>"+ElecDetail.productNumber+"</div></div><div class='inforLine'><div class='inforLabel'>在线状态:</div><div class='inforValue'>"+ElecDetail.status+"</div></div><div class='inforLine'><div class='inforLabel'>最新数据:</div><div class='inforValue'>"+ElecDetail.newestDate+"</div></div><div class='inforLine'><div class='inforLabel'>报警信息:</div><div class='inforValue' id='AlarmValue'>"+ElecDetail.typeName+"</div></div><div class='inforLine'><div class='inforLabel'>安装位置:</div><div class='inforValue' style='display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;' title='9#P5配电总柜'>"+ElecDetail.installLocation+"</div></div><div class='inforLine'><div class='inforLabel'>报警手机:</div><div class='inforValue'>"+ElecDetail.master+"</div></div><div class='inforLine'><div class='inforLabel'>启用日期:</div><div class='inforValue'>"+ElecDetail.regdate+"</div></div>";
+                $('#ElecAlarm').html(html);
+
+                var html="";
+                if(data!=""&&data!=null){
+                    html="<table border='1' align='center' style='width:75%;text-algin:center;'><thead><tr><td>设备箱</td><td>实时值</td><td>设备箱</td><td>实时值</td></tr></thead><tbody><tr><td>A相温度/Ta</td><td>"+data.ATemp+"°C </td><td>B相温度/Tb</td><td>"+data.BTemp+"°C</td></tr><tr><td>C相温度/Tc</td><td>"+data.CTemp+"°C</td><td>N相温度/Tn</td><td>"+data.NTemp+"°C</td></tr><tr><td>A相电流/Ta</td><td>"+data.APhasecur+"A</td><td>B相电流/Tb</td><td>"+data.BPhasecur+"A</td></tr><tr><td>C相电流/Tc</td><td>"+data.CPhasecur+"A</td><td>N相电流/Tn</td><td>31A</td></tr><tr><td>A相电压/Ta</td><td>"+data.APhaseVolt+"V</td><td>B相电压/Tb</td><td>"+data.BPhaseVolt+"V</td></tr><tr><td>C相电压/Tc</td><td>"+data.CPhaseVolt+"V</td><td></td><td></td></tr></tbody></table>";
+                }
+                $('#table_num').html(html);
+            }
+            })
+        }
+        loadDay(now);
+
+    </script>
+</body>
+</html>

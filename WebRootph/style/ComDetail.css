@@ -1,0 +1,309 @@
+body {
+}
+  .ComInfo
+{
+    border: solid 2px #aaa;
+    border-radius:5px;
+    padding:10px;
+}
+.textContent
+{
+    text-indent: 2em;
+    font-size:14px;
+    line-height:20px;
+
+}
+.textColor
+{
+    color:#5dacd3;
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.boxLeft
+{
+    position:absolute;
+    left:10px;
+    top:10px;
+    border:0px;
+    right:400px;
+    bottom:0px;
+}
+
+.boxRight
+{
+    position:absolute;
+    right:10px;
+    top:10px;
+    border:0px;
+    width:380px;
+    /*bottom:0px;*/
+     bottom:150px;
+    border: solid 2px #aaa;
+    border-radius:5px;
+    overflow-y:auto;
+    height:560px;
+}
+
+
+.DeviceBox
+{
+    margin-top:10px;
+   overflow:hidden;
+}
+
+.boxTitle
+{
+    padding-left:10px;
+    font-size:16px;
+
+}
+
+.DeviceItem
+{
+    height:100px;
+    width:140px;
+    float:left;
+    margin-left:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+    position:relative;
+    text-align:center;
+    line-height:100px;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.DeviceStatus
+{
+    position:absolute;
+    left:10px;
+    top:10px;
+    font-size:14px;
+    line-height:20px;
+}
+
+ .elecBg1
+ {
+     background-color:#f45b5b;
+ }
+ .elecBg2
+ {
+     background-color:#54a435;
+ }
+ .elecBg3
+ {
+     background-color:#047877;
+ }
+
+.videoBox
+{
+     border: solid 2px #aaa;
+    border-radius:5px;
+    padding:10px;
+     width:100%;
+     height:318px;
+     overflow-y:auto;
+
+}
+.elecAlarmDoBox
+{
+    position:absolute;
+    width:280px;
+    top:10px;
+    border:0px;
+    right:10px;
+    bottom:0px;
+}
+.ShowImgBox
+{
+    padding:10px;
+    overflow:hidden;
+}
+.ShowImgBox img
+{
+    float:left;
+    margin-left:10px;
+}
+
+.fasDoLog
+{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:150px;
+    border:solid 1px #5dacd3;
+    border-radius:5px;
+    color:#fff;
+    overflow-y:auto;
+
+}
+.alarmDoItem
+{
+    border-bottom:solid 1px #5dacd3;
+
+}
+
+.alarmDoType
+{
+    height:30px;
+    line-height:30px;
+    padding-left:20px;
+    background-color:#466a7c;
+
+}
+
+.alarmDoDevice
+{
+    line-height:20px;
+    padding-left:20px;
+}
+
+.alarmDoText
+{
+    line-height:20px;
+    padding-left:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+.fasDo
+{
+    /*position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:140px;*/
+
+    position: absolute;
+    right: 10px;
+    /* top: 10px; */
+    border: 0px;
+    width: 380px;
+    bottom: 0px;
+    bottom: 20px;
+    border: solid 2px #aaa;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.fasDo textarea
+{
+    height:80px;
+}
+.doButs
+{
+    text-align: right;
+    padding: 3px;
+}
+
+.videoObj {
+   position:absolute;
+   left:0px;
+   right:0px;
+   bottom:0px;
+   height:40px;
+   line-height:40px;
+   font-size:14px;
+   text-align:left;
+   padding-left:20px;
+   background-color:#eee;
+  
+}
+
+
+    .videoBox .videoItem {
+        width:180px;
+        text-align:center;
+        float:left;
+        margin-left:5px;
+        margin-top:10px;
+        border-radius:10px;
+    }
+
+    .videoBox .videoPic1 {
+         background:url(../images/video1.png);
+          background-size:100% 100%;
+         width:80px;
+         height:80px;
+         text-align:center;
+         margin-left:auto;
+         margin-right:auto;
+         margin-top:10px;
+         cursor:pointer;
+    } 
+    
+	 .videoBox .nfc1 {
+	         background:url(../images/nfc.jpg);
+	          background-size:100% 100%;
+	         width:80px;
+	         height:80px;
+	         text-align:center;
+	         margin-left:auto;
+	         margin-right:auto;
+	         margin-top:10px;
+	         cursor:pointer;
+	    } 
+     .videoBox .videoPic2 {
+         background-image:url(../images/video2.png);
+          background-size:100% 100%;
+          width:80px;
+         height:80px;
+         text-align:center;
+         margin-left:auto;
+         margin-right:auto;
+         margin-top:10px;
+         cursor:pointer;
+    }
+
+    .videoBox .videoTitle {
+      line-height:20px;
+       padding-left:10px;
+       padding-right:10px;
+       width:100%;
+       text-align:left;
+       overflow:hidden;
+    }
+      .videoBox .leftTitle {
+       float:left;
+       line-height:30px;
+    }
+        .videoBox .rightTitle {
+        
+         float:right;
+         line-height:30px;
+    }
+      .videoBox .lineTitle {
+         height:40px;
+         overflow:hidden;
+    }
+
+      /*��λ��ϸ���ڱ����б�*/
+      .alarmBox
+      {
+          width:100%;
+          border-bottom:solid 1px #aaa;
+          padding-bottom:10px;
+      }
+
+       .alarmBox .alarmItem
+       {
+           position:relative;
+           min-height:25px;
+
+       }
+        .alarmBox .alarmLabel
+       {
+            position:absolute;
+            left:10px;
+            top:10px;
+            width:80px;
+             color:#5dacd3;
+       }
+        .alarmBox .alarmValue
+       { 
+               padding-top:10px;
+              margin-left:80px;
+       }

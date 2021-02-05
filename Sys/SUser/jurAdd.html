@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/url_zhuan.js"></script>
+    <link rel="stylesheet" href="../../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style/merchant-style-89cef630c9.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <form class="form-horizontal m-t" id="editForm" novalidate="novalidate" style="overflow-y: auto;height:500px;">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>角色：</label>
+                        <div class="col-sm-3">
+                            <input id="name" name="name" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>模块选择：</label>
+                        <div class="col-sm-8">
+                            <dl class="permission-list">
+                                <dt>
+                                    <label>&nbsp;配置模块</label>
+                                </dt>
+                                <!-- id="menuAlias_10001"  -->
+                                <dd>
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" value="10001" name="subMenuIdList">&nbsp;
+                                                用户管理
+                                                <input type="hidden" id="menuAlias_10001" value="用户管理">
+                                            </label>
+                                        </dt>
+                                        <dd>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10001001">&nbsp;
+                                                    用户密码管理
+                                                <input type="hidden" id="menuAlias_10001001" value="用户密码管理">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10001002">&nbsp;
+                                                用户修改
+                                                <input type="hidden" id="menuAlias_10001002" value="用户修改">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10001003">&nbsp;
+                                                用户新增
+                                                <input type="hidden" id="menuAlias_10001003" value="用户新增">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10001004">&nbsp;
+                                                用户删除
+                                                <input type="hidden" id="menuAlias_10001004" value="用户删除">
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </dd>
+                                <dd>
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" value="10002" name="subMenuIdList">&nbsp;
+                                                项目管理
+                                                <input type="hidden" id="menuAlias_10002" value="项目管理">
+                                            </label>
+                                        </dt>
+                                        <dd>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002001">&nbsp;
+                                                    项目新增
+                                                <input type="hidden" id="menuAlias_10002001" value="项目新增">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002002">&nbsp;
+                                                项目修改
+                                                <input type="hidden" id="menuAlias_10002002" value="项目修改">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002003">&nbsp;
+                                                    项目删除
+                                                <input type="hidden" id="menuAlias_10002003" value="项目删除">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002004">&nbsp;
+                                                    项目导入
+                                                <input type="hidden" id="menuAlias_10002004" value="项目导入">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002005">&nbsp;
+                                                    APP开通和关闭
+                                                <input type="hidden" id="menuAlias_10002005" value="APP开通和关闭">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002006">&nbsp;
+                                                    平台登录允许或关闭
+                                                <input type="hidden" id="menuAlias_10002006" value="平台登录允许或关闭">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10002007">&nbsp;
+                                                    项目分享
+                                                <input type="hidden" id="menuAlias_10002007" value="项目分享">
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </dd>
+                                <dd>
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" value="10003" name="subMenuIdList">&nbsp;
+                                                设备管理
+                                                <input type="hidden" id="menuAlias_10003" value="设备管理">
+                                            </label>
+                                        </dt>
+                                        <dd>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003001">&nbsp;
+                                                设备消音
+                                                <input type="hidden" id="menuAlias_10003001" value="设备消音">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003002">&nbsp;
+                                                设备复位
+                                                <input type="hidden" id="menuAlias_10003002" value="设备复位">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003003">&nbsp;
+                                                设备断电
+                                                <input type="hidden" id="menuAlias_10003003" value="设备断电">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003004">&nbsp;
+                                                设备远程操作
+                                                <input type="hidden" id="menuAlias_10003004" value="设备远程操作">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003005">&nbsp;
+                                                设备修改
+                                                <input type="hidden" id="menuAlias_10003005" value="设备修改">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003006">&nbsp;
+                                                设备删除
+                                                <input type="hidden" id="menuAlias_10003006" value="设备删除">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10003007">&nbsp;
+                                                设备新增
+                                                <input type="hidden" id="menuAlias_10003007" value="设备新增">
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </dd>
+                                <dd>
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" value="10004" name="subMenuIdList">&nbsp;
+                                                权限管理
+                                                <input type="hidden" id="menuAlias_10004" value="权限管理">
+                                            </label>
+                                        </dt>
+                                        <dd>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10004001">&nbsp;
+                                                角色权限查看
+                                                <input type="hidden" id="menuAlias_10004001" value="角色权限查看">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10004002">&nbsp;
+                                                角色编辑
+                                                <input type="hidden" id="menuAlias_10004002" value="角色编辑">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10004003">&nbsp;
+                                                    角色删除
+                                                <input type="hidden" id="menuAlias_10004003" value="角色删除">
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList"
+                                                    value="10004004">&nbsp;
+                                                    角色新增
+                                                <input type="hidden" id="menuAlias_10004004" value="角色新增">
+                                            </label>
+                                        </dd>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="DivBlock" style="display: none;">
+                        <div class="form-group col-sm-12" >
+                        <label class="control-label col-xs-3 " for="mobile">区域权限</label>
+                        <div class="col-xs-4" >
+                            <select name="" id="shengJi" class="form-control " >    
+                            </select>
+                        </div>
+                        <div class="col-xs-4" >
+                            <select name="" id="shiJi" class="form-control " style="display: none">    
+                            </select>
+                        </div>
+                        <div class="col-xs-5" >
+                            <select name="" id="quJi" class="form-control " style="display: none">    
+                            </select>
+                        </div>
+                        <div class="col-xs-5" >
+                            <select name="" id="jieJi" class="form-control " style="display: none">    
+                            </select>
+                        </div>
+                        <div class="col-xs-5" >
+                            <select name="" id="JuWei" class="form-control " style="display: none">    
+                            </select>
+                        </div>
+                    </div> 
+                    </div>
+                   
+                    
+                </form>
+                
+            </div>
+            <div class="form-group ">
+                <div class="col-sm-12 text-center footer-bur-fixed dibu-but-box">
+                    <a class="btn btn-success " type="button" id="save-btn">&nbsp;&nbsp;保存&nbsp;&nbsp;</a>
+
+                    <a class="btn btn-default " type="button" id="btn_close" onclick="window.top.CloseCurrWin()">&nbsp;&nbsp;取消&nbsp;&nbsp;</a>
+                </div>
+                
+            </div>
+        </div>
+    </div> 
+    <!-- <script src="../../js/jquery.min.js"></script> -->
+    <script src="js/jurAdd.js"></script>
+</body>
+
+</html>

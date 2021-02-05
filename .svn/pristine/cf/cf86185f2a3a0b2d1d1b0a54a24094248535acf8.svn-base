@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="../style/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../style/animate.css" rel="stylesheet" />
+     <script src="../js/jquery.min.js"></script>
+    <script src="../js/url_zhuan.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/layui-v2.4.5/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../style/layui-v2.4.5/layui/css/layer.css" />
+    <link rel="stylesheet" href="../style/weui.css">
+        <link rel="stylesheet" href="../style/jquery-weui.css">
+    
+    <link href="../style/GridLayout.css" rel="stylesheet"/>
+
+    <script src="./js/jquery.ztree.core-3.5.js"  type="text/javascript"></script>
+    <!--<script src="./js/MyToolBar.js"  type="text/javascript"></script>
+    <script src="./js/MyGrid.js"  type="text/javascript"></script>-->
+    <link href="../style/MyTree.css" type="text/css" rel="stylesheet"/>
+    <link href="../style/zTreeStyle.css" type="text/css" rel="stylesheet"/>
+    <link href="../style/MyToolBar.css" type="text/css" rel="stylesheet"/>
+    <link href="../style/MyGrid.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../style/merch.css">
+    <link href="../style/MDStyle.css" rel="stylesheet" />
+    <style>
+        .zhuangtaiDiv{
+            width:25%;
+            height:30px;
+            text-align: center;
+            line-height:30px;
+            display: flex;
+        }
+        .zhuangtaiSpan{
+            width:23%;
+            height:30px;
+            border:1px solid #ddd;   
+        }
+        .zhuangtaiActive{
+            border:1px solid #3cf !important;  
+        }
+    </style>
+</head>
+<body>
+    
+<div class="onlyGrid1">
+    <div class="ToolBarBox btn-toolbar">
+        <!-- <div class="btn-group btn-group-sm zhuangtaiDiv" role="group" >
+            <label> 事件状态:</label>
+            <span style="border-radius: 5px 0 0 5px;margin-left:20px;" class="zhuangtaiSpan zhuangtaiActive" data-num=''>全部</span>
+            <span class="zhuangtaiSpan" data-num='0'>报警</span>
+            <span style="border-radius: 0px  5px   5px 0;" class="zhuangtaiSpan" data-num='1'>故障</span>
+        </div> -->
+        <!-- <div class="btn-group btn-group-sm" role="group">
+            <button type="button" aria-expanded="false"  class="btn btn-primary" id="editor" onclick="EditClick();">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true" ></span>编辑 
+            </button> 
+        </div>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" aria-expanded="false" onclick="DeleteClick();" class="btn btn-danger">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除 
+            </button> 
+        </div> -->
+        <!-- <div class="btn-group btn-group-sm" role="group">
+            <button type="button" aria-expanded="false" onclick="RefreshClick();" class="btn btn-info">
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新 
+            </button> 
+        </div>
+        <div class="btn-group btn-group-sm" role="group">
+            <button type="button" aria-expanded="false"  class="btn btn-danger" id="delePF">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除责任人/防火员 
+            </button> 
+        </div> -->
+        <div class="Toolbar_SearchBox" style="width:230px;">
+            <div class="input-group">
+              <span class="input-group-addon">内容</span>
+              <input class="form-control " id="QueryMC" name="QueryMC" type="text" value="">
+              <!-- <span class="input-group-addon">类型</span>
+              <select class="form-control " id="QueryType" name="QueryType">
+                <option selected="selected" value=""></option>
+                <option value="01">消防安全重点单位</option>
+                <option value="02">消防安全一般单位</option>
+                <option value="03">九小场所GRID_SUser</option>
+              </select> -->
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="BtnSearch">查询</button>
+              </span>
+            </div>
+          </div>
+    </div>   
+    <div id="GRID_SUser" class="Grid" style="">
+        <!-- <div class="Grid_hd">
+            <div class="scrollHead">
+                <table class="GridTable"  style="width:100%;height:100%;min-width:610px;">
+                    <tbody> 
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+        <div class="Grid_bd body_bd" style='top:0px;'>
+             <div class="scrollHead" style="overflow-y: auto;height:100%;">
+                <table   style="width:100%;height:100px;min-width:610px;">
+                    <thead style="background: #337ab7;;color:#fff;text-align: center;">
+                        <tr>  
+                            <td style="width:60px;"></td>
+                            <td style="width:100px;">项目名称</td>
+                            <td style="width:100px;">项目位置</td>
+                            <td style="width:200px;">设备编号</td>
+                            <td style="width:150px;">保险单号</td>
+                            <td style="width:100px;">是否开启流量</td>
+                            <td style="width:100px;">心跳时间</td>
+                            <td style="width:150px;">操作</td> 
+                        </tr>
+                    </thead>
+                    <tbody id="GridTables"> 
+                       <!-- <tr>  
+                            <td style="width:60px;"></td>
+                            <td style="width:100px;">项目名称</td>
+                            <td style="width:100px;">项目位置</td>
+                            <td style="width:100px;">防火员</td>
+                            <td style="width:100px;">防火员电话</td>
+                            <td style="width:100px;">负责人</td>
+                            <td style="width:100px;">负责人电话</td>
+                            <td style="width:100px;">介绍</td>
+                            <td class="NoRightBorder">说明</td> 
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer-bur-fixed">
+                <div id="page-box" class="pagin-box" >
+                    <div id="page-size">
+                        每页显示&nbsp;
+                        <select id="page-size-select" v-model="pageSize" class="blue">
+                            <option value="10" selected="selected">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div id="page-total" class="page-total">
+                        共&nbsp;<i id="page-total-count" class="blue"></i>&nbsp;10  条记录，
+                        当前显示第&nbsp;<i id="page-total-num" class="blue">1</i>&nbsp;页
+                    </div>
+                    <div class="page-info"  style="float:right;margin-left:10px;">
+                        <div class="pagination" id="page-info">
+                            <span class="current prev">上一页</span>
+                            <span class="">1</span>
+                            <span class="">2</span>
+                            <span class="current">3</span>
+                            <span class="">4</span>
+                            <span class="">5</span>
+                            <span class="current next">下一页</span>
+                        </div>
+                        <div id="page-jump" > 
+                                去第<input id="page-jump-num" type="text">页&nbsp;<span id="page-jump-go"
+                                    class="go">确认</span>
+                            </div>
+                    </div>
+                    
+                </div>
+        </div>  
+    </div>
+</div> 
+
+
+     <script src="../js/bootstrap.min.js"></script>
+     <script src="../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+     <script src="../js/jquery-weui.js"></script>
+     <script src="js/noalarm.js"></script>
+     <script>
+         //body_bd
+         var height=$(window).height()
+         var mheight=height-40-56-10
+        // console.log()
+        $('.body_bd').css('height',mheight)
+     </script>
+</body>
+</html>

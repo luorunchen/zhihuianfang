@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/My97DatePicker/WdatePicker.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id='box'>
+        <button type="button" class="btn btn-success" style="    margin: 20px 37px 10px;" aria-expanded="false"
+            onclick="excelData();">数据导出</button>
+        <div class='input-group' style='width:160px;    position: relative;top: -40px;left: 175px;'>
+            <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+                data-val-required='The DateTime field is required.' id='QueryDate' name='QueryDate'
+                onfocus="WdatePicker({dateFmt:'yyyy-MM-dd H:m:s',minTime:'00:00:00',maxTime:'23:59:59'})" type='text'
+                value='' placeholder='请输入日期'
+                style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+            <button type="button" class="btn btn-warming" id="select"
+                style="margin-left:5px;margin-right:5px;float:right;position: relative;top: -32px;left: 75px;">查询</button>
+        </div>
+        <div id="box_table" style="overflow-y:auto;height:450px;">
+            <!-- <table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'>
+            <tr>
+                <td style='width:120px;' class='tabLabel'>报警名称:</td>
+                <td>A相温度报警</td>
+            </tr>
+            <tr>
+                <td style='width:120px;' class='tabLabel'>报警时间：</td>
+                <td>2019-07-01 12:59:04</td>
+            </tr>
+            <tr>
+                <td style='width:120px;' class='tabLabel'>报警值：</td>
+                <td>45°C</td>
+            </tr>
+        </table> -->
+
+
+
+
+        </div>
+    </div>
+    <script>
+        var productNumber = sessionStorage.getItem('productNumber');
+        var myDate = new Date(); //获取今天日期
+        var date;
+        if (myDate.getMonth() < 10) {
+            if (myDate.getDate() < 10) {
+                date = (myDate.getFullYear() + "-" + "0" + (myDate.getMonth() + 1) + "-" + "0" + (myDate.getDate()));
+            } else {
+                date = (myDate.getFullYear() + "-" + "0" + (myDate.getMonth() + 1) + "-" + (myDate.getDate()));
+            }
+        } else {
+            if (myDate.getDate() < 10) {
+                date = (myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + '0' + (myDate.getDate()));
+            } else {
+                date = (myDate.getFullYear() + "-" + (myDate.getMonth() + 1) + "-" + (myDate.getDate()));
+            }
+        }
+        console.log(date);
+        loadDate(date); //页面打开时，按当前日期显示
+        // $('#QueryDate').blur(function(){
+        //     var input_date=$('#QueryDate').val();
+        //     loadDate(input_date)  //根据想要查看的日期显示
+        // })
+        function loadDate(newTime) {
+            $.ajax({
+                type: 'get',
+                url: url + '/admin/deviceAlarm/getHistDeviceAlarm.action',
+                dataType: 'json',
+                data: 'productNumber=' + productNumber + '&date=' + newTime,
+                error: function (error) {
+                    console.log('ExtApp_history' + error);
+                },
+                success: function (result) {
+                    console.log(result);
+                    var mdata = result.DevData;
+                    // console.log(mdata);
+                    var html = "";
+                    if (mdata.length > 0 || mdata != "") {
+                        $.each(mdata, function (i, v) {
+                            // console.log(v);
+                            // html+="<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>"+v.noAlarmCurrentValue+"</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>"+v.regdate+"</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>"+v.leakageAlarmCurrentValue+"</td></tr></table>";
+                            if (v.type == "漏电故障" || v.type == "剩余电流-报警" || v.type ==
+                                "漏电故障-开路" || v.type == "漏电故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.leakageAlarmCurrentValue + "</td></tr></table>";
+                            } else if (v.type == "A相电流-报警" || v.type == "A相电流过载-报警" || v.type ==
+                                "A相故障-开路" || v.type == "A相故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noVoltageAlarmAValue + "</td></tr></table>";
+                            } else if (v.type == "B相电流-报警" || v.type == "B相电流过载-报警" || v.type ==
+                                "B相故障-开路" || v.type == "B相故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noLeakageAlarmBCurrentValue + "</td></tr></table>";
+                            } else if (v.type == "C相电流-报警" || v.type == "C相电流过载-报警" || v.type ==
+                                "C相故障-开路" || v.type == "C相故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noLeakageAlarmCCurrentValue + "</td></tr></table>";
+                            } else if (v.type == "A相电压-报警" || v.type == "A相电压过载-报警" || v.type ==
+                                "A相电压过载，电流过载-报警") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noVoltageAlarmAValue + "</td></tr></table>";
+                            } else if (v.type == "B相电压-报警" || v.type == "B相电压过载-报警" || v.type ==
+                                "B相电压过载，电流过载-报警") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noVoltageAlarmBValue + "</td></tr></table>";
+                            } else if (v.type == "C相电压-报警" || v.type == "C相电压过载-报警" || v.type ==
+                                "C相电压过载，电流过载-报警") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noVoltageAlarmCValue + "</td></tr></table>";
+                            } else if (v.type == "A温度-报警" || v.type == "A温度故障-开路" || v.type ==
+                                "A温度故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noAlarmATemperatureValue + "</td></tr></table>";
+                            } else if (v.type == "B温度-报警" || v.type == "B温度故障-开路" || v.type ==
+                                "B温度故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noAlarmNTemperatureValue + "</td></tr></table>";
+                            } else if (v.type == "C温度-报警" || v.type == "C温度故障-开路" || v.type ==
+                                "C温度故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noAlarmBTemperatureValue + "</td></tr></table>";
+                            } else if (v.type == "N温度-报警" || v.type == "N温度故障-开路" || v.type ==
+                                "N温度故障-短路") {
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                                    v.noAlarmCTemperatureValue + "</td></tr></table>";
+                            } else {
+                                console.log('zhengc ')
+                                html +=
+                                    "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                                    v.type +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                                    v.regdate +
+                                    "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td></td></tr></table>";
+                            }
+                        })
+                    } else {
+                        html = "<div style='text-align:center;'>该设备暂无报警信息</div>"
+                    }
+                    $('#box_table').html(html);
+                }
+
+            })
+        }
+
+        var excelData = function () {
+            var input_date = $('#QueryDate').val();
+            if (input_date == '' || input_date == null) {
+                var input_date = date;
+                console.log(input_date);
+            } else {
+                var input_date = input_date;
+                console.log(input_date)
+            }
+            var address = sessionStorage.getItem('devMC');
+            var name = sessionStorage.getItem('comName');
+            var productNumber = sessionStorage.getItem('productNumber');
+
+
+            // console.log(url+"/admin/device/poidownloadalarm.action?deviceid="+productNumber+"&pname="+name+"&installLocation="+address+'&date='+input_date)
+            window.open(url + "/admin/device/poidownloadalarm.action?deviceid=" + productNumber + "&pname=" + name +
+                "&installLocation=" + address + '&date=' + input_date);
+        }
+        $('#select').click(function () {
+            var time = $('#QueryDate').val();
+            console.log(time)
+            //http://p240647i77.qicp.vip/newEarlyWarn/admin/deviceAlarm/selectHistAlarm.action?productNumber=0460043006205919&date=2019-010-23
+            // $.ajax({
+            //     type: 'get',
+            //     url: url + '/admin/deviceAlarm/selectHistAlarm.action',
+            //     data: 'productNumber=' + productNumber + '&date=' + time,
+            //     error: function (error) {
+            //         console.log('ExtApp_history' + error);
+            //     },
+            //     success: function (result) {
+            //         console.log(result);
+            //         var data = result.DevData;
+            //         var html="";
+            //         if (data.length > 0 || data != "") {
+            //             $.each(data, function (i, v) {
+            //                 if (v.type == "漏电故障" || v.type == "剩余电流-报警" || v.type ==
+            //                     "漏电故障-开路" || v.type == "漏电故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.leakageAlarmCurrentValue + "</td></tr></table>";
+            //                 } else if (v.type == "A相电流-报警" || v.type == "A相电流过载-报警" || v.type ==
+            //                     "A相故障-开路" || v.type == "A相故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noVoltageAlarmAValue + "</td></tr></table>";
+            //                 } else if (v.type == "B相电流-报警" || v.type == "B相电流过载-报警" || v.type ==
+            //                     "B相故障-开路" || v.type == "B相故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noLeakageAlarmBCurrentValue + "</td></tr></table>";
+            //                 } else if (v.type == "C相电流-报警" || v.type == "C相电流过载-报警" || v.type ==
+            //                     "C相故障-开路" || v.type == "C相故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noLeakageAlarmCCurrentValue + "</td></tr></table>";
+            //                 } else if (v.type == "A相电压-报警" || v.type == "A相电压过载-报警" || v.type ==
+            //                     "A相电压过载，电流过载-报警") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noVoltageAlarmAValue + "</td></tr></table>";
+            //                 } else if (v.type == "B相电压-报警" || v.type == "B相电压过载-报警" || v.type ==
+            //                     "B相电压过载，电流过载-报警") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noVoltageAlarmBValue + "</td></tr></table>";
+            //                 } else if (v.type == "C相电压-报警" || v.type == "C相电压过载-报警" || v.type ==
+            //                     "C相电压过载，电流过载-报警") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noVoltageAlarmCValue + "</td></tr></table>";
+            //                 } else if (v.type == "A温度-报警" || v.type == "A温度故障-开路" || v.type ==
+            //                     "A温度故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noAlarmATemperatureValue + "</td></tr></table>";
+            //                 } else if (v.type == "B温度-报警" || v.type == "B温度故障-开路" || v.type ==
+            //                     "B温度故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noAlarmNTemperatureValue + "</td></tr></table>";
+            //                 } else if (v.type == "C温度-报警" || v.type == "C温度故障-开路" || v.type ==
+            //                     "C温度故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noAlarmBTemperatureValue + "</td></tr></table>";
+            //                 } else if (v.type == "N温度-报警" || v.type == "N温度故障-开路" || v.type ==
+            //                     "N温度故障-短路") {
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+            //                         v.noAlarmCTemperatureValue + "</td></tr></table>";
+            //                 } else {
+            //                     console.log('zhengc ')
+            //                     html +=
+            //                         "<table border='1' width style='width:600px;margin-top:10px;text-align:center' align='center'><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+            //                         v.type +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+            //                         v.regdate +
+            //                         "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td></td></tr></table>";
+            //                 }
+            //             })
+            //         }else{
+            //             html = "<div style='text-align:center;'>该设备暂无报警信息</div>"
+            //         }
+            //         $('#box_table').html(html);
+            //     }
+            // })
+        })
+    </script>
+</body>
+
+</html>

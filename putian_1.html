@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQ5brR6pk0kIpWhZsGRhmU2T"></script>
+    <script src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <script src="test/mapUtil.js"></script>
+    <script src="test/mapv.js"></script>
+    <!-- <script src="test/BDMap.js"></script> -->
+    <script src="test/mapData.js"></script>
+    <script src="test/MyFocus.js"></script>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="name">
+    <button id="btn">123</button>
+    <div id="container" οnclick="alert('clicked');"> </div>
+    <script>
+        //var mapBox = this[0];
+        //var point = new BMap.Point(113.275, 23.117);
+        //mapObj = new BMap.Map(mapBox, { enableMapClick: false });
+        var htmlBox = null;
+        var gMapData = null;
+        var map = new BMap.Map("container"); // 创建地图实例，禁止点击地图底图
+        var point = new BMap.Point(119.00, 25.43);
+        map.centerAndZoom(point, 10);
+        //设置样式
+        map.setMapStyle({
+            style: "midnight"
+        });
+        map.enableScrollWheelZoom(true);
+        var blist = [];
+        var districtLoading = 0;
+
+        // function getBoundary() {
+        //     addDistrict("福建");
+        // }
+        document.getElementById('btn').onclick=function(){
+            var name=document.getElementById('name').value;
+            addDistrict(name)
+        }
+        /**
+         * 添加行政区划
+         * @param {} districtName 行政区划名
+         * @returns  无返回值
+         */
+        function addDistrict(districtName) {
+            var bdary = new BMap.Boundary();
+            bdary.get(districtName, function (rs) { //获取行政区域
+                map.clearOverlays();
+                var count = rs.boundaries.length; //行政区域的点有多少个
+                if (count === 0) {
+                    map.centerAndZoom(new BMap.Point(116.403765, 39.914850), 5);
+                    alert('未能获取当前输入行政区域');
+                    return;
+                }
+                var pointArray = [];
+                for (var i = 0; i < count; i++) {
+                    var ply = new BMap.Polygon(rs.boundaries[i], {
+                        strokeWeight: 2,
+                        strokeColor: "#ff0000"
+                    }); //建立多边形覆盖物
+                    map.addOverlay(ply); //添加覆盖物
+                    pointArray = pointArray.concat(ply.getPath());
+                };
+                map.setViewport(pointArray); //调整视野  
+            });
+        }
+
+
+
+
+
+        function drawBoundary() {
+            //包含所有区域的点数组
+            var pointArray = [];
+            /*画遮蔽层的相关方法
+             *思路: 首先在中国地图最外画一圈，圈住理论上所有的中国领土，然后再将每个闭合区域合并进来，并全部连到西北角。
+             *      这样就做出了一个经过多次西北角的闭合多边形*/
+            //定义中国东南西北端点，作为第一层
+            var pNW = {
+                lat: -360,
+                lng: 90
+            }
+            var pNE = {
+                lat: -360,
+                lng: -90
+            }
+            var pSE = {
+                lat: 360,
+                lng: -90
+            }
+            var pSW = {
+                lat: 360,
+                lng: 90
+            }
+            //向数组中添加一次闭合多边形，并将西北角再加一次作为之后画闭合区域的起点
+            var pArray = [];
+            pArray.push(pNW);
+            pArray.push(pSW);
+            pArray.push(pSE);
+            pArray.push(pNE);
+            pArray.push(pNW);
+            var plyall = new BMap.Polygon(pArray, {
+                strokeOpacity: 0.0000001,
+                strokeColor: "#000000",
+                strokeWeight: 0.00001,
+                fillColor: "#ffffff",
+                fillOpacity: 0.9
+            }); //建立多边形覆盖物
+            map.addOverlay(plyall);
+        }
+       // drawBoundary()
+        if (gMapData == null) {
+            gMapData = new MapData(htmlBox, map);
+        }
+        gMapData.Open();
+        // setTimeout(function () {
+        //     getBoundary();
+        // }, 100);
+    </script>
+</body>

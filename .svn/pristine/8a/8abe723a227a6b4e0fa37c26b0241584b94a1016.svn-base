@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../js/url_zhuan.js"></script>
+    <link rel="stylesheet" href="../../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style/merchant-style-89cef630c9.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content" style="overflow: auto;position: absolute;">
+                <form class="form-horizontal m-t" id="editForm" novalidate="novalidate" >
+                    <div class="form-group col-sm-12" >
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>数据导出选择</label>
+                        <div class="col-sm-8">
+                            <dl class="permission-list">
+                                <dt>
+                                    <label>&nbsp;设备状态</label>
+                                </dt>
+                                <dd class="jurTable facZhuangTable">
+                                    <dl class="cl permission-list2">
+                                        <dt class="exportZheng">
+                                            <label>
+                                                <input type="radio" name="thirdMenuIdList" value="1">&nbsp;
+                                                在线
+                                                <input type="hidden" id="menuAlias_1" value="在线">
+                                            </label>
+                                        </dt>
+                                        <dt class="exportZheng">
+                                            <label>
+                                                <input type="radio" name="thirdMenuIdList" value="0">&nbsp;
+                                                离线
+                                                <input type="hidden" id="menuAlias_0" value="设备管理">
+                                            </label>
+                                        </dt>
+                                        <dt id="menuAlias_3">
+                                            <label >
+                                                <input type="checkbox" name="alarm" value="3">&nbsp;
+                                                报警
+                                                <input type="hidden"  value="报警">
+                                            </label>
+                                        </dt>
+                                        <dt class="exportZheng">
+                                            <label>
+                                                <input type="radio" name="thirdMenuIdList" value="4">&nbsp;
+                                                所有类型
+                                                <input type="hidden" id="menuAlias_4" value="所有类型">
+                                            </label>
+                                        </dt>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </form>
+                <form class="form-horizontal m-t" id="facType" novalidate="novalidate" >
+                    <div class="form-group col-sm-12" >
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>数据导出选择</label>
+                        <div class="col-sm-8">
+                            <dl class="permission-list">
+                                <dt>
+                                    <label>&nbsp;设备类型</label>
+                                </dt>
+                                <dd class="jurTable facTypeTable">
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="menuFac" value="0">&nbsp;
+                                                网关
+                                                <input type="hidden" id="menufac_0" value="网关">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="menuFac" value="1">&nbsp;
+                                                燃气
+                                                <input type="hidden" id="menufac_1" value="燃气">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="menuFac" value="2">&nbsp;
+                                                烟感  
+                                                <input type="hidden" id="menufac_2" value="烟感  ">
+                                            </label>
+                                        </dt>
+                                        <dt >
+                                            <label >
+                                                <input type="checkbox" name="menuFac" value="3">&nbsp;
+                                                电气
+                                                <input type="hidden"  value="电气" id="menufac_3">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="menuFac" value="4">&nbsp;
+                                                水压    
+                                                <input type="hidden" id="menufac_4" value="水压    ">
+                                            </label>
+                                        </dt>
+                                        <dt >
+                                            <label >
+                                                <input type="checkbox" name="menuFac" value="8">&nbsp;
+                                                液位
+                                                <input type="hidden"  value="液位" id="menufac_8">
+                                            </label>
+                                        </dt>
+                                        <dt >
+                                            <label >
+                                                <input type="checkbox" name="menuFac" value="">&nbsp;
+                                                全部设备
+                                                <input type="hidden"  value="全部设备" id="menufac_">
+                                            </label>
+                                        </dt>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group ">
+                    <div class="col-sm-12 text-center footer-bur-fixed dibu-but-box">
+                        <a class="btn btn-success " type="button" id="save-btn">&nbsp;&nbsp;导出数据&nbsp;&nbsp;</a>
+                        <!-- <a class="btn btn-default " type="button" id="cancel-btn">&nbsp;&nbsp;取消&nbsp;&nbsp;</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.ztree.core-3.5.js"></script>
+    <script src="js/daoFacBiao.js"></script>
+</body>
+
+</html>

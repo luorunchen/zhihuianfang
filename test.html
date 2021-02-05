@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+     <script src="js/jquery.min.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <script src="js/highcharts.js"></script>
+    <link href="style/ElecComCss.css" rel="stylesheet"/>
+     <link href="style/ElecCss.css" rel="stylesheet"/>
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <link href="style/WaterCss.css" rel="stylesheet"/>
+      <script type="text/javascript">
+        // function detailShow(devBH,devMC) {
+        //     window.top.OpenThirdFrame("/ExtApp_SElectric_ElecDetail.html?devBH=" + devBH, 800, 600, "win", devMC);
+        // }
+    </script>
+    <style  type="text/css">
+        .ComInfor
+        {
+            height:50px;
+            line-height:40px;
+            text-align:center;
+            font-size:16px;
+            color:#fff;
+            padding-top:10px;
+            border-bottom:solid 1px #75c5f0;
+        }
+         .ComInfor span
+         {
+             position:absolute;
+             right:10px;
+             cursor:pointer;
+         }
+    </style>
+</head>
+<body>
+    <div class="elecBox waterBox" >
+      <div class="elecItem" onclick="detailShow('3201183','用电总开')">
+          <div class="elecPic elecNormal" data-devBh="3201183"></div>
+          <div class="elecContent">
+              <div class="elecTitle">
+                  <div class="lineTitle">编号:3201</div>
+              </div>
+              <div class="elecTitle">
+                  <div class="lineTitle"><a href='javascript:;' onclick=\"videoWarmClick('"+v.productNumber+"');\"> 查看视频</a></div>
+              </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">位置:用电总开</div>
+              </div>
+          </div>
+      </div>
+      <div class="elecItem" onclick="detailShow('3201189','1楼用电总开')">
+                  <div class="elecPic elecNormal" data-devBh="3201189"></div>
+          <div class="elecContent">
+              <div class="elecTitle">
+                  <div class="lineTitle">在线监测:3201189</div>
+              </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">更新:2018/8/2 10:52:53</div>
+              </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">位置:1楼用电总开</div>
+              </div>
+          </div>
+      </div>
+      <div class="elecItem" onclick="detailShow('3201713','B4四号配电室')">
+                  <div class="elecPic elecAlarm" data-devbh="3201713"></div>
+          <div class="elecContent">
+              <div class="elecTitle">
+                  <div class="lineTitle">在线监测:3201713</div>
+              </div>
+
+              <div class="elecTitle">
+                  <div class="lineTitle">更新:2018/8/14 15:15:41</div>
+              </div>
+                  <div class="elecTitle" style="color:#f00;">
+                          <div class="lineTitle">告警:A相电压欠压报警,B相电压欠压报警,C相电压欠压报警,A相电压欠压报警,B相电压欠压报警,C相电压欠压报警</div>
+                  </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">位置:B4四号配电室</div>
+              </div>
+          </div>
+      </div>
+      <div class="elecItem" onclick="detailShow('3201710','B4二号配电室')">
+          <div class="elecPic elecOff" data-devbh="3201710"></div>
+          <div class="elecContent">
+              <div class="elecTitle">
+                  <div class="lineTitle">在线监测:3201710</div>
+              </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">更新:2017/10/18 23:51:37</div>
+              </div>
+                  <div class="elecTitle" style="color:#f00;">
+                          <div class="lineTitle">告警:剩余电流报警</div>
+                  </div>
+              <div class="elecTitle">
+                  <div class="lineTitle">位置:B4二号配电室</div>
+              </div>
+          </div>
+      </div>
+    </div>
+<div class="elecLeft">
+    <div class="ComInfo">
+        <div class="textContent">
+            <span class="textColor">烟台市中国人寿保险公司龙口分公司</span>位于<span class="textColor">山东省-烟台市-龙口市-东莱街道办事处</span>,详细位置<span class="textColor">东莱街与港城大道交叉口东50</span>，单位类型为<span class="textColor">其他</span>。
+        </div>
+        <div class="textContent">
+            单位消防安全负责人是<span class="textColor">王欢</span>，联系电话<span class="textColor">15153504569</span>,消防安全管理人是<span class="textColor"></span>，联系电话<span class="textColor"></span>。
+        </div>
+        <div class="textContent">
+            该单位属于<span class="textColor">九小场所</span>，消防主管部门是<span class="textColor">龙口市公安消防大队</span>。
+        </div>
+    </div>
+    <div class="elecDeviceBox">
+        <div class="DeviceItem elecBg1" >
+            <div class="DeviceStatus">报警设备</div>
+           2
+        </div>
+        <div class="DeviceItem elecBg2">
+            <div class="DeviceStatus">在线设备</div>
+            2
+        </div>
+        <div class="DeviceItem elecBg3">
+            <div class="DeviceStatus">断线设备</div>
+            0
+        </div>
+        <!--<div class="DeviceItem elecBg4">
+            <div class="DeviceStatus">脱扣设备</div>
+            0
+        </div>-->
+    </div>
+    <div class="elecAlarmBox">
+    </div>
+</div>
+<!--<div class="elecAlarmDoBox">  //ElecComCss.css  110
+    <div class="elecDoLog">   //130 
+    </div>
+    <div class="elecDo">  //173
+        <textarea id="txtDo" name="txtDo" class="form-control"  placeholder="请输入值守中心处置情况"></textarea>
+        <div class="doButs">
+            <button class="btn btn-primary" type="button" onclick="w eekShow()">周报查看</button>
+            <button class="btn btn-primary" type="button" onclick="doAlarm()">提交处置情况</button>
+        </div>
+    </div>
+</div>-->
+
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

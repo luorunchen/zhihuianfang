@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户信息</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js" type="text/javascript"></script>
+    <script src="../../js/FTool.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KijP02mbMQhSR8T4Qk82f9feXBbftwie">
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+
+
+
+    <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="bodyBox">
+
+        <form action="" class="form-horizontal" id="editForm" method="post">
+            <div class="formBody">
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="DevNumber">设备编号</label>
+                    <div class="col-xs-9">
+                        <!--//readonly="readonly"  只读-->
+                        <input class="form-control  " id="projName" name="DevNumber" type="text" value=""
+                            autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="leixing">设备类型</label>
+                    <div class="col-xs-9">
+                        <input id="leixing" name="leixing" type="hidden" value="" />
+                        <select class="form-control " id="lei_type" name="leixing">
+                            <option value=""></option>
+                            <option value="0">网关</option>
+                            <option value="2">烟感</option>
+                            <option value="3">电气</option>
+                            <option value="4">水压</option>
+                            <option value="5">消防主机</option>
+                            <option value="6">无线气感</option>
+                            <option value="7">粉尘设备</option>
+                            <option value="8">液位</option>
+                            <option value="9">录像</option>
+                            <option value="10">消防门磁</option>
+                            <option value="11">工业燃气</option>
+                            <option value="12">电力火灾探测器</option>
+                            <option value="15">声光报警器</option>
+                            <option value="16">手动报警</option>
+                            <option value="18">水浸报警器</option>
+                            <option value="19">紧急报警</option>
+                            <option value="21">智能灭火器</option>
+                            <option value="24">智能重合闸</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="DevName">设备名称</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="info" name="DevName" type="text" value="" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="JingWei">经纬度</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " readonly="readonly" id="JingWei" name="JingWei" type="text"
+                            value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="Address">安装地址</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="address" name="Address" type="text" value=""
+                            autocomplete="off" />
+                        <span
+                            style="position: absolute;top: 0px;right: 39px;line-height: 34px;width: 45px;text-align: center;border:none;border-radius: 10px;background:#3cf;color:#fff"
+                            id="r-result">查询</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="changsuo">应用场所</label>
+                    <div class="col-xs-9">
+                        <input id="changsuo" name="changsuo" type="hidden" value="" />
+                        <select class="form-control " id="changsuo_type">
+                            <option value="客运站、火车站、地铁站、机场、码头">客运站、火车站、地铁站、机场、码头</option>
+                            <option value="公共供水单位">公共供水单位</option>
+                            <option value="瓶装燃气储配单位">瓶装燃气储配单位</option>
+                            <option value="瓶装燃气供应站">瓶装燃气供应站</option>
+                            <option value="寄递企业">寄递企业</option>
+                            <option value="物流企业">物流企业</option>
+                            <option value="加油站">加油站</option>
+                            <option value="宾馆、旅馆">宾馆、旅馆</option>
+                            <option value="民宿、农家乐">民宿、农家乐</option>
+                            <option value="商业综合体">商业综合体</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="学校、幼儿园">学校、幼儿园</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="网吧">网吧</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="娱乐场所">娱乐场所</option>
+                            <option value="工矿企业">工矿企业</option>
+                            <option value="劳动密集型企业">劳动密集型企业</option>
+                            <option value="建筑工地">建筑工地</option>
+                            <option value="高层建筑">高层建筑</option>
+                            <option value="住宅小区（老旧小区）、居民楼">住宅小区（老旧小区）、居民楼</option>
+                            <option value="教育培训机构">教育培训机构</option>
+                            <option value="医院、养老院">医院、养老院</option>
+                            <option value="商场、市场">商场、市场</option>
+                            <option value="食品生产加工小作坊">食品生产加工小作坊</option>
+                            <option value="中央厨房、大型餐饮单位、用餐配送单位">中央厨房、大型餐饮单位、用餐配送单位</option>
+                            <option value="网络餐饮、小餐饮店">网络餐饮、小餐饮店</option>
+                            <option value="农贸市场">农贸市场</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="duanInfo">短信推送</label>
+                    <div class="col-xs-9" style='    height: 34px;line-height: 34px;font-size: 18px;'>
+                        <label for="duanInfoOpen">
+                            <input " id=" duanInfoOpen" name="duanInfoMenu" type="radio" value="1"
+                                autocomplete="off" />开启
+                        </label>
+                        <label for="duanInfoClose">
+                            <input " id=" duanInfoClose" name="duanInfoMenu" type="radio" value="0"
+                                autocomplete="off" />关闭
+                        </label>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="beizhu">备注</label>
+                    <div class="col-xs-9">
+                        <input class="form-control validate[required,funcCall[checkHELLO]]" id="beizhu" name="beizhu"
+                            type="text" value="" autocomplete="off" />
+                    </div>
+                </div>
+                <div style="width:100%;height:250px;">
+                    <div id="allmap" style="width:100%;height:350px;"></div>
+                </div>
+
+            </div>
+            <div class="formBut">
+                <div class="form-group">
+                    <div style="float:right;margin-right:30px;"> <input class="btn btn-primary" name="submitBtn"
+                            type="button" value="保存" id="btn_on" />
+                        <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close" />
+                    </div>
+                    <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+                </div>
+                <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="" />
+
+
+            </div>
+        </form>
+
+
+    </div>
+    <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+    <script>
+        var x = document.getElementById("dingwei");
+
+        function createMap() {
+            var map = new BMap.Map("allmap");
+            var geoc = new BMap.Geocoder(); //地址解析对象  
+            var markersArray = [];
+            var geolocation = new BMap.Geolocation();
+            var point = new BMap.Point(114.046252, 22.640817);
+            map.centerAndZoom(point, 12); // 中心点  
+            geolocation.getCurrentPosition(function (r) {
+                var address = r.address.province + r.address.city + r.address.district + r.address.street + r
+                    .address.street_number;
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    var mk = new BMap.Marker(r.point);
+                    map.addOverlay(mk);
+                    map.panTo(r.point);
+                    map.enableScrollWheelZoom(true);
+                    // document.getElementById('lng').value = r.point.lng;  
+                    // document.getElementById('lat').value =  r.point.lat;  
+                    var dingwei = r.point.lng + ',' + r.point.lat;
+                    document.getElementById('address').value = address;
+                    document.getElementById('JingWei').value = dingwei;
+                } else {
+                    alert('failed' + this.getStatus());
+                }
+            }, {
+                enableHighAccuracy: true
+            })
+            map.addEventListener("click", showInfo);
+            //清除标识  
+            function clearOverlays() {
+                if (markersArray) {
+                    for (var i in markersArray) {
+                        map.removeOverlay(markersArray[i])
+                    }
+                }
+            }
+            //地图上标注  
+            function addMarker(point) {
+                var marker = new BMap.Marker(point);
+                markersArray.push(marker);
+                clearOverlays();
+                map.addOverlay(marker);
+            }
+            //点击地图时间处理  
+            function showInfo(e) {
+                console.log(e);
+                map.clearOverlays();
+                geoc.getLocation(e.point, function (rs) {
+                    var addComp = rs.addressComponents;
+                    var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp
+                        .streetNumber;
+                    console.log(address)
+                    // document.getElementById('lng').value = e.point.lng;  
+                    // document.getElementById('lat').value =  e.point.lat; 
+                    var dingwei = e.point.lng + ',' + e.point.lat;
+                    document.getElementById('address').value = address;
+                    document.getElementById('JingWei').value = dingwei;
+                });
+                addMarker(e.point);
+            }
+            var localSearch = new BMap.LocalSearch(map);
+            localSearch.enableAutoViewport(); //允许自动调节窗体大小
+            function searchByStationName() {
+                map.clearOverlays(); //清空原来的标注
+                var keyword = document.getElementById("address").value;
+                console.log(keyword);
+                //setSearchCompleteCallback--->设置检索结束后的回调函数
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0); // searchResult.Ar 数组中的第一个
+                    // document.getElementById("lng").value = poi.point.lng 
+                    // document.getElementById("lat").value= poi.point.lat;
+                    var dingwei = poi.point.lng + ',' + poi.point.lat;
+                    document.getElementById('JingWei').value = dingwei;
+                    map.centerAndZoom(poi.point, 100);
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point
+                        .lat)); // 创建标注，为要查询的地方对应的经纬度
+                    map.addOverlay(marker);
+                });
+                localSearch.search(keyword);
+            }
+            document.getElementById('r-result').onclick = function () {
+                searchByStationName();
+            }
+        }
+        createMap();
+
+        function getLocation() {
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function (r) {
+                console.log(r);
+                var location = r.address.province + r.address.city + r.address.district + r.address.street + r
+                    .address.street_number;
+                //$('#localtion').val(location)
+                //$('#dingwei').val(position.coords.latitude + ',' + position.coords.longitude)
+                var locations = r.longitude + ',' + r.latitude;
+                console.log(locations);
+                var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+                var coordsys = 'baidu'
+                $.ajax({
+                    type: 'get',
+                    url: 'https://restapi.amap.com/v3/assistant/coordinate/convert',
+                    data: 'key=' + key + '&locations=' + locations + '&coordsys=' + coordsys,
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (result) {
+                        console.log(result);
+
+                        var lat = result.locations.split(',')[0].substr(0, 10);
+                        var lng = result.locations.split(',')[1].substr(0, 9);
+                        $('#JingWei').val(lng + ',' + lat)
+
+                    }
+                })
+            })
+        }
+        //getLocation();
+        var projName = location.search.split('?')[1].split('=')[1]; //pid
+        console.log(projName);
+        $('#btn_on').click(function () {
+            var projName = location.search.split('?')[1].split('=')[1]; //pid
+            console.log(projName);
+            var devSignature = $('#projName').val().trim(); //设备编号
+            var devtype = $('#lei_type').val(); //设备类型          
+            var device_name = $('#info').val(); //设备名称       
+            var long_lat = $('#JingWei').val(); //经纬度 
+            var installLocation = $('#address').val(); //安装地址
+            var place = $('#changsuo_type').val(); //介绍
+            var devRemark = $('#beizhu').val(); //备注
+            var username = localStorage.getItem('userName'); //登陆账号
+            var sms = $("input[name='duanInfoMenu']:checked").val();
+            if (sms == undefined) {
+                layer.open({
+                    content: '请选择是否开启短信推送'
+                })
+            } else {
+                var sms = $("input[name='duanInfoMenu']:checked").val();
+            }
+            console.log(sms)
+            console.log(devSignature + '--' + devtype + '--' + device_name + '--' + long_lat + '--' +
+                installLocation + '--' + place + '--' + devRemark + '--' + username);
+            var superiorEquipme = "";
+            var loopNumber = ""; //loopNumber
+            var devId = ""; //设备ID
+            var nfcType = "";
+            var cycle = "";
+            var nfcName = "";
+            console.log(devtype)
+            if (devtype == '9') {
+                console.log('ship')
+                if (devSignature == "" && devSignature.indexOf('_') == -1) { //D76375435_MTHHWY
+                    layer.open({
+                        content: '请输入设备编号'
+                    })
+                } else if (sms == undefined) {
+                    layer.open({
+                        content: '请选择是否开启短信推送'
+                    })
+                } else {
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/device/check/addDevice.action',
+                        data: 'projName=' + projName + '&devSignature=' + devSignature + '&username=' +
+                            username + '&installLocation=' + installLocation + '&long_lat=' + long_lat +
+                            '&devtype=' + devtype + '&device_name=' + device_name + '&place=' + place +
+                            '&superiorEquipme=' + superiorEquipme + '&loopNumber=' + loopNumber +
+                            '&devId=' + devId + '&devRemark=' + devRemark + '&sms=' + sms,
+                        error: function (error) {
+                            console.log(error + '网络错误')
+                        },
+                        success: function (result) {
+                            var res = JSON.parse(result);
+                            console.log(res);
+                            var data = res.list[0].mess;
+                            var index = parent.layer.getFrameIndex(window.name);
+                            setTimeout(() => {
+                                parent.layer.close(index);
+                                // parent.location.reload();  //父级刷新
+                                parent.location.reload(); //父级刷新
+                            }, 100);
+                        }
+                    })
+                }
+            } else if (devtype == '21') {
+                console.log('miehuoqi')
+                var devSignature = devSignature + '0000000';
+                console.log(devSignature)
+                if (devSignature == "" || devSignature.length != 15) {
+                    layer.open({
+                        content: '请输入正确的设备编号'
+                    })
+                } else if (sms == undefined) {
+                    layer.open({
+                        content: '请选择是否开启短信推送'
+                    })
+                } else {
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/device/check/addDevice.action',
+                        data: 'projName=' + projName + '&devSignature=' + devSignature + '&username=' +
+                            username + '&installLocation=' + installLocation + '&long_lat=' + long_lat +
+                            '&devtype=' + devtype + '&device_name=' + device_name + '&place=' + place +
+                            '&superiorEquipme=' + superiorEquipme + '&loopNumber=' + loopNumber +
+                            '&devId=' + devId + '&devRemark=' + devRemark + '&sms=' + sms,
+                        error: function (error) {
+                            console.log(error + '网络错误')
+                        },
+                        success: function (result) {
+                            var res = JSON.parse(result);
+                            console.log(res);
+                            var data = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                alert(res.list[0].mess)
+                                var width = $(window).width();
+                                var height = $(window).height();
+                                console.log(height)
+                                layer.open({
+                                    type: 2,
+                                    title: '其他配置',
+                                    maxmin: true,
+                                    offset: ['50px'],
+                                    shadeClose: true, //点击遮罩关闭层
+                                    shade: 0.5, //不显示遮罩
+                                    // area: [width + 'px', height + 'px'],
+                                    area: [width / 2 + 'px', height - 200 + 'px'],
+                                    content: `./anthor.html?devSignature=${devSignature}`
+                                });
+                            } else {
+                                alert(res.list[0].mess)
+                            }
+                        }
+                    })
+                }
+            } else if (devtype == '12') {
+                if (sms == undefined) {
+                    layer.open({
+                        content: '请选择是否开启短信推送'
+                    })
+                } else {
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/device/check/addDevice.action',
+                        data: 'projName=' + projName + '&devSignature=' + devSignature + '&username=' +
+                            username + '&installLocation=' + installLocation + '&long_lat=' + long_lat +
+                            '&devtype=' + devtype + '&device_name=' + device_name + '&place=' + place +
+                            '&superiorEquipme=' + superiorEquipme + '&loopNumber=' + loopNumber +
+                            '&devId=' + devId + '&devRemark=' + devRemark + '&sms=' + sms,
+                        error: function (error) {
+                            console.log(error + '网络错误')
+                        },
+                        success: function (result) {
+                            var res = JSON.parse(result);
+                            console.log(res);
+                            var data = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                alert(res.list[0].mess)
+                                var width = $(window).width();
+                                var height = $(window).height();
+                                console.log(height)
+                                layer.open({
+                                    type: 2,
+                                    title: '其他配置',
+                                    maxmin: true,
+                                    offset: ['50px'],
+                                    shadeClose: true, //点击遮罩关闭层
+                                    shade: 0.5, //不显示遮罩
+                                    // area: [width + 'px', height + 'px'],
+                                    area: [width / 2 + 'px', height - 200 + 'px'],
+                                    content: `./anthor.html?devSignature=${devSignature}`
+                                });
+                            } else {
+                                alert(res.list[0].mess)
+                            }
+                        }
+                    })
+                }
+
+            } else if (devtype == '3') {
+                if (sms == undefined) {
+                    layer.open({
+                        content: '请选择是否开启短信推送'
+                    })
+                } else {
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/device/check/addDevice.action',
+                        data: 'projName=' + projName + '&devSignature=' + devSignature + '&username=' +
+                            username + '&installLocation=' + installLocation + '&long_lat=' + long_lat +
+                            '&devtype=' + devtype + '&device_name=' + device_name + '&place=' + place +
+                            '&superiorEquipme=' + superiorEquipme + '&loopNumber=' + loopNumber +
+                            '&devId=' + devId + '&devRemark=' + devRemark + '&sms=' + sms,
+                        error: function (error) {
+                            console.log(error + '网络错误')
+                        },
+                        success: function (result) {
+                            var res = JSON.parse(result);
+                            console.log(res);
+                            var data = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                alert(res.list[0].mess)
+                                var width = $(window).width();
+                                var height = $(window).height();
+                                console.log(height)
+                                layer.open({
+                                    type: 2,
+                                    title: '其他配置',
+                                    maxmin: true,
+                                    offset: ['50px'],
+                                    shadeClose: true, //点击遮罩关闭层
+                                    shade: 0.5, //不显示遮罩
+                                    // area: [width + 'px', height + 'px'],
+                                    area: [width / 2 + 'px', height - 200 + 'px'],
+                                    content: `./anthor.html?devSignature=${devSignature}`
+                                });
+                            } else {
+                                alert(res.list[0].mess)
+                            }
+                        }
+                    })
+                }
+
+            }else {
+                console.log('more')
+                if (devSignature == "" || devSignature.length != 15) {
+                    layer.open({
+                        content: '请输入正确的设备编号'
+                    })
+                } else if (sms == undefined) {
+                    layer.open({
+                        content: '请选择是否开启短信推送'
+                    })
+                } else {
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/device/check/addDevice.action',
+                        data: 'projName=' + projName + '&devSignature=' + devSignature + '&username=' +
+                            username + '&installLocation=' + installLocation + '&long_lat=' + long_lat +
+                            '&devtype=' + devtype + '&device_name=' + device_name + '&place=' + place +
+                            '&superiorEquipme=' + superiorEquipme + '&loopNumber=' + loopNumber +
+                            '&devId=' + devId + '&devRemark=' + devRemark + '&sms=' + sms,
+                        error: function (error) {
+                            console.log(error + '网络错误')
+                        },
+                        success: function (result) {
+                            var res = JSON.parse(result);
+                            console.log(res);
+                            var data = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                alert(res.list[0].mess)
+                                var width = $(window).width();
+                                var height = $(window).height();
+                                console.log(height)
+                                layer.open({
+                                    type: 2,
+                                    title: '其他配置',
+                                    maxmin: true,
+                                    offset: ['50px'],
+                                    shadeClose: true, //点击遮罩关闭层
+                                    shade: 0.5, //不显示遮罩
+                                    // area: [width + 'px', height + 'px'],
+                                    area: [width / 2 + 'px', height - 200 + 'px'],
+                                    content: `./anthor.html?devSignature=${devSignature}`
+                                });
+                            } else {
+                                alert(res.list[0].mess)
+                            }
+                        }
+                    })
+                }
+            }
+
+        })
+
+        function RefreshClick() {
+            window.location.reload();
+        }
+        $('#btn_close').click(function () {
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+        })
+    </script>
+
+</body>
+
+</html>

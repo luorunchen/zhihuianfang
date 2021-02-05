@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <link href="style/SmokeCss.css" rel="stylesheet"/>
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function detailShow(devBH,devMC) {
+            window.top.OpenThirdFrame("/SSmoke_SmokeDetail.html?devBH=" + devBH, 800, 600, "win", devMC);
+        }
+    </script>
+    <style type="text/css">
+        .ComInfor {
+            height: 50px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            padding-top: 10px;
+            border-bottom: solid 1px #75c5f0;
+        }
+            .ComInfor span {
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+            }
+    </style>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+<body>
+<div class="ComInfor">星苑艺术学校 <span aria-hidden="true" onclick="window.top.CloseSelWin();">×</span></div>
+<div class="elecBox">
+        <div class="elecItem" onclick="detailShow('Y0001882','大厅')">
+                    <div class="elecPic elecNormal" data-devBh="Y0001882"></div>
+            <div class="elecContent">
+                <div class="elecTitle">
+                    <div class="lineTitle">设备号:Y0001882</div>
+                </div>
+                <div class="elecTitle" style="overflow: auto;">
+                    <div class="lineTitle" style="width:45%;float: left;">电量:100%</div>
+                    <div class="lineTitle"style="width:55%;float: left;">信号强度:25</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">更新:2018/8/2 3:02:15</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">位置:【大厅】大厅</div>
+                </div>
+            </div>
+        </div>
+        <div class="elecItem" onclick="detailShow('Y0001979','缓冲间')">
+                <div class="elecPic elecOff" data-devBh="Y0001979"></div>
+            <div class="elecContent">
+                <div class="elecTitle">
+                    <div class="lineTitle">设备号:Y0001979</div>
+                </div>
+
+                <div class="elecTitle" style="overflow: auto;">
+                    <div class="lineTitle" style="width:45%;float: left;">电量:25%</div>
+                    <div class="lineTitle"style="width:55%;float: left;">信号强度:27</div>
+                </div>
+
+                <div class="elecTitle">
+                    <div class="lineTitle">更新:2018/8/4 12:40:53</div>
+                </div>
+
+                <div class="elecTitle">
+                    <div class="lineTitle">位置:【奥曲肽实验室】缓冲间</div>
+                </div>
+
+            </div>
+        </div>
+
+</div>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/GridLayout.css" rel="stylesheet" />
+    <script src="js/highcharts.js"></script>
+    <link href="style/WaterComCss.css" rel="stylesheet" />
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <link href="style/WaterCss.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        // function detailShow(devBH, land) {
+        //     console.log(land);
+        //     console.log(devBH);
+        //     window.top.OpenThirdFrame("/ExtApp_Water_WaterDetail.html?devBH=" + devBH + "&land=" + land, 800, 600, "win", "实时数据");
+        // }
+        // function alarmShow(devBH,land) {
+        //     window.top.OpenThirdFrame("/ExtApp_Water_WaterAlarm.html?devBH=" + devBH + "&land=" + land, 650, 600, "win", "报警数据");
+        // }
+        $(document).ready(function () {
+            setInterval(function () {
+                $.getJSON("/ExtApp/Water/WaterStatus",
+                    function (data) {
+                        $.each(data, function (i, v) {
+                            var tbh = v.DevBH;
+                            var tland = v.Land;
+                            var tdev = $("[data-devBh='" + tbh + tland + "']");
+                            tdev.removeClass("waterNormal");
+                            tdev.removeClass("waterAlarm");
+                            tdev.removeClass("waterOff");
+                            tdev.removeClass("splAlarm");
+                            tdev.removeClass("splNormal");
+                            tdev.removeClass("splOff");
+                            tdev.removeClass("xfscAlarm");
+                            tdev.removeClass("xfscNormal");
+                            tdev.removeClass("xfscOff");
+                            tdev.removeClass("gwsxAlarm");
+                            tdev.removeClass("gwsxNormal");
+                            tdev.removeClass("gwsxOff");
+                            if (v.address == "室内消火栓") {
+                                if (v.IsAlarm == true) {
+                                    tdev.addClass("waterAlarm");
+                                } else if (v.IsOnLine == true) {
+                                    tdev.addClass("waterNormal");
+                                } else {
+                                    tdev.addClass("waterOff");
+                                }
+                            }
+                            if (v.address == "自动水喷淋") {
+                                if (v.IsAlarm == true) {
+                                    tdev.addClass("splAlarm");
+                                } else if (v.IsOnLine == true) {
+                                    tdev.addClass("splNormal");
+                                } else {
+                                    tdev.addClass("splOff");
+                                }
+                            }
+                            if (v.address == "消防水池") {
+                                if (v.IsAlarm == true) {
+                                    tdev.addClass("xfscAlarm");
+                                } else if (v.IsOnLine == true) {
+                                    tdev.addClass("xfscNormal");
+                                } else {
+                                    tdev.addClass("xfscOff");
+                                }
+                            }
+                            if (v.address == "高位水箱") {
+                                if (v.IsAlarm == true) {
+                                    tdev.addClass("gwsxAlarm");
+                                } else if (v.IsOnLine == true) {
+                                    tdev.addClass("gwsxNormal");
+                                } else {
+                                    tdev.addClass("gwsxOff");
+                                }
+                            }
+                        });
+                    });
+            }, 300000)
+        });
+    </script>
+</head>
+
+<body>
+    <div class="waterBox">
+        <!--<div class="waterItem">
+                <div  onclick="detailShow('MD1871','B');">
+                                <div class="waterPic gwsxNormal" data-devBh="MD1871B"></div>
+                </div>
+                <div class="waterTitle">
+                    <div class="lineTitle">高位水箱</div>
+                </div>
+                    <div class="waterTitle waterBluk">
+                        <div class="lineTitle">设备号：MD1871</div>
+                        
+                        <div class="lineTitle">安装具体位置：</div>
+                            <div class="lineTitle" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">图书馆9楼高位水箱</div>
+                    </div>
+                <div class="waterTitle">
+                    <div class="leftTitle">
+                        <input class="btn btn-success" type="button" value="详情" onclick="detailShow('MD1871','B');" />
+                    </div>
+                    <div class="rightTitle">
+                        <input class="btn btn-danger" type="button" value="报警记录" onclick="alarmShow('MD1871','B')" />
+                    </div>
+                </div>
+            </div>-->
+    </div>
+    <div class="elecLeft">
+        <!--<div class="ComInfo">
+        <div class="textContent">
+            <span class="textColor">蓬莱海塘花墅酒店有限公司</span>位于<span class="textColor">山东省-烟台市-蓬莱市-蓬莱阁街道办事处</span>,详细位置<span class="textColor">蓬莱宝龙海上仙街9#楼</span>，单位类型为<span class="textColor">宾馆</span>。
+        </div>
+        <div class="textContent">
+            单位消防安全负责人是<span class="textColor">申海涛</span>，联系电话<span class="textColor">18660568399</span>,消防安全管理人是<span class="textColor">李晓瑞</span>，联系电话<span class="textColor"></span>。
+        </div>
+        <div class="textContent">
+            该单位属于<span class="textColor">九小场所</span>，消防主管部门是<span class="textColor">蓬莱市公安消防大队</span>。
+        </div>
+    </div>
+    <div class="elecDeviceBox">
+        <div class="DeviceItem elecBg1"  >
+            <div class="DeviceStatus">报警设备</div>
+           0
+        </div>
+        <div class="DeviceItem elecBg2" >
+            <div class="DeviceStatus">在线设备</div>
+            0
+        </div>
+        <div class="DeviceItem elecBg3" >
+            <div class="DeviceStatus">断线设备</div>
+            1
+        </div>
+    </div>
+    <div class="elecAlarmBox">
+    </div>-->
+    </div>
+    <script type="text/javascript">
+        var comid = sessionStorage.getItem("ComID"); //项目id
+        var type = 3; //页面类型
+        var userName = localStorage.getItem('userName');
+        // console.log(comid+'-'+type+'-'+userName);
+        $.ajax({
+            type: 'get',
+            data: 'pid=' + comid + '&type=' + type + '&username=' + userName,
+            url: url + '/admin/project/GetMapData.action',
+            dataType: 'json',
+            error: function (err) {
+                console.log('Swatch_de' + err);
+            },
+            success: function (data) {
+                // console.log(data);
+                //var {Company,LstAlarm,LstDevice,devMess,Diagram}=data;
+                var comp = data.Company[0];
+                var sum = data.devMess;
+                var html = "";
+
+                //   var {address,areaMC,MC,firephone,typeMC,typeBH,firename,resname,resphone}=p;  //解构
+                html = "<div class='ComInfo'><div class='textContent'><span class='textColor'>" + comp.MC +
+                    "</span>位于<span class='textColor'>" + comp.address +
+                    "</span>,详细位置<span class='textColor'>" + comp.areaMC +
+                    "</span>，单位类型为<span class='textColor'>其他</span>。</div><div class='textContent'>单位消防安全负责人是<span class='textColor'>" +
+                    comp.firename + "</span>，联系电话<span class='textColor'>" + comp.firephone +
+                    "</span>,消防安全管理人是<span class='textColor'>" + comp.resname +
+                    "</span>，联系电话<span class='textColor'>" + comp.resphone +
+                    "</span>。</div> <div class='textContent'>该单位使用属于<span class='textColor'>" + comp
+                    .typeMC +
+                    "</span>.</div></div><div class='elecDeviceBox' id='Alarm_one'><div class='DeviceItem elecBg1' value='0' ><div class='DeviceStatus'  >报警设备</div>" +
+                    sum[0] +
+                    "</div><div class='DeviceItem elecBg2' value='1'><div class='DeviceStatus'>在线设备</div>" +
+                    sum[1] +
+                    "</div><div class='DeviceItem elecBg3' value='2'><div class='DeviceStatus'>断线设备</div>" +
+                    sum[2] + "</div></div><div class='elecAlarmBox'></div>";
+                $('.elecLeft').html(html);
+                var dd1 = [];
+                $.each(data.Diagram, function (i, v) {
+                    dd1.push([v.date, v.num, 'typebh:' + '01']);
+                })
+                // console.log(dd1);
+
+                Highcharts.setOptions({
+                    colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+                });
+                //隐患趋势图
+                $('.elecAlarmBox').highcharts({
+                    chart: {
+                        backgroundColor: 'rgba(0,0,0,0)'
+                    },
+                    title: {
+                        text: '一周内报警',
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    xAxis: {
+                        gridLineColor: "#73c4f1",
+                        labels: {
+                            style: {
+                                color: '#ffffff'
+                            }
+                        },
+                        categories: []
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '报警数',
+                            style: {
+                                color: '#ffff00'
+                            }
+                        },
+                        gridLineColor: "#73c4f1",
+                        labels: {
+                            style: {
+                                color: '#ffffFF'
+                            }
+                        },
+                        min: 0,
+                        allowDecimals: false,
+                        minTickInterval: 1
+                    }],
+                    legend: {
+                        borderWidth: 0,
+                        enabled: true,
+                        itemStyle: {
+                            color: '#ffffff',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true,
+                                style: {
+                                    color: "#ffffff"
+                                }
+                            },
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        alarmShow(this.typebh, this.name)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '报警',
+                        yAxis: 0,
+                        data: dd1
+                    }]
+
+                });
+
+                var oZuolist = document.getElementsByClassName('DeviceItem');
+                for (var i = 0; i < oZuolist.length; i++) {
+                    oZuolist[i].onclick = function () {
+                        //  console.log(this);
+                        var a = this.getAttribute('value');
+                        // console.log(a);                
+                        show(a);
+                    }
+                }
+
+            }
+        })
+
+        function show(devStatus) {
+            $.ajax({
+                type: 'get',
+                url: url + '/admin/project/getDeviceByPid.action',
+                // url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/project/getDeviceByPid.action',
+                data: 'pid=' + comid + '&type=' + devStatus + '&pagetype=' + type + '&username=' + userName,
+                dataType: 'json',
+                error: function (err) {
+                    console.log('SElec_ElecComDetail--->2' + err);
+                },
+                success: function (data) {
+                    //   console.log(data);
+                    var html = "";
+                    var data = data.mess;
+                    // console.log(data);
+                    if (data != null && data != '') {
+                        console.log(data);
+
+                        $.each(data, function (i, v) {
+                            console.log(v.dSid);
+                            if (v.dSid == 4) {
+                                html = html +
+                                    "<div class='waterItem'><div  onclick=\"detailShowkpa('" + v
+                                    .productNumber + "','" + v.devId + "','" + v.dSid + "');\" >";
+                                html = html + "<div class='waterPic waterAlarm' data-devBh='" + v
+                                    .productNumber + "'  ></div>";
+                                html = html +
+                                    "</div><div class='waterTitle'><div class='lineTitle'>" + v
+                                    .device_name +
+                                    "</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号：" +
+                                    v.productNumber + "</div><div class='lineTitle battery'>电池：" + v
+                                    .vol +
+                                    "V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" +
+                                    v.installLocation +
+                                    "</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowkpa('" +
+                                    v.productNumber + "','" + v.devId + "','" + v.dSid +
+                                    "');\" /></div></div></div>";
+                            } else {
+                                html = html +
+                                    "<div class='waterItem'><div  onclick=\"detailShowwatch('" + v
+                                    .productNumber + "','" + v.devId + "','" + v.dSid + "');\" >";
+                                html = html + "<div class='waterPic yeweNormal' data-devBh='" + v
+                                    .productNumber + "'  ></div>";
+                                html = html +
+                                    "</div><div class='waterTitle'><div class='lineTitle'>" + v
+                                    .device_name +
+                                    "</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号：" +
+                                    v.productNumber + "</div><div class='lineTitle battery'>电池：" + v
+                                    .vol +
+                                    "V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" +
+                                    v.installLocation +
+                                    "</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowwatch('" +
+                                    v.productNumber + "','" + v.devId + "','" + v.dSid +
+                                    "');\" /></div></div></div>";
+                            }
+
+                        });
+                        //var {devId, device_name,heartbeatTime,master,remark,installLocation,productNumber,dSid,vol}=c;
+                        $('.waterBox').html(html);
+
+
+
+                    } else {
+                        var html = '';
+                        $('.waterBox').html(html);
+                    }
+
+
+
+                }
+            })
+        }
+        show(1);
+
+        //显示设备列表窗口  devBH 设备编号
+        function detailShowkpa(devBH, devId, dSid) {
+            // console.log(land);
+            // console.log(devBH);
+            //  console.log(devId);
+            sessionStorage.setItem('devId', devId);
+            sessionStorage.setItem('dSid', dSid);
+            window.top.OpenThirdFrame("./ExtApp_Water_WaterDetail.html?devBH=" + devBH, 800, 600, "win", "实时数据");
+        }
+
+        function detailShowwatch(devBH, devId, dSid) {
+            // console.log(land);
+            // console.log(devBH);
+            //  console.log(devId);
+            sessionStorage.setItem('devId', devId);
+            sessionStorage.setItem('dSid', dSid);
+            window.top.OpenThirdFrame("./ExtApp_Water_WaterDetailwatch.html?devBH=" + devBH, 800, 600, "win", "实时数据");
+        }
+        // function detailShow(devStatus) {
+        //     console.log(devStatus);
+        //     // window.top.OpenSelFrame("/ExtApp_Water_IndexLand.html?ComID="+comid+'&Status=' + devStatus, 350, 600, "win", "报警数据", null, null, true,'SElec_ElecComDev');
+        // }
+        //显示设备报警窗口  AlarmType  设备编号
+        function alarmShow(AlarmType, AlarmDate) {
+            console.log(AlarmType);
+            console.log(AlarmDate);
+            //window.top.OpenFourFrame("./ExtApp_Water_WaterAlarmCom.html?ComID="+AlarmType, 650, 500, "win", "报警数据");
+        }
+        // $(document).ready(function () { 
+        //     Highcharts.setOptions({
+        //         colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+        //     });
+        //     //隐患趋势图
+        //     $('.elecAlarmBox').highcharts({
+        //         chart: {
+        //             backgroundColor: 'rgba(0,0,0,0)'
+        //         },
+        //         title: {
+        //             text: '一周内报警',
+        //             style: { color: '#ffffff' }
+        //         },
+        //         xAxis: {
+        //             gridLineColor: "#73c4f1",
+        //             labels: { style: { color: '#ffffff' } },
+        //             categories: [
+        //  '2018-07-27','2018-07-28','2018-07-29','2018-07-30','2018-07-31','2018-08-01','2018-08-02',
+        //             ]
+        //         },
+        //         yAxis: [{
+        //             title: {
+        //                 text: '报警数',
+        //                 style: { color: '#ffff00' }
+        //             },
+        //             gridLineColor: "#73c4f1",
+        //             labels: {
+        //                 style: { color: '#ffffFF' }
+        //             },
+        //             min: 0,
+        //             allowDecimals: false,
+        //             minTickInterval: 1
+        //         }],
+        //         legend: {
+        //             borderWidth: 0,
+        //             enabled: true,
+        //             itemStyle: { color: '#ffffff', fontWeight: 'bold' }
+        //         },
+        //         plotOptions: {
+        //             line: {
+        //                 dataLabels: {
+        //                     enabled: true,
+        //                     style: { color: "#ffffff" }
+        //                 },
+        //                 cursor: 'pointer',
+        //                 point: {
+        //                     events: {
+        //                         click: function () {
+        //                             alarmShow(this.typebh, this.name)
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         },
+        //         series: [
+        //     { name: '历史报警', yAxis: 0, data:[{name:'2018-07-27',typebh:'01', y:0},{name:'2018-07-28',typebh:'01', y:0},{name:'2018-07-29',typebh:'01', y:0},{name:'2018-07-30',typebh:'01', y:0},{name:'2018-07-31',typebh:'01', y:0},{name:'2018-08-01',typebh:'01', y:0},{name:'2018-08-02',typebh:'01', y:0}]}
+        //         ]
+        //     });
+        // });
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

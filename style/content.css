@@ -1,0 +1,56 @@
+﻿@charset "utf-8";
+* { margin: 0px; padding: 0px; }
+body { font-family:  "Microsoft YaHei", "SimSun"; font-size: 12px; color: #000; line-height: 20px; background: #FFF; }
+a { color: #000; text-decoration: none; }
+ol, ul, li { list-style-type: none; }
+img { border: none; vertical-align: top; }
+input { outline: none; }
+
+.wrap { width: 1200px; overflow: hidden; margin: 0 auto 20px auto; position: relative; zoom: 1; }
+.fl { display: inline; float: left; }
+.fr { display: inline; float: right; }
+
+.topInfo { font-size: 14px; color: #999; line-height: 200%; text-align: right; clear: both; width: 100%; overflow: hidden; position: absolute; left: 0; top: 90px; }
+.topInfo a { color: #999; }
+.topInfo .fr { float: none; display: block; }
+
+.headBox { background: url(../images/banner.jpg) no-repeat center top; clear: both; width: 1200px; height: 65px; overflow: hidden; margin: 0 auto; padding-top: 175px; }
+.headBox div { font-size: 18px; color: #FFF; line-height: 28px; background: url(../images/b_1.gif) no-repeat right center; text-align: center; width: 185px; overflow: hidden; }
+.headBox div a { color: #FFF; }
+.headBox .first { margin-left: 230px; }
+.headBox .last { background-image: none; }
+
+.broadcastWrap { clear: both; width: 1200px; height: 38px; overflow: hidden; margin: 0 auto; position: relative; }
+.broadcastBox { width: 900px; overflow: hidden; }
+.broadcastBox div { font-weight: bold; font-size: 16px; color: #2C81D5; line-height: 22px; padding: 0 5px; position: absolute; left: 0; top: 8px; }
+.broadcastBox ul { display: block; width: 10000px; margin-top: 8px; padding-left: 100px; }
+.broadcastBox li { font-size: 16px; color: #2C7FD3; line-height: 22px; white-space: nowrap; margin-right: 30px; }
+.broadcastBox li a { color: #2C7FD3; }
+.broadcastBox p { font-size: 16px; color: #2C7FD3; line-height: 22px; white-space: nowrap; margin-top: 8px; padding-left: 100px; }
+.broadcastBox p a { color: #2C7FD3; }
+
+.searchBox { border: 2px solid #C4E2FF; border-radius: 5px; width: 280px; height: 26px; overflow: hidden; margin-top: 4px; }
+.searchText { font-size: 14px; color: #999; line-height: 24px; border: none; text-indent: 10px; width: 240px; height: 24px; }
+.searchBtn { background: url(../images/b_2.png) no-repeat center center; border: none; width: 35px; height: 26px; overflow: hidden; cursor: pointer; }
+
+.bodyBox {  overflow: hidden; }
+.title { font-size: 28px; line-height: 120%; text-align: center; }
+.info { font-size: 14px; color: #999; text-align: center; border-bottom: 1px dotted #CCC; padding: 30px 0 20px 0; }
+.info a { color: #999; }
+.contentBox { font-size: 16px; line-height: 200%; margin-top: 30px; }
+
+.rightNewsList { width: 385px; overflow: hidden; }
+.rightNewsList h2 { font-weight: normal; font-size: 18px; border-top: 3px solid #3389DE; line-height: 35px; background: url(../images/b_3.png) no-repeat left center; text-indent: 20px; position: relative; }
+.rightNewsList h2 a { font-size: 12px; position: absolute; right: 0; top: 0; }
+.rightNewsList dl { width: 100%; height: 120px; overflow: hidden; margin: 10px 0; }
+.rightNewsList dt { margin-right: 20px; }
+.rightNewsList dd { font-size: 18px; line-height: 160%; }
+.rightNewsList ul { padding-bottom: 20px; }
+.rightNewsList li { font-size: 16px; line-height: 200%; }
+
+.footerBox { font-size: 14px; color: #FFF; line-height: 200%; background-color: #535353; text-align: center; clear: both; width: 100%; padding: 20px 0; }
+.footerBox a { color: #FFF; }
+
+#autopage { clear: both; width: 100%; padding-top: 30px; }
+#autopage a { line-height: 36px; background-color: #F5F5F5; text-align: center; display: inline-block; width: 36px; height: 36px; margin: 0 5px; }
+#autopage span { color: #FFF; line-height: 36px; background-color: #4C98FE; text-align: center; display: inline-block; width: 36px; height: 36px; margin: 0 5px; }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>修改密码</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <link href="style/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="style/Form.css" rel="stylesheet" />
+    <script src="js/jquery.form.js" type="text/javascript"></script>
+    <script src="js/FTool.js" type="text/javascript"></script>
+    <link href="style/MDForm.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+</head>
+
+<body>
+    <div class="bodyBox">
+        <form action="/Login/SavePass" class="form-horizontal" id="editForm" method="post">
+            <div class="formBody">
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="OldPass">原密码</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="OldPass" name="OldPass" type="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="NewPass">新密码</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="NewPass" name="NewPass" type="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="NewPass2">密码确认</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="NewPass2" name="NewPass2" type="password" />
+                    </div>
+                </div>
+            </div>
+            <div class="formBut">
+                <div class="form-group">
+                    <div style="float:right;margin-right:30px;"> <input class="btn btn-primary" name="submitBtn" id="submitBtn"
+                            type="button" value="保存" /> <input class="btn btn-default" name="goBackBtn"
+                            onclick="window.top.CloseCurrWin()" type="button" value="关闭" /> </div>
+                </div>
+            </div>
+        </form>
+        <script type="text/javascript">
+
+        </script>
+        <script src="js/jquery.validationEngine-zh.js"></script>
+        <script src="js/jquery.validationEngine.js"></script>
+        <script src="js/md5.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            var username= localStorage.getItem('userName');
+            $('#submitBtn').click(function(){
+                var OldPass=document.getElementById('OldPass').value;
+                var NewPass=document.getElementById('NewPass').value;
+                var NewPass2=document.getElementById('NewPass2').value;
+                var MoldPass=hex_md5(OldPass);
+                if(OldPass==""){
+                    alert('请输入旧密码')
+                }else if(NewPass==""){
+                    alert('新密码不能为空')
+                }else if(NewPass2!=NewPass2){
+                    alert('两次密码输入不一致')
+                }else{
+                    $.ajax({
+                        type:'get',
+                        url:url+'/updateuserpassword.action',
+                        data:'passwordencrypt='+NewPass2+'&password='+MoldPass+'&user_name='+username,
+                        error:function(error){console.log(error)},
+                        success:function(res){
+                            var res=JSON.parse(res)
+                            console.log(res);
+                            if(res.list[0].status==false){
+                                alert(res.list[0].err_msg)
+                            }else{
+                                alert('密码修改成功,请重新登录');
+                                localStorage.removeItem('userName')
+                                setTimeout(function(){
+                                    parent.location.reload();
+                                },100)
+                            }
+                        }
+                    })
+                }
+            })
+        </script>
+    </div>
+</body>
+
+</html>

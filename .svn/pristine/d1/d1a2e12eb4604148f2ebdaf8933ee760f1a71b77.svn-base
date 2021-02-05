@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>阀值设置</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+
+    .alarm_de {
+      margin: 5px 5px 10px 20px;
+    }
+
+    .alarm_de_input {
+      width: 30%;
+      border: 1px solid #149ac7;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body style="position:relative;">
+  <div id="topMAP" style="overflow-y: auto;">
+    <div style="text-align: center;">
+      <div class="alarm_main" id="alarm_main">
+        <!-- <div class="alarm_de">
+          <span>剩余电流/mA : </span>
+          <input type="text" class="alarm_de_input" value="${SYdianliu}">
+        </div>
+        <div class="alarm_de">
+          <span>A相温度/ °C : </span>
+          <input type="text" class="alarm_de_input" value="${AWenDu}">
+        </div>
+        <div class="alarm_de">
+          <span>B相温度/ °C : </span>
+          <input type="text" class="alarm_de_input" value="${BWenDu}">
+        </div>
+        <div class="alarm_de">
+          <span>C相温度/ °C : </span>
+          <input type="text" class="alarm_de_input" value="${CWenDu}">
+        </div>
+        <div class="alarm_de">
+          <span>N相温度/ °C : </span>
+          <input type="text" class="alarm_de_input" value="${NWenDu}">
+        </div>
+        <div class="alarm_de">
+          <span>A相电流/ A : </span>
+          <input type="text" class="alarm_de_input" value="${ADianLiu}">
+        </div>
+        <div class="alarm_de">
+          <span>B相电流/ A : </span>
+          <input type="text" class="alarm_de_input" value="${BDianLiu}">
+        </div>
+        <div class="alarm_de">
+          <span>C相电流/ A : </span>
+          <input type="text" class="alarm_de_input" value="${CDianLiu}">
+        </div>
+        <div class="alarm_de">
+          <span>A相电压/ V : </span>
+          <input type="text" class="alarm_de_input" value="${ADianYa}">
+        </div>
+        <div class="alarm_de">
+          <span>A相电压/ V: </span>
+          <input type="text" class="alarm_de_input" value="${BDianYa}">
+        </div>
+        <div class="alarm_de">
+          <span>A相电压/ V: </span>
+          <input type="text" class="alarm_de_input" value="${CDianYa}">
+        </div> -->
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
+    <div style="float:right;margin-right:30px;">
+      <input class="btn btn-default" name="saveBtn" type="button" value="保存" id="btn_save">
+      <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+    </div>
+    <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+  </div>
+
+  <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+    var height = $(window).height();
+    $('#topMAP').css('height', height - 50)
+    var role = localStorage.getItem('role');
+    var power = localStorage.getItem('power');
+
+    function intiShe() {
+      $.ajax({
+        type: 'get',
+        url: url + '/ReadParameterApi.action',
+        data: 'id=' + global.devSignature,
+        error: function (err) {
+          console.log('MDChart' + err);
+        },
+        success: function (result) {
+          console.log(result)
+          var res = JSON.parse(result)
+          var {
+                SYdianliu,
+                ADianLiu,
+                BDianLiu,
+                CDianLiu,
+                AWenDu,
+                BWenDu,
+                CWenDu,
+                NWenDu,
+                ADianYa,
+                BDianYa,
+                CDianYa
+            } = res.row;
+            html = `<div class="alarm_de">
+                    <span>剩余电流/mA : </span>
+                    <input type="text" class="alarm_de_input" value="${SYdianliu}">
+                </div>
+                <div class="alarm_de">
+                    <span>A相温度/ °C : </span>
+                    <input type="text" class="alarm_de_input" value="${AWenDu}">
+                </div>
+                <div class="alarm_de">
+                    <span>B相温度/ °C  : </span>
+                    <input type="text" class="alarm_de_input" value="${BWenDu}">
+                </div>
+                <div class="alarm_de">
+                    <span>C相温度/ °C  : </span>
+                    <input type="text" class="alarm_de_input" value="${CWenDu}">
+                </div>
+                <div class="alarm_de">
+                    <span>N相温度/ °C  : </span>
+                    <input type="text" class="alarm_de_input" value="${NWenDu}">
+                </div>
+                <div class="alarm_de">
+                    <span>A相电流/ A : </span>
+                    <input type="text" class="alarm_de_input" value="${ADianLiu}">
+                </div>
+                <div class="alarm_de">
+                    <span>B相电流/ A : </span>
+                    <input type="text" class="alarm_de_input" value="${BDianLiu}">
+                </div>
+                <div class="alarm_de">
+                    <span>C相电流/ A : </span>
+                    <input type="text" class="alarm_de_input" value="${CDianLiu}">
+                </div>
+                <div class="alarm_de">
+                    <span>A相电压/ V : </span>
+                    <input type="text" class="alarm_de_input" value="${ADianYa}">
+                </div>
+                <div class="alarm_de">
+                    <span>B相电压/ V: </span>
+                    <input type="text" class="alarm_de_input" value="${BDianYa}">
+                </div>
+                <div class="alarm_de">
+                    <span>C相电压/ V: </span>
+                    <input type="text" class="alarm_de_input" value="${CDianYa}">
+                </div>`;
+            $('#alarm_main').html(html);
+        }
+      })
+    }
+    intiShe()
+    $("#btn_save").click(function(){
+      var $val = [];
+      var $arr = $('#alarm_main').find('input');
+      $arr.each(function (v, i) {
+          $val.push(($(this).val()));
+      })
+      console.log($val);
+
+      //http://112.74.126.51/earlyWarn/SetParameterApi.action?&parTwelve=70&parTwentySix=0&parSix=50&parTwentyFive=1&parTwentyOne=1&parTwenty=1&parOne=0&parTwentyEight=0&parTen=70&parSeven=50&parFour=1&parEight=5&parFive=50&parSixteen=63&parThree=1&parFourteen=63&parTwentyThree=0&parThirteen=70&parTwentyTwo=0&parThirty=0&parTwentySeven=0&parEighteen=230&parTwo=1&parSeventeen=230&parTwentyNine=0&parNine=1000&parFifteen=63&parEleven=70&parNineteen=230&parTwentyFour=1&devSignature=51FF6F067285525125211067
+      $.ajax({
+          type: 'get',
+          url: url+'/SetParameterApi.action',
+          data: 'devSignature=' + global.devSignature + '&parNine=' + $val[0] + '&parTen=' + $val[1] + '&parEleven=' + $val[2] + '&parTwelve=' + $val[3] + '&parThirteen=' + $val[4] + '&parFourteen=' + $val[5] + '&parFifteen=' + $val[6] + '&parSixteen=' + $val[7] + '&parSeventeen=' + $val[8] + '&parEighteen=' + $val[9] + '&parNineteen=' + $val[10],
+          error: function (error) {
+              console.log(error + '网络错误');
+          },
+          success: function (result) {
+            console.log(result)
+            var result=JSON.parse(result)
+              if(result.status==1){
+                  alert('参数设置成功');
+                  setTimeout(function(){
+                    parent.location.reload();
+                  },1000)
+              }else{
+                  alert('参数设置失败');
+              }
+          }
+      })
+    })
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+      parent.location.reload()
+    })
+  </script>
+</body>
+
+</html>

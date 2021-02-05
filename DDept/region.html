@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../style/bootstrap.min.css" rel="stylesheet">
+  <link href="../style/animate.css" rel="stylesheet">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/url_zhuan.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../style/layui-v2.4.5/layui/css/layer.css" />
+  <link href="../style/GridLayout.css" rel="stylesheet">
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/jquery.ztree.core-3.5.js"></script>
+  <script src="../js/MyToolBar.js"></script>
+  <link href="../style/MyTree.css" rel="stylesheet">
+  <link href="../style/zTreeStyle.css" rel="stylesheet">
+  <link href="../style/MyToolBar.css" rel="stylesheet">
+  <link href="../style/MyGrid.css" rel="stylesheet">
+  <link rel="stylesheet" href="../style/zTreeStyle.css" type="text/css">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=gQ5brR6pk0kIpWhZsGRhmU2T"></script>
+  <script src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
+  <script src="../test/mapUtil.js"></script>
+  <script src="../test/mapv.js"></script>
+  <!-- <script src="test/BDMap.js"></script> -->
+  <script src="../test/mapData.js"></script>
+  <script src="../test/MyFocus.js"></script>
+  <link rel="stylesheet" href="../style/weui.css">
+  <link rel="stylesheet" href="../style/jquery-weui.css">
+  <!-- <link href="../style/ZAStyle.css" rel="stylesheet"> -->
+  <title>行政规划</title>
+  <style type="text/css">
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    #container {
+      height: 100%;
+      z-index: 1000;
+      /* position: relative;
+        top:0px;left:0px;right:0px;bottom: 0px; */
+
+    }
+  </style>
+</head>
+
+<body>
+  <audio src="./music/6709.mp3" id="auto"></audio>
+  <div class="treeGrid1">
+    <div class="panel panel-primary treeBox">
+      <div class="panel-heading treeTitle">
+        行政区划</div>
+      <div class="panel-body treeBody">
+        <ul id="TREE_DCompany" class="ztree">
+        </ul>
+      </div>
+    </div>
+
+    <div class="ToolBarBox btn-toolbar">
+      <!-- <div class="btn-group btn-group-sm" role="group"><button type="button" aria-expanded="false"
+          treeid="TREE_DCompany" onclick="EditClick(GRID_DCompany);" class="btn btn-primary"><span
+            class="glyphicon glyphicon-edit" aria-hidden="true"></span>编辑 </button> </div>
+      <div class="btn-group btn-group-sm" role="group"><button type="button" aria-expanded="false"
+          treeid="TREE_DCompany" onclick="ExportClick(GRID_DCompany);" class="btn btn-success"><span
+            class="glyphicon glyphicon-share" aria-hidden="true"></span>导出 </button> </div>
+      <div class="btn-group btn-group-sm" role="group"><button type="button" aria-expanded="false"
+          treeid="TREE_DCompany" onclick="DocClick(GRID_DCompany);" class="btn btn-success"><span
+            class="glyphicon glyphicon-th-list" aria-hidden="true"></span>档案 </button> </div> -->
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" aria-expanded="false" treeid="TREE_DCompany" class="btn btn-info  shuaxin">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新
+        </button>
+      </div>
+
+      <div class="btn-group btn-group-sm" role="group">
+        <button type="button" aria-expanded="false" class="btn  btn-success daochuFac">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>导出设备数据
+        </button>
+      </div>
+    </div>
+
+    <div class="Toolbar_SearchBox" style="width:230px;">
+      <div class="input-group">
+        <span class="input-group-addon">内容</span>
+        <input class="form-control " id="QueryMC" name="QueryMC" type="text" value="">
+        <!-- <span class="input-group-addon">类型</span>
+        <select class="form-control " id="QueryType" name="QueryType">
+          <option selected="selected" value=""></option>
+          <option value="01">消防安全重点单位</option>
+          <option value="02">消防安全一般单位</option>
+          <option value="03">九小场所</option>
+        </select> -->
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="button" id="BtnSearch">查询</button>
+        </span>
+      </div>
+    </div>
+
+    <div id="GRID_SUser" class="Grid">
+      <div class="Grid_bd">
+        <div class="scrollHead" style="overflow-y: auto;height:100%;">
+          <table style="width:100%;height:100px;min-width:610px;">
+            <thead style="background: #337ab7;;color:#fff;text-align: center;">
+              <tr>
+                <td style="width:60px;"></td>
+                <td style="width:100px;">单位名称</td>
+                <td style="width:100px;">所属区域</td>
+                <td style="width:100px;">联系电话</td>
+                <td style="width:100px;">防火员</td>
+                <td style="width:100px;">项目负责人</td>
+                <td style="width:100px;">巡查点数</td>
+                <td style="width:150px;">操作</td>
+              </tr>
+            </thead>
+            <tbody id="GridTables">
+
+            </tbody>
+            <!-- <tr>  
+                      <td  class='td_center' style="width:60px;"></td>
+                      <td  class='td_center' style="width:100px;">广州櫻泰公司</td>
+                      <td  class='td_center' style="width:100px;">广东省-深圳市-广州-南沙区-广汽零部件</td>
+                      <td  class='td_center' style="width:100px;">13922170909</td>
+                      <td  class='td_center' style="width:100px;">13922170909</td>
+                      <td  class='td_center' style="width:100px;">南沙区消防大队</td>
+                      <td  class='td_center' style="width:100px;">339</td>
+                      <td  class='td_center' style="width:150px;">
+                          <div class="btn-group btn-group-sm" role="group">
+                              <button type="button" aria-expanded="false" onclick="EditClick();" class="btn btn-primary">
+                                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>编辑 
+                              </button> 
+                          </div>
+                          <div class="btn-group btn-group-sm" role="group">
+                              <button type="button" aria-expanded="false" id="faca_delete" onclick="DeleteClick();" class="btn btn-danger">
+                                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除 
+                              </button> 
+                          </div>
+                      </td> 
+                  </tr> -->
+          </table>
+        </div>
+      </div>
+      <div class="Grid_fd">
+        <div class="input-group input_left" style="float:left;padding-left:10px;">
+          <!-- <span>第</span>
+            <input type="text" value="1" readonly="readonly"><span>/</span>
+            <input type="text" value="1" readonly="readonly"><span>页,每页</span>
+            <input type="text" value="6" readonly="readonly"><span>行，共</span>
+            <input type="text" value="0" readonly="readonly"><span>行</span> -->
+        </div>
+        <div class="btn-group">
+
+          <ul class="pagination pull-right" id="pagination">
+            <!-- <li><a href="#">首页</a></li>
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li ><a href="#">3</a></li>
+                <li><a href="#">下一页</a></li> 
+                <li><a href="#">末页</a></li> -->
+          </ul>
+          <ul class="pagination pull-right" id="pageTion">
+            <!-- <li><a href="#">首页</a></li>
+            <li><a href="#">上一页</a></li>
+            <li><a href="#">1</a></li>
+            <li class="active"><a href="#">2</a></li>
+            <li ><a href="#">3</a></li>
+            <li><a href="#">下一页</a></li> 
+            <li><a href="#">末页</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="Grid" id="GRID_Map" style="display:none">
+      <div id="container"></div>
+    </div>
+    <div id="boxYing" style='    display: none;'>
+      <div id="playWind"></div>
+    </div>
+  </div>
+  <script src="../js/bootstrap.min.js"></script>
+  <script src="../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script>
+    sessionStorage.removeItem('regionName')
+  </script>
+  <script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.2.1.js"></script>
+  <!-- <script src="./js/Region.js"></script> -->
+  <script src="./js/xx.js"></script>
+  <script type="text/javascript">
+    //获取音频对象
+    var audio = $("#auto")[0];
+    audio.addEventListener("ended", function () {
+      if (playNum > 0) {
+        playNum--;
+        audio.play();
+      }
+    }, false);
+
+    var playAlarm = function () {
+      playNum = 3;
+      audio.play();
+    };
+
+    var userName = parseInt(localStorage.getItem('userName'));
+    var goEasy = GoEasy.getInstance({
+      host: 'hangzhou.goeasy.io',
+      appkey: goKey
+    });
+
+    goEasy.connect({
+      onSuccess: function () {  //连接成功
+        console.log("GoEasy connect successfully.") //连接成功
+      },
+      onFailed: function (error) { //连接失败
+        console.log("Failed to connect GoEasy, code:" + error.code + ",error:" + error.content);
+      },
+      onProgress: function (attempts) { //连接或自动重连中
+        console.log("GoEasy is connecting", attempts);
+      }
+    });
+
+    function goEasyTime() {
+      goEasy.subscribe({
+        channel: userName.toString(),
+        onMessage: function (message) { //这边是推送网页之后，页面的动作
+          console.log(message);
+          var res = message.content;
+
+          function addJs(filepath, callback) {
+            console.log(filepath)
+            var oJs = document.createElement("script");
+            oJs.setAttribute("src", filepath);
+            oJs.onload = callback;
+            document.getElementsByTagName("head")[0].appendChild(oJs);
+          }
+          var arr = res.split(',');
+          console.log(arr)
+          console.log(arr[0])
+          //http://192.168.0.156:8080/earlyWarn/getvideoBydevno.action?devno=
+          var str = []
+          $.ajax({
+            type: 'get',
+            url: url + '/getvideoBydevno.action',
+            data: 'devno=' + arr[0],
+            // data: 'devno=' + '0460046912308548',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              console.log(XMLHttpRequest)
+              console.log(textStatus)
+              console.log(errorThrown)
+            },
+            success: function (res) {
+              console.log(res)
+              var data = res.mess;
+              var accessToken = res.accessToken
+              if (data == '0') {
+                console.log('暂无摄像')
+              } else {
+                $('#loading-item-0').css('display', 'none');
+                var str = []
+                $.each(data, function (i, v) {
+                  console.log(i, v)
+                  if (v.indexOf('_') != -1) {
+                    console.log(v)
+                    str.push(v)
+                  }
+                })
+                console.log(str)
+                var yanNum = str[0].split('_')[1]
+                var devNum = str[0].split('_')[0]
+                var ezuikitTalkData = {
+                  accessToken: res.accessToken, // 应用accessToken
+                  ezopen: "ezopen://" + yanNum + "@open.ys7.com/" + devNum +
+                    "/1.hd.live", // 包含设备信息的ezopen协议
+                  // decoderPath: './' // 当前页面与插件主文件ezuiit-talk相对路径
+                  decoderPath: '../lingdong' // 当前页面与插件主文件ezuiit-talk相对路径  //线上模式
+                };
+                console.log(ezuikitTalkData)
+                // var ezuikitPath = ezuikitTalkData.decoderPath + '/ezuikit.js';
+                var ezuikitPath = ezuikitTalkData.decoderPath + '/js/ezuikit.js'; //线上模式
+                console.log(ezuikitPath)
+                var startSave = false;
+                var playing = false;
+                var decoder;
+                var url = ezuikitTalkData.ezopen;
+                var accessToken = ezuikitTalkData.accessToken;
+                addJs(ezuikitPath, function () {
+                  var autoplay = 1;
+                  var audioId = 0;
+                  var templete = 2;
+                  var deviceSerial = url.split('/')[3];
+                  var channelNo = url.split('/')[4].split('.')[0];
+                  if (autoplay == '1') {
+                    init();
+                  }
+                  var width = document.documentElement.clientWidth || sessionStorage.getItem('width');
+                  var height = document.documentElement.clientHeight || sessionStorage.getItem(
+                    'height');
+                  $("#playWind").height(height - (48 * 2));
+
+                  function init() {
+                    try {
+                      decoder && decoder.stop();
+                    } catch (e) {
+                      console.log("E", e);
+                    }
+                    $("#video-hd").text(url.indexOf('hd') === -1 ? '标清' : '高清')
+                    setTimeout(() => {
+                      decoder = new EZUIKit.EZUIPlayer({
+                        id: "playWind",
+                        autoplay: true,
+                        audioId: audioId,
+                        url: url,
+                        accessToken: ezuikitTalkData.accessToken,
+                        decoderPath: ezuikitTalkData.decoderPath,
+                        width: width,
+                        height: height - (48 * 2),
+                      });
+                    }, 100);
+                  }
+
+                  function initStar() {
+                    var startSavePromise = decoder.startSave(0, (new Date() + 'video'));
+                    startSavePromise.then(function (data) {
+                      console.log("start save success", startSavePromise);
+                      $("#startSave").hide();
+                      $("#stopSave").show();
+                    })
+                      .catch(function (error) {
+                        console.log("start Save error", error)
+                      })
+                  }
+
+                  function endStart() {
+                    console.log('结束录像')
+                    var stopSavePromise = decoder.stopSave(0);
+                    stopSavePromise.then(function (data) {
+                      console.log("stop save success", stopSavePromise)
+                      $("#stopSave").hide();
+                      $("#startSave").show();
+                    })
+                      .catch(function (error) {
+                        console.log("stop Save error", error)
+                      })
+                  }
+                  setTimeout(() => {
+                    initStar()
+                  }, 2000);
+                  setTimeout(() => {
+                    endStart()
+                    stop()
+                  }, 20000);
+
+                  function stop() {
+                    var stopPromise = decoder.stop();
+                    stopPromise.then(function () {
+                      console.log("关闭成功，用户执行关闭成功后的操作");
+                    })
+
+                  }
+                })
+
+              }
+              if (arr != "") {
+                playAlarm();
+                sessionStorage.setItem('devId', arr[1]); //devId 
+                sessionStorage.setItem('devMC', arr[2]); //v.installLocation
+                sessionStorage.setItem('productNumber', arr[0]);
+                sessionStorage.setItem('DevBH', arr[1]); //devId 
+                if (arr[5] == '0') { //网关
+                  localStorage.setItem('tpage', '4')
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/wanguan.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      //./ExtApp_SFASAlarm_SFASDetail.html?devBH=25523
+                      window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devId=" +
+                        arr[1], 800, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '2') { //烟感
+                  localStorage.setItem('tpage', '6')
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/ygalarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./SSmoke_SmokeDetail.html?devId=" + arr[1],
+                        800, 600, "win",
+                        arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '3') { //电气
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/alarm2.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" +
+                        arr[1] +
+                        '&devSignature=' +
+                        arr[0], 1100, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '4') { //水压
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/alarm_hong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./ExtApp_Water_WaterDetail.html?devBH=" +
+                        arr[1], 800, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '5') { //消防主机
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/zhuji_red.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      localStorage.setItem('tpage', '4')
+                      window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devBH=" +
+                        arr[1], 600, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '6' || arr[5] == '1') { //无线气感
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/Gasalarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      localStorage.setItem('tpage', '7')
+                      window.top.OpenThirdFrame("./SGasAlarm_GasAlarm.html?devId=" + arr[1] +
+                        '&dSid=' + arr[5],
+                        800, 600, "win",
+                        '历史报警');
+                    }
+                  });
+                } else if (arr[5] == '8') { //无线液位
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/gwsxAlarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./ExtApp_Water_WaterDetailwatch.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '10') { // 消防门磁 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/fire_door.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devId=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '11') { // 工业报警
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/gong_hong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SGasAlarm_GasAlarm.html?devId=" + arr[1] + '&dSid=' + arr[5], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '12') { // 电力火灾探测器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/ElePowPRO.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./ElecPower_SElectric_ElecDetail.html?devBH=" + arr[1], 1100,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '15') { // 声光报警器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shengguang.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '16') { // 手动报警 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shoudong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '18') { // 水浸报警器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shuiyin.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '19') { // 紧急报警 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/jinji.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                }
+              }
+
+              $('.yingshi').click(function (e) {
+                e.preventDefault();
+                if (res.mess != '0') {
+                  window.top.OpenYingFrame("./ExtApp_SVideo_yingDetail.html?devNum=" + devNum +
+                    "&yanNum=" + yanNum + "&accessToken=" + accessToken, 1100, 700, "win", "视频");
+                } else {
+                  alert('该设备的项目中没有摄像设备')
+                }
+
+              })
+            }
+          })
+
+          console.log(message.content);
+
+        }
+      });
+    }
+
+    setTimeout(function () {
+      goEasyTime();
+    }, 5000)
+  </script>
+</body>
+
+</html>

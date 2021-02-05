@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>设备历史操作</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <script src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="../../style/datepicker.css">
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <link href="../../style/ShowTable.css" rel="stylesheet" />
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="  text-align: center;">
+      <div>
+          <button class="btn btn-info daoChu">导出设备操作记录</button>
+        </div>
+    <div>设备历史操作</div>
+    <div style="display: flex;justify-content: center;">
+      <div>
+          <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+          data-val-required='The DateTime field is required.' id='start' name='QueryDate'
+          onfocus="WdatePicker({dateFmt:'yyyy/MM/dd  HH:mm:ss'});" type='text' value='' placeholder='请输入开始日期'
+          style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+      </div>
+      <div>
+          <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+          data-val-required='The DateTime field is required.' id='end' name='QueryDate'
+          onfocus="WdatePicker({dateFmt:'yyyy/MM/dd  HH:mm:ss'});" type='text' value='' placeholder='请输入结束日期'
+          style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+      </div>
+      <div>
+        <button class=" btn btn-info btnSearch">查询</button>
+      </div>
+    </div>
+    <div style="    width: 80%;display: inline-block;text-align: left;">
+        <div class="ShowTable" style="width:auto;text-align: center;    overflow-y: auto;margin-top: 10px;">
+            <table class="tabBox">
+              <thead>
+                <tr>
+                  <td style="width:30px;">序号</td>
+                  <td style="width:100px;">用户账号</td>
+                  <td style="width:130px;">操作时间</td>
+                  <td style="width:150px;">操作内容</td>
+                </tr>
+              </thead>
+              <tbody class="fangUlList">
+                  <!-- <tr>
+                      <td >1</td>
+                      <td>13076920054</td>
+                      <td>2015-1-1 12:00:00</td>
+                      <td>点击了</td>
+                    </tr> -->
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+  <div class="formBut">
+    <div class="form-group">
+      <div style="float:right;margin-right:30px;">
+        <!-- <input class="btn btn-primary" name="submitBtn" type="button" value="保存" id="btn_on"> -->
+        <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+      </div>
+      <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+    </div>
+    <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="">
+
+
+  </div>
+  <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script src="../../js/jquery-weui.js"></script>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+    var height=$(window).height();
+    console.log(height);
+    var username=localStorage.getItem('userName')
+    var mheight=height-104-50;
+    $('.fangUlList').css('height',mheight)
+    //
+    function btnSearch(start,end){
+      var username="";
+      var pname="";
+      $.ajax({
+        tyle: 'get',
+        url: url + '/WebProject/getUserInfo.action',
+        data: 'my_username=' + username +'&pname='+pname+'&deviceId='+global.devSignature+'&oldDate='+start+'&newDate='+end,
+        error: function (error) {
+          console.log(error + '网络错误')
+        },
+        success: function (result) {
+          console.log(result);
+          var data =result
+          var html = "";
+          if(result.length==0){
+            html = "<tr><td colspan='4'>该用户暂无操作记录</td></tr>"
+          }else{
+            $.each(result, function (i, v) {
+              html += "<tr><td >"+(i+1)+"</td><td>"+v.user_name+"</td><td>" + v.date +"</td><td>" + v.info + "</td></tr>";
+            })
+          }
+
+          $('.fangUlList').html(html); 
+        }
+      })
+    }
+    btnSearch('','')
+    $('.btnSearch').click(function(){
+      var start=$('#start').val() ||'';
+      var end=$('#end').val() || '';
+      btnSearch(start,end)
+    })
+    
+    $('.daoChu').click(function(){
+      //daochu.html
+      var width = $(window).width();
+      var height = $(window).height();
+      layer.open({
+          type: 2,
+          title: '设备操作记录导出',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width*0.8 + 'px', height-50 + 'px'],
+          content: "./daochu.html?deviceId="+global.devSignature
+      });
+    })
+    
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>智慧安全系统平台</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+     <script src="js/jquery.min.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <script src="js/highcharts.js"></script>
+    <link href="style/ElecComCss.css" rel="stylesheet"/>
+     <link href="style/ElecCss.css" rel="stylesheet"/>
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <link href="style/WaterCss.css" rel="stylesheet"/>
+      <script type="text/javascript">
+        // function detailShow(devBH,devMC) {
+        //     window.top.OpenThirdFrame("/ExtApp_SElectric_ElecDetail.html?devBH=" + devBH, 800, 600, "win", devMC);
+        // }
+    </script>
+    <style  type="text/css">
+        .ComInfor
+        {
+            height:50px;
+            line-height:40px;
+            text-align:center;
+            font-size:16px;
+            color:#fff;
+            padding-top:10px;
+            border-bottom:solid 1px #75c5f0;
+        }
+         .ComInfor span
+         {
+             position:absolute;
+             right:10px;
+             cursor:pointer;
+         }
+    </style>
+</head>
+<body>
+    <div class="elecBox waterBox" >
+        <!--<div class="ComInfor">烟台市中国人寿保险公司龙口分公司</div>
+            <div class="elecItem" onclick="detailShow('3201183','用电总开')">
+                        <div class="elecPic elecNormal" data-devBh="3201183"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201183</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/2 10:52:07</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:用电总开</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201189','1楼用电总开')">
+                        <div class="elecPic elecNormal" data-devBh="3201189"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201189</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/2 10:52:53</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:1楼用电总开</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201713','B4四号配电室')">
+                        <div class="elecPic elecAlarm" data-devbh="3201713"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201713</div>
+                    </div>
+
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/14 15:15:41</div>
+                    </div>
+                        <div class="elecTitle" style="color:#f00;">
+                                <div class="lineTitle">告警:A相电压欠压报警,B相电压欠压报警,C相电压欠压报警,A相电压欠压报警,B相电压欠压报警,C相电压欠压报警</div>
+                        </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:B4四号配电室</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201710','B4二号配电室')">
+                    <div class="elecPic elecOff" data-devbh="3201710"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201710</div>
+                    </div>
+
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2017/10/18 23:51:37</div>
+                    </div>
+                        <div class="elecTitle" style="color:#f00;">
+                                <div class="lineTitle">告警:剩余电流报警</div>
+                        </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:B4二号配电室</div>
+                    </div>
+                </div>
+            </div>-->
+    </div>
+<div class="elecLeft">
+    <!--<div class="ComInfo">
+        <div class="textContent">
+            <span class="textColor">烟台市中国人寿保险公司龙口分公司</span>位于<span class="textColor">山东省-烟台市-龙口市-东莱街道办事处</span>,详细位置<span class="textColor">东莱街与港城大道交叉口东50</span>，单位类型为<span class="textColor">其他</span>。
+        </div>
+        <div class="textContent">
+            单位消防安全负责人是<span class="textColor">王欢</span>，联系电话<span class="textColor">15153504569</span>,消防安全管理人是<span class="textColor"></span>，联系电话<span class="textColor"></span>。
+        </div>
+        <div class="textContent">
+            该单位属于<span class="textColor">九小场所</span>，消防主管部门是<span class="textColor">龙口市公安消防大队</span>。
+        </div>
+    </div>
+    <div class="elecDeviceBox">
+        <div class="DeviceItem elecBg1" >
+            <div class="DeviceStatus">报警设备</div>
+           2
+        </div>
+        <div class="DeviceItem elecBg2">
+            <div class="DeviceStatus">在线设备</div>
+            2
+        </div>
+        <div class="DeviceItem elecBg3">
+            <div class="DeviceStatus">断线设备</div>
+            0
+        </div>
+        <div class="DeviceItem elecBg4">
+            <div class="DeviceStatus">脱扣设备</div>
+            0
+        </div>
+    </div>
+    <div class="elecAlarmBox">
+    </div>-->
+</div>
+<!--<div class="elecAlarmDoBox">  //ElecComCss.css  110
+    <div class="elecDoLog">   //130 
+    </div>
+    <div class="elecDo">  //173
+        <textarea id="txtDo" name="txtDo" class="form-control"  placeholder="请输入值守中心处置情况"></textarea>
+        <div class="doButs">
+            <button class="btn btn-primary" type="button" onclick="weekShow()">周报查看</button>
+            <button class="btn btn-primary" type="button" onclick="doAlarm()">提交处置情况</button>
+        </div>
+    </div>
+</div>-->
+<script type="text/javascript">
+    var comid=sessionStorage.getItem("ComID");
+    //console.log(comid);
+    var type=parseInt(localStorage.getItem('tpage'));
+    var userName=localStorage.getItem('userName');
+   console.log(comid+'-'+type+'-'+userName);
+    //console.log(comid);
+    $.ajax({
+        type:'get',
+        data:'pid='+comid+'&type='+type+'&username='+userName,
+        url:url+'/admin/project/GetMapData.action',
+     //   url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/project/GetMapData.action',
+        dataType:'json',
+        success:function(data){
+            console.log(data);
+            var comp=data.Company[0];
+          //  console.log(comp);
+            var sum=data.devMess;
+            var html="";
+                //var {address,areaMC,MC,firephone,typeMC,typeBH,firename,resname,resphone}=p;
+                html="<div class='ComInfo'><div class='textContent'><span class='textColor'>"+comp.MC+"</span>位于<span class='textColor'>"+comp.address+"</span>,详细位置<span class='textColor'>"+comp.areaMC+"</span>，单位类型为<span class='textColor'>其他</span>。</div><div class='textContent'>单位消防安全负责人是<span class='textColor'>"+comp.firename+"</span>，联系电话<span class='textColor'>"+comp.firephone+"</span>,消防安全管理人是<span class='textColor'>"+comp.resname+"</span>，联系电话<span class='textColor'>"+comp.resphone+"</span>。</div><div class='textContent'>该单位使用属于<span class='textColor'>"+comp.typeMC+"</span>.<span style='float:right;' onclick=\"All_jing('"+comp.MLng+"','"+comp.MLat+"','"+comp.MC+"');\">查看全景图</a></span></div></div><div class='DeviceItem elecBg1' value='0'><div class='DeviceStatus'>报警设备</div>"+sum[0]+"</div><div class='DeviceItem elecBg2' value='1'><div class='DeviceStatus'>在线设备</div>"+sum[1]+"</div><div class='DeviceItem elecBg3' value='2'><div class='DeviceStatus'>断线设备</div>"+sum[2]+"</div></div><div class='elecAlarmBox'></div>";
+                $('.elecLeft').html(html);
+                
+              //  console.log(data.Diagram);
+                var dd1=[];
+                $.each(data.Diagram,function(i,v){  
+                dd1.push([v.date ,v.num,'typebh:'+ '01']);
+                })
+            // console.log(dd1);
+           // doAlarm();
+            Highcharts.setOptions({
+                    colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+            });
+                //隐患趋势图
+            $('.elecAlarmBox').highcharts({
+            
+                    chart: {
+                            backgroundColor: 'rgba(0,0,0,0)'
+                    },
+                    title: {
+                            text: '一周内报警',
+                            style: { color: '#ffffff' }
+                    },
+                    xAxis: {
+                            gridLineColor: "#73c4f1",
+                            labels: { style: { color: '#ffffff' } },
+                            categories: []
+                    },
+                    yAxis: [{
+                            title: {
+                                    text: '报警数',
+                                    style: { color: '#ffff00' }
+                            },
+                            gridLineColor: "#73c4f1",
+                            labels: {
+                                    style: { color: '#ffffFF' }
+                            },
+                            min: 0,
+                            allowDecimals: false,
+                            minTickInterval: 1
+                    }],
+                    legend: {
+                            borderWidth: 0,
+                            enabled: true,
+                            itemStyle: { color: '#ffffff', fontWeight: 'bold' }
+                    },
+                    tooltip: {
+                        dateTimeLabelFormats: {
+                            millisecond: '%H:%M:%S.%L',
+                            second: '%H:%M:%S',
+                            minute: '%H:%M',
+                            hour: '%H:%M',
+                            day: '%Y-%m-%d',
+                            week: '%m-%d',
+                            month: '%Y-%m',
+                            year: '%Y'
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true,
+                                style: { color: "#ffffff" }
+                            },
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                        click: function () {
+                                            alarmShow(this.typebh, this.name)
+                                        }
+                                }
+                            }
+                        }
+                    },
+                    series: [
+                    { name: '报警', yAxis: 0, 
+                        data: dd1
+                        }
+                    ]
+                
+            });
+            
+            var oZuolist = document.getElementsByClassName('DeviceItem');
+                for(var i=0;i<oZuolist.length;i++){
+                oZuolist[i].onclick=function(){
+                  //  console.log(this);
+                    var a=this.getAttribute('value');   
+                   // console.log(a);               
+                    show(a);
+                }
+            }
+           
+        },
+        error:function(err){
+            console.log('SElec_ElecComDetail--->1'+err);
+        }
+        
+    });
+      
+    function show(devStatus) {    
+        sessionStorage.setItem('devStatus',devStatus);  
+       // console.log(devStatus);
+        $.ajax({
+            type:'get',
+          url:url+'/admin/project/getDeviceByPid.action',
+           // url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/project/getDeviceByPid.action',
+            data:'pid='+comid+'&type='+devStatus+'&pagetype='+type+'&username='+userName,
+            dataType:'json',
+            error:function(err){
+                console.log('SElec_ElecComDetail--->2'+err);
+            },
+          //  < img src='"../images/'+devStatus==0?alarm2.png:devStatus==1?normal.png:offline.png+'"'> 
+            success:function(result){
+               console.log(result);
+                var html="";
+                var data=result.mess;
+                // console.log(data);   elecAlarm  elecNormal   elecOff
+                console.log(devStatus);
+                if(data!=null && data!=''){
+
+                $.each(data,function(i,v){
+                    console.log(v.dSid)
+                    //首先判断typeName是否正常
+                        //不正常或为空的接下判断 devStatus==2
+                            //剩下的都是报警
+                    if(v.dSid==0){   //网关
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic gateway' data-devBh='"+v.devId+"' style='border-radius:50%;background-color:#60C257;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(devStatus==2){
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic gateway' data-devBh='"+v.devId+"' style='background-color:#bbb;border-radius:50%;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic gateway' data-devBh='"+v.devId+"' style='background-color:#57BF54;border-radius:50%;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==1){  //燃气
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem'  onclick=\"ranqi_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasNormal' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(v.typeName==''){
+                            html+="<div class='elecItem'  onclick=\"ranqi_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasOff' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem'  onclick=\"ranqi_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasAlarm' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==2){  //烟感
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic lvsmdete' data-devBh='"+v.productNumber+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(devStatus=='2'){
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic huismdete' data-devBh='"+v.productNumber+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic hongsmdete' data-devBh='"+v.productNumber+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==3){  //电气
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem' onclick=\"dianqi_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic elecNormal' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(devStatus=='2'){
+                            html+="<div class='elecItem' onclick=\"dianqi_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic elecOff' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem' onclick=\"dianqi_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic elecAlarm' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==4){  //水压
+                        if(v.typeName=='正常'){
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic waterNormal' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }else if(v.typeName==''){
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic waterOff' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }else{
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic waterAlarm' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowkpa('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }
+                    }else if(v.dSid==5){  //消防主机
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic gateway' data-devBh='"+v.devId+"' style='background-color:#57BF54    ;border-radius:50%;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(v.typeName==''){
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic huifirepan' data-devBh='"+v.devId+"' style='background-color:#bbb;border-radius:50%;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem' onclick=\"wang_zhu_detailShow('"+v.devId+"','"+v.installLocation+"','"+v.aFid+"','"+v.productNumber+"');\"><div class='elecPic firepan' data-devBh='"+v.devId+"' style='border-radius:50%;'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:"+v.typeName+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==6){  //无线气感
+                        if(v.typeName=='正常'){
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasNormal' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(v.typeName==''){
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasOff' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem'  onclick=\"yangan_detailShow('"+v.productNumber.slice(length-8)+"','"+v.devId+"');\"><div class='elecPic gasAlarm' data-devBh='"+v.productNumber+"' ></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>设备号:"+v.productNumber.slice(length-8)+"</div></div><div class='elecTitle'><div class='lineTitle'>更新:"+v.heartbeatTime+"</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    }else if(v.dSid==7){  //粉尘设备
+                        
+                    }else if(v.dSid==8){  //无线液位
+                        if(v.typeName=='正常'){
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic yeweNormal' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }else if(v.typeName==''){
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic yeweOff' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }else{
+                            html=html+"<div class='waterItem'><div  onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" >";
+                            html=html+"<div class='waterPic yeweiAlarm' data-devBh='"+v.productNumber+"'  ></div>";
+                            html=html+"</div><div class='waterTitle'><div class='lineTitle'>"+v.device_name+"</div></div><div class='waterTitle waterBluk'><div class='lineTitle'>设备号："+v.productNumber+"</div><div class='lineTitle battery'>电池："+v.vol+"V</div><div class='lineTitle'>安装具体位置：</div><div class='lineTitle' style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>"+v.installLocation+"</div> </div><div class='waterTitle'><div class='leftTitle'><input class='btn btn-success' type='button' value='详情' onclick=\"detailShowwatch('"+v.productNumber+"','"+v.devId+"','"+v.dSid+"');\" /></div></div></div>";
+                        }
+                    }else if(v.dSid==9){  //视频主机
+                        if(devStatus==2){
+                            html+="<div class='elecItem' onclick=\"videoWarmClick('"+v.productNumber+"');\"><div class='elecPic videoPic2' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>编号:"+v.devId+"</div></div><div class='elecTitle'><div class='lineTitle'> 查看视频</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                           html+="<div class='elecItem' onclick=\"videoWarmClick('"+v.productNumber+"');\"><div class='elecPic videoPic2' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>编号:"+v.devId+"</div></div><div class='elecTitle'><div class='lineTitle'> 查看视频</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                        
+                    }else if(v.dSid==10){  //消防门磁
+                        
+                    }else if(v.dSid==20){   //NFC
+                        html+="<div class='elecItem' onclick=\"videoWarmClick('"+v.productNumber+"','"+v.devId+"');\"><div class='elecPic nfc1' data-devBh='"+v.devId+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>编号:"+v.devId+"</div></div><div class='elecTitle'><div class='lineTitle'><a href='javascript:;' onclick=\"videoWarmClick('"+v.productNumber+"','"+v.devId+"');\"> 查看NFC</a></div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+
+                    }
+                    
+                })
+                    $('.elecBox').html(html);
+                }else{
+                    var html='';
+                    $('.elecBox').html(html);
+                }
+            }
+        })
+    }       
+    show(1);
+    //显示设备列表窗口  电气设备
+    function dianqi_detailShow(devBH,devMC,aFid,productNumber) {
+        sessionStorage.setItem('DevBH',devBH);  //devId 
+        sessionStorage.setItem('devMC',devMC);  //v.installLocation
+        sessionStorage.setItem('aFid',aFid); 
+        sessionStorage.setItem('productNumber',productNumber); 
+        window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" + devBH, 1100, 600, "win", devMC);
+    }
+    //显示设备列表窗口   水压
+    function detailShowkpa(devBH, devId,dSid) {
+        // console.log(land);
+        // console.log(devBH);
+      //  console.log(devId);
+        sessionStorage.setItem('devId',devId);
+        sessionStorage.setItem('dSid',dSid);
+            window.top.OpenThirdFrame("./ExtApp_Water_WaterDetail.html?devBH=" + devBH , 800, 600, "win", "实时数据");
+        }
+    //显示设备列表窗口   液位
+    function detailShowwatch(devBH, devId,dSid) {  
+        // console.log(land);
+        // console.log(devBH);
+      //  console.log(devId);
+        sessionStorage.setItem('devId',devId);
+        sessionStorage.setItem('dSid',dSid);
+            window.top.OpenThirdFrame("./ExtApp_Water_WaterDetailwatch.html?devBH=" + devBH , 800, 600, "win", "实时数据");
+    }
+    //显示设备列表窗口 网关 主机
+    function wang_zhu_detailShow(devBH,devMC,aFid,productNumber) {
+        sessionStorage.setItem('DevBH',devBH);  //devId 
+        sessionStorage.setItem('devMC',devMC);  //v.installLocation
+        sessionStorage.setItem('aFid',aFid); 
+        sessionStorage.setItem('productNumber',productNumber); 
+        window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devBH=" + devBH, 600, 600, "win", devMC);
+    }
+    //视频 or NFC
+    function videoWarmClick(keyValue,devId) {
+		sessionStorage.setItem('devId',devId)
+		if(devId!=null){
+			window.top.OpenThirdFrame("./ExtApp_SNfc_LogDetail.html?devId="+devId+"&device=" + keyValue, 1100,500,"win", "NFC");
+			return;
+		}
+		window.top.OpenThirdFrame("./ExtApp_SVideo_LogDetail.html?devId="+devId+"&device=" + keyValue, 1100,500,"win", "视频");
+    }
+    //显示设备列表窗口  烟感  
+    function yangan_detailShow(devBH,devId) {
+        sessionStorage.setItem('DevBH',devBH);
+        sessionStorage.setItem('devId',devId);
+            window.top.OpenThirdFrame("./SSmoke_SmokeDetail.html?devBH=" + devBH, 800, 600, "win", '设备信息');
+    }  
+    //显示设备报警窗口   燃气
+    function ranqi_detailShow(devBH,devId) {
+        sessionStorage.setItem('DevBH',devBH);
+        sessionStorage.setItem('devId',devId);
+            window.top.OpenThirdFrame("./SGasAlarm_GasAlarm.html?devBH=" + devBH, 800, 600, "win", "历史报警");
+    }
+    //
+    function All_jing(lng,lat,MC){
+        console.log(lng)
+        console.log(lat);
+       window.top.OpenThirdFrame("./All_quanjing.html?lng=" + lng+'&lat='+lat+'&MC='+MC, 1000, 600, "win", "全景图");
+    }
+    
+</script>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

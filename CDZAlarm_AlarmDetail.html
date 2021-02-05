@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <script src="js/highcharts.js"></script>
+    <link href="style/GasComCss.css" rel="stylesheet"/>
+    <link href="style/CDZComCss.css" rel="stylesheet"/>
+    <link href="style/GasAlarmStyle.css" rel="stylesheet" />
+    <link href="style/CDZDev.css" rel="stylesheet"/>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+     <style type="text/css">
+        .ComInfor {
+            height: 50px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            padding-top: 10px;
+            border-bottom: solid 1px #248ef4;
+            width: 310px
+        }
+            .ComInfor span {
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+            }
+    </style>
+    <script type="text/javascript">
+        // function detailShow(devBH, devMC) {
+        //     window.top.OpenThirdFrame("/SGasAlarm_GasAlarm.html?ComID=&devBH=" + devBH, 650, 500, "win", "报警数据");
+        // }
+    </script>
+</head>
+<body>
+    
+<div class="elecBox" >
+        <div class="elecItem" onclick="detailShow('ME40324','412')">
+                <div class="elecPic gasOff" data-devBh="ME40324"></div>
+            <div class="elecContent">
+                <div class="elecTitle">
+                    <div class="lineTitle">充电桩编号:ME40324</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">在线情况:在线</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">位置:深圳市龙华区新牛路u创谷</div>
+                </div>
+            </div>
+        </div>
+      <!--  <div class="elecItem" onclick="detailShow('ME30418','2412')">
+                <div class="elecPic gasOff" data-devBh="ME30418"></div>
+            <div class="elecContent">
+                <div class="elecTitle">
+                    <div class="lineTitle">燃气:ME30418</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">更新:2018/2/2 15:22:32</div>
+                </div>
+                    <div class="elecTitle" style="color:#f00;">
+                            <div class="lineTitle">告警:申请中</div>
+                    </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">位置:2412</div>
+                </div>
+            </div>
+        </div>-->
+</div>
+<div class="elecLeft">
+    <div class="ComInfo">
+        <div class="textContent">
+            <span class="textColor">该充电桩项目</span>位于<span class="textColor">深圳市龙华区</span>,详细位置<span class="textColor">新牛路u创谷</span>。
+        </div>
+        <div class="textContent">
+            项目全负责人是<span class="textColor">柴茂金</span>，联系电话<span class="textColor">18053502229</span>,项目管理人是<span class="textColor">金茂柴</span>，联系电话<span class="textColor">18053502229</span>。
+        </div>
+    </div>
+    <div class="elecDeviceBox" style="    display: flex;
+    justify-content: space-around;">
+        <div class="DeviceItem elecBg1" onclick="show('0')">
+            <div class="DeviceStatus">在线充电桩</div>
+            8
+        </div>
+        <div class="DeviceItem elecBg2" onclick="show('1')">
+            <div class="DeviceStatus">离线充电</div>
+            20
+        </div>
+        <div class="DeviceItem elecBg4" onclick="show('2')">
+            <div class="DeviceStatus">充电桩数量</div>
+            9
+        </div>
+    </div>
+    <div class="elecAlarmBox">
+    </div>
+</div>
+<div class="elecAlarmDoBox">
+    <div class="elecDoLog">
+    </div>
+    <div class="elecDo">
+        <textarea id="txtDo" name="txtDo" class="form-control" placeholder="请输入值守中心处置情况"></textarea>
+        <div class="doButs">
+            <button class="btn btn-primary" type="button" onclick="doAlarm()">提交处置情况</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var comid=sessionStorage.getItem("ComID");
+    var type=parseInt(localStorage.getItem('tpage'));
+    var userName=localStorage.getItem('userName');
+   // console.log(comid+'-'+type+'-'+userName);
+    $.ajax({
+        type:'get',   
+        data:'pid='+comid,
+        url:url+'/ChargingPile/GetMapData.action',
+        dataType:'json',
+        error:function(err){
+            console.log('Swatch_de'+err);
+        },
+        success:function(result){
+            console.log(result);
+            var comp=result.Company;
+            var sum=result.list[0];
+            var html="";
+               //  var {address,areaMC,MC,firephone,typeMC,typeBH,firename,resname,resphone}=p;  //解构
+                html="<div class='ComInfo'><div class='textContent'><span class='textColor'>该充电桩项目</span>位于<span class='textColor'>"+comp.location+"</span>,详细位置<span class='textColor'>"+comp.location+"</span>。</div><div class='textContent'>项目全负责人是<span class='textColor'>柴茂金</span>，联系电话<span class='textColor'>18053502229</span>,项目管理人是<span class='textColor'>金茂柴</span>，联系电话<span class='textColor'>18053502229</span>。</div></div><div class='elecDeviceBox' style='    display: flex;justify-content: space-around;'><div class='DeviceItem elecBg3' onclick='show('0')' value='0'><div class='DeviceStatus' >离线充电桩</div>"+sum[0]+"</div><div class='DeviceItem elecBg2' onclick='show('1')' value='1'><div class='DeviceStatus' >在线充电桩</div>"+sum[1]+"</div><div class='DeviceItem elecBg4' onclick='show('2')' value='2'><div class='DeviceStatus' >故障充电桩</div>"+sum[2]+"</div><div class='DeviceItem elecBg1'  ><div class='DeviceStatus' >充电桩数量</div>"+sum.counts+"</div></div><div class='elecAlarmBox'></div>";
+                    $('.elecLeft').html(html);
+                    var dd1=[ ["03-26", 0, "typebh:01"],
+                        ["03-27", 4, "typebh:01"],
+                        ["03-28", 8, "typebh:01"],
+                        ["03-29", 2, "typebh:01"],
+                        ["03-30", 15, "typebh:01"],
+                        ["03-31", 88, "typebh:01"],
+                        ["04-01", 30, "typebh:01"]];
+                Highcharts.setOptions({
+                        colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+                });
+                    //隐患趋势图
+                $('.elecAlarmBox').highcharts({
+                
+                    chart: {
+                            backgroundColor: 'rgba(0,0,0,0)'
+                    },
+                    title: {
+                            text: '一周内充电次数',
+                            style: { color: '#ffffff' }
+                    },
+                    xAxis: {
+                            gridLineColor: "#73c4f1",
+                            labels: { style: { color: '#ffffff' } },
+                            categories: []
+                    },
+                    yAxis: [{
+                            title: {
+                                    text: '充电次数',
+                                    style: { color: '#ffff00' }
+                            },
+                            gridLineColor: "#73c4f1",
+                            labels: {
+                                    style: { color: '#ffffFF' }
+                            },
+                            min: 0,
+                            allowDecimals: false,
+                            minTickInterval: 1
+                    }],
+                    legend: {
+                            borderWidth: 0,
+                            enabled: true,
+                            itemStyle: { color: '#ffffff', fontWeight: 'bold' }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true,
+                                style: { color: "#ffffff" }
+                            },
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                        click: function () {
+                                            alarmShow(this.typebh, this.name)
+                                        }
+                                }
+                            }
+                        }
+                    },
+                    series: [
+                    { name: '充电次数', yAxis: 0, 
+                        data: dd1
+                        }
+                    ]
+                    
+                });
+
+            var oZuolist = document.getElementsByClassName('DeviceItem');
+            console.log(oZuolist);
+                for(var i=0;i<oZuolist.length;i++){
+                oZuolist[i].onclick=function(){
+                    console.log(this);
+                    var a=this.getAttribute('value');  
+                   console.log(a);                
+                    show(a);
+                }
+            }
+        }
+    })
+    
+    function show(devStatus) {   
+        console.log(devStatus);   
+        $.ajax({
+            type:'get',
+            url:url+'/ChargingPile/getDeviceByPid.action',
+           // url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/project/getDeviceByPid.action',
+            data:'pid='+comid+'&status='+devStatus,
+            dataType:'json',
+            error:function(err){
+                console.log('SElec_ElecComDetail--->2'+err);
+            },
+            success:function(data){
+                console.log(data);
+                var data=data.Company;
+               console.log(data);
+                if(data!=null || data!=''){
+                    var html="";
+                       
+                    $.each(data,function(i,v){
+                        console.log(v.status);
+                        if(v.status=='0'){  //离线
+                            html+="<div class='elecItem' onclick=\"detailShow('"+v.pid+"','"+v.id+"');\"><div class='elecPic gasOff' data-devBh='"+v.pid+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>充电桩编号:"+v.deviceNo+"</div></div><div class='elecTitle'><div class='lineTitle'>在线情况:离线</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else if(v.status=='0'){
+                            html+="<div class='elecItem' onclick=\"detailShow('"+v.pid+"','"+v.id+"');\"><div class='elecPic gasOff' data-devBh='"+v.pid+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>充电桩编号:"+v.deviceNo+"</div></div><div class='elecTitle'><div class='lineTitle'>在线情况:在线</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }else{
+                            html+="<div class='elecItem' onclick=\"detailShow('"+v.pid+"','"+v.id+"');\"><div class='elecPic gasOff' data-devBh='"+v.pid+"'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>充电桩编号:"+v.deviceNo+"</div></div><div class='elecTitle'><div class='lineTitle'>在线情况:故障</div></div><div class='elecTitle'><div class='lineTitle'>位置:"+v.installLocation+"</div></div></div></div>";
+                        }
+                    })
+                    $('.elecBox').html(html);
+                }else{
+                    var html='';
+                    $('.elecBox').html(html);
+                }
+                
+                
+            }
+        })
+    }      
+    show(1); 
+    function doAlarm() {
+        var txt = $("#txtDo").val();
+        $.get("json/SElec_SmokeAlarmDo.json?ComID=3618&ComName=" + escape("烟台淼盾物联技术有限公司") + "&doResults=" + escape(txt),//SSmoke
+           function (data, status) {
+               $(".elecDoLog").html(data);
+               $("#txtDo").val("");
+               $(".PlayImg").find("img").click(function () {
+                   var aimg = this;
+                   var timg = $(this);
+                   var parBox = timg.parent();
+                   var imgs = [];
+                   var imgidx = 0;
+                   parBox.find("img").each(function (i, v) {
+                       if (v == aimg) {
+                           imgidx = i;
+                       }
+                       imgs.push({ "href": $(v).attr("src"), "title": $(v).attr("alt") });
+                   });
+                   window.top.ShowPhotoView({ "index": imgidx, "pics": imgs });
+               });
+           });
+    }
+    //显示设备列表窗口
+    // function detailShow(devStatus) {
+    //     window.top.OpenSelFrame("./SGasAlarm_GasComDev.html?ComID=3618&ComName="+escape("烟台淼盾物联技术有限公司")+ "&DevStatus=" + devStatus, 350, 600, "SElect", "烟台淼盾物联技术有限公司", "", function (r) {
+    //     }, false, 'SElec_ElecComDev');
+    // }
+    //显示设备报警窗口
+    function detailShow(devBH,devId) {
+        console.log(devBH)
+        console.log(devId)
+        sessionStorage.setItem('DevBH',devBH);
+        sessionStorage.setItem('devId',devId);
+            window.top.OpenThirdFrame("./CDZAlarm_GasDetail.html?devId=" + devId, 800, 600, "win", "充电记录");
+        }
+//     $(document).ready(function () {
+//         doAlarm();
+//         Highcharts.setOptions({
+//             colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+//         });
+//         //隐患趋势图
+//         $('.elecAlarmBox').highcharts({
+//             chart: {
+//                 backgroundColor: 'rgba(0,0,0,0)'
+//             },
+//             title: {
+//                 text: '一周内报警',
+//                 style: { color: '#ffffff' }
+//             },
+//             xAxis: {
+//                 gridLineColor: "#73c4f1",
+//                 labels: { style: { color: '#ffffff' } },
+//                 categories: [
+// '2018-07-27','2018-07-28','2018-07-29','2018-07-30','2018-07-31','2018-08-01','2018-08-02',
+//                 ]
+//             },
+//             yAxis: [{
+//                 title: {
+//                     text: '报警数',
+//                     style: { color: '#ffff00' }
+//                 },
+//                 gridLineColor: "#73c4f1",
+//                 labels: {
+//                     style: { color: '#ffffFF' }
+//                 },
+//                 min: 0,
+//                 allowDecimals: false,
+//                 minTickInterval: 1
+//             }],
+//             legend: {
+//                 borderWidth: 0,
+//                 enabled: true,
+//                 itemStyle: { color: '#ffffff', fontWeight: 'bold' }
+//             },
+//             plotOptions: {
+//                 line: {
+//                     dataLabels: {
+//                         enabled: true,
+//                         style: { color: "#ffffff" }
+//                     },
+//                     cursor: 'pointer',
+//                     point: {
+//                         events: {
+//                             click: function () {
+//                                 alarmShow(this.name)
+//                             }
+//                         }
+//                     }
+//                 }
+//             },
+//             series: [{ name: '报警数',yAxis: 0,data:[['2018-07-27',3],['2018-07-28',0],['2018-07-29',0],['2018-07-30',0],['2018-07-31',0],['2018-08-01',0],['2018-08-02',0]]}]
+//         });
+//     });
+</script>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

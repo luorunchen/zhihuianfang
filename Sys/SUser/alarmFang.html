@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/url_zhuan.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+    <link rel="stylesheet" href="../../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style/merchant-style-89cef630c9.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content" style="overflow: auto;position: absolute;">
+                <form class="form-horizontal m-t" id="editForm" novalidate="novalidate" >
+                    <div class="form-group col-sm-12" >
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>数据导出选择</label>
+                        <div class="col-sm-8">
+                            <dl class="permission-list">
+                                <dt>
+                                    <label>&nbsp;设备状态</label>
+                                </dt>
+                                <dd class="jurTable facZhuangTable">
+                                    <dl class="cl permission-list2">
+                                        <dt class="exportZheng">
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="app" class="menuAlias_app">&nbsp;
+                                                app
+                                                <input type="hidden" id="menuAlias_app" value="app">
+                                            </label>
+                                        </dt>
+                                        <dt class="exportZheng">
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="sms" class="menuAlias_sms">&nbsp;
+                                                短信
+                                                <input type="hidden" id="menuAlias_sms" value="短信">
+                                            </label>
+                                        </dt>
+                                        <dt id="menuAlias_3">
+                                            <label >
+                                                <input type="checkbox" name="thirdMenuIdList" value="tel" class="menuAlias_tel">&nbsp;
+                                                电话
+                                                <input type="hidden" id="menuAlias_tel" value="电话" >
+                                            </label>
+                                        </dt>
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group ">
+                    <div class="col-sm-12 text-center footer-bur-fixed dibu-but-box">
+                        <a class="btn btn-success " type="button" id="save-btn">&nbsp;&nbsp;保存&nbsp;&nbsp;</a>
+                        <!-- <a class="btn btn-default " type="button" id="cancel-btn">&nbsp;&nbsp;取消&nbsp;&nbsp;</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+    <script src="js/alarmFang.js"></script>
+</body>
+
+</html>

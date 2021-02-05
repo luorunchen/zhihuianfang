@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus®">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<title>Document</title>
+</head>
+
+<body style="background:#3cf;">
+	<div id="box"> </div>
+	<script src="js/jquery.min.js"></script>
+	<script>
+		var typeName = 'A相电流-报警';
+		var tableDetail = {
+			currentAlarmAvalue: "3.",
+            currentAlarmBvalue: "7.7",
+            currentAlarmCvalue: "6.3",
+            devno: "",
+            info: 20,
+            leakageAlarmCurrentValue: "833.7",
+            lnid: 0,
+            noAlarmATemperatureValue: "33",
+            noAlarmBTemperatureValue: "33",
+            noAlarmCTemperatureValue: "33",
+            noAlarmCurrentValue: "833.7",
+            noAlarmNTemperatureValue: "33",
+            noLeakageAlarmACurrentValue: "3.",
+            noLeakageAlarmBCurrentValue: "7.7",
+            noLeakageAlarmCCurrentValue: "6.3",
+            noVoltageAlarmAValue: "226.0",
+            noVoltageAlarmBValue: "389.4",
+            noVoltageAlarmCValue: "390.0",
+            regdate: "2019-09-19 15:04:33.0",
+            regdate2: null,
+            temperatureAlarmAvalue: "",
+            temperatureAlarmBvalue: "",
+            temperatureAlarmCvalue: "",
+            temperatureAlarmNvalue: "",
+            voltageAlarmAvalue: "1.0",
+            voltageAlarmBvalue: "1.0",
+            voltageAlarmCvalue: "1.0"
+        }
+        console.log(tableDetail)
+        var {temperatureAlarmAvalue ,voltageAlarmAvalue,noVoltageAlarmAValue,currentAlarmAvalue,currentAlarmBvalue,currentAlarmCvalue,devno,info,leakageAlarmCurrentValue,lnid,noAlarmATemperatureValue,noAlarmBTemperatureValue,noAlarmCTemperatureValue,noAlarmCurrentValue,noAlarmNTemperatureValue,noLeakageAlarmACurrentValue,noLeakageAlarmBCurrentValue,noLeakageAlarmCCurrentValue,noVoltageAlarmBValue,noVoltageAlarmCValue,regdate,regdate2,temperatureAlarmCvalue,voltageAlarmCvalue,voltageAlarmBvalue,temperatureAlarmNvalue,} = tableDetail
+		var html = "";
+		
+		
+		if (typeName == '漏电报警') {
+            html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/s_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822;'>${leakageAlarmCurrentValue }mA</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#D93822;float:right;font-size: 13px;line-height:21px'>${regdate } </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        /div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC;'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		}else if(typeName=="N温度-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC;'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC;'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC;'>无 </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${temperatureAlarmNvalue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${noAlarmNTemperatureValue}°C</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#D93822'>${regdate } </div>
+                </div>
+            </div>`
+		} else if(typeName=="A温度-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC'>无</div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p style='color:#D93822'>${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${temperatureAlarmAvalue}°C</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#D93822'>${regdate } </div>
+                </div>
+            </div>`
+		} else if(typeName=="B温度-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC;'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无  </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${temperatureAlarmBvalue}°C</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#D93822'>${regdate } </div>
+                </div>
+            </div>`
+		} else if(typeName=="C温度-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC'>无</div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${temperatureAlarmCvalue}°C</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#D93822'>${regdate } </div>
+                </div>
+            </div>`
+		} else if(typeName=="A相电流-报警" || typeName=="A相电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${currentAlarmAvalue}mA</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#D93822'>${regdate } </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noLeakageAlarmACurrentValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		} else if(typeName=="B相电流-报警" || typeName=="B相电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${currentAlarmBvalue}mA</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#D93822'>${regdate } </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		} else if(typeName=="C相电流-报警" || typeName=="C相电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p style='color:#D93822'>${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#D93822'>${typeName }</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#D93822'>${currentAlarmCvalue}mA</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#D93822'>${regdate } </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#BFBCBC'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#BFBCBC;'>无</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#BFBCBC'>无  </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		} else if(typeName=="A相电压-报警" || typeName=="A相电压过载-报警" || typeName=="A相电压过载，电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC'>无 </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p style='color:#D93822'>${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#D93822'>${typeName}</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#D93822;'>${voltageAlarmAvalue}</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#D93822'>${regdate} </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		} else if(typeName=="B相电压-报警" || typeName=="B相电压过载-报警" || typeName=="B相电压过载，电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC'>无 </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p style='color:#D93822'>${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#D93822'>${typeName}</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#D93822;'>${voltageAlarmBvalue}</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#D93822'>${regdate} </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		} else if(typeName=="C相电压-报警" || typeName=="C相电压过载-报警" || typeName=="C相电压过载，电流过载-报警"){
+			html = `<div class='box'>
+                <div class='box_photo'>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmACurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmBCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noLeakageAlarmCCurrentValue }A</p>
+                    </div>
+                    <div>
+                        <img src='./images/a_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${leakageAlarmCurrentValue}mA</p>
+                    </div>
+                </div>
+                <div style='margin-top:10px;font-size:16px;' class='box_xin'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='float:right;font-size: 13px;line-height:21px;color:#BFBCBC'>无 </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'><p >${noVoltageAlarmAValue}V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noVoltageAlarmBValue }V</p>
+                        </div>
+                        <div>
+                            <img src='./images/v_red.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p style='color:#D93822'>${noVoltageAlarmCValue }V</p>
+                        </div>
+                    </div>
+                    <div class='box_xin' style='margin-top:10px;font-size:16px;'>
+                        <div style='float:left;margin-left:15px;'>报警状态：</div>
+                        <div style='color:#D93822'>${typeName}</div>
+                        <div style='float:left;margin-left:15px;'>报警值：</div>
+                        <div style='color:#D93822;'>${voltageAlarmCvalue}</div>
+                        <div style='float:left;margin-left:15px;'>报警时间：</div>
+                        <div style='color:#D93822'>${regdate} </div>
+                    </div>
+                </div>
+                <div class='box'>
+                    <div class='box_photo'>
+                        <div>
+                            <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                            <p >${noAlarmATemperatureValue }°C</p>
+                        </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmBTemperatureValue }°C</p>
+                    </div> 
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmCTemperatureValue }°C</p>
+                    </div>
+                    <div>
+                        <img src='./images/w_white.png' alt='' style='display:inline-block;width:40px;height:40px;margin-top: 15px;'>
+                        <p >${noAlarmNTemperatureValue }°C</p> 
+                    </div> 
+                </div>
+                <div  class='box_xin' style='margin-top:10px;font-size:16px;'>
+                    <div style='float:left;margin-left:15px;'>报警状态：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警值：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                    <div style='float:left;margin-left:15px;'>报警时间：</div>
+                    <div style='color:#BFBCBC'>无</div>
+                </div>
+            </div>`
+		}
+
+
+		$('#box').html(html)
+	</script>
+</body>
+
+</html>

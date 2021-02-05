@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/Form.css" rel="stylesheet" />
+    <link href="style/ShowTable.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="bodyBox">
+    <div class="formBody">
+        <div style="text-align:center">报警信息</div>
+        <div class="ShowTable" style="width:auto;">
+           
+        </div>
+    </div>
+    <div class="formBut">
+        <div class="form-group">   <div style="float:right;margin-right:30px;">     <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseThirdWin()" type="button" value="关闭" />  </div>  </div>
+    </div>
+</div>
+
+    <script>
+     var alarmdate=sessionStorage.getItem('AlarmDate');
+     var comid=sessionStorage.getItem("OwnComID");
+     var userName=localStorage.getItem('userName');
+     var type=parseInt(localStorage.getItem('tpage'));
+    // console.log(alarmdate+'--'+comid+'--'+userName);
+     $.ajax({
+            type:'get',
+            url:url+'/admin/project/getAlarmDetail.action',
+            dataType:'json',
+            data:'pid='+comid+'&username='+userName+'&date='+alarmdate+'&type='+type,
+            error:function(error){
+                console.log('ExtApp_SElec_ElecA'+error);
+            },
+            success:function(result){
+               var alarmmess=result.mess;
+               console.log(alarmmess);
+               var html="";
+               if(alarmmess!=""){
+                $.each(alarmmess,function(i,v){
+                        html+="<table class='tabBox' style='margin-bottom:5px;'><tr><td style='width:120px; ' class='tabLabel'>设备号</td><td>"+v.deviceid+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警名称</td><td >"+v.typeName+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警时间</td><td >"+v.alarmFaultDate+"</td></tr></table>";
+                })
+                $('.ShowTable').html(html);
+               }else{
+                 html="<div>该设备暂无报警</div>"
+                 $('.ShowTable').html(html);
+               }
+               
+            }
+        })
+    </script>
+</body>
+</html>

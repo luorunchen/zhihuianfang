@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+     <script src="js/jquery.min.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet"/>
+    <link href="style/ElecCss.css" rel="stylesheet"/>
+ <link href="style/ElecStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function detailShow(devBH,devMC) {
+            window.top.OpenThirdFrame("ElecDetail.html?devBH=" + devBH, 800, 600, "win", devMC);
+        }
+    </script>
+    <style  type="text/css">
+        .ComInfor
+        {
+            height:50px;
+            line-height:40px;
+            text-align:center;
+            font-size:25px;
+            color:#fff;
+            padding-top:10px;
+            border-bottom:solid 1px #75c5f0;
+        }
+         .ComInfor span
+         {
+             position:absolute;
+             right:20px;
+             cursor:pointer;
+         }
+    </style>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+<body>
+<div class="ComInfor">龙口市M8电竞网咖 <span aria-hidden="true"  onclick="window.top.CloseSelWin();" >×</span></div>
+<div class="elecBox">
+        <div class="elecItem" onclick="detailShow('3201763','二楼配电箱总开关')">
+                    <div class="elecPic elecAlarm" data-devBh="3201763"></div>
+            <div class="elecContent">
+                <div class="elecTitle">
+                    <div class="lineTitle">在线监测:3201763</div>
+                </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">更新:2018/8/1 17:51:19</div>
+                </div>
+                    <div class="elecTitle" style="color:#f00;">
+                            <div class="lineTitle">告警:剩余电流报警</div>
+                    </div>
+                <div class="elecTitle">
+                    <div class="lineTitle">位置:二楼配电箱总开关</div>
+                </div>
+            </div>
+        </div>
+</div>
+     <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

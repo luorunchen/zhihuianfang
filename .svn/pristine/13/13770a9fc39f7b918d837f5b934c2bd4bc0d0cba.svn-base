@@ -1,0 +1,460 @@
+﻿html
+{
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+}
+/*基础样式*/
+body {
+  
+    width:100%;
+    height:100%;
+    font-size:13px;
+    overflow:hidden;
+    font-family:'Microsoft YaHei';
+    scrollbar-face-color: #b46868;
+      background-color:#191919;
+}
+a {
+  cursor: pointer;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+ ::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #49768d;
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+    height:10px;
+	background-color: #55a1c5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #55a1c5;
+}
+
+
+ .focusBox {
+       background-image:url(../images/focus.png);
+        animation-name: scaleout;
+        animation-duration: 1.5s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+          width:64px;
+          height:64px;
+      }
+
+@keyframes scaleout {
+    0% {
+        transform: scale(0.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(2.0);
+        opacity: 0;
+    }
+}
+
+.form-control{
+
+   background-color:#262626;
+   border:solid 1px #248ef4;
+   color:#fff;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    opacity:0.5;
+    background-color:#466a7c;
+}
+
+.bodyBox
+{
+    position:relative;
+    height:100%;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.MapBox
+{
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:00px;
+    width:auto;
+    height:auto;
+}
+
+.leftBox
+{
+    position:absolute;
+    top:185px;
+    left:60px;
+    width:250px;
+    bottom:0px;
+    overflow-y:auto;
+}
+
+    .HeadBox {
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    height:80px;
+    overflow:hidden;
+    background: url(../images/titlebg.png) repeat-x;
+}
+
+.HeadBox .WebTitle
+{
+    width:100%;
+    text-align:center;
+    background-size:contain;
+    color:#fff;
+    line-height:80px;
+    font-size:30px;
+}
+
+.HeadBox  .webTitle{
+     font-size:30px;
+     line-height:70px;
+    color:#fff;
+    text-align:center;
+}
+
+.HeadBox .navBack {
+    height:50px;
+    position:absolute;
+    left:10px;
+    top:13px;
+}
+
+.HeadBox .navBack .backImg
+{
+    width:50px;
+    height:50px;
+    margin-left:10px;
+    float:left;
+    background: url('../images/backImg.png') no-repeat center center;
+    background-size:50px 50px;
+    cursor:pointer;
+}
+.HeadBox .navBack .backTitle
+{
+    margin-left:10px;
+    height:50px;
+    line-height:50px;
+    float:left;
+    font-size:20px;
+    color:#ffffff;
+}
+
+.numBox {
+    color: #fff;
+    background: url(../images/kjbg.png);
+    border: solid 1px #fff;
+    box-shadow:inset 0px 0px 30px #fff;
+    border-radius: 7px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right:10px;
+  
+}
+.numBox .numTitle
+{
+
+    font-size:16px;
+    height:40px;
+    line-height:40px;
+
+}
+.numBox .numContent
+{
+    width:100%;
+    height:40px;
+}
+.numBox .numContent .numCell
+{
+    float:left;
+    width:30px;
+    text-align:center;
+    font-size:20px;
+    line-height:35px;
+    background-color:#248ef4;
+    margin-left:5px;
+} 
+.numBox .numItem
+{
+    height:40px;
+    line-height:40px;
+    border: solid 1px #248ef4;
+    margin-top:10px;
+    padding-left:15px;
+    padding-right:15px;
+    border-radius:5px;
+    cursor:pointer;
+
+}
+
+.numBox .numItem{
+  background: url(../images/m_l.png) no-repeat right;
+  background-size: 4%;
+}
+.numBox .numItem .valueCell
+{
+    float:right;
+    height:40px;
+    line-height:40px;
+}
+
+
+
+.queryToolBar
+{
+    height:50px;
+    padding:10px;
+    padding-left:5px;
+    line-height:40px;
+    position:relative;
+}
+
+.queryToolBar .queryText{
+    width:160px;
+    display:inline;
+}
+.queryToolBar .queryBut {
+    position:absolute;
+    right:0px;
+    top:13px;
+}
+
+/*查询窗口*/
+.AlarmBox
+{
+    position:absolute;
+    top:185px;
+    right:10px;
+    width:300px;
+    color: #fff;
+    background: url(../images/kjbg.png);
+    border: solid 1px #fff;
+    box-shadow:inset 0px 0px 30px #fff;
+    border-radius: 7px;
+}
+.AlarmBox   .AlarmTitle
+{
+    font-size:16px;
+    height:40px;
+    line-height:40px;
+    padding-left:20px;
+    border-bottom:solid 1px #248ef4;
+}
+
+.AlarmBox   .AlarmTitle .moreAlarm
+{
+    position:absolute;
+    top:0px;
+    right:15px;
+    cursor:pointer;
+    font-size:16px;
+}
+ .AlarmBox   .AlarmResult
+   {
+        max-height:400px;
+        overflow-y:auto;
+        min-height:300px;
+   }
+
+     .AlarmBox   .AlarmResult .alarmItem
+     {
+          border-bottom: solid 1px #5dacd3;
+          cursor:pointer;
+     }
+      .AlarmBox   .AlarmResult .alarmItem:hover
+     {
+         background-color:#057681;
+         color:#01e3e7;
+
+     }
+     .AlarmBox   .AlarmResult .resultTitle
+     {
+        font-size:14px;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:20px;
+     }
+       .AlarmBox   .AlarmResult .resultText
+     {
+        font-size:12px;
+        padding-bottom:5px;
+        padding-left:20px;
+     }
+     
+
+       /*报警图表*/
+       .chartBox
+       {
+
+            position:absolute;
+            bottom:10px;
+            right:10px;
+            width:40px;
+            height:250px;
+            color: #fff;
+            background: url(../images/kjbg.png);
+            border: solid 1px #5dacd3;
+            box-shadow:inset 0px 0px 30px #5dacd3;
+            border-radius: 7px;
+       }
+       .chartBody
+       {
+           display:none;
+           width:100%;
+           height:100%;
+           position:relative;
+       }
+
+       .chartLabel
+       {
+           width:100%;
+           height:100%;
+           padding:10px;
+           font-size:16px;
+           cursor:pointer;
+           padding-top:30px;
+       }
+
+        .chartBut
+       {
+          display:none;
+          position:absolute;
+          left:10px;
+          top:10px;
+          color:#ffffff;
+          font-size:20px;
+          cursor:pointer;
+       }
+
+
+       .chartBoxShow
+       {
+           width:auto;
+           left:400px;
+       }
+
+       .chartBoxShow .chartBody
+       {
+           display:block;
+       } 
+        .chartBoxShow .chartLabel
+       {
+           display:none;
+       }
+         .chartBoxShow .chartBut
+       {
+           display:block;
+       }
+         
+    .MapFilter
+    {
+        position:absolute;
+        top:90px;
+        left:280px;
+        right:350px;
+        background: url(../images/kjbg.png);
+        box-shadow:inset 0px 0px 30px #5dacd3;
+        border-radius: 7px;
+        color:#fff;
+        overflow:hidden;
+        text-align:center;
+        padding-left:10px;
+    }
+
+    .MapFilter .fItem
+    {
+        height:35px;
+        font-size:16px;
+        line-height:35px;
+        float:left;
+        border:solid 1px #fff;
+        padding-left:15px;
+        padding-right:15px;
+        border-radius:3px;
+        cursor:pointer;
+        margin-left:10px;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+/*查询窗口*/
+.queryBox
+{
+    position:absolute;
+    top:155px;
+    right:10px;
+    width:300px;
+    color: #fff;
+    background: url(../images/kjbg.png);
+    border: solid 1px #fff;
+    box-shadow:inset 0px 0px 30px #fff;
+    border-radius: 7px;
+    padding-bottom:5px;
+}
+.queryBox .queryToolBar
+{
+    height:55px;
+    padding:10px;
+    line-height:40px;
+    position:relative;
+}
+
+.queryBox .queryToolBar .queryText{
+    width:220px;
+    display:inline;
+}
+    .queryBox .queryToolBar .queryBut {
+        position:absolute;
+        right:10px;
+        top:13px;
+    }
+
+   .queryBox   .queryResult
+   {
+        max-height:400px;
+        overflow-y:auto;
+   }
+     .queryBox   .queryResult .resultItem
+     {
+          border-top: solid 1px #5dacd3;
+          cursor:pointer;
+     }
+      .queryBox   .queryResult .resultItem:hover
+     {
+         background-color:#057681;
+         color:#01e3e7;
+
+     }
+     .queryBox   .queryResult .resultTitle
+     {
+        font-size:14px;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:20px;
+     }
+       .queryBox   .queryResult .resultText
+     {
+        font-size:12px;
+        padding-bottom:5px;
+        padding-left:20px;
+     } 

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>智慧安全系统平台</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/highcharts-more.js"></script>
+    <script src="js/d3.v3.min.js" language="JavaScript"></script>
+    <script src="js/liquidFillGaugeText.js"></script>
+    <script type="text/javascript" src="js/highcharts-3d.js"></script>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+<body>
+<div style="text-align:center" class="waterDevideTitle">
+    <!--<h3>高位水箱</h3>
+    2018/8/2 10:32:23-->
+</div>
+<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto;margin-top:20px;"></div>
+<svg id="fillgauge1" width="97%" height="250" style="margin-top:20px"></svg>
+<div class="bottomBox" style="margin-top:20px;padding-left:50px;padding-right:50px;">
+    <div class="chartBox">
+        <div id="divChart" class="chartdemo" style="height:200px;">
+        </div>
+    </div>
+</div>
+<script>
+     //var type=parseInt(localStorage.getItem('tpage'));   
+     var type=3;   
+     var devId=sessionStorage.getItem('devId');
+     var dSid=sessionStorage.getItem('dSid');
+     //console.log(type+'--'+devId);  
+    $.ajax({
+        type:'get',
+        url:url+'/admin/device/ElecData.action',
+        data:'devId='+devId+'&type='+type,
+        dataType:'json',
+        error:function(err){
+            console.log('Ext_Watch'+err)
+        },
+        success:function(result){
+          //  console.log(result);
+            var data=result.DevData;
+            var watchpa=result.DevData[0].latitude;
+            sessionStorage.setItem('watchpa',watchpa);
+            var watchtotal=result.DevData[0].longitude;
+          //  console.log(watchtotal);
+            sessionStorage.setItem('watchtotal',watchtotal);
+            var html='';
+            $.each(data,function(i,v){
+                html="<h3>"+v.typeName+"<br>"+v.alarmFaultDate+"</h3>";
+            })
+
+            $('.waterDevideTitle').html(html);
+
+            var sum=result.Data;
+           // console.log(sum);
+            var typename=data[0].typeName;
+            // console.log(typename);  水压 or 液位(水位)
+            if(dSid=='4'){
+               LoadWater2(1);
+               $('#container').show();
+              $('#fillgauge1').hide();
+            }else{
+               LoadWater1(1);
+               $('#container').hide();
+               $('#fillgauge1').show();
+            }
+            var dd1=[];
+            $.each(sum,function(i,v){
+                var data=parseFloat((v.latitude/10).toFixed(4));
+                dd1.push([v.time,data]);
+            })
+           // console.log(dd1);
+            Highcharts.setOptions({
+                colors: ['#178BCA']
+            });
+            $('#divChart').highcharts({
+                chart: {
+                   type: '',
+                },
+                title: {
+                    text: '设备最近数据分析',
+                },
+                xAxis: {
+                    reversed: true,
+                    categories: [ ]
+                },
+                yAxis: [{
+                    title: {
+                        text: ''
+                    },
+                }],
+                plotOptions: {
+                    column: {
+                        pointWidth:20,
+                        dataLabels: {
+                            enabled: true,
+                            align: 'right',
+                           // verticalAlign: 'left', // 竖直对齐方式，默认是 center
+                            inside: true
+                        }
+                    }
+                },
+                legend: {
+                        borderWidth: 0
+                },
+                exporting: {
+                        enabled: false
+                },
+                series: [{ name: '水压(mpa)',yAxis: 0,data:dd1}]
+                });
+        }
+         
+    })
+
+    //加载水位
+    function LoadWater1(isv){
+
+       var watchtotal=parseFloat(sessionStorage.getItem('watchpa'));
+      // console.log(watchtotal);
+        if(isv)
+        {
+            $('#fillgauge1').show();
+        }
+        else
+        {
+           $('#fillgauge1').hide();
+        }
+        var config1 = liquidFillGaugeDefaultSettings();
+       // console.log(config1);
+        config1.circleThickness = 0.1;
+        config1.waveAnimateTime = 2000;
+        //是否以百分比显示，JS中增加如不以百分比显示，那么单位为M，需要的话 可进行修改
+        config1.displayPercent = false;
+        config1.valueCountUp = false;
+        // var gauge2= loadLiquidFillGauge("fillgauge1", 46.1, config1);
+        //定义最大值、最小值即可实现显示数值
+        config1.minValue=0.7;
+        config1.maxValue=10 ;
+        //根据最大值、最小值 当前值确定百分比 显示内容为Model.LastValue
+        var gauge2= loadLiquidFillGauge("fillgauge1", watchtotal, config1);
+    }
+    //加载水压
+    function LoadWater2(isv){
+      var watchpa=parseFloat(sessionStorage.getItem('watchpa'));
+        if(isv)
+        {
+            $('#container').show();
+        }else{
+            $('#container').hide();
+        }
+        var maxBand={  //范围颜色
+            from:  70,
+            to: 1000,
+            color: '#DF5353' // red
+        };
+        $('#container').highcharts({
+            chart: {
+                type: 'gauge',  //类型
+                plotBackgroundImage: null,  //绘图区背景图
+                plotBorderWidth: 1,  //绘图区边框宽度
+                plotShadow: false,  //绘图区阴影
+            },
+            title: {
+                text: null
+            },
+            exporting: {   //导出表
+                enabled:false
+            },
+            pane: {
+                startAngle:-150,  //开始角度
+                endAngle: 150,   //结束角度
+                title: {
+                    text: '我是标题'
+                },
+            },
+            // the value axis
+            yAxis: {
+                min: 0,  //最小值
+                max:  maxBand.to,  //最大值
+                minorTickInterval: 'auto',     //设置是否出现纵向小标尺
+                minorTickWidth: 1,    
+                minorTickLength: 6,   //刻度线长度
+                minorTickPosition: 'inside',     
+                minorTickColor: '#666',    
+                tickWidth: 2,    //设置X轴坐标点是否出现占位及其宽度
+                tickPixelInterval: 50, //设置横坐标密度 
+                tickPosition: 'inside',  //自定义位置
+                tickLength: 10,  //自定义长度
+                tickColor: '#666',
+                labels: {   //轴坐标
+                    step: 1,  //步进
+                    rotation: 'auto'  //旋转角度
+                },
+                title: {
+                    text: '水压<br/><span>  </span><br/><span style="font-size:8px;">kpa</span>',
+                },
+                plotBands: [{  //标识区
+                    from: 0,
+                    to: 2,
+                    color: '#DF5353' // red
+                }, {
+                    from: 2,
+                    to: 6,
+                    color: '#55BF3B' // green
+                }, maxBand]
+            },
+            series: [{
+                name: '水压',
+                data: [watchpa],
+                tooltip: {
+                    valueSuffix: 'kpa'  //数值后缀
+                }
+            }],
+            plotOptions: {
+                gauge: {
+                    dial: {
+                        backgroundColor: '#1D2528',
+                        // 半径：指针长度
+                        radius: '80%'
+                    }
+                }
+            }
+        });
+    }
+        //加载实时数据曲线
+            // function LoadWater3(){
+            //     Highcharts.setOptions({
+            //         colors: ['#7CF2F2']
+            //     });
+            //     $('#divChart').highcharts({
+            //         chart: {
+            //            type: 'column',
+            //         },
+            //         title: {
+            //             text: '设备最近数据分析',
+            //         },
+            //         xAxis: {
+            //             reversed: true,
+            //             categories: ['8/2 10:32:23','8/2 10:27:24','8/2 10:22:25','8/2 10:17:23','8/2 10:12:31' ]
+            //         },
+            //         yAxis: [{
+            //             title: {
+            //                 text: ''
+            //             },
+            //         }],
+            //         plotOptions: {
+            //             column: {
+            //                 // 关于柱状图数据标签的详细配置参考：https://api.hcharts.cn/highcharts#plotOptions.column.dataLabels
+            //                 pointWidth:20,
+            //                 dataLabels: {
+            //                     enabled: true,
+            //                     // verticalAlign: 'top', // 竖直对齐方式，默认是 center
+            //                     inside: true
+            //                 }
+            //             }
+            //         },
+            //         legend: {
+            //                 borderWidth: 0
+            //         },
+            //         exporting: {
+            //                 enabled: false
+            //         },
+            //         series: [{ name: '水位(m)',yAxis: 0,data:[['2018/8/2 10:32:23',1.383],['2018/8/2 10:27:24',1.366],['2018/8/2 10:22:25',1.400],['2018/8/2 10:17:23',1.376],['2018/8/2 10:12:31',1.361]]}]
+            //         });
+            // }
+         
+</script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

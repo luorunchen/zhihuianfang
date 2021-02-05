@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>SumCompanyContent</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+     <script src="js/jquery.min.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=gQ5brR6pk0kIpWhZsGRhmU2T"></script>
+    <script src="BDMapF/mapUtil.js"></script>
+    <script src="BDMapF/mapv.js"></script>
+    <script src="BDMapF/BDMap.js"></script>
+    <script src="BDMapF/mapData.js"></script>
+    <script src="BDMapF/mapTool.js"></script>
+    <script src="BDMapF/MyFocus.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script type="text/javascript" src="js/default.js"></script>
+    <link href="style/EVComCss.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <link href="style/xtbny.css" rel="stylesheet" />
+    
+
+</head>
+<body>
+<audio src="./music/6709.mp3" id="alarmAudio"></audio>
+<div class="bodyBox">
+    <div class="MapBox">
+    </div>
+    <div class="HeadBox">
+        <div class="WebTitle">火灾报警系统数据分析</div>
+        <div class="navBack">
+            <div class="backImg" onclick="window.top.goMain();"></div>
+            <div class="backTitle">返回首页</div>
+        </div>
+    </div>
+    <div class="NavMenuBox">
+          <div class="LeftNavBox" style="width:1300px; position: absolute;top: 80px;left:47%;margin-left:-600px;">
+        
+            <div class="MenuRow">
+              <!--<div class="MenuItem" onclick="ShowFull({bh:'AA88', id:'BDQuestion', title:'隐患整改进度', url:'1.html'})">
+                <div class="MenuItem1" style="background-color:#92236b">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 隐患整改进度 </div>
+                </div>
+              </div>-->
+              <div class="MenuItem" onclick="ShowFull({bh:'AC91', id:'PubDevice2', title:'电气火灾隐患预警分析1', url:'2.html'})">
+                <div class="MenuItem1" style="background-color:#69aa4c">
+                  <div class="MenuContent">
+                    <div class="MenuPic" ></div>
+                  </div>
+                  <div class="MenuTitle"> 电气火灾隐患预警分析 </div>
+                </div>
+              </div>
+              <div class="MenuItem" onclick="ShowFull({bh:'AC92', id:'PubDevice3', title:'消防水系统预警分析', url:'3.html'})">
+                <div class="MenuItem1" style="background-color:#b65066">
+                  <div class="MenuContent">
+                    <div class="MenuPic" ></div>
+                  </div>
+                  <div class="MenuTitle"> 消防水系统预警分析 </div>
+                </div>
+              </div>
+              <div class="MenuItem" onclick="ShowFull({bh:'AC93', id:'PubDevice1', title:'火灾报警系统数据分析', url:'4.html'})">
+                <div class="MenuItem1 MenuItem2" style="background-color:#0197e4">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 火灾报警系统数据分析 </div>
+                </div>
+              </div>
+          
+        
+              <div class="MenuItem" onclick="ShowFull({bh:'AC94', id:'PubDevice6', title:'重点部位预警分析', url:'5.html'})">
+                <div class="MenuItem1" style="background-color:#2f2db7">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 重点部位预警分析 </div>
+                </div>
+              </div>
+               <div class="MenuItem" onclick="ShowFull({bh:'ACAC', id:'PubDevice9', title:'智慧型独立烟感预警分析', url:'6.html'})">
+                <div class="MenuItem1" style="background-color:#e3b720">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 智慧型独立烟感预警分析 </div>
+                </div>
+              </div>
+              <div class="MenuItem" onclick="ShowFull({bh:'ACAE', id:'SGasAlarm', title:'燃气探测器报警分析', url:'7.html'})">
+                <div class="MenuItem1" style="background-color:#de6c0f">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 燃气探测器报警分析 </div>
+                </div>
+              </div>
+              <div class="MenuItem" onclick="ShowModel({bh:'ACEm', id:'Emergency', title:'应急处理', url:'8.html'})">
+                  <div class="MenuItem1 " style="background-color:#F20000">
+                    <div class="MenuContent">
+                      <div class="MenuPic" style="background-image:url(images/firepart_1.png)"></div>
+                    </div>
+                    <div class="MenuTitle"> 应急处理 </div>
+                  </div>
+                </div>
+              <div class="MenuItem" onclick="ShowFull({bh:'ACQJ', id:'QjingDevice', title:'设备定位全景图', url:'9.html'})">
+              <div class="MenuItem1 MenuItem2" >
+                <div class="MenuContent">
+                  <div class="MenuPic" style="background-image:url(images/elec.png)"></div>
+                </div>
+                <div class="MenuTitle"> 设备定位全景图 </div>
+              </div>
+            </div>
+            </div>
+            <div id="clear"></div>
+        
+          </div>
+        </div>
+    <div class="leftBox">
+        <div class="numBox" id="ElecAlarmSum">
+            <div class="numTitle">今日报警</div>
+            <div class="numContent" id="Alarm00">
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+            </div>
+            <!-- <div class="numItem bg1" data-sign="01" >
+                电压报警<div id="Alarm01" class="valueCell"></div>
+            </div>
+            <div class="numItem bg2"  data-sign="02" >
+                电流报警<div id="Alarm02" class="valueCell"></div>
+            </div>
+            <div class="numItem bg3"  data-sign="03" >
+                剩余电流报警<div id="Alarm03" class="valueCell"></div>
+            </div>
+            <div class="numItem bg4" data-sign="04">
+                温度报警<div id="Alarm04" class="valueCell"></div>
+            </div> -->
+        </div>
+        <div class="numBox" id="ElecDeviceSum" style="margin-top:10px;">
+            <div class="numTitle">接入火灾报警,消防主机设备</div>
+            <div class="numContent" id="FASAlarm">
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+            </div>
+            <div class="numItem bg5" data-sign="01" id="FASCompany">
+                报警<div id="FAS01" class="valueCell"></div>
+            </div>
+            <div class="numItem bg6" data-sign="02" id="FASDevice">
+                在线<div id="FAS02" class="valueCell"></div>
+            </div>
+            <div class="numItem bg6" data-sign="03" id="FasOff">
+                离线<div id="FAS03" class="valueCell"></div>
+            </div>
+        </div>
+        <!--<div class="numBox" style="margin-top:10px;">
+            <div class="queryToolBar">
+                <input type="text" class="form-control queryText" id="suggestId" />
+                <button class="btn btn-primary queryBut" id="butSuggest">查询</button>
+            </div>
+        </div>-->
+    </div>
+    <div class="queryBox">
+        <div class="queryToolBar">
+            <input type="text" class="form-control queryText" />
+            <button class="btn btn-primary queryBut">查询</button>
+        </div>
+        <div class="queryResult">
+        </div>
+    </div>
+      <!--<div class="AlarmBox">
+          <div class="AlarmTitle">当前报警
+          <audio id="alarmAudio">//audio音频标签
+              <source src="./music/6709.mp3" />
+          </audio>
+          </div>
+          <div class="AlarmResult">
+          </div>
+      </div>-->
+    <!-- <div class="MapFilter">
+    </div> -->
+</div>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      var username=localStorage.getItem('userName');
+     console.log(username)
+     if(username=="" ||username== null){
+       alert('请登录后进入主页')
+       location.href="login.html"
+     }
+      </script>
+</body>
+</html>

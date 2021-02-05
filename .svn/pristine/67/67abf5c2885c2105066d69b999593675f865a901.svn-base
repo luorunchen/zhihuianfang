@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>报警信息</title>
+     <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <link href="style/validationEngine.jquery.css" rel="stylesheet"/>
+    <link href="style/Form.css" rel="stylesheet" />
+    <script src="js/jquery.form.js"  type="text/javascript"></script>
+<script src="js/FTool.js"  type="text/javascript"></script>
+    <link href="style/ShowTable.css" rel="stylesheet"/>
+     <link href="style/MDForm.css" rel="stylesheet" />
+</head>
+<body >
+   <div class="bodyBox">
+    <div class="formBody">
+        <div class="ShowTable" style="width:auto;">
+            <!--<h4 style="text-align:center">所在防区：<lable style="color:darkorange">大厅</lable>，所在位置：<lable style="color:darkorange">大厅</lable></h4>
+            <h5 style="text-align:right;color:red">告警数：0</h5            -->
+        </div>
+            <h5 style='text-align:center;'>历史报警</h5>
+        <div class="alarmTable">
+            <h5 style='text-align:center;'>历史报警</h5><table border='1' width style='width:600px;text-align:center' align='center'><tr><td style='width:120px; ' class='tabLabel'>报警时间：</td><td>无</td></tr></table>
+        </div>
+    </div>
+    <div class="formBut">
+        <!--<div class="form-group">   <div style="float:right;margin-right:30px;">     <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseThirdWin()" type="button" value="关闭" />  </div>  </div>-->
+    </div>
+   </div>
+   <script>
+    var type=parseInt(localStorage.getItem('tpage'));
+     var devId=sessionStorage.getItem("devId");
+   // console.log(devId+'--'+type);
+     $.ajax({
+             type:'get',
+             data:'devId='+devId+'&type='+type,
+             url:url+'/admin/device/ElecData.action',
+             dataType:'json',
+             error:function(err){
+                 console.log('SGasAlarm------>'+err);
+             },
+             success:function(result){
+                 console.log(result);
+                 var html='';
+                 var data=result.DevData[0];
+                 var alarmDetail=result.Data;
+                 var alarmNum=result.Data.length;
+                 console.log(alarmDetail);
+               //  console.log(data);
+                    // var {heartbeatTime,devId,typeName,installLocation,name}=c;
+                var html="<div class='ShowTable' style='width:auto;'><h4 style='text-align:center'>所在地址：<lable style='color:darkorange'>"+data.installLocation+"</lable>，所在位置：<lable style='color:darkorange'>"+data.name+"</lable><br/>时间：<lable style='color:darkorange'>"+data.heartbeatTime+"</lable>, 设备编号：<lable style='color:darkorange'>"+data.productNumber+"</lable></h4><h5 style='text-align:right;color:red'>告警数："+alarmNum+"</h5></div>";
+                $('.ShowTable').html(html);
+
+                var html="";
+                
+                if(alarmDetail!=""&&alarmDetail!=null){
+                    $.each(alarmDetail,function(i,v){
+                        html+="<table border='1' width style='width:600px;text-align:center;margin-bottom:5px;' align='center'><tr><td style='width:120px; ' class='tabLabel'>报警类型：</td><td>"+v.typeName+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警时间：</td><td>"+v.alarmFaultDate+"</td></tr></table>";    
+                    })
+                    
+                }else{
+                    html="<table border='1' width style='width:600px;text-align:center' align='center'><tr><td style='width:120px; ' class='tabLabel'>报警时间：</td><td>无</td></tr></table>"
+                   
+                }
+                $('.alarmTable').html(html);
+               
+             } 
+     })
+</script>
+<script src="js/jquery.validationEngine-zh.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

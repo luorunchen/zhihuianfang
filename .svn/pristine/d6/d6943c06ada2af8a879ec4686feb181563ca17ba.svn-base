@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KijP02mbMQhSR8T4Qk82f9feXBbftwie"></script>
+  <title>智慧安全系统平台</title>
+  <style type="text/css">
+		body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+		#allmap{width:100%;height:500px;}
+		p{margin-left:5px; font-size:14px;}
+	</style>
+</head>
+<body>
+  <div id="allmap"></div>
+	<div id="res" style="display:none">	<button>退出</button></div>
+  <script>
+    var url=decodeURI(location.search);
+    var arr=url.split('?')[1].split('&');
+    var lng=arr[0].split('=')[1];
+    var lat=arr[1].split('=')[1];
+    var areaMC=arr[2].split('=')[1];
+
+    var map = new BMap.Map('allmap');
+    map.centerAndZoom(new BMap.Point(114.047639,22.642823), 12);
+    map.enableScrollWheelZoom(true);
+    var ggPoint = new BMap.Point(lng,lat);
+    translateCallback = function (data){
+      var lng=data.points[0].lng;
+      var lat=data.points[0].lat;
+      console.log(lng,lat)
+      // 覆盖区域图层测试
+    var geoc = new BMap.Geocoder();  
+        //通过点击百度地图，可以获取到对应的point, 由point的lng、lat属性就可以获取对应的经度纬度     
+		//console.log(e.point.lng,e.point.lat	);
+    var panorama = new BMap.Panorama('allmap');
+		panorama.setPosition(new BMap.Point(lng,lat));//设置坐标是点进来的坐标点
+    panorama.setOptions({
+      linksControl: false, //隐藏道路指示控件
+      clickOnRoad:false  //关闭点击地图移动
+    });
+		var labelPosition = new BMap.Point(lng,lat); //点进来的坐标点
+		var labelOptions = {
+			position: labelPosition,
+			altitude:5
+		 };//设置标注点的经纬度位置和高度
+		 var label = new BMap.PanoramaLabel(areaMC, labelOptions);
+		 console.log(label);
+		  panorama.addOverlay(label);//在全景地图里添加该标注
+		  panorama.setPov(label.getPov()); //修改点的视角，朝向该label
+			
+		  label.onclick=function() { //给标注点注册点击事件
+        panorama.setPov({  //修改点的视角
+          pitch: 10, 
+          heading: 0	
+        });
+        
+		  };
+      panorama.addEventListener('position_changed', function(e){ //全景位置改变事件
+        label.hide();
+      });
+		  document.getElementById('res').style.display='block';
+		  document.getElementById('res').onclick=function(){
+			panorama.hide();
+		  }
+    map.addTileLayer(new BMap.PanoramaCoverageLayer());
+    }
+    setTimeout(function(){
+        var convertor = new BMap.Convertor();
+        var pointArr = [];
+        pointArr.push(ggPoint);
+        convertor.translate(pointArr, 3, 5, translateCallback)
+    }, 1000);
+    
+    var stCtrl = new BMap.PanoramaControl(); //构造全景控件
+    stCtrl.setOffset(new BMap.Size(20, 20));
+	  map.addControl(stCtrl);//添加全景控件 
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="style/layui-v2.4.5/layui/css/layer.css" />
+</head>
+<body>
+  <form class="layui-form" action="" style='width: 100%;
+  margin: 40px auto 0;'>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>水压最低阀值</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入水压最低阀值" autocomplete="off" class="layui-input" value='1.0 &nbsp;' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">KPa</div>
+
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>水压最高阀值</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入水压最高阀值" autocomplete="off" class="layui-input" value='1.0 ' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">KPa</div>
+
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>检测间隔</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入检测间隔" autocomplete="off" class="layui-input" value='24' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">小时</div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>心跳间隔</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入心跳间隔" autocomplete="off" class="layui-input" value='24' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">小时</div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>告警间隔</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入告警间隔" autocomplete="off" class="layui-input" value='10秒' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">秒</div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label" style='width:100px;'>电池电量告警</label>
+      <div class="layui-input-inline">
+        <input type="text" name="title" required  lay-verify="required" placeholder="请输入电池电量告警" autocomplete="off" class="layui-input" value='1' style='width:100%;'>
+      </div>
+      <div class="layui-form-mid layui-word-aux">小时</div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn submit"  lay-filter="formDemo" >立即提交</button>
+      </div>
+    </div>
+  </form>
+  <script src="js/jquery.min.js"></script>
+  <script>
+    $('.submit').click(function(e){
+      e.preventDefault()
+    })
+  </script>
+</body>
+</html>

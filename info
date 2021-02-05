@@ -1,0 +1,15 @@
+<table class='tabBox'>
+  <caption style='text-align:center'>设备详情</caption>
+  <tr>
+    <td style='width:120px; ' class='tabLabel'>设备厂商</td>
+    <td colspan='3'>"+data.dVName+"</td>
+  </tr>
+  <tr>
+    <td style='width:120px; ' class='tabLabel'>设备型号</td>
+    <td colspan='3'>"+data.dMName+"</td>
+  </tr>
+  <tr>
+    <td style='width:120px; ' class='tabLabel'>安装位置</td>
+    <td colspan='3'>"+data.installLocation+"</td>
+  </tr>
+</table>

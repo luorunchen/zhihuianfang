@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户信息</title>
+     <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet"/>
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js"  type="text/javascript"></script>
+    <script src="../../js/FTool.js"  type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function checkHELLO(field, rules, i, options) {
+            if (!/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i.test(field.val())) {
+                return "请输入有效的手机号码";
+            }
+        }
+    </script>
+    
+
+     <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+<body >
+<div class="bodyBox">
+        
+   <!-- <form action="" class="form-horizontal" id="editForm" method="post">    
+        <div class="formBody">
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="ComName">单位名称</label>
+                <div class="col-xs-9">
+                    <!--//readonly="readonly"  只读-->
+                    <!--<input class="form-control  " id="ComName" name="ComName" readonly="readonly" type="text" value="深圳市" />
+                    <input id="ComID" name="ComID"  type="hidden" value="013706" />
+                    <input id="ComType" name="ComType" type="hidden" value="Area" />
+                </div>
+            </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserID">登录账号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control validate[required]" id="UserID" name="UserID" type="text" value="" />
+                    </div>
+                </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserName">真实姓名</label>
+                <div class="col-xs-9">
+                    <input class="form-control validate[required]" id="UserName" name="UserName" type="text" value=" " />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserPass">登录密码</label>
+                <div class="col-xs-9">
+                    <input class="form-control " id="UserPass" name="UserPass" type="password" value=""/>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserTel">手机号码</label>
+                <div class="col-xs-9">
+                    <input class="form-control validate[required,funcCall[checkHELLO]]" id="UserTel" name="UserTel" type="text" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="RoleMC">所属角色</label>
+                <div class="col-xs-9">
+                    <input id="RoleMC" name="RoleMC" type="hidden" value="党委政府" />
+                    <!--<select class="form-control " id="RoleBH" name="RoleBH" onchange="javascript:document.getElementById(&#39;RoleMC&#39;).value=this.options[this.selectedIndex].text;"><option value="02">党委政府</option>
+                        <option value="11">消防管理人</option>
+                        <option value="12">消防巡逻员</option>
+                        <option value="13">综合治理办公室</option>
+                        </select>-->
+                <!--</div>
+            </div>
+
+        </div>
+        <div class="formBut">
+            <div class="form-group">   <div style="float:right;margin-right:30px;">     <input class="btn btn-primary"  name="submitBtn" type="button" value="保存" onclick="SubmitForm(this,{isValid:true,continueFun:ClearForm})" />     <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseCurrWin()" type="button" value="关闭" />  </div>   <div class="checkbox" style="float:right;margin-right:30px;">       <label><input id="isAdd" name="isAdd" type="checkbox" value="true" />是否连续添加</label>    </div>  </div>
+            <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="" />
+        
+        
+        </div>
+    </form>-->
+
+        
+</div>
+        <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+        <script src="../../js/bootstrap.min.js"></script>
+<script>
+    var uId=sessionStorage.getItem('uId');
+    var uSer=sessionStorage.getItem('uSer');
+    var uTel=sessionStorage.getItem('uTel');
+        $.ajax({
+            type:'get',
+            url:'../json/edit.json',
+            dataType:'json',
+            error:function(error){
+            alert(error+'Sys/SUser/edit');
+            },
+            success:function(result){
+            var html='';
+            html="<form action='' class='form-horizontal' id='editForm' method='post'><div class='formBody'><div class='form-group'><label class='control-label col-xs-3 ' for='ComName'>单位名称</label><div class='col-xs-9'><input class='form-control  ' id='ComName' name='ComName' readonly='readonly' type='text' value='深圳市' /><input id='ComID' name='ComID'  type='hidden' value='013706' /><input id='ComType' name='ComType' type='hidden' value='Area' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserID'>登录账号</label><div class='col-xs-9'><input class='form-control' id='UserID' name='UserID' type='text' value='"+uId+"' readonly='readonly'/></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserName'>真实姓名</label><div class='col-xs-9'><input class='form-control ' id='UserName' name='UserName' type='text' value='"+uSer+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserPass'>登录密码</label><div class='col-xs-9'><input class='form-control ' id='UserPass' name='UserPass' type='password' value='' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserTel'>手机号码</label><div class='col-xs-9'><input class='form-control ' id='UserTel' name='UserTel' type='text' value='' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='RoleMC'>所属角色</label><div class='col-xs-9'><input id='RoleMC' name='RoleMC' type='hidden' value='超级管理员' /><select class='form-control ' id='RoleBH' name='RoleBH' ><option value='02'>超级管理员</option><option value='11'>消防管理人</option><option value='12'>消防巡逻员</option><option value='13'>综合治理办公室</option></select></div></div></div><div class='formBut'><div class='form-group'><div style='float:right;margin-right:30px;'>     <input class='btn btn-primary'  name='submitBtn' type='button' value='保存' onclick='SubmitForms()' />     <input class='btn btn-default'  name='goBackBtn' onclick='window.top.CloseCurrWin()' type='button' value='关闭' />  </div>   <div class='checkbox' style='float:right;margin-right:30px;'>       <label><input id='isAdd' name='isAdd' type='checkbox' value='true' />是否连续添加</label>    </div>  </div><input data-val='true' data-val-number='字段 GUID 必须是一个数字。' id='ID' name='ID' type='hidden' value='' /> </div></form>";
+            $('.bodyBox').html(html);
+            }
+            
+        })
+    
+    //点击编辑保存
+    function SubmitForms(){
+        var $uId=$('#UserID').val();   //登陆账号
+        var $uSer=$('#UserName').val();   //真实姓名
+        var $uPass=$('#UserPass').val();    //登陆密码
+        var $uTel=$('#UserTel').val();     //手机号码
+        console.log($uSer);
+        if($uSer!=" "){
+            var reg=/^[a-z0-9]{6}$/;
+            if(!reg.test($uPass)){
+                alert("密码格式不正确");
+                return;
+            }
+            var reg=/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i;
+            if(!reg.test($uTel)){
+                alert("手机号码格式不正确");
+                return;
+            }
+        }else{
+            alert('请输入真实姓名');
+        }
+    // $.ajax({
+
+    // })
+        
+        
+
+    }
+</script>
+        
+</body>
+</html>

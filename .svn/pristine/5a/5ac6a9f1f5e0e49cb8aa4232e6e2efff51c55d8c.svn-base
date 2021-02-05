@@ -1,0 +1,335 @@
+html {
+  font-size: 20px;
+}
+
+* {
+  margin: 0px;
+}
+
+.weui-notification {
+  position: fixed;
+  width: 50%;
+  min-height: 3.4rem;
+  top: -2rem;
+  padding-top: 2rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-size: .65rem;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.weui-notification.weui-notification--in {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.xinxiSHow {
+  display: none;
+  z-index: 999999;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.elecAlarm {
+  background-image: url(../images/ygalarm.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.twoXinSHow {
+  width: 800px;
+  height: 697px;
+  /* margin: 0 auto; */
+  background: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  display: none;
+}
+
+#elecAlarmBox {
+  margin-top: 160px;
+  width: 100%;
+  height: 320px;
+  border: solid 1px #fff;
+  box-shadow: inset 0px 0px 30px #fff;
+  border-radius: 7px;
+}
+
+.elecBox1 {
+  position: absolute;
+  width: 310px;
+  height: 630px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.textColor {
+  color: #c8c9ca;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: normal;
+}
+
+.textContent {
+  text-indent: 2em;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "微软雅黑";
+  font-weight: 500;
+}
+
+.elecTitle {
+  color: #fff;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  padding-bottom: 2px;
+}
+
+.lineTitle {
+  overflow: hidden;
+}
+
+.elecPic {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  float: left;
+}
+
+.elecNormal {
+  background-image: url(../images/ygnormal.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.elecOff {
+  background-image: url(../images/ygoffline.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.titleNameSpan {
+  font-family: 'Microsoft YaHei';
+  font-size: 20px;
+  text-align: center;
+}
+
+.elecAlarmDoBox {
+  position: absolute;
+  width: 280px;
+  top: 60px;
+  border: 0px;
+  right: 30px;
+  bottom: 0px;
+}
+
+.alarmTable td {
+  border-right: solid 1px #000;
+  border-bottom: solid 1px #000;
+  line-height: 25px;
+  min-height: 25px;
+  padding: 5px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.alarmTable .tabLabel {
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+}
+
+.titleOff {
+  float: right;
+  color: #999999;
+}
+
+.titleTwoOff {
+  float: right;
+  color: #999999;
+}
+
+.titleOff:hover {
+  color: #000;
+}
+
+.elecContent {
+  overflow-y: hidden;
+  padding-right: 5px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.elecItem {
+  width: 270px;
+  height: 155px;
+  overflow-y: hidden;
+  text-align: center;
+  border: solid 1px #ccc;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: table;
+  cursor: pointer;
+  background-color: #262626;
+  border-color: #fff;
+  box-shadow: inset 0px 0px 30px #fff;
+}
+
+
+.elecLeft {
+  position: absolute;
+  top: 10px;
+  border: 0px;
+  left: 300px;
+  bottom: 0px;
+  width: 610px;
+  padding-right: 20px;
+}
+
+.ComInfo {
+  border: solid 1px #fff;
+  box-shadow: inset 0px 0px 30px #fff;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.elecBg1 {
+  background-color: #ff0000;
+  border-radius: 50%;
+}
+
+.elecBg2 {
+  background-color: #60c256;
+  border-radius: 50%;
+}
+
+.DeviceStatus {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.DeviceItem {
+  height: 120px;
+  width: 120px;
+  float: left;
+  margin-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  position: relative;
+  text-align: center;
+  line-height: 140px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+
+.elecBg3 {
+  background-color: #bbb;
+  border-radius: 50%;
+}
+
+.SHowTime {
+  width: 910px;
+  height: 697px;
+  margin: 0 auto;
+  background: #191919;
+  position: absolute;
+  /* top: 50%;
+  transform: translate(0, -50%);
+  left: 50%; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.weui-notification .weui-notification__inner {
+  padding: .4rem .6rem 1rem .6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.weui-notification .weui-notification__media {
+  height: 4rem;
+  width: 3rem;
+}
+
+.weui-notification .weui-notification__media img {
+  width: 100%;
+}
+
+.weui-notification .weui-notification__content {
+  width: 100%;
+  margin: 0rem .4rem;
+}
+
+.weui-notification .weui-notification__title {
+  font-weight: bold;
+}
+
+.weui-notification .weui-notification__text {
+  line-height: 1;
+}
+
+.weui-notification .weui-notification__handle-bar {
+  position: absolute;
+  bottom: .2rem;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
+  width: 2rem;
+  height: .3rem;
+  border-radius: .15rem;
+  background: white;
+  opacity: .5;
+}
+
+/***$.alert**/
+.weui-toast.weui-toast--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.weui-toast {
+  -webkit-transition-duration: .2s;
+  transition-duration: .2s;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  visibility: hidden;
+  margin: 0;
+  top: 45%;
+  z-index: 2000;
+}

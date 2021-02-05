@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>充电桩管理</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=gQ5brR6pk0kIpWhZsGRhmU2T"></script>
+    <script src="BDMapCDZ/mapUtil.js"></script>
+    <script src="BDMapCDZ/mapv.js"></script>
+    <script src="BDMapCDZ/BDMap.js"></script>
+
+    <script src="BDMapCDZ/mapData.js"></script>
+    <script src="BDMapCDZ/mapTool.js"></script>
+    <script src="BDMapCDZ/MyFocus.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script type="text/javascript" src="js/default.js"></script>
+    <link href="style/GasSumPage.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <link href="style/xtbny.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style/1.css">
+
+</head>
+
+<body>
+    <audio src="./music/6709.mp3" id="auto"></audio>
+    <div class="bodyBox">
+        <div class="MapBox">
+        </div>
+        <div class="HeadBox">
+            <div class="webTitle">充电桩管理</div>
+            <div class="navBack">
+                <div class="backImg" onclick="window.top.goMain();"></div>
+                <div class="backTitle">返回首页</div>
+            </div>
+        </div>
+        <div class="NavMenuBox">
+            <div class="LeftNavBox" style="width:1300px; position: absolute;top: 80px;left:47%;margin-left:-600px;">
+
+                <div class="MenuRow">
+                    <!--<div class="MenuItem" onclick="ShowFull({bh:'AA88', id:'BDQuestion', title:'隐患整改进度', url:'1.html'})">
+                <div class="MenuItem1" style="background-color:#92236b">
+                  <div class="MenuContent">
+                    <div class="MenuPic"></div>
+                  </div>
+                  <div class="MenuTitle"> 隐患整改进度 </div>
+                </div>
+              </div>-->
+
+                </div>
+            </div>
+            <div id="clear"></div>
+
+        </div>
+    </div>
+    <div class="leftBox">
+        <!-- <div class="numBox" id="ElecAlarmSum">
+                <div class="numTitle">总设备</div>
+                <div class="numContent" id="Alarm00">
+                    <div class="numCell">0</div>
+                    <div class="numCell">0</div>
+                    <div class="numCell">0</div>
+                    <div class="numCell">0</div>
+                    <div class="numCell">0</div>
+                    <div class="numCell">0</div>
+                </div>
+                <div class="numItem bg1" id="service01">
+                    总社区<div id="Alarm01" class="valueCell">0家</div>
+                </div>
+            </div> -->
+        <div class="numBox" id="ElecDeviceSum" style="margin-top:10px;">
+            <div class="numTitle">接入充电桩项目(社区)</div>
+            <div class="numContent" id="Dev00">
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+            </div>
+            <div class="numItem bg5" id="dev03">
+                故障设备<div id="Dev03" class="valueCell"></div>
+            </div>
+            <div class="numItem bg5" id="dev02">
+                离线设备<div id="Dev02" class="valueCell"></div>
+            </div>
+            <div class="numItem bg6" id="dev01">
+                在线设备<div id="Dev01" class="valueCell"></div>
+            </div>
+        </div>
+        <!--<div class="numBox" style="margin-top:10px;">
+            <div class="queryToolBar">
+                <input type="text" class="form-control queryText" id="suggestId" placeholder="输入单位名称查询" />
+                <button class="btn btn-primary queryBut" id="butSuggest">查询</button>
+            </div>
+        </div>-->
+    </div>
+    <div class="queryBox">
+        <div class="queryToolBar">
+            <input type="text" class="form-control queryText" />
+            <button class="btn btn-primary queryBut">查询</button>
+        </div>
+        <div class="queryResult">
+        </div>
+    </div>
+    <!--<div class="AlarmBox">
+        <div class="AlarmTitle">
+            报警明细
+            <audio id="alarmAudio">
+                <source src="./music/6709.mp3" />
+            </audio>
+            <div class="moreAlarm">更多>></div>
+        </div>
+        <div class="AlarmResult">
+        </div>
+    </div>-->
+    <div class="MapFilter">
+    </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
+    <script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.2.1.js"></script>
+    <script src="js/jquery-weui.js"></script>
+    <script type="text/javascript">
+        //获取音频对象
+        var audio = $("#auto")[0];
+        audio.addEventListener("ended", function () {
+            if (playNum > 0) {
+                playNum--;
+                audio.play();
+            }
+        }, false);
+
+        var playAlarm = function () {
+            playNum = 3;
+            audio.play();
+        };
+        var userName = parseInt(localStorage.getItem('userName'));
+        var goEasy = GoEasy.getInstance({
+            host: 'hangzhou.goeasy.io',
+            appkey: goKey
+        });
+
+        goEasy.connect({
+            onSuccess: function () {  //连接成功
+                console.log("GoEasy connect successfully.") //连接成功
+            },
+            onFailed: function (error) { //连接失败
+                console.log("Failed to connect GoEasy, code:" + error.code + ",error:" + error.content);
+            },
+            onProgress: function (attempts) { //连接或自动重连中
+                console.log("GoEasy is connecting", attempts);
+            }
+        });
+
+        goEasy.subscribe({
+            channel: userName.toString(),
+            onMessage: function (message) {//这边是推送网页之后，页面的动作
+                playAlarm();
+                var res = message.content;
+                var arr = res.split(',');
+                console.log(arr);
+                //   if(arr!=""){
+                //     $.noti({
+                //         title: '报警类型:'+arr[4],
+                //         text: "<p>设备号:"+arr[0]+"</p><p>设备ID:"+arr[1]+"</p><p>设备地址:"+arr[2]+"</p><p>项目名称:"+arr[3]+"</p>",
+                //         media: "<img src='./images/alarm2.png'>",
+                //         data: {
+                //           message: message
+                //         },
+                //         time: 30000000,
+                //         onClick: function(data) {
+                //           console.log(data);
+                //           sessionStorage.setItem('DevBH',arr[1]);  //devId   03175275
+                //           sessionStorage.setItem('devMC',arr[2]);  //v.installLocation
+                //           sessionStorage.setItem('productNumber',arr[0]); 
+                //           window.top.OpenThirdFrame("./SGasAlarm_GasAlarm.html?devBH=" + arr[1], 800, 600, "win", "历史报警");
+
+                //         }
+                //       });
+                //   } 
+                //gFWinfo();//
+                /* document.getElementById("player").play();
+                document.getElementById("alarmSound").getElementsByTagName("i")[0].setAttribute('class','fa fa-volume-up fa-fw');//打开 */
+            }
+        });
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

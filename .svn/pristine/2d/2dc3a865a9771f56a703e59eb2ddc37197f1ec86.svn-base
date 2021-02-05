@@ -1,0 +1,8 @@
+<div class='form-group' >
+                <label class='control-label col-xs-3 ' for='mobile'>选择角色</label>
+                <div class='col-xs-9' >
+                    <select name='' id='colorName' class='form-control '>
+                    
+                    </select>
+                </div>
+            </div>

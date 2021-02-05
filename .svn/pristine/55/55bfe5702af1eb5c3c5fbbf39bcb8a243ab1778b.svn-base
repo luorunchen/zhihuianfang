@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>其他配置</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body style="position:relative;">
+  <div id="topMAP" style="overflow-y: auto;">
+    <div style="    text-align: center;">
+      <div class="InforBox" id="infoTop">
+      </div>
+    </div>
+    <div style="border:1px solid red;    width: 80%;margin: 0 auto;"></div>
+    <div style=" ">
+      <div class="InforBox" style="width:97%;display: flex;    flex-wrap: wrap;justify-content: center;">
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="yuanDuan">远程断电</button>
+          <button class="btn btn-warning col-xs-3" id="yuanKai">远程开机</button>
+          <button class="btn btn-warning col-xs-3" id="yuanGuan">远程关机</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-info col-xs-3" id="yuanKaiFeng">开启蜂鸣器</button>
+          <button class="btn btn-info col-xs-3" id="yuanGuanFeng">关闭蜂鸣器</button>
+          <button class="btn btn-default col-xs-3" id="yuanXiao">远程消音</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="yuanLiang">开启流量</button>
+          <button class="btn btn-success col-xs-3" id="yuanFuWei">远程复位</button>
+          <button class="btn btn-success col-xs-3" id="yuanShouQuan">授权</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <input type="text" name="InsuranceNo:" class="col-xs-8">
+          <button class="btn btn-default " id="yuanBao">下发保险单</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="shareDev">分享设备</button>
+          <button class="btn btn-default col-xs-3" id="FazhiDev">阀值设置</button>
+          <button class="btn btn-default col-xs-3" id="tuiSong">报警推送方式</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="FacHisGu">设备历史故障</button>
+          <button class="btn btn-default col-xs-3" id="FacCaozuo">设备操作记录</button>
+          <button class="btn btn-default col-xs-3" id="pingBi">屏蔽电气设备</button>
+        </div>
+      </div>
+    </div>
+    <div style="width:100%;display: flex;flex-direction: column;;margin: 5px 0;border-top:solid 1px #DFDFDF;    position: absolute;
+      bottom: 0;">
+      <div class="form-group">
+        <div style="float:right;margin-right:30px;">
+          <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+        </div>
+        <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+      </div>
+      <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="">
+
+
+    </div>
+  </div>
+
+
+  <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+    var username = localStorage.getItem('userName')
+    var height = $(window).height();
+    $('#topMAP').css('height', height - 50)
+    var role = localStorage.getItem('role');
+    var power = localStorage.getItem('power');
+    var html = "";
+    if (global.authorize == '1') {
+      var authorize = '已授权';
+    } else {
+      var authorize = '未授权';
+    }
+    if (global.flow == '0') {
+      var flow = '未开启流量';
+    } else {
+      var flow = global.flowTime || '已开启流量';
+    }
+    html = "<div class='inforLine'><div class='inforLabel'>设备编号:</div><div class='inforValue' style='color:blue'>" +
+      global.devSignature +
+      "</div></div><div class='inforLine'><div class='inforLabel'>保险单号:</div><div class='inforValue' style='color:blue'>" +
+        (global.policy==''?'暂无保险单号':global.policy) +
+      "</div></div><div class='inforLine'><div class='inforLabel'>开启流量:</div><div class='inforValue' style='color:blue'>" +
+      flow +
+      "</div></div><div class='inforLine'><div class='inforLabel'>是否授权:</div><div class='inforValue' style='color:blue'>" +
+      authorize + "</div></div>";
+    $('#infoTop').html(html);
+    //保险单号
+    $('#yuanBao').click(function () {
+      var num = $('#BaoNum').val();
+      var imei = global.devSignature
+      if (num == "") {
+        alert('请填写保单号')
+      } else {
+        if (role == '1000' || power.indexOf('10003004') != -1) {
+          $.ajax({
+            type: 'get',
+            url: url + '/admin/project/putMessToDevice.action',
+            data: 'imei=' + imei + '&content=InsuranceNo:' + num,
+            error: function (error) {
+              console.log(error)
+            },
+            success: function (result) {
+              var res = JSON.parse(result);
+              console.log(res);
+              if (res.message == "请求成功") {
+                alert('下发保险单号成功');
+              } else {
+                alert('请稍后重试');
+              }
+            }
+          })
+        }
+      }
+    })
+
+    //远程断电
+    $('#yuanDuan').click(function () {
+      var states = 0;
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/resetclose.actioin',
+          data: 'id=' + global.devSignature + '&states=' + states,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res.message);
+            if (res.message == "请求成功") {
+              alert(res.message);
+            } else {
+              alert(res.message);
+            }
+          }
+        })
+      } else if (power.indexOf('10003003') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/resetclose.actioin',
+          data: 'id=' + global.devSignature + '&states=' + states,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程断电成功');
+            } else {
+              alert('远程断电失败');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+    })
+    //远程开机
+    $('#yuanKai').click(function () {
+      //http://120.24.53.206/newEarlyWarn/admin/project/putMessToDevice.action?imei=0460040157511003&content=shutdown
+      var content = 'shutdown';
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程开机成功');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else if (power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程开机成功');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+    })
+    //远程关机
+    $('#yuanGuan').click(function () {
+      //http://120.24.53.206/newEarlyWarn/admin/project/putMessToDevice.action?imei=0460040157511003&content=shutdown
+      var content = 'startup';
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程开机成功');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else if (power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程开机成功');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+    })
+    //远程消音
+    $('#yuanXiao').click(function () {
+      var states = 2;
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/resetclose.actioin',
+          data: 'id=' + global.devSignature + '&states=' + states,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert(res.message);
+            } else {
+              alert(res.message);
+            }
+          }
+        })
+      } else if (power.indexOf('10003001') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/resetclose.actioin',
+          data: 'id=' + global.devSignature + '&states=' + states,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            // console.log(res.message);
+            if (res.message == "请求成功") {
+              alert('远程消音成功');
+            } else {
+              alert('远程消音失败');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+    })
+    //*开启流量
+    $('#yuanLiang').click(function () {
+      var content = 'openflow';
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert(res.message);
+            } else {
+              alert(res.message);
+            }
+          }
+        })
+      } else if (power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert('开启流量成功');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+
+    })
+    //开启蜂鸣器
+    $('#yuanKaiFeng').click(function () {
+      var content = 'voiceon';
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert('开启蜂鸣器');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else if (power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert('开启蜂鸣器');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+
+    })
+    //开启蜂鸣器
+    $('#yuanFuWei').click(function () {
+      var states = '2';
+      //http://edog-online.com/earlyWarn/resetclose.actioin?id=8888800000007777&states=2
+      if (role == '1000' || power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/resetclose.actioin',
+          data: 'id=' + global.devSignature + '&states=' + states,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.status == "1") {
+              alert(res.message);
+            } else {
+              alert(res.message);
+            }
+          }
+        })
+      }  else {
+        alert('暂无权限')
+      }
+
+    })
+    //关闭蜂鸣器
+    $('#yuanGuanFeng').click(function () {
+      var content = 'voiceoff';
+      if (role == '1000') {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert('关闭蜂鸣器');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else if (power.indexOf('10003004') != -1) {
+        $.ajax({
+          type: 'get',
+          url: url + '/admin/project/putMessToDevice.actioin',
+          data: 'imei=' + global.devSignature + '&content=' + content,
+          error: function (error) {
+            console.log(error)
+          },
+          success: function (result) {
+            var res = JSON.parse(result);
+            console.log(res);
+            if (res.message == "请求成功") {
+              alert('关闭蜂鸣器');
+            } else {
+              alert('请稍后重试');
+            }
+          }
+        })
+      } else {
+        alert('暂无权限')
+      }
+
+    })
+    //授权
+    $('#yuanShouQuan').click(function () {
+      // //http://p240647i77.qicp.vip/newEarlyWarn/WebProject/insertClouddog.action?devices=
+      if (global.authorize == '1') {
+        layer.open({
+          content: '该设备已授权'
+        })
+      } else {
+        console.log(2);
+        if (role == '1000' || power.indexOf('10003004') != -1) {
+          $.ajax({
+            type: 'get',
+            url: url + '/WebProject/insertClouddog.action',
+            data: 'devices=' + global.devSignature,
+            error: function (error) {
+              console.log(error)
+            },
+            success: function (res) {
+              console.log(res)
+              var res = JSON.parse(res);
+              if (res.list[0].status == 'true') {
+                layer.open({
+                  content: '授权成功.工作日一天后将授权生效,非工作日将延期'
+                })
+                setTimeout(function () {
+                  window.location.reload();
+                }, 3000)
+              } else {
+                layer.open({
+                  content: '授权失败'
+                })
+              }
+
+            }
+          })
+        }
+      }
+    })
+    //设备分享
+    $('#shareDev').click(function () {
+      var pid = global.pid + ',' + global.devId;
+      var width = $(window).width();
+      var height = $(window).height();
+      if (role == '1000' || power.indexOf('10003004')!=-1) {
+        layer.open({
+          type: 2,
+          title: '设备命令管理',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width * 0.8 + 'px', height - 50 + 'px'],
+          content: "./shareDel.html?pid=" + pid + '&devSignature=' + global.devSignature + '&devId=' + global
+            .devId
+        });
+      } else {
+        layer.open({
+          content: '权限不足'
+        })
+      }
+
+      // 
+    })
+    //阀值设置
+    $('#FazhiDev').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      layer.open({
+        type: 2,
+        title: '设备阀值设置',
+        maxmin: true,
+        offset: ['50px'],
+        shadeClose: true, //点击遮罩关闭层
+        shade: 0.5, //不显示遮罩
+        // area: [width + 'px', height + 'px'],
+        area: [width * 0.8 + 'px', height - 100 + 'px'],
+        content: "./fazhiDev.html?devSignature=" + global.devSignature
+      });
+    })
+    //tuiSong
+    $('#tuiSong').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      if (role == '1000' || power.indexOf('10003004')!=-1) {
+        layer.open({
+          type: 2,
+          title: '报警推送方式',    
+          maxmin: true,
+          offset: ['15px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          // area: [width + 'px', height + 'px'],
+          area: [width * 0.8 + 'px', height - 50 + 'px'],
+          content: "./alarmFangFac.html?devSignature=" + global.devSignature + '&name=' + global.dname +
+            '&app=' + global.app + '&sms=' + global.sms + '&phone=' + global.phone
+        });
+      } else {
+        layer.open({
+          content: '权限不足'
+        })
+      }
+
+    })
+    $('#FacHisGu').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      layer.open({
+        type: 2,
+        title: '查询设备历史故障',
+        maxmin: true,
+        offset: ['25px'],
+        shadeClose: true, //点击遮罩关闭层
+        shade: 0.5, //不显示遮罩
+        area: [width * 0.9 + 'px', height - 50 + 'px'],
+        content: "./hisFacgu.html?devSignature=" + global.devSignature
+      });
+    })
+    //
+    $('#FacCaozuo').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      if (role == '1000' || power.indexOf('10003005')!=-1) {
+        layer.open({
+          type: 2,
+          title: '设备操作记录',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width * 0.9 + 'px', height - 50 + 'px'],
+          content: "./FacDetail.html?devSignature=" + global.devSignature
+        });
+      } else {
+        layer.open({
+          content: '权限不足'
+        })
+      }
+    })
+    //pingBi
+    if (global.shutdown == '0') {
+      $('#pingBi').html('关闭屏蔽设置')
+      $('#pingBi').click(function () {
+        var width = $(window).width();
+        var height = $(window).height();
+        if (role == '1000' || power.indexOf('10003013')!=-1) {
+          $.ajax({
+            type: 'get',
+            url: url + '/WebProject/delShutdown',
+            data: 'deviceId=' + global.devSignature + '&my_username=' + username,
+            error: function (error) {
+              console.log(error)
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.status == 'true') {
+                layer.open({
+                  content: res.mess
+                })
+                setTimeout(function () {
+                  parent.location.reload();
+                }, 2000)
+              } else {
+                layer.open({
+                  content: res.mess
+                })
+              }
+            }
+          })
+        } else {
+          layer.open({
+            content: '权限不足'
+          })
+        }
+      })
+    } else {
+      $('#pingBi').html('开启屏蔽设置')
+      $('#pingBi').click(function () {
+        var width = $(window).width();
+        var height = $(window).height();
+        if (role == '1000' || power.indexOf('10003013')!=-1) {
+          $.ajax({
+            type: 'get',
+            url: url + '/WebProject/updateShutdown',
+            data: 'deviceId=' + global.devSignature + '&my_username=' + username,
+            error: function (error) {
+              console.log(error)
+            },
+            success: function (res) {
+              console.log(res)
+              if (res.status == 'true') {
+                layer.open({
+                  content: res.mess
+                })
+                setTimeout(function () {
+                  parent.location.reload();
+                }, 2000)
+              } else {
+                layer.open({
+                  content: res.mess
+                })
+              }
+            }
+          })
+        } else {
+          layer.open({
+            content: '权限不足'
+          })
+        }
+      })
+    }
+    //shangchaunFacPhoto
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+      parent.location.reload()
+    })
+  </script>
+</body>
+
+</html>

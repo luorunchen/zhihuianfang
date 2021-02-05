@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>视频</title>
+     <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/validationEngine.jquery.css" rel="stylesheet"/>
+    <link href="style/Form.css" rel="stylesheet" />
+    <script src="js/jquery.form.js"  type="text/javascript"></script>
+    <script src="js/FTool.js"  type="text/javascript"></script>
+        <link href="style/ShowTable.css" rel="stylesheet"/>
+ 		<script src="js/getUrlParm.js"></script>
+ 		<style type="text/css">
+			#box{
+			    text-align: center;
+			}
+			#box input{
+			    margin: 0 auto;
+			    padding: 0 10px;
+			    width: 150px;
+			    height: 34px;
+			    border: 1px solid rgba(255,255,255,.8);
+			    border-radius: 2px;
+			    color: #fff;
+			    background: rgba(0,0,0,.15);
+			　　 font-family: "helvetica neue",arial,sans-serif;
+			}
+ 		</style>
+	<script language="javascript">
+            var dev = getUrlParam("device");
+            console.log(dev);
+		    /************************************************************************/
+		    /* 通用接口                                                             */
+		    /************************************************************************/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////			
+		    /*************************************************
+		    Function:        createxmlDoc
+		    Description:    创建xml DOM对象
+		    Input:            无
+		    Output:            无
+		    return:            无
+		    *************************************************/
+		    function createxmlDoc() {
+		        var xmlDoc;
+		        var aVersions = ["MSXML2.DOMDocument", "MSXML2.DOMDocument.5.0", "MSXML2.DOMDocument.4.0", "MSXML2.DOMDocument.3.0", "Microsoft.XmlDom"];
+
+		        for (var i = 0; i < aVersions.length; i++) {
+		            try {
+		                xmlDoc = new ActiveXObject(aVersions[i]);
+		                break;
+		            } catch (oError) {
+		                xmlDoc = document.implementation.createDocument("", "", null);
+		                break;
+		            }
+		        }
+		        xmlDoc.async = "false";
+		        return xmlDoc;
+	
+		    }
+		    /*************************************************
+		    Function:        parseXmlFromStr
+		    Description:    从xml字符串中解析xml
+		    Input:            szXml xml字符串
+		    Output:            无
+		    return:            xml文档
+		    *************************************************/
+		    function parseXmlFromStr(szXml) {
+		        if (null == szXml || '' == szXml) {
+		            return null;
+		        }
+		        var xmlDoc = new createxmlDoc();
+		        if (!$.browser.msie) {
+		            var oParser = new DOMParser();
+		            xmlDoc = oParser.parseFromString(szXml, "text/xml");
+		        } else {
+		            xmlDoc.loadXML(szXml);
+		        }
+		        return xmlDoc;
+	
+		    }
+			function ShowDownloadPluginHyperLink()
+			{
+				document.write("<a href = \"IETool.exe\"> Please click here to download and run it for Internet Explorer running propertly! </a>")
+			}			
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
+			/************************************************************************/
+			/* 下面定义的变量根据实际情况来更改以便能够运行起该demo                 */
+			/************************************************************************/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			var username="admin";
+			var password = "";
+			var gs_strIP="192.168.2.48";
+            //var did = "NZWYZP-165868-THHPB";	
+            var did = dev;
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			/************************************************************************/
+			/* 下面的函数是对接口的使用，一个函数对应一个接口                       */
+			/************************************************************************/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
+            //下面加载的视频默认是加载主码流，和UnLoadVideo()函数成对出现
+		    function DeviceLoginDirect() 
+		    {
+                var ncx = document.getElementById("ncX");
+                if (ncx == null) 
+                {
+                    alert("ActiveX plugin not attached");
+                }
+
+                ncx.AddP2PDevForGetStatus(did);
+
+                var nRet = ncx.DeviceLoginDirect(did, username, password,0);
+                console.log(nRet);
+                if (nRet != 0) 
+                {
+                    //alert("DeviceLoginDirect failed,nRet=" + nRet);
+					//alert("连接成功");
+                }
+                else 
+                {
+                   // alert("连接成功");
+                }
+            }
+            DeviceLoginDirect();        
+
+            //使用该接口可以自定义报警的图片
+            //注意自定义图片的格式（保证图片的背景色是RGB(255,0,255)保证背景透明，bmp格式,大小根据用户所选的图片显示）
+            function SetLocalLanaguageZH() {
+                var ncx = document.getElementById("ncX");
+                if (ncx == null) {
+                    alert("ActiveX plugin not attached");
+                }
+                try {
+                    ncx.SetLocalLanaguage("0804");
+                }
+                catch (e) {
+                    alert(e.description);
+                }
+            }
+
+            function SetLocalLanaguageEN() {
+                var ncx = document.getElementById("ncX");
+                if (ncx == null) {
+                    alert("ActiveX plugin not attached");
+                }
+                try {
+                    ncx.SetLocalLanaguage("0409");
+                }
+                catch (e) {
+                    alert(e.description);
+                }
+            }
+            
+
+            //获取插件的版本
+            function GetOCXVersion() {
+                var ncx = document.getElementById("ncX");
+                if (ncx == null) {
+                    alert("ActiveX plugin not attached");
+                }
+                try {
+                    var nRet = ncx.GetOCXVersion();
+                    alert(nRet);
+                }
+                catch (e) {
+                    alert(e.description);
+                }   
+            }
+
+ 
+            //cab从前端设备获取完成之后会调用此函数
+            function NotifyActiveX(p) {
+                console.log(p);
+                var ncx = document.getElementById("ncX");
+                if (ncx == null) {
+                    return;
+                }
+                var urla = document.URL.split('/');
+                var dev = urla.length > 3 ? urla[2] : '192.168.1.10';
+                var address = dev.split(':');
+                try {
+                    ncx.SetDevice(address[0]);      // SetDevice是控件接口，肯定存在,这是在IE10中出错的地方
+                    ncx.SetURL(dev);
+                }
+                catch (e) {
+                    document.getElementById("axdiv").style.display = "none";
+                }
+            }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
+      </script>
+     <link href="style/MDForm.css" rel="stylesheet" />
+</head>
+<body oncontextmenu="return false">
+		<script language="javascript">
+			var browser=navigator.appName
+			var b_version=navigator.appVersion
+			var version=parseFloat(b_version)
+			document.write("<div id=\"axdiv\"><object id=\"ncX\" name=\"ncX\" width=\"100%\" height=\"400\" classid=\"CLSID:84ba1786-bda1-469e-8e05-f72d2ac601a3\"onReadyStateChange=\"NotifyActiveX(this)\">")
+			document.write("</object></div>")
+		</script>
+
+		<script language="Javascript" event="EventFullScreen()" for="ncX">  
+			alert("full screen");
+		</script>
+
+		<script language="Javascript" event="NotifyOpenedStreamType(code)" for="ncX">  
+			
+		</script>
+		<div id="box">
+			<input type="button" id="DeviceLoginDirect" value = "连接设备" onclick="DeviceLoginDirect()">
+			<input type="button" value = "获取插件版本" onclick="GetOCXVersion()">
+			<input type="button" value = "设置插件为中文" onclick="SetLocalLanaguageZH()">
+	        <input type="button" value = "设置插件为英文" onclick="SetLocalLanaguageEN()">
+		</div>
+		<script language="Javascript">
+			setTimeout(function (){
+				document.getElementById("DeviceLoginDirect").click();
+			}, 1000);
+		</script>
+<!-- <div class="bodyBox">
+<div class="formBody">
+    <div class="ShowTable" style="width:100%;">
+          <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2018-03-15&nbsp;&nbsp;19:50:24</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <video controls="controls" width="400" preload="metadata" src="http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70cd.3gp"></video>
+                          <a class="video" style="display:none;" href="javascript:;"  onclick="showPlay('http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70cd.3gp')">点击播放录像</a>
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2018-03-15&nbsp;&nbsp;19:50:24</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70c9.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2017-11-29&nbsp;&nbsp;08:33:06</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path1/201711/29/2300040_0_5a1e0042_ad3.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2017-01-04&nbsp;&nbsp;21:01:34</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path2/201701/04/2300040_0_586cf22e_1b83.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+    </div>
+</div>
+<div class="formBut">
+      <div class="form-group">   
+      <div style="float:right;margin-right:30px;">     
+      <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseThirdWin();" type="button" value="关闭" />  </div>  
+      </div>
+</div>
+<script src="js/jquery.validationEngine-zh.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</div> -->
+</body>
+</html>

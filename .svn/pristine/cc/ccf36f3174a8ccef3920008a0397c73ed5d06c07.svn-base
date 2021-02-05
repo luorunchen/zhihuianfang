@@ -1,0 +1,187 @@
+﻿html, body {
+    width:100%;
+    height:100%;
+    font-family:'Microsoft YaHei';
+}
+
+
+.modal-header {
+    color:#333;
+}
+.modal-title {
+    color:#fff;
+}
+.elecLeft
+{
+    position:absolute;
+    top:10px;
+    border:0px;
+    right:20px;
+    bottom:0px;
+    width: 60%;
+}
+
+
+.ComInfo
+{
+   border: solid 1px #fff;
+    box-shadow:inset 0px 0px 30px #fff;
+    color:#fff;
+    border-radius:5px;
+    padding:10px;
+}
+.textContent
+{
+    text-indent: 2em;
+    font-size:14px;
+    line-height:20px;
+    font-weight: 500;
+    font-family: "微软雅黑";
+
+}
+.textColor
+{
+    color:#bfc0c1;
+    padding-left:5px;
+    padding-right:5px;
+    font-weight: normal;
+}
+
+
+.elecDeviceBox
+{
+    margin-top:10px;
+   overflow:hidden;
+}
+.DeviceItem
+{
+    height:120px;
+    width:120px;
+    float:left;
+    margin-left:7%;
+    margin-top:10px;
+       margin-bottom:10px;
+    color:#ffffff;
+    position:relative;
+    text-align:center;
+    line-height:120px;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.DeviceStatus
+{
+    position:absolute;
+    left:30px;
+    top:20px;
+    font-size:14px;
+    line-height:20px;
+}
+
+ .elecBg1
+ {
+     background-color:#ff0000;
+         border-radius: 50%;
+ }
+ .elecBg2
+ {
+     background-color:#60c256;
+         border-radius: 50%;
+ }
+ .elecBg3
+ {
+     background-color:#bbb;
+         border-radius: 50%;
+ }
+
+.elecAlarmBox
+{
+    margin-top:10px;
+    width:100%;
+    height:220px;
+   border: solid 1px #fff;
+    box-shadow:inset 0px 0px 50px #fff;
+    border-radius:7px;
+}
+.elecAlarmDoBox
+{
+    position:absolute;
+    width:280px;
+    top:10px;
+    border:0px;
+    right:10px;
+    bottom:0px;
+}
+.ShowImgBox
+{
+    padding:10px;
+    overflow:hidden;
+}
+.ShowImgBox img
+{
+    float:left;
+    margin-left:10px;
+}
+
+.elecDoLog
+{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:150px;
+    border:solid 1px #5dacd3;
+    border-radius:5px;
+    color:#fff;
+    overflow-y:auto;
+
+}
+.alarmDoItem
+{
+    border-bottom:solid 1px #5dacd3;
+
+}
+
+.alarmDoType
+{
+    height:30px;
+    line-height:30px;
+    padding-left:20px;
+    background-color:#466a7c;
+
+}
+
+.alarmDoDevice
+{
+    line-height:20px;
+    padding-left:20px;
+}
+
+.alarmDoText
+{
+    line-height:20px;
+    padding-left:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+.elecDo
+{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:140px;
+}
+
+.elecDo textarea
+{
+    height:100px;
+}
+.doButs
+{
+    text-align:center;
+    padding-top:5px;
+
+}

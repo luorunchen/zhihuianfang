@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户信息</title>
+     <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+     <script src="../../js/jquery.min.js"></script>
+     <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+    
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet"/>
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js"  type="text/javascript"></script>
+    <script src="../../js/FTool.js"  type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function checkHELLO(field, rules, i, options) {
+            if (!/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i.test(field.val())) {
+                return "请输入有效的手机号码";
+            }
+        }
+    </script>
+    
+
+     <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+<body >
+<div class="bodyBox">
+        
+    <form action="" class="form-horizontal" id="editForm" method="post">    
+        <div class="formBody" id="formBody">
+            <!--//readonly='readonly'  只读-->
+            <!--<div class="form-group">
+                <label class="control-label col-xs-3 " for="ComName">项目名称</label>
+                <div class="col-xs-9">
+                    
+                    <input class="form-control  " id="ComName" name="ComName" type="text" value="本地测试" />
+                    <input id="ComID" name="ComID"  type="hidden" value="013706" />
+                    <input id="ComType" name="ComType" type="hidden" value="Area" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserID">项目位置</label>
+                <div class="col-xs-9">
+                    <input class="form-control" id="UserID" name="UserID" type="text" value="广东省深圳市龙华区油联路65号U创谷" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserName">防火员</label>
+                <div class="col-xs-9">
+                    <input class="form-control " readonly='readonly' id="UserName" name="UserName" type="text" value="曾令华" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="UserTel">防火员电话</label>
+                <div class="col-xs-9">
+                    <input class="form-control "  readonly='readonly' id="UserPass" name="UserTel" type="text" value="18122711575"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="ResPeople">负责人</label>
+                <div class="col-xs-9">
+                    <input class="form-control" readonly='readonly' id="ResPeople" name="ResPeople" type="text" value="石生" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="ResTel">负责人电话</label>
+                <div class="col-xs-9">
+                    <input class="form-control " readonly='readonly' id="ResTel" name="ResTel" type="text" value="13076920054" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="Intro">介绍</label>
+                <div class="col-xs-9">
+                    <input class="form-control " readonly='readonly' id="Intro" name="Intro" type="text" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-3 " for="State">说明</label>
+                <div class="col-xs-9">
+                    <input class="form-control " readonly='readonly' id="State" name="State" type="text" value="" />
+                </div>
+            </div>-->
+
+        </div>
+        <div class="formBut">
+            <div class="form-group">   <div style="float:right;margin-right:30px;">     <input class="btn btn-primary"  name="submitBtn" type="button" value="保存" id="Edit_save" />     <input class="btn btn-default"  name="goBackBtn"  type="button" value="关闭" id="btn_close" />  </div>   <div class="checkbox" style="float:right;margin-right:30px;">       <label>
+            <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="" />
+        
+        
+        </div>
+    </form>
+
+        
+</div>
+        <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+        <script src="../../js/bootstrap.min.js"></script>
+<script>  
+     var global=(function(){
+	  	var search=$('#ediModelIfm').context.URL;
+        var search=decodeURI(search);
+  		var global={};		
+ 		if(search!=""){	
+      		search.slice(1).split('?')[1].split('&').forEach(	
+      			function(val){
+        			var arr=val.split("=");		
+          			global[arr[0]]=arr[1];		
+      			}
+      		);
+       	}
+    	return global;		
+ 	})();
+    console.log(global);
+    var username=localStorage.getItem('userName')
+    //点击编辑保存
+    $('#btn_close').click(function(){
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+    function editor_to(){
+       var html="";
+       html="<div class='form-group'><label class='control-label col-xs-3 ' for='ComName'>项目名字</label><div class='col-xs-9'><input class='form-control  ' id='ComName' name='ComName' readonly='readonly' type='text' value='"+global.uName+"' /><input id='ComID' name='ComID'  type='hidden' value='' /><input id='ComType' name='ComType' type='hidden' value='Area' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserID'>安装位置</label><div class='col-xs-9'><input class='form-control' id='UserID' name='UserID' type='text' value='"+global.uAddress+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='UserName'>设备类型</label><div class='col-xs-9'><input class='form-control ' readonly='readonly' id='UserName' name='UserName' type='text' value='"+global.uType+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='uLoop'>回路号</label><div class='col-xs-9'><input class='form-control '  readonly='readonly' id='uLoop' name='uLoop' type='text' value=''/></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='ResPeople'>设备号</label><div class='col-xs-9'><input class='form-control' readonly='readonly' id='ResPeople' name='ResPeople' type='text' value='"+global.uPnum+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='ResTel'>注册时间</label><div class='col-xs-9'><input class='form-control ' readonly='readonly' id='ResTel' name='ResTel' type='text' value='"+global.uResTime+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='Intro'>心跳时间</label><div class='col-xs-9'><input class='form-control ' readonly='readonly' id='Intro' name='Intro' type='text' value='"+global.uHeTime+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='Firm'>设备厂商</label><div class='col-xs-9'><input class='form-control ' readonly='readonly' id='Firm' name='Firm' type='text' value='"+global.uFirm+"' /></div></div><div class='form-group'><label class='control-label col-xs-3 ' for='State'>备注</label><div class='col-xs-9'><input class='form-control '  id='State' name='State' type='text' value='"+global.uState+"' /></div></div>";
+       $('#formBody').html(html);
+       $('#Edit_save').click(function(){
+        console.log(global);
+        var devId=global.devId;
+        var installLocation=$('#UserID').val();
+        var remark=$('#State').val();
+        console.log(installLocation);
+        $.ajax({
+            type:'get',
+            url:url+'/admin/device/check/updateDeviceSim.action',
+            // data:'devId='+devId+'&remark='+remark +'&my_username='+username+'&installLocation='+installLocation,
+            data:{devId:devId,remark:remark,my_username:username,installLocation:installLocation},
+            error:function(error){console.log(error+'网络错误Compile.html')},
+            success:function(result){
+                var res=JSON.parse(result)
+                console.log(res.list[0].status);
+                if(res.list[0].status=='true'){
+                    alert(res.list[0].mess);
+                    var index = parent.layer.getFrameIndex(window.name);
+                    setTimeout(() => {
+                        parent.layer.close(index);
+                        // parent.location.reload();  //父级刷新
+                        parent.location.reload();  //父级刷新
+                    }, 100);
+                }else{
+                    alert(res.list[0].mess);
+                }
+            }
+        })
+      })
+    }
+    editor_to();
+
+</script>
+        
+</body>
+</html>

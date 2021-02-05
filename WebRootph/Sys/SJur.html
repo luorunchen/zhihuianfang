@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <script src="../js/jquery.min.js"></script>
+         <script src="../js/url_zhuan.js"></script> 
+        <link rel="stylesheet" href="../style/GridLayout.css">
+        <link rel="stylesheet" href="../style/weui.css">
+        <link rel="stylesheet" href="../style/jquery-weui.css">
+        <link rel="stylesheet" href="../style/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/MDStyle.css">
+        <link rel="stylesheet" href="../style/MyGrid.css">
+        <link rel="stylesheet" href="../style/MyToolBar.css">     
+        <!--<script src="./js/MyToolBar.js"></script>
+        <script src="./js/MyGrid.js"></script>   -->
+
+    </head>
+    <body>
+        <script type="text/javascript">
+            
+        // var lastNode =null;
+        // function treeClick(event, treeId, treeNode) {
+        //     lastNode = treeNode;
+        //     GRID_SUser.LoadData({pageIndex:1,RegBH:treeNode.ID});
+        // }
+        // function UserAdd(grid) {
+        //     console.log(grid);
+        //     var urlp = "ComType=Area&ComID=013706&ComName=" + encodeURIComponent("深圳市");
+        //     console.log(urlp);
+        //     AddClick(grid, urlp);
+        // }
+
+    
+        </script>
+    <div class="onlyGrid1">
+        <div class="ToolBarBox btn-toolbar">
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" aria-expanded="false" id="btn_add" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增 
+                </button> 
+            </div>
+            <!-- <div class="btn-group btn-group-sm" role="group">
+                <button type="button" aria-expanded="false" onclick="EditClick();" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>编辑 
+                </button> 
+            </div>
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" aria-expanded="false" onclick="DeleteClick();" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除 
+                </button> 
+            </div> -->
+            <div class="btn-group btn-group-sm" role="group">
+                <button type="button" aria-expanded="false" onclick="RefreshClick();" class="btn btn-info">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新 
+                </button> 
+            </div>
+        </div>
+    <!--<script type="text/javascript">
+        var GRID_SUser =new aguoGrid({ 
+        ID: "GRID_SUser",
+        fill: true,
+        style: "",
+        defaultLoad: true,
+        serviceUrl:" ./Sys/SUser/GridSource",   //一条请求
+        dbClick: EditClick,
+        loadBack: null,
+        editHeight: "380",
+        editUrl: "./Sys/SUser/Edit.html",
+        editWidth: "550",
+        editHeight: "380",
+        editTitle: "用户管理",
+        cols:[
+        { colName: 'ID', colHead: '主键', colWidth: '100',colAlign:'center' ,colVisible:false,colRender:null,renderCode:''},{ colName: 'UserID', colHead: '账号', colWidth: '100',colAlign:'center' ,colVisible:true,colRender:null,renderCode:''},{ colName: 'UserName', colHead: '姓名', colWidth: '100',colAlign:'center' ,colVisible:true,colRender:null,renderCode:''},{ colName: 'RoleMC', colHead: '角色', colWidth: '150',colAlign:'center' ,colVisible:true,colRender:null,renderCode:''},{ colName: 'ComName', colHead: '所属单位', colWidth: '200',colAlign:'center' ,colVisible:true,colRender:null,renderCode:''} ],
+        defaultParam:{ComType:"Area",ComID:"013706",SelectField: "ID,UserID,UserName,RoleMC,ComName",MenuCode:"SUser",PolicyCode:""},
+        renderData:{}
+        });
+        GRID_SUser.render();
+    </script>-->
+        <div id="GRID_SUser" class="Grid" style="">
+            <div class="Grid_hd">
+                <div class="scrollHead">
+                    <table class="GridTable"  style="width:100%;height:100%;min-width:610px;">
+                        <tbody> 
+                            <tr>
+                                <td style="width:60px;"></td>
+                                <td style="width:100px;">角色名称</td>
+                                <td style="width:100px;">状态</td>
+                                <td style="width:150px;">创建时间</td>
+                                <td style="width:150px;">修改时间</td>
+                                <td style="width:150px;">操作</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Grid_bd">
+                <div class="scrollBody">
+                    <table id="GridTable" style="width:100%;min-width:610px;" class="GridTables">
+                        <tbody>
+                            <!-- <tr class="">
+                                <td class="td_center" style="width:60px;">1</td>
+                                <td class="td_center" style="width:100px;" value="ytadmin">鹏哥哥</td>
+                                <td class="td_center" style="width:100px;" value="0755-85458458">0755-85458458</td>
+                                <td class="td_center" style="width:150px;" value="广东省深圳市龙华区港深国际中心3楼369室">广东省深圳市龙华区港深国际中心3楼369室</td>
+                                <td class=" td_center" style="width:150px;" value="深圳鹏胜智联科技有限公司">深圳鹏胜智联科技有限公司</td>
+                                <td class="td_center" style="width:150px;" >
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" aria-expanded="false"  class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>编辑 
+                                        </button> 
+                                    </div>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" aria-expanded="false"  class="btn btn-danger">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除 
+                                        </button> 
+                                    </div>
+                                </td>
+                            </tr> -->
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="Grid_fd">
+                <div class="input-group" style="float:left;padding-left:10px;">
+                    <!-- <span>第</span>
+                    <input type="text" value="1" readonly="readonly"><span>/</span>
+                    <input type="text" value="1" readonly="readonly"><span>页,每页</span>
+                    <input type="text" value="15" readonly="readonly"><span>行，共</span>
+                    <input type="text" value="0" readonly="readonly"><span>行</span> -->
+                </div>
+                <div class="btn-group">
+                    <input type="button" class="btn btn-default btn-sm" value="首页" style="padding-left:7px;padding-right:7px;">
+                    <input type="button" class="btn btn-default btn-sm" value="上一页" style="padding-left:7px;padding-right:7px;">
+                    <input type="button" class="btn btn-default btn-sm" value="下一页" style="padding-left:7px;padding-right:7px;">
+                    <input type="button" class="btn btn-default btn-sm" value="末页" style="padding-left:7px;padding-right:7px;">
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <script src="../js/bootstrap.min.js"> </script>
+        <script src="../js/jquery-weui.js"></script>
+        <!-- <script src="./js/details.js"></script> -->
+        <script src="../js/jur.js"></script>
+        <script>
+            function RefreshClick(){
+                window.location.reload();
+            }
+        //   var UserAdd=function(){
+        //       window.top.OpenFrame('./Sys/SUser/Edit.html',550,350,"","用户管理",function(r){
+
+        //       })
+        //   }
+         
+        // window.top.OpenFrame("./SElec_ElecComDetail.html?ComID=" + comid + "&ComName=" + escape(comName), 930, 620, "SElect", comName, "", )
+        
+        </script>
+    </body>
+</html>

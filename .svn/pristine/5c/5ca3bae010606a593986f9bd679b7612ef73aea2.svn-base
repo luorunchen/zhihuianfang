@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>智慧安全系统平台</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/highcharts-more.js"></script>
+    <script src="js/d3.v3.min.js" language="JavaScript"></script>
+    <script src="js/liquidFillGaugeText.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/layui-v2.4.5/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="style/layui-v2.4.5/layui/css/layer.css" />
+    <script type="text/javascript" src="js/highcharts-3d.js"></script>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+<style>
+    #fillgauge1 {
+        width: 97%;
+        height: 250px;
+        margin-top: 20px
+    }
+</style>
+
+<body>
+    <div style='overflow: auto;height:590px;'>
+        <div style="text-align:center" class="waterDevideTitle">
+            <!--<h3>高位水箱</h3>
+            2018/8/2 10:32:23-->
+        </div>
+        <div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto;margin-top:20px;">
+        </div>
+        <svg id="fillgauge1" width="97%" height="250" style="margin-top:20px"></svg>
+        <div style='text-align: center;'>
+            <button class="layui-btn layui-btn-normal site-demo-active" data-type="loading"
+                data-index='1'>自诊断查询</button>
+            <button class="layui-btn layui-btn-warm" id="parameter">远程参数更新</button>
+            <button class="layui-btn layui-btn-danger" id="garrison">自主布撤防</button>
+            <button class="layui-btn site-demo-active" data-type="loading" data-index='2'>固件升级</button>
+        </div>
+
+        <div class="layui-progress layui-progress-big layui-top" lay-showpercent="true" lay-filter="demo"
+            style="    width: 50%;margin: 30px auto 0;display: none;">
+            <div class="layui-progress-bar layui-bg-info" lay-percent="0%"></div>
+        </div>
+
+        <div class="layui-progress layui-progress-big layui-bottom" lay-showpercent="true" lay-filter="demo"
+            style="    width: 50%;margin: 30px auto 0;display: none;">
+            <div class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+        </div>
+        <div style=" height: 100px; margin: 0 auto;margin-top:20px; display: flex;justify-content: center;text-align: center;"
+            id="evnerOneNo">
+            <div style="width:50%;height:100px;" id="cellele"><img src="./images/three.png" alt="" style="width:30%">
+            </div>
+            <div style="width:50%;height:100px;" id="cellele"><img src="./images/battery3.png" alt="" style="width:30%">
+            </div>
+        </div>
+        <div class="bottomBox" style="margin-top:20px;padding-left:50px;padding-right:50px;">
+            <div class="chartBox">
+                <div id="divChart" class="chartdemo" style="height:200px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+    <script src="style/layui-v2.4.5/layui/layui.js"></script>
+    <script>
+        layui.use('element', function(){
+		var $ = layui.jquery,
+		element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		var active = {
+			loading: function(othis){
+				var DISABLED = 'layui-btn-disabled';
+				if(othis.hasClass(DISABLED)) return;
+				//模拟loading
+				var n = 0, timer = setInterval(function(){
+					n = n + Math.random()*10|0;  
+					if(n>100){
+						n = 100;
+						clearInterval(timer);
+						othis.removeClass(DISABLED);
+						endPorcess()
+					}
+					element.progress('demo', n+'%');
+				}, 300+Math.random()*1000);
+				
+				othis.addClass(DISABLED);
+				console.log(othis)
+			}
+		};
+
+		$('.site-demo-active').on('click', function(){
+            console.log($(this).siblings().addClass('layui-btn-disabled'))
+            var othis = $(this), type = $(this).data('type');
+            if($(this).attr('data-index')=='1'){
+                $('.layui-top').show();    
+                $('.layui-top').attr('data-index',1)
+            }else{
+                $('.layui-bottom').show();
+                $('.layui-top').attr('data-index',2)
+            }
+
+			active[type] ? active[type].call(this, othis) : '';
+		});
+	})
+
+
+	function endPorcess(){
+        var index=$('.layui-top').attr('data-index')
+		setTimeout(()=>{
+            if(index==1){
+                alert('自诊断查询完成')
+            }else{
+                alert('固件升级完成')
+            }
+            
+            $('.layui-progress').hide();
+            $('.layui-btn').removeClass('layui-btn-disabled')
+		},1000)
+    }
+    
+    $('#parameter').click(function(){
+        var width=$(window).width();
+        var height=$(window).height();
+        layer.open({
+            type: 2,
+            title: '远程参数',
+            maxmin: true,
+            offset: ['50px'],
+            shadeClose: true, //点击遮罩关闭层
+            shade: 0.5, //不显示遮罩
+            // area: [width + 'px', height + 'px'],
+            area: [width *0.8 + 'px', height - 50 + 'px'],
+            content: "./test_fa.html"
+        });
+    })
+    $('#garrison').click(function(){
+        setTimeout(() => {
+            alert('自主布撤防完成')
+        }, 1000);
+    })
+    </script>
+    <script>
+        //var type=parseInt(localStorage.getItem('tpage'));   
+        var type = 3;
+        var devId = sessionStorage.getItem('devId');
+        var dSid = sessionStorage.getItem('dSid');
+        //console.log(type+'--'+devId);  
+        $.ajax({
+            type: 'get',
+            url: url + '/admin/device/ElecData.action',
+            data: 'devId=' + devId + '&type=' + type,
+            dataType: 'json',
+            error: function (err) {
+                console.log('Ext_Watch' + err)
+            },
+            success: function (result) {
+                //  console.log(result);
+                var data = result.DevData;
+                var watchpa = result.DevData[0].latitude;
+                sessionStorage.setItem('watchpa', watchpa);
+                var watchtotal = result.DevData[0].longitude;
+                //  console.log(watchtotal);
+                sessionStorage.setItem('watchtotal', watchtotal);
+                var html = '';
+                $.each(data, function (i, v) {
+                    html = "<h3>" + v.typeName + "<br>" + v.alarmFaultDate + "</h3>";
+                })
+
+                $('.waterDevideTitle').html(html);
+
+                var sum = result.Data;
+                // console.log(sum);
+                var typename = data[0].typeName;
+                // console.log(typename);  水压 or 液位(水位)
+                if (dSid == '4') {
+                    LoadWater2(1);
+                    $('#container').show();
+                    $('#fillgauge1').hide();
+                } else {
+                    LoadWater1(1);
+                    $('#container').hide();
+                    $('#fillgauge1').show();
+                }
+                var dd1 = [];
+                $.each(sum, function (i, v) {
+                    var data = parseFloat((v.latitude / 10).toFixed(4));
+                    dd1.push([v.time, data]);
+                })
+                // console.log(dd1);
+                Highcharts.setOptions({
+                    colors: ['#178BCA']
+                });
+                $('#divChart').highcharts({
+                    chart: {
+                        type: '',
+                    },
+                    title: {
+                        text: '设备最近数据分析',
+                    },
+                    xAxis: {
+                        reversed: true,
+                        categories: []
+                    },
+                    yAxis: [{
+                        title: {
+                            text: ''
+                        },
+                    }],
+                    plotOptions: {
+                        column: {
+                            pointWidth: 20,
+                            dataLabels: {
+                                enabled: true,
+                                align: 'right',
+                                // verticalAlign: 'left', // 竖直对齐方式，默认是 center
+                                inside: true
+                            }
+                        }
+                    },
+                    legend: {
+                        borderWidth: 0
+                    },
+                    exporting: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: '水压(mpa)',
+                        yAxis: 0,
+                        data: dd1
+                    }]
+                });
+            }
+
+        })
+
+        //加载水位
+        function LoadWater1(isv) {
+
+            var watchtotal = parseFloat(sessionStorage.getItem('watchpa'));
+            // console.log(watchtotal);
+            if (isv) {
+                $('#fillgauge1').show();
+            } else {
+                $('#fillgauge1').hide();
+            }
+            var config1 = liquidFillGaugeDefaultSettings();
+            // console.log(config1);
+            config1.circleThickness = 0.1;
+            config1.waveAnimateTime = 2000;
+            //是否以百分比显示，JS中增加如不以百分比显示，那么单位为M，需要的话 可进行修改
+            config1.displayPercent = false;
+            config1.valueCountUp = false;
+            // var gauge2= loadLiquidFillGauge("fillgauge1", 46.1, config1);
+            //定义最大值、最小值即可实现显示数值
+            config1.minValue = 0.7;
+            config1.maxValue = 10;
+            //根据最大值、最小值 当前值确定百分比 显示内容为Model.LastValue
+            var gauge2 = loadLiquidFillGauge("fillgauge1", watchtotal, config1);
+        }
+        //加载水压
+        function LoadWater2(isv) {
+            var watchpa = parseFloat(sessionStorage.getItem('watchpa'));
+            if (isv) {
+                $('#container').show();
+            } else {
+                $('#container').hide();
+            }
+            var maxBand = { //范围颜色
+                from: 70,
+                to: 1000,
+                color: '#DF5353' // red
+            };
+            $('#container').highcharts({
+                chart: {
+                    type: 'gauge', //类型
+                    plotBackgroundImage: null, //绘图区背景图
+                    plotBorderWidth: 1, //绘图区边框宽度
+                    plotShadow: false, //绘图区阴影
+                },
+                title: {
+                    text: null
+                },
+                exporting: { //导出表
+                    enabled: false
+                },
+                pane: {
+                    startAngle: -150, //开始角度
+                    endAngle: 150, //结束角度
+                    title: {
+                        text: '我是标题'
+                    },
+                },
+                // the value axis
+                yAxis: {
+                    min: 0, //最小值
+                    max: maxBand.to, //最大值
+                    minorTickInterval: 'auto', //设置是否出现纵向小标尺
+                    minorTickWidth: 1,
+                    minorTickLength: 6, //刻度线长度
+                    minorTickPosition: 'inside',
+                    minorTickColor: '#666',
+                    tickWidth: 2, //设置X轴坐标点是否出现占位及其宽度
+                    tickPixelInterval: 50, //设置横坐标密度 
+                    tickPosition: 'inside', //自定义位置
+                    tickLength: 10, //自定义长度
+                    tickColor: '#666',
+                    labels: { //轴坐标
+                        step: 1, //步进
+                        rotation: 'auto' //旋转角度
+                    },
+                    title: {
+                        text: '水压<br/><span>  </span><br/><span style="font-size:8px;">kpa</span>',
+                    },
+                    plotBands: [{ //标识区
+                        from: 0,
+                        to: 2,
+                        color: '#DF5353' // red
+                    }, {
+                        from: 2,
+                        to: 6,
+                        color: '#55BF3B' // green
+                    }, maxBand]
+                },
+                series: [{
+                    name: '水压',
+                    data: [watchpa],
+                    tooltip: {
+                        valueSuffix: 'kpa' //数值后缀
+                    }
+                }],
+                plotOptions: {
+                    gauge: {
+                        dial: {
+                            backgroundColor: '#1D2528',
+                            // 半径：指针长度
+                            radius: '80%'
+                        }
+                    }
+                }
+            });
+        }
+        //加载实时数据曲线
+        // function LoadWater3(){
+        //     Highcharts.setOptions({
+        //         colors: ['#7CF2F2']
+        //     });
+        //     $('#divChart').highcharts({
+        //         chart: {
+        //            type: 'column',
+        //         },
+        //         title: {
+        //             text: '设备最近数据分析',
+        //         },
+        //         xAxis: {
+        //             reversed: true,
+        //             categories: ['8/2 10:32:23','8/2 10:27:24','8/2 10:22:25','8/2 10:17:23','8/2 10:12:31' ]
+        //         },
+        //         yAxis: [{
+        //             title: {
+        //                 text: ''
+        //             },
+        //         }],
+        //         plotOptions: {
+        //             column: {
+        //                 // 关于柱状图数据标签的详细配置参考：https://api.hcharts.cn/highcharts#plotOptions.column.dataLabels
+        //                 pointWidth:20,
+        //                 dataLabels: {
+        //                     enabled: true,
+        //                     // verticalAlign: 'top', // 竖直对齐方式，默认是 center
+        //                     inside: true
+        //                 }
+        //             }
+        //         },
+        //         legend: {
+        //                 borderWidth: 0
+        //         },
+        //         exporting: {
+        //                 enabled: false
+        //         },
+        //         series: [{ name: '水位(m)',yAxis: 0,data:[['2018/8/2 10:32:23',1.383],['2018/8/2 10:27:24',1.366],['2018/8/2 10:22:25',1.400],['2018/8/2 10:17:23',1.376],['2018/8/2 10:12:31',1.361]]}]
+        //         });
+        // }
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

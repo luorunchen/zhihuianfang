@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用电周报</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet"/>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/report.css" rel="stylesheet" />
+    <link href="style/MyToolBar.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/PrintArea.js"></script>
+    <script src="js/highcharts.js"></script>
+    <link href="style/ElecWeek.css" rel="stylesheet" />
+    <script type="text/javascript">
+     $(document).ready(function () {
+            $(".but-print").click(function () {
+                $(".printBox").printArea();
+            });
+            $(".but-exp").click(function () {
+                document.location =  "/file/用电周报.doc"
+            });
+        });
+    </script>
+    <link href = "style/MDReport.css" rel = "stylesheet" />
+</head>
+<body>
+        <DIV class="ToolBarBox btn-toolbar">
+            <div class="btn-group btn-group-sm   expPDF" role="group"><button type="button" class="btn btn-success but-print"  aria-expanded="false" >
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>打印 </button> </div>
+            <div class="btn-group btn-group-sm  expWord" role="group" style="display:none">
+                <button type="button" class="btn btn-success but-Exp" aria-expanded="false">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>导出
+                </button>
+            </div>
+        <div class="btn-group btn-group-sm" role="group"><button type="button" class="btn btn-info"  aria-expanded="false"  onclick="    NewRefresh();">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷新 </button> </div>
+    <div class="btn-group btn-group-sm" role="group">
+        <button type="button" class="btn btn-info but-exp" aria-expanded="false">
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>导出Word
+        </button>
+    </div>
+        </DIV>
+    <div class="reportBody">
+<style type="text/css">
+.printBox
+{
+    background-color:#fff;
+    color:#000;
+}
+.lineTitle
+{
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+} 
+.AreaItem {
+      font-size:16px;
+      margin-top:5px;
+     width:550px;
+     margin-left:auto;
+     margin-right:auto;
+      padding:5px;
+}
+.AreaItem .lineRow
+{
+     font-size:16px;
+     line-height:20px;
+     margin:10px;
+     text-align:left;
+}
+.AreaItem .TextRow
+{
+     font-size:14px;
+     line-height:20px;
+     margin:14px;
+}
+.AreaTable
+{
+    font-size:14px;
+    width:100%;
+    line-height:20px;
+}
+.AreaTable thead td
+{
+    background-color:#f5f5f5;
+    height:40px;
+}
+.AreaTable td
+{
+    border:solid 1px #000;
+    padding:5px;
+    text-align:center;
+    vertical-align:middle;
+}
+    .AreaTable .sign {
+        color:red;
+    }
+    .ChartAlarm
+    {
+        height:300px;
+    }
+     .ChartAlarmTime
+    {
+        height:300px;
+    }
+</style>
+<div class="tableBox">
+    <div class="printBox">
+        <div class="AreaItem">
+            <div class="lineTitle">
+                康馨敬老院用电周报
+            </div>
+            <div class="lineRow">
+                本周（2018/05/29-2018/06/04）用电安全监测情况：所监测的1个区域，0个正常，0个有报警,1个掉线。
+            </div>
+            <table class="AreaTable">
+                <thead>
+                    <tr>
+                        <td>监测区域名称</td>
+                        <td style="width:80px;">在线状态</td>
+                        <td style="width:60px;">剩余电流告警</td>
+                        <td style="width:80px;">温度告警</td>
+                        <td style="width:80px;">电流告警</td>
+                        <td style="width:80px;">电压告警</td>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td style="text-align:left;">东墙电表箱</td>
+                                <td>离线</td>
+                            <td class="sign">0</td>
+                            <td class="sign">0</td>
+                            <td class="sign">0</td>
+                            <td class="sign">0</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+                <div class="AreaItem">
+                    <div class="lineRow">
+                        东墙电表箱
+                    </div>
+                    <table class="AreaTable">
+                        <thead>
+                            <tr>
+                                <td style="width:120px;">项目</td>
+                                <td style="width:50px;">单位</td>
+                                <td style="width:75px;">正常值</td>
+                                <td style="width:65px;">极限值</td>
+                                <td>发生时间</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            <div class="AreaItem">
+                <div class="lineRow">
+                    一周告警总数对比图
+                </div>
+                <div class="ChartAlarm">
+                </div>
+            </div>
+            <div class="AreaItem">
+                <div class="lineRow">
+                    时段告警总数对比图
+                </div>
+                <div class="ChartAlarmTime">
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        Highcharts.setOptions({
+            colors: ['#50B432', '#ec561b']
+        });
+        $('.ChartAlarm').highcharts({
+            isBlack:false,
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '',
+            },
+            xAxis: {
+                categories: ['第1天','第2天','第3天','第4天','第5天','第6天','第7天'],
+                startOnTick: true,
+                gridLineWidth: 1,
+                lineColor: '#000',
+                tickColor: '#000'
+            },
+            yAxis: [{
+                title: {
+                    text: ''
+                },
+                minTickInterval: 1
+            }],
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                borderWidth: 0
+            },
+            series: [{ name:"本周(2018/5/29 0:00:00至2018/6/4 0:00:00)", data:[['第1天', 0],['第2天', 0],['第3天', 0],['第4天', 0],['第5天', 0],['第6天', 0],['第7天', 0]]},{ name: "上周(0001/1/1 0:00:00至0001/1/1 0:00:00)", data: [['第1天', 0],['第2天', 0],['第3天', 0],['第4天', 0],['第5天', 0],['第6天', 0],['第7天', 0]] }]
+        });
+        $('.ChartAlarmTime').highcharts({
+            isBlack:false,
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '',
+            },
+            xAxis: {
+                categories: ['0-2','2-4','4-6','6-8','8-10','10-12','12-14','14-16','16-18','18-20','20-22','22-24'],
+                startOnTick: true,
+                gridLineWidth: 1,
+                lineColor: '#000',
+                tickColor: '#000'
+            },
+            yAxis: [{
+                title: {
+                    text: ''
+                },
+                minTickInterval: 1
+            }],
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            legend: {
+                borderWidth: 0
+            },
+            series: [{ name:"本周(2018/5/29 0:00:00至2018/6/4 0:00:00)", data:[['0-2', 0],['2-4', 0],['4-6', 0],['6-8', 0],['8-10', 0],['10-12', 0],['12-14', 0],['14-16', 0],['16-18', 0],['18-20', 0],['20-22', 0],['22-24', 0]]},{ name: "上周(0001/1/1 0:00:00至0001/1/1 0:00:00)", data: [['0-2', 0],['2-4', 0],['4-6', 0],['6-8', 0],['8-10', 0],['10-12', 0],['12-14', 0],['14-16', 0],['16-18', 0],['18-20', 0],['20-22', 0],['22-24', 0]] }]
+        });
+    });
+</script>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+     <script src = "js/MDChart.js" ></script>
+</body>
+</html>

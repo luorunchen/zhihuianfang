@@ -1,0 +1,118 @@
+﻿.Grid {
+    overflow: hidden;
+    position: relative;
+    font-size: 14px;
+    font-family: 'Microsoft Yahei',verdana;
+    line-height: 20px;
+    border: solid 1px #DFDFDF;
+    background-color: #fff;
+    border-radius:3px;
+}
+
+    .Grid Table {
+        table-layout: fixed;
+        border-collapse: collapse;
+    }
+
+    .Grid td {
+        border: solid 1px #DFDFDF;
+        vertical-align: middle;
+        border-left: none;
+        border-top: none;
+        padding:3px;
+    }
+
+    .Grid .NoRightBorder {
+        border-right: none;
+    }
+    .Grid .td_center {
+        text-align:center;
+    }
+    .Grid .td_left {
+        text-align:left;
+    }
+    .Grid .td_right {
+        text-align:right;
+    }
+
+.Grid_hd {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+    color: #fff;
+    height: 40px;
+    background: #337ab7;
+}
+
+    .Grid_hd .scrollHead {
+        /* position: absolute; */
+        height:40px;
+    }
+
+    .Grid_hd td {
+        height:100%;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: bold;
+    }
+
+.Grid_bd {
+    position: absolute;
+    left: 0px;
+    top: 41px;
+    bottom: 34px;
+    width: 100%;
+    overflow: hidden;
+}
+    .Grid_bd td {
+        height:35px;
+    }
+
+    .Grid_bd .scrollBody {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+    .Grid_bd .alterTr {
+        background-color:#F1F1F1;
+    }
+
+    .Grid_bd .hoverTr {
+        background-color:#D0E2F4;
+    }
+    .Grid_bd .selectTr {
+        background-color:#428bca;
+        color:#ffffff;
+    }
+
+.Grid_fd {
+    position: absolute;
+    left: 0px;
+    height: 33px;
+    bottom: 0px;
+    width: 100%;
+    text-align: right;
+    overflow: hidden;
+     border-top: solid 1px #DFDFDF;
+     background: #F1F1F1;
+     line-height:30px;
+}
+    /*.Grid_fd input[type=button] {
+        padding:3px;
+        min-width:60px;
+    }*/
+
+     .Grid_fd span {
+    }
+
+    .Grid_fd input[type=text] {
+        width: 40px;
+        text-align:center;
+        border:none;
+        background-color:transparent;
+ 
+    }
+    .Grid  a,a:hover{color:#f00;}

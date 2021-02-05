@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <script src="js/d3.v3.min.js" language="JavaScript"></script>
+  <script src="js/liquidFillGaugeText.js"></script>
+  <title>Document</title>
+ </head>
+ <body>
+ <svg id="fillgauge1" width="97%" height="250" style="margin-top:20px"></svg>
+			<script>	
+				 var config1 = liquidFillGaugeDefaultSettings();
+			   // console.log(config1);
+				config1.circleThickness = 0.1;
+				config1.waveAnimateTime = 2000;
+				//是否以百分比显示，JS中增加如不以百分比显示，那么单位为M，需要的话 可进行修改
+				config1.displayPercent = false;
+				config1.valueCountUp = false;
+				 var gauge2= loadLiquidFillGauge("fillgauge1", 46.11, config1);
+				//定义最大值、最小值即可实现显示数值
+				config1.minValue=0.7;
+				config1.maxValue=10 ;
+				//根据最大值、最小值 当前值确定百分比 显示内容为Model.LastValue
+				//var gauge2= loadLiquidFillGauge("fillgauge1", 200, config1);
+			</script>
+ </body>
+</html>

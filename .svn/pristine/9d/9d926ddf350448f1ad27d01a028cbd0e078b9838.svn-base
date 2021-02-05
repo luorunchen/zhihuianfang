@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="js/highcharts.js"></script>
+    <link href="style/BigData.css" rel="stylesheet" />
+    <link href="style/CompanyQuestion.css" rel="stylesheet" />
+    <link href="style/xtbny.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/default.js"></script>
+    <script type="text/javascript">
+        function queryClick() {
+            document.location = "BDQuestion?queryDate=" + escape($("#QueryDate").val());
+        }
+    </script>
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="ContainerBox">
+        <div class="HeadBox">
+            <div class="webTitle">火灾隐患整改进度数据分析</div>
+            <div class="navBack">
+                <div class="backImg" onclick="window.top.goMain();"></div>
+                <div class="backTitle">返回首页</div>
+            </div>
+            <div class="queryTool">
+                <div class="input-group" style="width:270px;margin-top:7px;">
+                    <span class="input-group-addon">统计日期</span>
+                    <input class="form-control Wdate  " data-val="true" data-val-date="字段 DateTime 必须是日期。" data-val-required="The DateTime field is required."
+                        id="QueryDate" name="QueryDate" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;});" type="text" value="2018-08-01"
+                        style="height:35px; background:#fff url(images/datePicker.gif) no-repeat right;" />
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="butSuggest" onclick="">查询</button>
+                </span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="NavMenuBox">
+            <div class="LeftNavBox" style="width:1300px; position: absolute;top:80px;left:47%;margin-left:-600px;">
+
+                <div class="MenuRow">
+                    <div class="MenuItem" onclick="ShowFull({bh:'AA88', id:'BDQuestion', title:'隐患整改进度', url:'1.html'})">
+                        <div class="MenuItem1  MenuItem2" style="background-color:#f80202;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 隐患整改进度 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowFull({bh:'AC91', id:'PubDevice2', title:'电气火灾隐患预警分析1', url:'2.html'})">
+                        <div class="MenuItem1" style="background-color:#69aa4c;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 电气火灾隐患预警分析 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowFull({bh:'AC92', id:'PubDevice3', title:'消防水系统预警分析', url:'3.html'})">
+                        <div class="MenuItem1" style="background-color:#b65066;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 消防水系统预警分析 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowFull({bh:'AC93', id:'PubDevice1', title:'火灾报警系统数据分析', url:'4.html'})">
+                        <div class="MenuItem1" style="background-color:#0197e4;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 火灾报警系统数据分析 </div>
+                        </div>
+                    </div>
+
+
+                    <div class="MenuItem" onclick="ShowFull({bh:'AC94', id:'PubDevice6', title:'重点部位预警分析', url:'5.html'})">
+                        <div class="MenuItem1" style="background-color:#2f2db7;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 重点部位预警分析 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowFull({bh:'ACAC', id:'PubDevice9', title:'智慧型独立烟感预警分析', url:'6.html'})">
+                        <div class="MenuItem1" style="background-color:#e3b720;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 智慧型独立烟感预警分析 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowFull({bh:'ACAE', id:'SGasAlarm', title:'燃气探测器报警分析', url:'7.html'})">
+                        <div class="MenuItem1" style="background-color:#de6c0f;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 燃气探测器报警分析 </div>
+                        </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowModel({bh:'ACEm', id:'Emergency', title:'应急处理', url:'8.html'})">
+                        <div class="MenuItem1" style="background-color:#de6c0f;margin:5px;">
+                            <div class="MenuContent">
+                                <div class="MenuPic"></div>
+                            </div>
+                            <div class="MenuTitle"> 应急处理 </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="clear"></div>
+
+            </div>
+        </div>-->
+        <div class="BodyBox">
+            <div class="SumRow">
+                <div class="PieChartBox1">
+                    <div class="chartTitle" id="PieChartBox1">当年度隐患 1070 个</div>
+                    <div class="chartContent" id="c1a3205530ba4c4eaa83a670f2b04364">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        //单位类比统计
+                        $('#c1a3205530ba4c4eaa83a670f2b04364').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                backgroundColor: 'rgba(0,0,0,0)'
+                            },
+                            title: {
+                                text: ""
+                            },
+                            tooltip: {
+                                pointFormat: '{name}{point.y}个' //官方只给了鼠标放上去的百分比，后来发现在图例中直接用 this.percentage 就行
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    showInLegend: false,
+                                    dataLabels: {
+                                        enabled: true,
+                                        distance: 10,
+                                        format: '{point.name}{point.percentage:.1f}%',
+                                        style: {
+                                            "fontSize": "12px;",
+                                            "color": "#fff"
+                                        }
+                                    }
+                                }
+                            },
+                            credits: {
+                                enabled: false // 禁用版权信息
+                            },
+                            series: [{
+                                type: 'pie',
+                                name: '隐患数',
+                                data: [{
+                                    name: '未整改',
+                                    y: 149,
+                                    color: '#ff0000'
+                                }, {
+                                    name: '整改中',
+                                    y: 56,
+                                    color: '#1c9ccb'
+                                }, {
+                                    name: '已整改',
+                                    y: 865,
+                                    color: '#94ba2d'
+                                }]
+                            }]
+                        });
+                    });
+                </script>
+                <div class="PieChartBox2" id="PieChartBox2">
+                    <!--<div class="chartTitle">当月隐患 60 个</div>
+                    <div class="chartContent">
+                            <div class="chartSumRow chartSumRow2">
+                                上月隐患：89&nbsp; &nbsp; &nbsp; &nbsp;环比下降30.0%
+                            </div>
+                            <div class="chartSumRow chartSumRow2">
+                                去年同期：97&nbsp; &nbsp; &nbsp; &nbsp;同比下降13.2%
+                            </div>
+                    </div>-->
+                </div>
+                <div id="965cd6ffa7284a47995e1dac1361ef2b" class="MonthQuestionBox">
+                </div>
+                <script type="text/javascript">
+                    // $(document).ready(function () {
+                    //     //Highcharts.setOptions({
+                    //     //    colors: ['#2e358b']
+                    //     //});
+                    //     //单位类比统计
+                    //     $('#965cd6ffa7284a47995e1dac1361ef2b').highcharts({
+                    //         chart: {
+                    //             backgroundColor: 'rgba(0,0,0,0)'
+                    //         },
+                    //         title: {
+                    //             text: '2018 年度火灾隐患趋势统计',
+                    //             style: { "fontSize": "18px;", "color": "#fff", fontFamily: "Microsoft YaHei" }
+                    //         },
+                    //         xAxis: {
+                    //             gridLineColor: "#ffffff",
+                    //             labels: { style: { color: '#ffffff' } },
+                    //             categories: ['2018-01','2018-02','2018-03','2018-04','2018-05','2018-06','2018-07','2018-08']
+                    //         },
+                    //         yAxis: [{
+                    //             title: "",
+                    //             gridLineColor: "#ffffff",
+                    //             labels: {
+                    //                 style: { color: '#ffffff' }
+                    //             },
+                    //             minTickInterval: 3
+                    //         }],
+                    //         legend: {
+                    //             enabled: false
+                    //         },
+                    //         credits: {
+                    //             enabled: true
+                    //         },
+                    //         series: [ { name: '火灾隐患', data: [{name:'2018-01',y:312,color:'#f7ab00'},{name:'2018-02',y:115,color:'#f7ab00'},{name:'2018-03',y:93,color:'#f7ab00'},{name:'2018-04',y:219,color:'#f7ab00'},{name:'2018-05',y:58,color:'#f7ab00'},{name:'2018-06',y:133,color:'#f7ab00'},{name:'2018-07',y:258,color:'#f7ab00'},{name:'2018-08',y:149,color:'#f7ab00'}]}]
+                    //     });
+                    // });
+                </script>
+            </div>
+            <div class="SumChartBox">
+                <div class="chartListBox">
+                    <div class="CompanyList" id="CompanyList1">
+                        <div class="chartTitle">发现隐患排行榜</div>
+                        <div class="CompanyItem1">
+                            1、凯中整机电流电子(149)
+                        </div>
+                        <div class="CompanyItem1">
+                            2、三力五金厂(128)
+                        </div>
+                        <div class="CompanyItem1">
+                            3、汇贤达工业园 (93)
+                        </div>
+                        <div class="CompanyItem">
+                            4、溪头股份有限公司(87)
+                        </div>
+                        <div class="CompanyItem">
+                            5、溪头云天路10号绿雅轩茶庄(71)
+                        </div>
+                        <div class="CompanyItem">
+                            6、都市壹号连锁酒店(48)
+                        </div>
+                        <div class="CompanyItem">
+                            7、宝安区松岗街道罗田社区(35)
+                        </div>
+                        <div class="CompanyItem">
+                            8、沙井德普电子城(26)
+                        </div>
+                        <div class="CompanyItem">
+                            9、新桥景城花园(19)
+                        </div>
+                        <div class="CompanyItem">
+                            10、塘厦涌三诺科技(8)
+                        </div>
+                    </div>
+                    <div class="CompanyList" id="CompanyList2">
+                        <div class="chartTitle">隐患整改排行榜</div>
+                        <div class="CompanyItem2" >
+                            1、凯中整机电流电子(132)
+                        </div>
+                        <div class="CompanyItem2">
+                            2、三力五金厂(96)
+                        </div>
+                        <div class="CompanyItem2">
+                            3、溪头股份有限公司(80)
+                        </div>
+                        <div class="CompanyItem">
+                            4、汇贤达工业园(75)
+                        </div>
+                        <div class="CompanyItem">
+                            5、都市壹号连锁酒店(45)
+                        </div>
+                        <div class="CompanyItem">
+                            6、溪头云天路10号绿雅轩茶庄(27)
+                        </div>
+                        <div class="CompanyItem">
+                            7、沙井德普电子城(18)
+                        </div>
+                        <div class="CompanyItem">
+                            8、塘厦涌三诺科技(10)
+                        </div>
+                        <div class="CompanyItem">
+                            9、新桥景城花园(7)
+                        </div>
+                        <div class="CompanyItem">
+                            10、宝安区松岗街道罗田社区(3)
+                        </div>
+                    </div>
+                </div>
+                <div id="d035101b2c29453db271466aff6a6c49" class="AreaQuestionBox">
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        //Highcharts.setOptions({
+                        //    colors: ['#2e358b']
+                        //});
+                        //单位类比统计
+                        $('#d035101b2c29453db271466aff6a6c49').highcharts({
+                            chart: {
+                                backgroundColor: 'rgba(0,0,0,0)',
+                                type: 'column'
+                            },
+                            title: {
+                                text: '2018 年度火灾隐患统计',
+                                style: {
+                                    "fontSize": "18px;",
+                                    "color": "#fff",
+                                    fontFamily: "Microsoft YaHei"
+                                }
+                            },
+                            xAxis: {
+                                gridLineColor: "#ffffff",
+                                labels: {
+                                    style: {
+                                        color: '#ffffff'
+                                    }
+                                },
+                                categories: ['宝安区', '龙华区', '龙岗区', '南山区', '罗湖区', '光明区', '贵阳市', '东莞市',
+                                    '铜陵市', '广州市', '清远市', '遵义市', '梅州市', '福田区'
+                                ]
+                            },
+                            yAxis: [{
+                                title: "",
+                                gridLineColor: "#ffffff",
+                                labels: {
+                                    style: {
+                                        color: '#ffffff'
+                                    }
+                                },
+                                minTickInterval: 3
+                            }],
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: true
+                            },
+                            series: [{
+                                    name: '火灾隐患',
+                                    data: [{
+                                        name: '宝安区',
+                                        y: 886,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '龙华区',
+                                        y: 356,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '龙岗区',
+                                        y: 152,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '南山区',
+                                        y: 15,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '罗湖区',
+                                        y: 188,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '光明区',
+                                        y: 10,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '贵阳市',
+                                        y: 29,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '东莞市',
+                                        y: 8,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '清远市',
+                                        y: 19,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '铜陵市',
+                                        y: 33,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '广州市',
+                                        y: 5,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '清远市',
+                                        y: 0,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '遵义市',
+                                        y: 1,
+                                        color: '#1d9dcc'
+                                    }, {
+                                        name: '梅州市',
+                                        y: 0,
+                                        color: '#1d9dcc'
+                                    }]
+                                },
+                                {
+                                    name: '未整改隐患',
+                                    data: [{
+                                        name: '宝安区',
+                                        y: 728,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '龙华区',
+                                        y: 132,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '龙岗区',
+                                        y: 93,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '南山区',
+                                        y: 8,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '罗湖区',
+                                        y: 79,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '光明区',
+                                        y: 9,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '贵阳市',
+                                        y: 20,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '东莞市',
+                                        y: 5,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '清远市',
+                                        y: 16,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '铜陵市',
+                                        y: 33,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '广州市',
+                                        y: 5,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '清远市',
+                                        y: 0,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '遵义市',
+                                        y: 1,
+                                        color: '#ff0000'
+                                    }, {
+                                        name: '梅州市',
+                                        y: 0,
+                                        color: '#ff0000'
+                                    }]
+                                }
+                            ]
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/data_one.js"></script>
+    <script>
+        var username=localStorage.getItem('userName');
+       console.log(username)
+       if(username=="" ||username== null){
+         alert('请登录后进入主页')
+         location.href="login.html"
+       }
+        </script>
+</body>
+
+</html>

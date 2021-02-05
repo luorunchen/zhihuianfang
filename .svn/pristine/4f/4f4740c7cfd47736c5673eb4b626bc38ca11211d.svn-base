@@ -1,0 +1,191 @@
+﻿
+.footer-bur-fixed {
+  position: fixed;
+  bottom: 0;
+  z-index: 8;
+  width: 100%;
+  background: #fff
+}
+
+.footer-bur-fixed .page-info {
+  height: 56px;
+  line-height: 56px;
+  border: 1px solid #ddd;
+  margin: 0 17px;
+  padding-left: 13px
+}
+
+.footer-bur-fixed .footer-nav {
+  height: 42px;
+  line-height: 42px;
+  margin: 0 17px;
+  background-color: #3d4a5c;
+  color: #fff;
+  padding-left: 13px
+}
+
+.scanning-searchMore-btn,
+.searchMore-btn,
+.searchMore-btns {
+  cursor: pointer;
+  line-height: 1.5;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #333;
+  background-color: #e6e6e6;
+  border: 1px #ccc solid;
+  display: inline-block
+}
+
+.searchMore-btn:hover,
+.searchMore-btns:hover {
+  color: #337ab7
+}
+
+.search-form-noborder {
+  border: none;
+  padding-bottom: 4px
+}
+
+.tbody-list {
+  margin: 98px 12px 10px
+}
+
+.thead-item {
+  margin: 6px 12px 0
+}
+
+.thead-item .check-all input {
+  margin-right: 0
+}
+
+.tipbtn {
+  position: absolute;
+  bottom: 20px;
+  left: 38%
+}
+
+.pagin-box {
+  /* margin: 5px 30px; */
+  border: #ddd 1px solid;
+  padding: 12px 10px;
+  background: #f9f9f9
+}
+
+.pagin-box #page-size,
+.pagin-box #page-total-count,
+.pagin-box #page-total-count2,
+.pagin-box #page-total-count3,
+.pagin-box #page-total-num,
+.pagin-box #page-total-num2,
+.pagin-box #page-total-num3,
+.pagin-box .page-total {
+  display: inline-block
+}
+
+.pagin-box #page-size select {
+  width: 56px;
+  height: 30px;
+  text-align: center;
+  border: 1px solid #ddd
+}
+
+.pagin-box .blue {
+  color: #20638f
+}
+
+.pagin-box #page-jump,
+.pagin-box #page-jump2,
+.pagin-box #page-jump3,
+.pagin-box .page-info {
+  display: inline-block
+}
+
+.page-info .pagination {
+  margin: 0;
+  font-size: 100%
+}
+
+.page-info .pagination a,
+.page-info .pagination span {
+  margin-right: 2px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 4px 15px;
+  border: 1px solid #ddd;
+  color: #333
+}
+
+.page-info .pagination a:hover,
+.page-info .pagination span:hover {
+  opacity: .6;
+  filter: alpha(opacity=60);
+  text-decoration: none
+}
+
+.page-info .pagination .current {
+  display: inline-block;
+  padding: 4px 15px;
+  background: #fb6e52;
+  color: #fff
+}
+
+.page-info .pagination .next,
+.page-info .pagination .prev {
+  display: inline-block;
+  padding: 4px 15px;
+  border: 1px solid #ddd !important;
+  background: #fff;
+  color: #333 !important
+}
+
+.pagin-box #page-jump-num,
+.pagin-box #page-jump-num2,
+.pagin-box #page-jump-num3 {
+  display: inline-block;
+  width: 45px;
+  height: 28px;
+  border: 1px solid #ddd;
+  text-align: center;
+  line-height: 28px;
+  margin: -1px 2px 0
+}
+
+#page-jump .go,
+#page-jump2 .go,
+#page-jump3 .go {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #1c84c6;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px #1c84c6 solid
+}
+
+#page-jump .go:hover,
+#page-jump2 .go:hover,
+#page-jump3 .go:hover {
+  background: #1c84c6
+}
+
+.pd-20 .pagin-box {
+  margin: 5px 0
+}
+
+.footer-bur-fixed .pagin-box {
+  /* margin: 6px 10px 10px 6px */
+}
+
+.footer-bur-fixed .pagin-box .page-info {
+  display: inline-block;
+  height: 21px;
+  line-height: 21px;
+  border: none;
+  margin: 0;
+  padding: 0
+}
+

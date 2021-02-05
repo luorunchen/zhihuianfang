@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>智慧安全系统平台</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuang.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/login.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KijP02mbMQhSR8T4Qk82f9feXBbftwie"></script>
+</head>
+
+<body>
+    <div class="WebTitle">
+        <div>
+            <!-- <img src="./images/bot_img_tou.png" alt="" style="width:30%;"> -->
+            智慧安全系统平台
+        </div>
+    </div>
+
+    <div class="bodyBox">
+        <table style="width:100%; height:100%;">
+            <tr>
+
+                <td style="width:100%; height:100%; text-align:center;vertical-align:middle;">
+                    <div class="LoginBox">
+
+                        <div class="AppBox" style="height:160px;">
+                            <a href="javascript:;"><img src="http://anfangapp.edog-online.com/ctx/anfangupdate.png"
+                                    style="width:160px;height:160px;" /></a>
+                            <div class="appTitle">
+                                <a href="javascript:;">下载手机客户端</a>
+                            </div>
+                        </div>
+                        <div class="LoginForm">
+                            <form action="index.html" method="post" id="form">
+                                <div class="tdTitle"></div>
+                                <table class="tabForm" id="tabForm">
+                                    <tr>
+                                        <td class="tdLabel">账号:</td>
+                                        <td class="tdContent">
+                                            <input tabindex="1" title="请输入帐号" id="uName" autocomplete="off" name="uName"
+                                                type="text" maxlength="50" autocomplete="on" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="tdLabel">密码:</td>
+                                        <td class="tdContent">
+                                            <input class="loginFormTdIpt loginFormTdIpt-focus" tabindex="2"
+                                                title="请输入密码" id="uPass" name="uPass" type="password" value="" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td class="tdBut" style="vertical-align:middle;">
+                                            <a href="javascript:;">
+                                                <input id="loginBtn" class="logBt" tabindex="6" type="button" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="javascript:;" id="forTop">
+                                                忘记密码
+                                            </a></td>
+                                        <td> </td>
+                                    </tr>
+                                    <!-- <tr style="position: relative">
+                                        <td style="position: absolute;left:25%">
+                                            <div>
+                                                <span href="#">
+                                                    <p>下载APP</p>
+                                                    <img src="http://fire.zhihuiwulian.net.cn/ctx/maupdate.png" alt=""
+                                                        style="width:180px;height:180px;">
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr> -->
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function huoquDing(){
+        var geoc = new BMap.Geocoder(); //地址解析对象  
+        var markersArray = [];
+        var geolocation = new BMap.Geolocation();
+        var point = new BMap.Point(114.046252, 22.640817); 
+        geolocation.getCurrentPosition(function (r) {
+            console.log(r)
+            var firstInfo = r.longitude + ',' + r.latitude
+            localStorage.setItem('firstInfo',firstInfo)
+        }, {
+            enableHighAccuracy: true
+        })
+    }
+        
+    huoquDing()
+
+        var tmsg = "";
+        if (tmsg != "") {
+            alert(tmsg);
+        }
+
+        function setNameItem(name) {
+            localStorage.setItem("userName", name);
+        }
+
+        function getNameItem() {
+            return localStorage.getItem("userName");
+        }
+        $(function () {
+            $('#forTop').click(function () {
+                location.href = "forPass.html"
+            })
+            $("#loginBtn").click(function () {
+                var userName = $("#uName").val();
+                var password = $('#uPass').val();
+
+                $.ajax({
+                    type: 'post',
+                    url: url + '/LoginWeb.action',
+                    // url: 'http://192.168.100.183:8080/earlyWarn/login.action',
+                    // data: 'username=' + userName + '&password=' + password,
+                    data:{username:userName,password:password},
+                    // dataType:'jsonp',
+                    error: function (err) {
+                        console.log('login' + err);
+                    },
+                    success: function (data) {
+
+                        var obj = JSON.parse(data);
+                        console.log(obj)
+                        huoquDing()
+                        if (obj.status == true) {
+                            var role = obj.role[0];
+                            var new_role = obj.new_role;
+                            var region = obj.region;
+                            if (region == 'null') {
+                                var region = "";
+                            }
+                            var power = obj.power;
+                            // var phone = obj.phone;
+                            // setNameItem(phone);
+                            localStorage.setItem('role', role);
+                            localStorage.setItem('new_role', new_role);
+                            localStorage.setItem('region', region);
+                            localStorage.setItem('power', power);
+                            var lat=localStorage.getItem('firstInfo')
+                            if(lat!=null){
+                                location.href = "index.html";
+                            }else{
+                                alert('获取定位中,三秒后将自动跳转主页')
+                                setTimeout(() => {
+                                    location.href = "index.html";
+                                }, 3000);
+                            }
+                            setNameItem(userName);
+                            heartTiao(userName);
+                        } else {
+                            alert('账号或密码错误');
+                        }
+                    }
+                })
+            });
+        });
+
+        function heartTiao(userName) {
+            $.ajax({
+                type: 'get',
+                url: url + '/WebProject/WebRegisterHeartbeatTime.action',
+                data: 'my_username=' + userName,
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        }
+    </script>
+
+</body>
+
+</html>

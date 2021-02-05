@@ -1,0 +1,4 @@
+1.details  
+    线上  content: "../DDept/user_facadmin.html?username=" + username
+    本地  content: "../DDept/user_facadmin.html?username=" + username
+2

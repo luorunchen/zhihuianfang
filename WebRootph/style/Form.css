@@ -1,0 +1,197 @@
+﻿html, body {
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    font-family:'Microsoft YaHei';
+}
+.bodyBox {
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+.formBody {
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:50px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:40px;
+    padding-right:40px;
+}
+
+.formBut {
+    border-top:solid 1px #DFDFDF;
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:50px;
+    overflow:hidden;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:40px;
+    padding-right:40px;
+}
+.form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+  text-align: right;
+}
+.form-group {
+    margin-bottom: 8px;
+    overflow:hidden;
+    position:relative;
+}
+    .form-group .formTitle {
+        text-align:center;
+        font-size:20px;
+        height:40px;
+        line-height:40px;
+        border-bottom:solid 1px #DFDFDF;
+    }
+
+     .form-group .formSubTitle {
+        text-align:left;
+        font-size:16px;
+        height:30px;
+        line-height:30px;
+        padding-left:20px;
+        border-bottom:solid 1px #DFDFDF;
+        color:#00f;
+    }
+
+.formBody .FormEditor {
+    margin-left:auto;
+    margin-right:auto;
+    max-width:800px;
+}
+
+
+ /*
+.formToolBox .isAddStyle {
+    width:120px;
+    height:100%;
+    float:left;
+}
+
+.formToolBox input[type=button] {
+    float:left;
+    margin-left:15px;
+}
+
+.fieldsetLayout {
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+   border:solid 1px #e1e1e8;
+   overflow:hidden;
+   padding:10px;
+   padding-left:0px;
+   position:relative;
+}
+    .fieldsetLayout legend
+    {
+        margin-left:20px;
+    }
+
+.tabLayout {
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    table-layout:fixed;
+}
+
+
+    .tabLayout .td-title {
+        text-align:right;
+        vertical-align:middle;
+        width:80px;
+        padding-top:3px;
+        padding-bottom:3px;
+        padding-right:10px;
+    }
+    .tabLayout .td-title100 {
+        text-align:right;
+        vertical-align:middle;
+        width:100px;
+        padding-top:3px;
+        padding-bottom:3px;
+        padding-right:10px;
+    }
+
+    .tabLayout .td-content {
+         vertical-align:middle;
+           padding-top:3px;
+        padding-bottom:3px;
+    }
+    .tabLayout label {
+        width:100%;
+        text-align:right;
+    }
+.fText {
+    height:27px;
+    line-height:27px;
+    width:100%;
+    padding-left:3px;
+    padding-right:3px;
+    border:groove 1px #DFDFDF;
+}
+.fReadOnly {
+    width:100%;
+    background-color:#F1F1F1;
+}
+
+.fBut {
+    padding:5px;
+    min-width:60px;
+
+}
+
+.fcheck {
+
+}
+
+.fPass {
+    height:27px;
+    line-height:27px;
+    width:100%;
+    padding-left:3px;
+    padding-right:3px;
+    border:groove 1px #DFDFDF;
+}
+
+
+.fTextArea {
+    width:100%;
+    height:60px;
+    line-height:20px;
+    padding-left:3px;
+    padding-right:3px;
+    border:groove 1px #DFDFDF;
+
+}
+
+.fSelect {
+    width:100%;
+     height:27px;
+    line-height:27px;
+    padding-left:3px;
+    border:groove 1px #DFDFDF;
+}*/
+
+ .NewsSubText
+{
+    text-align:center;
+    padding-bottom:20px;
+}
+
+.NewsText
+{
+
+}

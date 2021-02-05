@@ -1,0 +1,311 @@
+﻿ .ShowBox {
+         position:absolute;top:0px;bottom:40px;right:0px;left:0px;
+        border: solid 1px #DFDFDF;
+        background-color: #fff;
+        border-radius:3px;
+        overflow:auto;
+        font-family: 'Microsoft Yahei',verdana;
+        padding-top:20px;
+
+    }
+   .ButsBox {
+         position:absolute;bottom:0px;right:0px;left:0px;
+         height:40px;
+        text-align:right;
+        padding-top:5px;
+       padding-right:20px;
+    }
+
+  .ShowBox  .textTitle {
+    width:100%;
+    font-size:20px;
+    text-align:center;
+    line-height:60px;
+    font-weight:bold;
+}
+
+.ShowTable {
+    margin-left:auto;
+    margin-right:auto;
+    width:650px;
+    font-family: 'Microsoft Yahei',verdana;
+}
+    .ShowTable .tabTitle {
+        text-align:center;
+        height:40px;
+        line-height:40px;
+        font-size:20px;
+        font-weight:bold;
+    }
+    .ShowTable .tabSubTitle {
+        text-align:center;
+        height:30px;
+        line-height:30px;
+    }
+
+     .ShowTable .tabBox{
+        border:none;
+         font-size:14px;
+          width:100%;
+          table-layout:fixed;
+          border-collapse:collapse;
+          border-top:solid 1px #000;
+          border-left:solid 1px #000;
+    }
+    .alarmTable .tabBox{
+        border:none;
+         font-size:14px;
+          width:100%;
+          table-layout:fixed;
+          border-collapse:collapse;
+          border-top:solid 1px #000;
+          border-left:solid 1px #000;
+    }
+    .ShowTable  td {
+       border-right:solid 1px #000;
+       border-bottom:solid 1px #000;
+        line-height:25px;
+        min-height:25px;
+        padding:5px;
+       word-break:break-all;  
+        word-wrap:break-word;  
+    }
+    .alarmTable  td {
+       border-right:solid 1px #000;
+       border-bottom:solid 1px #000;
+        line-height:25px;
+        min-height:25px;
+        padding:5px;
+       word-break:break-all;  
+        word-wrap:break-word;  
+    }
+
+     .ShowTable  thead
+     {
+
+          background-color:#f5f5f5;
+     }
+      .ShowTable  thead td
+     {
+
+        text-align:center;
+     }
+     .ShowTable .tabSection {
+        text-align:center;
+        vertical-align:middle;
+        background-color:#dddddd;
+        color:#0000ff;
+        font-size:16px;
+    }
+
+    .ShowTable .tabLabel {
+        text-align:center;
+        vertical-align:middle;
+        background-color:#f5f5f5;
+    }
+    .alarmTable .tabLabel {
+        text-align:center;
+        vertical-align:middle;
+        background-color:#f5f5f5;
+    }
+
+    .ShowTable .tabValue {
+        text-align:center;
+        vertical-align:middle;
+    }
+
+
+    .ShowTable .ShowImg {
+        max-width: 95%;
+        height: auto;
+        width: auto\9;
+    }
+
+    .ShowTable .ShowImgTitle {
+        line-height:40px;
+        height:40px;
+        text-align:center;
+    }
+
+      .ShowTable .ShowImgBox {
+        width:100%;
+        position:relative;
+    }
+       .chkBox {
+       width:100px;
+        float:left;
+        text-align:center;
+    }
+    .ChkBH {
+        line-height:20px;
+        text-align:center;
+        width:100%;
+        padding:5px;
+        word-break:break-all; 
+        word-wrap:break-word;
+        height:65px;
+    }
+
+    .chkPoint {
+       margin-left:auto;
+       margin-right:auto;
+       width:85px;
+       height:100px;
+       text-align:center;
+       color:#fff;
+       cursor:pointer;
+       padding-left:10px;
+       padding-right:10px;
+
+       display: -webkit-box;
+      -webkit-box-orient: horizontal;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+  
+  
+  
+
+
+    }
+
+
+     .nochange {
+        background: url('/content/grid/images/nochange.png') no-repeat;
+        background-size:100% 100%;
+    }
+    .nocheck {
+        background: url('/content/grid/images/nocheck.png') no-repeat;
+        background-size:100% 100%;
+    }
+    .yescheck {
+        background: url('/content/grid/images/yescheck.png') no-repeat;
+        background-size:100% 100%;
+    }
+
+
+.showText {
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    font-family: 'Microsoft Yahei',verdana;
+    color:#fff;
+    background-color:#54a0de;
+    width:880px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:3px;
+    padding-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.showText  .textContent {
+
+    width:100%;
+    font-size:16px;
+    line-height:25px;
+    text-indent: 2em;
+    text-align:left;
+    padding-top:10px;
+   
+}
+.showText  .textColor{
+ 
+ padding-left:5px;
+ padding-right:5px;
+ min-width:40px;
+}
+
+.showMenu {
+    margin-left:auto;
+    margin-right:auto;
+    font-family: 'Microsoft Yahei',verdana;
+    color:#fff;
+    margin-bottom:20px;
+     width:900px;
+}    
+
+    .showMenu .col-xs-4 {
+        padding-left:5px;
+        padding-right:5px;
+    }
+
+    .showMenu .menuItem1 {
+        text-align:center;
+        width:285px;
+        height:65px;
+        line-height:65px;
+        clear:both;
+        font-size:18px;
+        margin-top:5px;
+        margin-left:5px;
+        float:left;
+        border-radius:3px;
+        cursor:pointer;
+    }
+    .showMenu .menuItem2 {
+        text-align:center;
+        width:139px;
+        height:65px;
+        line-height:65px;
+        font-size:16px;
+        margin-top:5px;
+        margin-left:5px;
+        border-radius:3px;
+        cursor:pointer;
+    }
+
+    .showMenu .bg1 {
+        background-color:#e07553;
+    }
+    .showMenu .bg2 {
+        background-color:#2fb6d4;
+    }
+     .showMenu .bg3 {
+        background-color:#f4af24;
+    }
+    .showMenu .bg4 {
+        background-color:#7bb836;
+    }
+    .showMenu .bg5 {
+        background-color:#5e9ee6;
+    }
+
+     .showMenu .bg0 {
+        background-color:#909090;
+    }
+
+.showHTML {
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:40px;
+}
+.showBodyText {
+    font-size:16px;
+    line-height:25px;
+    text-indent: 2em;
+    text-align:left;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.showBorder {
+    width:100%;
+    border:solid 1px #ccc;
+    border-radius:10px;
+    padding:5px;
+}
+
+.CTypeText
+{
+    max-height:50px;
+    overflow:hidden;
+}
+
+.CTypeBut
+{
+    text-align:right;
+    padding-right:20px;
+}

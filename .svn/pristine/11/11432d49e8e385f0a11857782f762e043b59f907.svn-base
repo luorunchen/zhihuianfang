@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    
+    <link href="style/GridLayout.css" rel="stylesheet" />
+    <script src="js/highcharts.js"></script>
+    <link href="style/ElecComCss.css" rel="stylesheet" />
+    <link href="style/ElecCss.css" rel="stylesheet" />
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        // function detailShow(devBH,devMC) {
+        //     window.top.OpenThirdFrame("/ExtApp_SElectric_ElecDetail.html?devBH=" + devBH, 800, 600, "win", devMC);
+        // }
+    </script>
+    <style type="text/css">
+        .ComInfor {
+            height: 50px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            padding-top: 10px;
+            border-bottom: solid 1px #75c5f0;
+        }
+
+        .ComInfor span {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="elecBox">
+        <!--<div class="ComInfor">烟台市中国人寿保险公司龙口分公司</div>
+            <div class="elecItem" onclick="detailShow('3201183','用电总开')">
+                        <div class="elecPic elecNormal" data-devBh="3201183"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201183</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/2 10:52:07</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:用电总开</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201189','1楼用电总开')">
+                        <div class="elecPic elecNormal" data-devBh="3201189"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201189</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/2 10:52:53</div>
+                    </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:1楼用电总开</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201713','B4四号配电室')">
+                        <div class="elecPic elecAlarm" data-devbh="3201713"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201713</div>
+                    </div>
+
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2018/8/14 15:15:41</div>
+                    </div>
+                        <div class="elecTitle" style="color:#f00;">
+                                <div class="lineTitle">告警:A相电压欠压报警,B相电压欠压报警,C相电压欠压报警,A相电压欠压报警,B相电压欠压报警,C相电压欠压报警</div>
+                        </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:B4四号配电室</div>
+                    </div>
+                </div>
+            </div>
+            <div class="elecItem" onclick="detailShow('3201710','B4二号配电室')">
+                    <div class="elecPic elecOff" data-devbh="3201710"></div>
+                <div class="elecContent">
+                    <div class="elecTitle">
+                        <div class="lineTitle">在线监测:3201710</div>
+                    </div>
+
+                    <div class="elecTitle">
+                        <div class="lineTitle">更新:2017/10/18 23:51:37</div>
+                    </div>
+                        <div class="elecTitle" style="color:#f00;">
+                                <div class="lineTitle">告警:剩余电流报警</div>
+                        </div>
+                    <div class="elecTitle">
+                        <div class="lineTitle">位置:B4二号配电室</div>
+                    </div>
+                </div>
+            </div>-->
+    </div>
+    <div class="elecLeft">
+        <!--<div class="ComInfo">
+        <div class="textContent">
+            <span class="textColor">烟台市中国人寿保险公司龙口分公司</span>位于<span class="textColor">山东省-烟台市-龙口市-东莱街道办事处</span>,详细位置<span class="textColor">东莱街与港城大道交叉口东50</span>，单位类型为<span class="textColor">其他</span>。
+        </div>
+        <div class="textContent">
+            单位消防安全负责人是<span class="textColor">王欢</span>，联系电话<span class="textColor">15153504569</span>,消防安全管理人是<span class="textColor"></span>，联系电话<span class="textColor"></span>。
+        </div>
+        <div class="textContent">
+            该单位属于<span class="textColor">九小场所</span>，消防主管部门是<span class="textColor">龙口市公安消防大队</span>。
+        </div>
+    </div>
+    <div class="elecDeviceBox">
+        <div class="DeviceItem elecBg1" >
+            <div class="DeviceStatus">报警设备</div>
+           2
+        </div>
+        <div class="DeviceItem elecBg2">
+            <div class="DeviceStatus">在线设备</div>
+            2
+        </div>
+        <div class="DeviceItem elecBg3">
+            <div class="DeviceStatus">断线设备</div>
+            0
+        </div>
+        <div class="DeviceItem elecBg4">
+            <div class="DeviceStatus">脱扣设备</div>
+            0
+        </div>
+    </div>
+    <div class="elecAlarmBox">
+    </div>-->
+    </div>
+    <!--<div class="elecAlarmDoBox">  //ElecComCss.css  110
+    <div class="elecDoLog">   //130 
+    </div>
+    <div class="elecDo">  //173
+        <textarea id="txtDo" name="txtDo" class="form-control"  placeholder="请输入值守中心处置情况"></textarea>
+        <div class="doButs">
+            <button class="btn btn-primary" type="button" onclick="weekShow()">周报查看</button>
+            <button class="btn btn-primary" type="button" onclick="doAlarm()">提交处置情况</button>
+        </div>
+    </div>
+</div>-->
+    <script type="text/javascript">
+     var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+        var comid = sessionStorage.getItem("ComID");  //pid
+        var type = '2';  // 页面类型
+        var userName = localStorage.getItem('userName');
+        $.ajax({
+            type: 'get',
+            data: 'pid=' + global.ComID + '&type=' + type + '&username=' + userName,//pid 项目id   type  页面类型   username  登录账号
+            url: url + '/admin/project/GetMapData.action',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var comp = data.Company[0];
+                //  console.log(comp);
+                var sum = data.devMess;
+                var phone = comp.firephone;
+                // sessionStorage.setItem('phone', phone)
+                var html = "";
+                html = "<div class='ComInfo'><div class='textContent'><span class='textColor'>" + comp.MC +
+                    "</span>位于<span class='textColor'>" + comp.address +
+                    "</span>,详细位置<span class='textColor'>" + comp.areaMC +
+                    "</span>，单位类型为<span class='textColor'>其他</span>。</div><div class='textContent'>单位消防安全负责人是<span class='textColor'>" +
+                    comp.firename + "</span>，联系电话<span class='textColor'>" + comp.firephone +
+                    "</span>,消防安全管理人是<span class='textColor'>" + comp.resname +
+                    "</span>，联系电话<span class='textColor'>" + comp.resphone +
+                    "</span>。</div><div class='textContent'>该单位使用属于<span class='textColor'>" + comp.typeMC +
+                    "</span>.</div></div><div class='DeviceItem elecBg1' value='0'><div class='DeviceStatus'>报警设备</div>" +
+                    sum[0] +
+                    "</div><div class='DeviceItem elecBg2' value='1'><div class='DeviceStatus'>在线设备</div>" +
+                    sum[1] +
+                    "</div><div class='DeviceItem elecBg3' value='2'><div class='DeviceStatus'>断线设备</div>" +
+                    sum[2] + "</div></div><div class='elecAlarmBox'></div>";
+                $('.elecLeft').html(html);
+
+                //  console.log(data.Diagram);
+                var dd1 = [];
+                $.each(data.Diagram, function (i, v) {
+                    dd1.push([v.date, v.num, 'typebh:' + '01']);
+                })
+                // console.log(dd1);
+                // doAlarm();
+                Highcharts.setOptions({
+                    colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+                });
+                //隐患趋势图
+                $('.elecAlarmBox').highcharts({
+
+                    chart: {
+                        backgroundColor: 'rgba(0,0,0,0)'
+                    },
+                    title: {
+                        text: '一周内报警',
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    xAxis: {
+                        gridLineColor: "#73c4f1",
+                        labels: {
+                            style: {
+                                color: '#ffffff'
+                            }
+                        },
+                        categories: []
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '报警数',
+                            style: {
+                                color: '#ffff00'
+                            }
+                        },
+                        gridLineColor: "#73c4f1",
+                        labels: {
+                            style: {
+                                color: '#ffffFF'
+                            }
+                        },
+                        min: 0,
+                        allowDecimals: false,
+                        minTickInterval: 1
+                    }],
+                    legend: {
+                        borderWidth: 0,
+                        enabled: true,
+                        itemStyle: {
+                            color: '#ffffff',
+                            fontWeight: 'bold'
+                        }
+                    },
+                    tooltip: {
+                        dateTimeLabelFormats: {
+                            millisecond: '%H:%M:%S.%L',
+                            second: '%H:%M:%S',
+                            minute: '%H:%M',
+                            hour: '%H:%M',
+                            day: '%Y-%m-%d',
+                            week: '%m-%d',
+                            month: '%Y-%m',
+                            year: '%Y'
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true,
+                                style: {
+                                    color: "#ffffff"
+                                }
+                            },
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        alarmShow(this.typebh, this.name)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '报警',
+                        yAxis: 0,
+                        data: dd1
+                    }]
+
+                });
+
+                var oZuolist = document.getElementsByClassName('DeviceItem');
+                for (var i = 0; i < oZuolist.length; i++) {
+                    oZuolist[i].onclick = function () {
+                        //  console.log(this);
+                        var a = this.getAttribute('value');
+                        // console.log(a);               
+                        show(a);
+                    }
+                }
+
+            },
+            error: function (err) {
+                console.log('SElec_ElecComDetail--->1' + err);
+            }
+
+        });
+
+        function show(devStatus) {
+            $.ajax({
+                type: 'get',
+                url: url + '/admin/project/getDeviceByPid.action',
+                // url:'http://zlh18122711575.55555.io:16799/earlyPlatform/admin/project/getDeviceByPid.action',
+                data: 'pid=' + global.ComID + '&type=' + devStatus + '&pagetype=' + type + '&username=' + userName,
+                // devStatus  判断点击的是哪个状态
+                // pagetype  页面类型
+                dataType: 'json',
+                error: function (err) {
+                    console.log('SElec_ElecComDetail--->2' + err);
+                },
+                success: function (result) {
+                    console.log(result);
+                    var html = "";
+                    var data = result.mess;
+                    // console.log(data);   elecAlarm  elecNormal   elecOff
+                    //console.log(devStatus);
+                    if (data != null && data != '') {
+
+                        $.each(data, function (i, v) {
+                            if (v.typeName == '正常') { //  notLN  是否是乐鸟的设备  1 -->不是
+                                html += "<div class='elecItem' onclick=\"detailShow('" + v
+                                        .devId + "','" + v.installLocation + "','" + v.aFid +
+                                        "','" + v.productNumber + "','" + v.typeName +"','"+v.pid+"');\"><div class='elecPic elecNormal' data-devBh='" + v
+                                        .devId +
+                                        "'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:" +
+                                        v.productNumber.slice(length - 8) +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>更新:" +
+                                        v.alarmFaultDate +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:" +
+                                        v.typeName +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>位置:" +
+                                        v.installLocation + "</div></div></div></div>";
+                            } else if (devStatus == '2') {
+                                html += "<div class='elecItem' onclick=\"detailShow('" + v
+                                        .devId + "','" + v.installLocation + "','" + v.aFid +
+                                        "','" + v.productNumber + "','" + v.typeName +"','"+v.pid+"');\"><div class='elecPic elecOff' data-devBh='" + v
+                                        .devId +
+                                        "'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:" +
+                                        v.productNumber.slice(length - 8) +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>更新:" +
+                                        v.alarmFaultDate +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:" +
+                                        v.typeName +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>位置:" +
+                                        v.installLocation + "</div></div></div></div>";
+                            } else {
+                                html += "<div class='elecItem' onclick=\"detailShow('" + v
+                                        .devId + "','" + v.installLocation + "','" + v.aFid +
+                                        "','" + v.productNumber + "','" + v.typeName +"','"+v.pid+"');\"><div class='elecPic elecAlarm' data-devBh='" + v
+                                        .devId +
+                                        "'></div><div class='elecContent'><div class='elecTitle'><div class='lineTitle'>在线监测:" +
+                                        v.productNumber.slice(length - 8) +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>更新:" +
+                                        v.alarmFaultDate +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>报警类型:" +
+                                        v.typeName +
+                                        "</div></div><div class='elecTitle'><div class='lineTitle'>位置:" +
+                                        v.installLocation + "</div></div></div></div>";
+                            }
+                        })
+                        $('.elecBox').html(html);
+                    } else {
+                        var html = '';
+                        $('.elecBox').html(html);
+                    }
+                }
+            })
+        }
+        show(1)
+
+        //周报显示
+        function weekShow() {
+            window.top.OpenThirdFrame("./SElec_ElecWeekReportAdmin.html?ComID=" + 22109, 800, 600, "win", "用电周报");
+        }
+        //显示设备列表窗口
+        function detailShow(devBH, devMC, aFid, productNumber, typeName,pid) {
+            //devBH --> 设备id, devMC-->设备地址, aFid--报警id, productNumber -->设备编号, typeName---> 设备状态,pid ---> 设备所需项目id
+            // sessionStorage.setItem('DevBH', devBH);  //devId 
+            // sessionStorage.setItem('devMC', devMC); //v.installLocation
+            // sessionStorage.setItem('aFid', aFid);    
+            // sessionStorage.setItem('pid', pid);
+            // sessionStorage.setItem('productNumber', productNumber);  // 
+            window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" + devBH  + '&typeName=' + typeName + '&devSignature=' + productNumber, 1100, 600, "win", devMC);
+        }
+
+        function oneselfShow(devBH, devMC, aFid, productNumber,pid) {
+            // console.log(devBH);
+            // console.log(devMC);
+            sessionStorage.setItem('DevBH', devBH); //devId 
+            sessionStorage.setItem('devMC', devMC); //v.installLocation
+            sessionStorage.setItem('aFid', aFid);
+            sessionStorage.setItem('productNumber', productNumber);
+            window.top.OpenThirdFrame("./ExtApp_SElectric_oneselfDetail .html?devBH=" + devBH, 600, 600, "win", devMC);
+        }
+        //显示设备报警窗口
+        function alarmShow(AlarmType, AlarmDate) {
+            sessionStorage.setItem('AlarmDate', AlarmDate);
+            window.top.OpenFourFrame("./ExtApp_SElectric_ElecAlarm.html?ComID=22109&AlarmType=" + AlarmType +
+                "&AlarmDate=" + escape(AlarmDate), 650, 500, "win", "报警数据");
+        }
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

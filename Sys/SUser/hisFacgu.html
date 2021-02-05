@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>设备历史故障记录</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <script src="../../js/My97DatePicker/WdatePicker.js"></script>
+  <link rel="stylesheet" href="../../style/datepicker.css">
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="    padding: 20px 20px 0 20px; text-align: center;">
+    <div>设备历史故障记录</div>
+    <div style="display: flex;justify-content: center;">
+      <div>
+        <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+          data-val-required='The DateTime field is required.' id='start' name='QueryDate'
+          onfocus="WdatePicker({dateFmt:'yyyy/MM/dd  HH:mm:ss'});" type='text' value='' placeholder='请输入日期'
+          style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+      </div>
+      <div>
+        <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+          data-val-required='The DateTime field is required.' id='end' name='QueryDate'
+          onfocus="WdatePicker({dateFmt:'yyyy/MM/dd  HH:mm:ss'});" type='text' value='' placeholder='请输入日期'
+          style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+      </div>
+      <div>
+        <button class=" btn  btn-info btnSearch">查询</button>
+      </div>
+    </div>
+    <div id="box_table" style="overflow-y:auto;height:200px;">
+      <!-- <table border='1' width style='width:400px;margin:10px auto 0;text-align:center' >
+          <tr>
+              <td style='width:120px;' class='tabLabel'>报警名称:</td>
+              <td>A相温度报警</td>
+          </tr>
+          <tr>
+              <td style='width:120px;' class='tabLabel'>报警时间：</td>
+              <td>2019-07-01 12:59:04</td>
+          </tr>
+          <tr>
+              <td style='width:120px;' class='tabLabel'>报警值：</td>
+              <td>45°C</td>
+          </tr>
+      </table> -->
+    </div>
+  </div>
+  <div class="formBut">
+    <div class="form-group">
+      <div style="float:right;margin-right:30px;">
+        <!-- <input class="btn btn-primary" name="submitBtn" type="button" value="保存" id="btn_on"> -->
+        <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+      </div>
+      <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+    </div>
+    <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="">
+
+
+  </div>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+
+    function hisBtn(start, end) {
+      $.ajax({
+        type: 'get',
+        url: url + '/WebProject/getHistoryFault',
+        data: 'deviceId=' + global.devSignature + '&lodDate=' + start + '&newDate=' + end,
+        error: function (error) {
+          console.log(error)
+        },
+        success: function (result) {
+          console.log(result)
+          var mdata = result;
+          var html = "";
+          if (mdata.length > 0 || mdata != "") {
+            $.each(mdata, function (i, v) {
+              if (v.type == "漏电故障" || v.type == "剩余电流-报警" || v.type ==
+                "漏电故障-开路" || v.type == "漏电故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.leakageAlarmCurrentValue + "</td></tr></table>";
+              } else if (v.type == "A相电流-报警" || v.type == "A相电流过载-报警" || v.type ==
+                "A相故障-开路" || v.type == "A相故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noVoltageAlarmAValue + "</td></tr></table>";
+              } else if (v.type == "B相电流-报警" || v.type == "B相电流过载-报警" || v.type ==
+                "B相故障-开路" || v.type == "B相故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noLeakageAlarmBCurrentValue + "</td></tr></table>";
+              } else if (v.type == "C相电流-报警" || v.type == "C相电流过载-报警" || v.type ==
+                "C相故障-开路" || v.type == "C相故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noLeakageAlarmCCurrentValue + "</td></tr></table>";
+              } else if (v.type == "A相电压-报警" || v.type == "A相电压过载-报警" || v.type ==
+                "A相电压过载，电流过载-报警") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noVoltageAlarmAValue + "</td></tr></table>";
+              } else if (v.type == "B相电压-报警" || v.type == "B相电压过载-报警" || v.type ==
+                "B相电压过载，电流过载-报警") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noVoltageAlarmBValue + "</td></tr></table>";
+              } else if (v.type == "C相电压-报警" || v.type == "C相电压过载-报警" || v.type ==
+                "C相电压过载，电流过载-报警") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noVoltageAlarmCValue + "</td></tr></table>";
+              } else if (v.type == "A温度-报警" || v.type == "A温度故障-开路" || v.type ==
+                "A温度故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noAlarmATemperatureValue + "</td></tr></table>";
+              } else if (v.type == "B温度-报警" || v.type == "B温度故障-开路" || v.type ==
+                "B温度故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noAlarmNTemperatureValue + "</td></tr></table>";
+              } else if (v.type == "C温度-报警" || v.type == "C温度故障-开路" || v.type ==
+                "C温度故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noAlarmBTemperatureValue + "</td></tr></table>";
+              } else if (v.type == "N温度-报警" || v.type == "N温度故障-开路" || v.type ==
+                "N温度故障-短路") {
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td>" +
+                  v.noAlarmCTemperatureValue + "</td></tr></table>";
+              } else {
+                console.log('zhengc ')
+                html +=
+                  "<table border='1' width style='width:400px;margin:10px auto 0;text-align:center' ><tr><td style='width:120px;' class='tabLabel'>报警名称:</td><td>" +
+                  v.type +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警时间：</td><td>" +
+                  v.regdate +
+                  "</td></tr><tr><td style='width:120px;' class='tabLabel'>报警值：</td><td></td></tr></table>";
+              }
+            })
+          } else {
+            html = "<div style='text-align:center;'>该设备暂无报警信息</div>"
+          }
+          $('#box_table').html(html);
+        }
+      })
+    }
+    $('.btnSearch').click(function () {
+      var start = $('#start').val();
+      var end = $('#end').val();
+      hisBtn(start, end)
+    })
+    //http://p240647i77.qicp.vip/newEarlyWarn/WebProject/getHistoryFault?deviceId=0460041282914158&lodDate=2019-10-17%2016:16:15&newDate=2019-10-17%2016:45:54
+
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+    })
+  </script>
+</body>
+
+</html>

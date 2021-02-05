@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>安装明细</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js" type="text/javascript"></script>
+    <script src="../../js/My97DatePicker/WdatePicker.js"></script>
+    <link rel="stylesheet" href="../../style/datepicker.css">
+    <script src="../../js/FTool.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vTZYBA0KBc1ebqpeEpftrWuVEo5RZXli"></script>
+
+    <script type="text/javascript">
+        // function checkHELLO(field, rules, i, options) {
+        //     if (!/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i.test(field.val())) {
+        //         return "请输入有效的手机号码";
+        //     }
+        // }
+    </script>
+    <style>
+        .radioStyle{
+            height: 47px;
+            line-height: 47px;
+        }
+    </style>
+
+
+    <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="bodyBox">
+
+        <form action="" class="form-horizontal" id="editForm" method="post">
+            <div class="formBody" id="formBody">
+                <!--//readonly='readonly'  只读-->
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="orderid">订单编号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" id="orderid" name="orderid" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="deviceNo">设备型号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" id="deviceNo" name="deviceNo" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="dhxm">电工姓名</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="dhxm" name="dhxm" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="dgsjhm">电工手机号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control" id="dgsjhm" name="dgsjhm" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="ssgs">所属公司</label>
+                    <div class="col-xs-9">
+                        <input class="form-control "  id="ssgs" name="ssgs" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="jdsj">接单时间</label>
+                    <div class="col-xs-9">
+                            <input class='form-control Wdate  ' data-val='true' data-val-date='字段 DateTime 必须是日期。'
+                            data-val-required='The DateTime field is required.' id='jdsj' name='QueryDate'
+                            onfocus="WdatePicker({dateFmt:'yyyy/MM/dd  HH:mm:ss'});" type='text' value='' placeholder='请输入日期'
+                            style='height:30px; background:#fff url(images/datePicker.gif) no-repeat right;'>
+                        <!-- <input class="form-control "  id="jdsj" name="jdsj" type="text" value="" /> -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="azhzdh">安装回执单号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control "  id="azhzdh" name="azhzdh" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="fhrxm">发货人姓名</label>
+                    <div class="col-xs-9">
+                        <input class="form-control "  id="fhrxm" name="fhrxm" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="imsi">设备IMSI号</label>
+                    <div class="col-xs-9">
+                        <input class="form-control "  id="imsi" name="imsi" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="azhzdh">设备属性（初装、换货、拆除）</label>
+                    <div class="col-xs-9">
+                        <label class="radioStyle">
+                            <input type="radio"  value="初装" name="facShu">&nbsp;
+                            初装
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="换货"" name="facShu">&nbsp;
+                            换货
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="拆除"" name="facShu">&nbsp;
+                            拆除
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="azzt">安装状态（待装、已装、异常）</label>
+                    <div class="col-xs-9">
+                        <label class="radioStyle">
+                            <input type="radio"  value="待装" name="anZhuang">&nbsp;
+                            待装
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="已装"" name="anZhuang">&nbsp;
+                            已装
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="异常"" name="anZhuang">&nbsp;
+                            异常
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" style="display:none" id='yichang'>
+                    <label class="control-label col-xs-3 " for="ycyy">异常原因</label>
+                    <div class="col-xs-9">
+                        <input class="form-control "  id="ycyy" name="ycyy" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="bxdsfxf">保险单号是否下发</label>
+                    <div class="col-xs-9">
+                        <label class="radioStyle">
+                            <input type="radio"  value="是" name="baoxian">&nbsp;
+                            已下发
+                            <input type="hidden" id="menuAlias_1" value="是">
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="否"" name="baoxian">&nbsp;
+                            未下发
+                            <input type="hidden" id="menuAlias_0" value="否">
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="aztpsjsc">安装图片是否上传</label>
+                    <div class="col-xs-9">
+                        <label class="radioStyle">
+                                <input type="radio"  value="是" name="anzhuangPhoto">&nbsp;
+                                已上传
+                                <input type="hidden" id="menuAlias_1" value="是">
+                        </label>
+                        <label class="radioStyle">
+                            <input type="radio"  value="否" name="anzhuangPhoto">&nbsp;
+                            未上传
+                            <input type="hidden" id="menuAlias_0" value="否">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="formBut">
+                <div class="form-group">
+                    <div style="float:right;margin-right:30px;"> <input class="btn btn-primary" name="submitBtn"
+                            type="button" value="保存" id="Edit_save" /> <input class="btn btn-default" name="goBackBtn"
+                            type="button" value="关闭" id="btn_close" /> </div>
+                    <div class="checkbox" style="float:right;margin-right:30px;"> <label>
+                            <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden"
+                                value="" />
+                    </div>
+        </form>
+    </div>
+    <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../js/anzhuangFac.js"></script>
+</body>
+
+</html>

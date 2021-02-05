@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>智慧安全系统平台</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/default.js"></script>
+    <link href="style/login.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="WebTitle">忘记密码</div>
+    <div class="bodyBox">
+        <table style="width:100%; height:100%;">
+            <tr>
+                <td style="width:100%; height:100%; text-align:center;vertical-align:middle;">
+                    <div class="LoginBox">
+                        <div class="LoginForm" style="left:20px;top:25px">
+                            <form action="/Login/SavePass" class="form-horizontal" id="editForm" method="post">
+                                <div class="formBody">
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3 " for="username">登录账号</label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control " id="username" name="username" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3 " for="NewPass">新密码</label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control " id="NewPass" name="NewPass" type="password" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-xs-3 " for="passCode">验证码</label>
+                                        <div class="col-xs-9">
+                                            <input class="form-control " id="passCode" name="passCode"
+                                                type="text" style="display:inline-block;width:60%;"/>
+                                            <button class="btn  btn-success" id="NewCode" name="NewCode">获取验证码</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="formBut">
+                                    <div class="form-group">
+                                        <div style="float:right;margin-right:30px;"> <input class="btn btn-primary"
+                                                name="submitBtn" id="submitBtn" type="button" value="确定" /> 
+                                                <input
+                                                class="btn btn-default" name="goBackBtn" id="back"
+                                                 type="button" value="返回" /> </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     $(function(){
+        $('#back').click(function(){
+            location.href="login.html"
+        })
+        var countdown=60;
+        $('#NewCode').click(function(e){
+            e.preventDefault();
+            var that=this;
+           // console.log(that);
+            var username=$('#username').val();
+            if(username!=""&&username.length==11){
+                $.ajax({
+                    type:'get',
+                    data:'user_name='+username,
+                    url:'http://112.74.126.51/earlyWarn/earlyWarn/getCode.action',
+                    error:function(error){console.log(error)},
+                    success:function(result){
+                        //console.log(result);
+                        var res=JSON.parse(result);
+                        console.log(res);
+                        if(res.list[0].status==false){
+                            alert(res.list[0].mess);
+                        }else{
+                            settime(that);
+                        }  
+                    }
+                })
+            }else{
+                alert('请输入手机号码或手机号码输入有误');
+            }
+        })
+        function settime(val) {  // 倒计时
+            console.log(val)
+            if (countdown == 0) {	
+                val.removeAttribute("disabled");
+                val.innerHTML="获取验证码";
+                countdown = 60;
+                $('#NewCode').css('color','#fff');
+            } else {
+                val.setAttribute("disabled", true);
+                val.innerHTML="重新发送(" + countdown + ")";
+                countdown--;
+                $('#NewCode').css('color','#8b8b8b');
+                setTimeout(function() {
+                    settime(val)
+                },1000)
+            }
+        }
+        
+        $('#submitBtn').click(function(){
+            var username=document.getElementById('username').value;
+            var NewPass=document.getElementById('NewPass').value;
+            var NewCode=document.getElementById('passCode').value;
+            if(username!=''&&NewPass!=''){
+                $.ajax({
+                    type:'get',
+                    data:'user_name='+username+'&password='+NewPass+'&code='+NewCode,
+                    url:'http://anfangapp.112.74.126.51/earlyWarn/updatePassword.action',
+                    error:function(error){console.log(error)},
+                    success:function(result){
+                        var res=JSON.parse(result);
+                        console.log(res);
+                        if(res.list[0].status==false){
+                            alert(res.list[0].mess);
+                        }else{
+                            alert('密码修改成功');
+                            setTimeout(function(){
+                                location.href="login.html";
+                            },100)
+                            
+                        }
+                    }
+                })
+            }else{
+                $.alert('请检查用户名或密码是否正确');
+            }
+            
+        })
+        
+     })
+        
+    </script>
+
+</body>
+
+</html>

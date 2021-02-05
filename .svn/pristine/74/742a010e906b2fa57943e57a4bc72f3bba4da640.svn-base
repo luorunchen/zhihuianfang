@@ -1,0 +1,380 @@
+﻿/*基础样式*/
+body {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width:100%;
+    height:100%;
+    font-size:13px;
+    overflow:hidden;
+}
+a {
+  cursor: pointer;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+.clear {
+  display: block;
+  overflow: hidden;
+}
+.block {
+  display: block;
+}
+
+.mt-xs {
+  margin-top: 5px;
+  color: #fff;
+}
+
+
+.contentBox {
+    position:absolute;
+    left:-100%;
+    width:100%;
+    top:0px;
+    bottom:0px;
+     -webkit-transition: left 0.6s linear, opacity 0.6s linear;
+    -moz-transition: left 0.6s linear, opacity 0.6s linear;
+    -o-transition: left 0.6s linear, opacity 0.6s linear;
+    -ms-transition: left 0.6s linear, opacity 0.6s linear;
+    transition: left 0.6s linear, opacity 0.6s linear;
+}
+
+.contentActive {
+      left:0px;
+}
+
+
+
+/*整体布局*/
+
+.contentHeadBox {
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    height:70px;
+    border-bottom:solid 3px #048ae4;
+}
+.contentBodyBox {
+     position:absolute;
+    left:0px;
+    top:71px;
+    right:0px;
+    bottom:30px;
+}
+.footBox {
+    position:absolute;
+    left:220px;
+    bottom:0px;
+    right:0px;
+    height:30px;
+    color:#FFF;
+    text-align:center;
+    font-size: 14px;
+    line-height: 30px;
+    font-family: 微软雅黑;
+
+}
+
+.sysLoginDept {
+      font-size: 14px;
+    color:#fff;
+   position:absolute;
+   top:0px;
+   right:10px;
+    line-height:30px;
+}
+
+/*左侧导航**/
+.navBox {
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    width:220px;
+    overflow-y:auto;
+}
+
+.navBack {
+    width:100%;
+    height:120px;
+}
+
+.navBack .backImg
+{
+    width:100px;
+    height:100px;
+    margin-left:10px;
+    float:left;
+    background: url('../images/backImg.png') no-repeat center center;
+    background-size:65px 65px;
+    cursor:pointer;
+}
+.navBack .backTitle
+{
+    height:100px;
+    line-height:100px;
+    float:left;
+    font-size:20px;
+    color:#ffffff;
+}
+
+.navBox .navMenu
+{
+    background-color:transparent;
+    margin-left:0px;
+    margin-right:5px;
+    list-style:none;
+    color:#fff;
+    padding-left:10px;
+}
+.navBox .navMenu li
+{
+    padding-top:6px;
+    padding-bottom:6px;
+    font-size:16px;
+}
+
+
+.navBox .navMenu .naveMenuItem
+{
+     padding-left:35px;
+    
+     position:relative;
+}
+
+.navBox .navMenu .naveMenuItem6
+{
+     padding-left:45px;
+}
+
+
+.navBox .navMenu .naveMenuHeadItem
+{
+    padding-left:20px;
+    font-size:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+
+
+.navBox .navMenu .naveMenuItem .leftPoint{
+
+    position:absolute;
+    left:-10px;
+    top:8px;
+    height:35px;
+    width:35px;
+    font-size:20px;
+    background-size:100%;
+}
+.navBox .navMenu .naveMenuClickItem
+{
+     cursor:pointer;
+}
+.navBox .navMenu .naveMenuClickItem:hover
+{
+     background-color:#428bca;
+}
+
+
+
+.rightBodyBox
+{
+
+    position:absolute;
+    left:221px;
+    top:0px;
+    bottom:0px;
+    right:0px;
+}
+
+
+
+
+.ModelHeadBox {
+    position:absolute;
+    left:0px;
+    top:0px;
+    right:0px;
+    height:60px;
+    overflow:hidden;
+    background-color:#191919;
+     text-align:center;
+    
+}
+.ModelHeadBox  .webTitle{
+     font-size:25px;
+     line-height:60px;
+    color:#fff;
+}
+.ModelHeadBox .navBack {
+    height:50px;
+    position:absolute;
+    left:10px;
+    top:5px;
+}
+
+.ModelHeadBox .navBack .backImg
+{
+    width:50px;
+    height:50px;
+    margin-left:10px;
+    float:left;
+    background: url('../images/backImg.png') no-repeat center center;
+    background-size:50px 50px;
+    cursor:pointer;
+}
+.ModelHeadBox .navBack .backTitle
+{
+    margin-left:10px;
+    height:50px;
+    line-height:50px;
+    float:left;
+    font-size:20px;
+    color:#ffffff;
+}
+
+
+
+
+/*标题*/
+.sysTitle {
+    color:#fff;
+    padding-left:15px;
+    float:left;
+}
+    .sysTitle h3 {
+        font-size:25px;
+        font-family: 黑体;
+        margin-top:10px;
+        line-height:50px;
+    }
+   .sysTitle h3 small {
+    color: #0bb8e4;
+    font-size: 16px;
+    line-height: 30px;
+    font-family: 微软雅黑;
+}
+
+
+
+.sysNav {
+    position:absolute;
+    top:31px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+    #mainTabNav {
+        clear: none;
+        margin-left:10px;
+        margin-bottom: 0;
+        float: left;
+        border-bottom: 1px solid black;
+    }
+   #mainTabNav > li {
+          float:left;
+          margin-bottom: -3px;
+        }
+  #mainTabNav > li > a {
+        border: 1px solid #012f4e;
+        background-color: #048ae4;
+        background-image: linear-gradient(to bottom, #048ae4, #048ae4);
+        background-repeat: repeat-x;
+        border-bottom: 1px solid #84ccfd;
+        color: #cccccc;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        line-height: 20px;
+        border-radius: 4px 4px 0 0;
+}
+        #mainTabNav .active > a,
+        #mainTabNav > li > a:hover,
+        #mainTabNav> li > a:focus,
+        #mainTabNav .active > a:hover,
+        #mainTabNav .active > a:focus
+          {
+             border: 1px solid #012f4e;
+            background-color: #047ed0;
+            background-image: linear-gradient(to bottom, #048ae4, #036cb2);
+            background-repeat: repeat-x;
+            border-bottom: 1px solid #20a3fb;
+            color: #ffffff;
+
+        }
+       #mainTabNav .glyphicon {
+           position:absolute;
+           right:8px;
+           top:12px;
+    }
+#mainTabContent .tab-pane {
+    width:100%;
+    height:100%;
+    position:relative;
+}
+#home
+{
+     background-color:#fff;
+    opacity:0.5;
+}
+
+#mainTabContent iframe {
+    position:absolute;top:0px;left:0px;right:0px;bottom:0px;
+}
+
+#editModalLabel {
+    font-family:'Microsoft YaHei';
+    font-size:20px;
+    text-align:center;
+}
+#editModalBody {
+    padding:0px;
+    padding-bottom:10px;
+    overflow:hidden;
+    position:relative;
+}
+
+#selModalLabel {
+    font-family:'Microsoft YaHei';
+    font-size:20px;
+    text-align:center;
+}
+#selModalBody {
+    padding:0px;
+    padding-bottom:10px;
+    overflow:hidden;
+    position:relative;
+}
+.modal-dialog {
+  width:auto;
+  margin: 30px auto;
+}
+
+#thirdModalLabel {
+    font-family:'Microsoft YaHei';
+    font-size:20px;
+    text-align:center;
+}
+#thirdModalBody {
+    padding:0px;
+    padding-bottom:10px;
+    overflow:hidden;
+    position:relative;
+}
+#fourModalLabel {
+    font-family:'Microsoft YaHei';
+    font-size:20px;
+    text-align:center;
+}
+#fourModalBody {
+    padding:0px;
+    padding-bottom:10px;
+    overflow:hidden;
+    position:relative;
+}
+

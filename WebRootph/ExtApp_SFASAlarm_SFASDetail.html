@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <script src="js/url_zhuan.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <link href="style/Form.css" rel="stylesheet" />
+    <link href="style/ShowTable.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="bodyBox">
+    <div class="formBody">
+        <div class="ShowTable" style="width:auto;">
+           
+        </div>
+        <div style='text-align:center;margin-top:30px;' class="hisAlarm">历史报警信息</div>
+        <div class='alarmTable' style="width:auto;">
+            
+            
+        </div>
+    </div>
+    <div class="formBut">
+        <div class="form-group">   <div style="float:right;margin-right:30px;">     <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseThirdWin()" type="button" value="关闭" />  </div>  </div>
+    </div>
+</div>
+
+    <script>
+     var type=parseInt(localStorage.getItem('tpage'));   
+     var devId=sessionStorage.getItem('DevBH');
+    // console.log(type+'--'+devId);
+     $.ajax({
+        type:'get',
+        url:url+'/admin/device/ElecData.action',
+        dataType:'json',
+        data:'devId='+devId+'&type='+type,
+        error:function(error){
+            console.log('Ext_app_SFASA'+error);
+        },
+        success:function(result){
+            console.log(result);
+            var data=result.DevInfo;
+            console.log(data);
+            var cdata=result.DevData;
+            console.log(cdata);
+            
+           var a=new Date(data.heartbeatTime.time);
+          // console.log(a);
+            var heartbeatTime=a.toLocaleString();
+          // console.log(heartbeatTime);
+            var html="";
+            html="<table class='tabBox'> <caption style='text-align:center'>设备详情</caption><tr><td style='width:120px; ' class='tabLabel'>设备厂商</td><td colspan='3'>"+data.dVName+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备型号</td><td colspan='3'>"+data.dMName+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>安装位置</td><td colspan='3'>"+data.installLocation+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>注册时间</td><td colspan='3'>"+heartbeatTime+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>产品编号</td><td colspan='3'>"+data.productNumber+"</td></tr></table>";
+            $('.ShowTable').html(html);
+
+            var html="";
+                console.log(cdata!="");
+                console.log(cdata!=null);
+            if(cdata!=""&&cdata!=null){
+                $.each(cdata,function(i,v){
+                // console.log(v);
+                    html+="<table border='1' id='alarmBox' class='tabBox' style='margin-top:30px;'><tr><td style='width:120px; ' class='tabLabel'>报警位置</td><td colspan='3'>"+v.installLocation+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警时间</td><td colspan='3'>"+v.regdate+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警类型</td><td colspan='3'>"+v.typeName+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>地址号</td><td colspan='3'>"+v.speed+"</td></tr><tr><td style='width:120px; ' class='tabLabel'>回路号</td><td colspan='3'>"+v.height+"</td></tr></table>";
+                });
+            }else{
+                var html="";
+                html="<div>暂无报警信息    </div>";
+            }
+            $('.alarmTable').html(html);
+
+        }
+
+        
+     })
+    </script>
+</body>
+</html>

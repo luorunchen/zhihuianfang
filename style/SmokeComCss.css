@@ -1,0 +1,242 @@
+﻿html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Microsoft YaHei';
+}
+
+.elecLeft {
+    position: absolute;
+    top: 10px;
+    border: 0px;
+    left: 300px;
+    bottom: 0px;
+    width: 610px;
+    padding-right: 20px;
+}
+
+
+.ComInfo {
+    border: solid 1px #fff;
+    box-shadow: inset 0px 0px 30px #fff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.textContent {
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: "微软雅黑";
+    font-weight: 500;
+}
+
+.textColor {
+    color: #c8c9ca;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: normal;
+}
+
+
+.elecDeviceBox {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.DeviceItem {
+    height: 120px;
+    width: 120px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    position: relative;
+    text-align: center;
+    line-height: 140px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.DeviceStatus {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.elecBg1 {
+    background-color: #ff0000;
+        border-radius: 50%;
+}
+
+.elecBg2 {
+    background-color: #60c256;
+        border-radius: 50%;
+}
+
+.elecBg3 {
+    background-color: #047877;
+        border-radius: 50%;
+}
+
+.elecBg3 {
+    background-color: #bbb;
+        border-radius: 50%;
+}
+
+.elecBg4 {
+    background-color: #337ab7;
+        border-radius:50%;
+}
+
+.elecAlarmBox {
+    margin-top: 160px;
+    width: 100%;
+    height: 320px;
+    border: solid 1px #fff;
+    box-shadow: inset 0px 0px 30px #fff;
+    border-radius: 7px;
+}
+
+.elecAlarmDoBox {
+    position: absolute;
+    width: 280px;
+    top: 10px;
+    border: 0px;
+    right: 10px;
+    bottom: 0px;
+}
+
+.ShowImgBox {
+    padding: 10px;
+    overflow: hidden;
+}
+
+    .ShowImgBox img {
+        float: left;
+        margin-left: 10px;
+    }
+
+.elecDoLog {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 10px;
+    border: solid 1px #fff;
+    border-radius: 5px;
+    color: #fff;
+    overflow-y: auto;
+}
+
+.alarmDoItem {
+    border-bottom: solid 1px #5dacd3;
+}
+
+.alarmDoType {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    background-color: #466a7c;
+}
+
+.alarmDoDevice {
+    line-height: 20px;
+    padding-left: 20px;
+}
+
+.alarmDoText {
+    line-height: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.elecDo {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 140px;
+}
+
+    .elecDo textarea {
+        height: 100px;
+    }
+
+.doButs {
+    text-align: center;
+    padding-top: 5px;
+}
+
+.elecBox {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+    .elecBox .elecItem {
+        width: 170px;
+        height: 140px;
+        overflow-y: hidden;
+        text-align: center;
+        border: solid 1px #ccc;
+        float: left;
+        margin-left: 10px;
+        border-radius: 5px;
+        display: table;
+        cursor: pointer;
+    }
+
+    .elecBox .elecPic {
+        width: 80px;
+        height: 100px;
+        text-align: center;
+        margin-top: 20px;
+        cursor: pointer;
+        float: left;
+    }
+
+    .elecBox .SiDiOnline {
+        background-image: url(SiDi_lv.png);
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .elecBox .SiDiOffline {
+        background-image: url(SiDi_hui.png);
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .elecBox .SiDiNormal {
+        background-image: url(SiDi_lan.png);
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .elecBox .SiDiAbnormal {
+        background-image: url(SiDi_hong.png);
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .elecBox .elecContent {
+        overflow-y: hidden;
+        padding-right: 5px;
+        display: table-cell;
+        vertical-align: middle;
+        height:100%;
+    }
+       .elecBox .elecTitle {
+       width:100%;
+       text-align:left;
+       font-size:14px;
+       padding-bottom:2px;
+       padding-left:10px;
+    }

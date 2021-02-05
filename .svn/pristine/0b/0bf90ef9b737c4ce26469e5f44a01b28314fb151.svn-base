@@ -1,0 +1,85 @@
+html{
+	font-size:20px;
+}
+*{
+	margin:0px;
+}
+.weui-notification {
+  position: fixed;
+  width: 50%;
+  min-height: 3.4rem;
+  top: -2rem;
+  padding-top: 2rem;
+  left: 0;
+  right: 0;
+   margin: 0 auto;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  font-size: .65rem;
+  -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.weui-notification.weui-notification--in {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.weui-notification .weui-notification__inner {
+  padding: .4rem .6rem 1rem .6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+.weui-notification .weui-notification__media {
+  height: 4rem;
+  width: 3rem;
+}
+.weui-notification .weui-notification__media img {
+  width: 100%;
+}
+.weui-notification .weui-notification__content {
+  width: 100%;
+  margin: 0rem .4rem;
+}
+.weui-notification .weui-notification__title {
+  font-weight: bold;
+}
+.weui-notification .weui-notification__text {
+  line-height: 1;
+}
+.weui-notification .weui-notification__handle-bar {
+  position: absolute;
+  bottom: .2rem;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
+  width: 2rem;
+  height: .3rem;
+  border-radius: .15rem;
+  background: white;
+  opacity: .5;
+}
+
+/***$.alert**/
+.weui-toast.weui-toast--visible {
+  opacity: 1;
+  visibility: visible;
+}
+.weui-toast {
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    visibility: hidden;
+    margin: 0;
+    top: 45%;
+    z-index: 2000;
+}

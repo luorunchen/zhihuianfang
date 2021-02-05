@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Index</title>
+    <link href="style/bootstrap.min.css" rel="stylesheet" />
+    <link href="style/animate.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <link href="style/GridLayout.css" rel="stylesheet" />
+    <script src="js/highcharts.js"></script>
+    <link href="style/ElecComCss.css" rel="stylesheet" />
+    <link href="style/ElecStyle.css" rel="stylesheet" />
+    <link href="style/MDStyle.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="elecLeft">
+        <div class="ComInfo">
+            <div class="textContent">
+                <span class="textColor">蓬莱文旅锦程大酒店</span>位于<span class="textColor">山东省-烟台市-蓬莱市-紫荆山街道办事处</span>,详细位置<span
+                    class="textColor">小泰山南路23号</span>，单位类型为<span class="textColor">宾馆</span>。
+            </div>
+            <div class="textContent">
+                单位消防安全负责人是<span class="textColor">孙淑丽</span>，联系电话<span
+                    class="textColor">13793503836</span>,消防安全管理人是<span class="textColor">张子平</span>，联系电话<span
+                    class="textColor">13863813252</span>。
+            </div>
+            <div class="textContent">
+                该单位属于<span class="textColor">九小场所</span>，消防主管部门是<span class="textColor">蓬莱市公安局</span>。
+            </div>
+        </div>
+        <div class="elecDeviceBox">
+            <div class="DeviceItem elecBg1" onclick="detailShow('03');">
+                <div class="DeviceStatus">报警设备</div>
+                0
+            </div>
+            <div class="DeviceItem elecBg2" onclick="detailShow('01');">
+                <div class="DeviceStatus">在线设备</div>
+                9
+            </div>
+            <div class="DeviceItem elecBg3" onclick="detailShow('02');">
+                <div class="DeviceStatus">断线设备</div>
+                0
+            </div>
+            <div class="DeviceItem elecBg4" onclick="detailShow('04');">
+                <div class="DeviceStatus">脱扣设备</div>
+                0
+            </div>
+        </div>
+        <div class="elecAlarmBox">
+        </div>
+    </div>
+    <div class="elecAlarmDoBox">
+        <div class="elecDoLog">
+        </div>
+        <div class="elecDo">
+            <textarea id="txtDo" name="txtDo" class="form-control" placeholder="请输入值守中心处置情况"></textarea>
+            <div class="doButs">
+                <button class="btn btn-primary" type="button" onclick="weekShow()">周报查看</button>
+                <button class="btn btn-primary" type="button" onclick="doAlarm()">提交处置情况</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function doAlarm() {
+            var txt = $("#txtDo").val();
+            $.get("ElecAlarmDo.html?ComID=101207&ComName=" + escape("蓬莱文旅锦程大酒店") + "&doResults=" + escape(txt), //SSmoke
+                function (data, status) {
+                    $(".elecDoLog").html(data);
+                    $("#txtDo").val("");
+                    $(".PlayImg").find("img").click(function () {
+                        var aimg = this;
+                        var timg = $(this);
+                        var parBox = timg.parent();
+                        var imgs = [];
+                        var imgidx = 0;
+                        parBox.find("img").each(function (i, v) {
+                            if (v == aimg) {
+                                imgidx = i;
+                            }
+                            imgs.push({
+                                "href": $(v).attr("src"),
+                                "title": $(v).attr("alt")
+                            });
+                        });
+                        window.top.ShowPhotoView({
+                            "index": imgidx,
+                            "pics": imgs
+                        });
+                    });
+                });
+        }
+        //周报显示
+        function weekShow() {
+            window.top.OpenThirdFrame("./SElec_ElecWeekReportAdmin.html?ComID=" + 101207, 800, 600, "win", "用电周报");
+        }
+        //显示设备列表窗口
+        function detailShow(devStatus) {
+            window.top.OpenSelFrame("./ElecComDev.html?ComID=101207&ComName=" + escape("蓬莱文旅锦程大酒店") + "&DevStatus=" +
+                devStatus, 870, 600, "SElect", "蓬莱文旅锦程大酒店", "",
+                function (r) {});
+        }
+        //显示设备报警窗口
+        function alarmShow(AlarmType, AlarmDate) {
+            window.top.OpenFourFrame("./ExtApp/SElectric/ElecAlarm?ComID=101207&AlarmType=" + AlarmType +
+                "&AlarmDate=" + escape(AlarmDate), 650, 500, "win", "报警数据");
+        }
+        $(document).ready(function () {
+            doAlarm();
+            Highcharts.setOptions({
+                colors: ['#FF0000', '#50B432', '#DDFF77', '#f79407']
+            });
+            //隐患趋势图
+            $('.elecAlarmBox').highcharts({
+                chart: {
+                    backgroundColor: 'rgba(0,0,0,0)'
+                },
+                title: {
+                    text: '一周内报警',
+                    style: {
+                        color: '#ffffff'
+                    }
+                },
+                xAxis: {
+                    gridLineColor: "#73c4f1",
+                    labels: {
+                        style: {
+                            color: '#ffffff'
+                        }
+                    },
+                    categories: [
+                        '2018-07-26', '2018-07-27', '2018-07-28', '2018-07-29', '2018-07-30',
+                        '2018-07-31', '2018-08-01',
+                    ]
+                },
+                yAxis: [{
+                    title: {
+                        text: '报警数',
+                        style: {
+                            color: '#ffff00'
+                        }
+                    },
+                    gridLineColor: "#73c4f1",
+                    labels: {
+                        style: {
+                            color: '#ffffFF'
+                        }
+                    },
+                    min: 0,
+                    allowDecimals: false,
+                    minTickInterval: 1
+                }],
+                legend: {
+                    borderWidth: 0,
+                    enabled: true,
+                    itemStyle: {
+                        color: '#ffffff',
+                        fontWeight: 'bold'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true,
+                            style: {
+                                color: "#ffffff"
+                            }
+                        },
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function () {
+                                    alarmShow(this.typebh, this.name)
+                                }
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: '电压报警',
+                    yAxis: 0,
+                    data: [{
+                        name: '2018-07-26',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-07-27',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-07-28',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-07-29',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-07-30',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-07-31',
+                        typebh: '01',
+                        y: 0
+                    }, {
+                        name: '2018-08-01',
+                        typebh: '01',
+                        y: 0
+                    }]
+                }, {
+                    name: '电流报警',
+                    yAxis: 0,
+                    data: [{
+                        name: '2018-07-26',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-07-27',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-07-28',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-07-29',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-07-30',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-07-31',
+                        typebh: '02',
+                        y: 0
+                    }, {
+                        name: '2018-08-01',
+                        typebh: '02',
+                        y: 0
+                    }]
+                }, {
+                    name: '剩余电流报警',
+                    yAxis: 0,
+                    data: [{
+                        name: '2018-07-26',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-07-27',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-07-28',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-07-29',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-07-30',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-07-31',
+                        typebh: '03',
+                        y: 1
+                    }, {
+                        name: '2018-08-01',
+                        typebh: '03',
+                        y: 0
+                    }]
+                }, {
+                    name: '温度报警',
+                    yAxis: 0,
+                    data: [{
+                        name: '2018-07-26',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-07-27',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-07-28',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-07-29',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-07-30',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-07-31',
+                        typebh: '04',
+                        y: 0
+                    }, {
+                        name: '2018-08-01',
+                        typebh: '04',
+                        y: 0
+                    }]
+                }]
+            });
+        });
+    </script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

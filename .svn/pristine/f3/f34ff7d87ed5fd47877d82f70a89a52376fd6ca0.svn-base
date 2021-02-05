@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>SumCompanyContent</title>
+  <link href="style/bootstrap.min.css" rel="stylesheet" />
+  <link href="style/animate.css" rel="stylesheet" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/url_zhuan.js"></script>
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=gQ5brR6pk0kIpWhZsGRhmU2T"></script>
+  <script src="BDMapWater/mapUtil.js"></script>
+  <script src="BDMapWater/mapv.js"></script>
+  <script src="BDMapWater/BDMap.js"></script>
+  <script src="BDMapWater/mapData.js"></script>
+  <script src="BDMapWater/mapTool.js"></script>
+  <script src="BDMapWater/MyFocus.js"></script>
+  <script src="js/highcharts.js"></script>
+  <script type="text/javascript" src="js/default.js"></script>
+  <link href="style/MapElec.css" rel="stylesheet" />
+  <link href="style/ElecSumPage.css" rel="stylesheet" />
+  <link href="style/MDStyle.css" rel="stylesheet" />
+  <link href="style/xtbny.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style/1.css">
+</head>
+
+<body>
+  <audio src="./music/6709.mp3" id="auto"></audio>
+  }
+  <div class="bodyBox">
+    <div class="MapBox">
+    </div>
+    <div class="HeadBox">
+      <div class="webTitle">建筑消防用水平台</div>
+      <div class="navBack">
+        <div class="backImg" onclick="window.top.goMain();"></div>
+        <div class="backTitle">返回首页</div>
+      </div>
+    </div>
+    <div class="NavMenuBox">
+      <div class="LeftNavBox" style="width:1300px; position: absolute;top: 80px;left:47%;margin-left:-600px;">
+
+        <div class="MenuRow">
+          <!--<div class="MenuItem" onclick="ShowFull({bh:'AA88', id:'BDQuestion', title:'隐患整改进度', url:'1.html'})">
+            <div class="MenuItem1" style="background-color:#92236b">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 隐患整改进度 </div>
+            </div>
+          </div>-->
+          <div class="MenuItem" onclick="ShowFull({bh:'AC91', id:'PubDevice2', title:'电气火灾隐患预警分析1', url:'2.html'})">
+            <div class="MenuItem1" style="background-color:#69aa4c">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 电气火灾隐患预警分析 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowFull({bh:'AC92', id:'PubDevice3', title:'消防水系统预警分析', url:'3.html'})">
+            <div class="MenuItem1 MenuItem2" style="background-color:#b65066;">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 消防水系统预警分析 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowFull({bh:'AC93', id:'PubDevice1', title:'火灾报警系统数据分析', url:'4.html'})">
+            <div class="MenuItem1" style="background-color:#0197e4">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 火灾报警系统数据分析 </div>
+            </div>
+          </div>
+
+
+          <div class="MenuItem" onclick="ShowFull({bh:'AC94', id:'PubDevice6', title:'重点部位预警分析', url:'5.html'})">
+            <div class="MenuItem1" style="background-color:#2f2db7">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 重点部位预警分析 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowFull({bh:'ACAC', id:'PubDevice9', title:'智慧型独立烟感预警分析', url:'6.html'})">
+            <div class="MenuItem1" style="background-color:#e3b720">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 智慧型独立烟感预警分析 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowFull({bh:'ACAE', id:'SGasAlarm', title:'燃气探测器报警分析', url:'7.html'})">
+            <div class="MenuItem1" style="background-color:#de6c0f">
+              <div class="MenuContent">
+                <div class="MenuPic"></div>
+              </div>
+              <div class="MenuTitle"> 燃气探测器报警分析 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowModel({bh:'ACEm', id:'Emergency', title:'应急处理', url:'8.html'})">
+            <div class="MenuItem1 " style="background-color:#F20000">
+              <div class="MenuContent">
+                <div class="MenuPic" style="background-image:url(images/firepart_1.png)"></div>
+              </div>
+              <div class="MenuTitle"> 应急处理 </div>
+            </div>
+          </div>
+          <div class="MenuItem" onclick="ShowFull({bh:'ACQJ', id:'QjingDevice', title:'设备定位全景图', url:'9.html'})">
+            <div class="MenuItem1 MenuItem2">
+              <div class="MenuContent">
+                <div class="MenuPic" style="background-image:url(images/elec.png)"></div>
+              </div>
+              <div class="MenuTitle"> 设备定位全景图 </div>
+            </div>
+          </div>
+        </div>
+        <div id="clear"></div>
+
+      </div>
+    </div>
+    <div class="leftBox">
+      <div class="numBox" id="WaterAlarmSum">
+        <!--<div class="numTitle">今日报警(项目)</div>
+            <div class="numContent" id="Alarm00">
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+                <div class="numCell">0</div>
+            </div>
+            <div class="numItem bg1" data-sign="01">
+                室内消火栓<div id="Alarm01" class="valueCell">0</div>
+            </div>
+            <div class="numItem bg1" data-sign="02" >
+                自动水喷淋<div id="Alarm02" class="valueCell">0</div>
+            </div>
+            <div class="numItem bg1" data-sign="03">
+                高位水箱<div id="Alarm03" class="valueCell">0</div>
+            </div>
+            <div class="numItem bg1" data-sign="04">
+                消防水池<div id="Alarm04" class="valueCell">0</div>
+            </div>-->
+      </div>
+      <div class="numBox" id="WaterDeviceSum" style="margin-top:10px;">
+        <div class="numTitle">建筑消防用水监测点</div>
+        <div class="numContent" id="Dev00">
+          <div class="numCell">0</div>
+          <div class="numCell">0</div>
+          <div class="numCell">0</div>
+          <div class="numCell">0</div>
+          <div class="numCell">0</div>
+          <div class="numCell">0</div>
+        </div>
+        <div class="numItem bg5" data-sign="01">
+          报警<div id="Dev01" class="valueCell"></div>
+        </div>
+        <div class="numItem bg6" data-sign="02">
+          在线<div id="Dev02" class="valueCell"></div>
+        </div>
+        <div class="numItem bg7" data-sign="03">
+          离线<div id="Dev03" class="valueCell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="queryBox">
+      <div class="queryToolBar">
+        <input type="text" class="form-control queryText" />
+        <button class="btn btn-primary queryBut">查询</button>
+      </div>
+      <div class="queryResult">
+      </div>
+    </div>
+    <div class="chartBox">
+      <div class="chartBody">
+      </div>
+      <div class="chartLabel">隐患趋势图</div>
+      <div class="chartBut"><i class="glyphicon glyphicon-circle-arrow-right"></i></div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
+  <script src="js/jquery-weui.js"></script>
+  <script>
+    var username=localStorage.getItem('userName');
+   console.log(username)
+   if(username=="" ||username== null){
+     alert('请登录后进入主页')
+     location.href="login.html"
+   }
+    </script>
+  <script type="text/javascript">
+    //获取音频对象
+    var audio = $("#auto")[0];
+    audio.addEventListener("ended", function () {
+      if (playNum > 0) {
+        playNum--;
+        audio.play();
+      }
+    }, false);
+
+    var playAlarm = function () {
+      playNum = 3;
+      audio.play();
+    };
+
+    var userName = parseInt(localStorage.getItem('userName'));
+    var goEasy = new GoEasy({
+      appkey: 'BC-1de24b0d4d7b4d96a4abe85c0b43302c'
+    });
+
+    goEasy.subscribe({
+      channel: userName.toString(),
+      onMessage: function (message) { //这边是推送网页之后，页面的动作
+        playAlarm();
+        var res = message.content;
+        var arr = res.split(',');
+        if (arr != "") {
+          sessionStorage.setItem('devId', arr[1]); //devId 
+          sessionStorage.setItem('devMC', arr[2]); //v.installLocation
+          sessionStorage.setItem('productNumber', arr[0]);
+          sessionStorage.setItem('DevBH', arr[1]); //devId 
+          if (arr[5] == '0') {
+            localStorage.setItem('tpage', '4')
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/wanguan.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devId=" + arr[1], 800, 600, "win", arr[
+                  2]);
+              }
+            });
+          } else if (arr[5] == '2') {
+            localStorage.setItem('tpage', '6')
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                window.top.OpenThirdFrame("./SSmoke_SmokeDetail.html?devId=" + arr[1], 800, 600, "win", arr[
+                  2]);
+              }
+            });
+          } else if (arr[5] == '3') {
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" + arr[1], 1100, 600,
+                  "win", arr[2]);
+              }
+            });
+          } else if (arr[5] == '4') {
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                window.top.OpenThirdFrame("./ExtApp_Water_WaterDetail.html?devBH=" + arr[1], 800, 600,
+                  "win", arr[2]);
+              }
+            });
+          } else if (arr[5] == '5') {
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                localStorage.setItem('tpage', '4')
+                window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devBH=" + arr[1], 600, 600,
+                  "win", arr[2]);
+              }
+            });
+          } else if (arr[5] == '6') {
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                localStorage.setItem('tpage', '7')
+                window.top.OpenThirdFrame("./SGasAlarm_GasAlarm.html?devId=" + arr[1], 800, 600, "win",
+                  '历史报警');
+              }
+            });
+          } else if (arr[5] == '8') {
+            $.noti({
+              title: '报警类型:' + arr[4],
+              text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[2] + "</p><p>项目名称:" +
+                arr[3] + "</p>",
+              media: "<img src='./images/alarm2.png'>",
+              data: {
+                message: message
+              },
+              time: 30000000,
+              onClick: function (data) {
+                console.log(data);
+                window.top.OpenThirdFrame("./ExtApp_Water_WaterDetailwatch.html?devBH=" + arr[1], 800, 600,
+                  "win", arr[2]);
+              }
+            });
+          }
+        }
+        //gFWinfo();//
+        /* document.getElementById("player").play();
+						document.getElementById("alarmSound").getElementsByTagName("i")[0].setAttribute('class','fa fa-volume-up fa-fw');//打开 */
+      }
+    });
+  </script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

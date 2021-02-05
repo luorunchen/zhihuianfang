@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>其他配置</title>
+  <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/url_zhuan.js"></script>
+  <link href="../../style/animate.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+  <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+  <link href="../../style/Form.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style/weui.css">
+  <link rel="stylesheet" href="../../style/jquery-weui.css">
+  <style>
+    .flexCenter {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+
+<body >
+  <div id="topMAP" style="overflow-y: auto;margin-top:20px;">
+    <div style=" ">
+      <div class="InforBox" style="width:97%;display: flex;    flex-wrap: wrap;justify-content: center;">
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="new_dev">新增设备</button>
+          <button class="btn btn-warning col-xs-3" id="shareProject">分享设备</button>
+          <button class="btn btn-warning col-xs-3" id="lookPro">查看项目操作记录</button>
+        </div>
+        <div style="width:100%;display: flex;justify-content: space-around;margin: 5px 0;">
+          <button class="btn btn-default col-xs-3" id="tuisongAlarm">报警推送方式选择</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../../style/layui-v2.4.5/layui/lay/modules/layer.js"></script>
+  <script src="../../js/jquery-weui.js"></script>
+  <script>
+    var role = localStorage.getItem('role')
+    var global = (function () {
+      var search = location.search;
+      var search = decodeURI(search);
+      var global = {};
+      if (search != "") {
+        search.slice(1).split("&").forEach(function (val) {
+          var arr = val.split("=");
+          global[arr[0]] = arr[1];
+        });
+      }
+      return global;
+    })();
+    console.log(global);
+    var username = localStorage.getItem('userName')
+    // var height = $(window).height();
+    // $('#topMAP').css('height', height - 50)
+    var role = localStorage.getItem('role');
+    var power = localStorage.getItem('power');
+    //新增
+    $('#new_dev').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      if (role == 1000 || power.indexOf('10002001') != -1) {
+        layer.open({
+          type: 2,
+          title: '设备新增',
+          maxmin: true,
+          offset: ['23px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          // area: [width + 'px', height + 'px'],
+          area: [width * 0.8 + 'px', height - 50 + 'px'],
+          content: "./SFacAdd.html?pid=" + global.pid
+        });
+        // window.top.OpenFrame('./Sys/SUser/SFacAdd.html?pid=' + pid, '550', '630', "", "新增设备", function (r) {
+
+        // })
+      } else {
+        alert('用户无此权限,如需此权限请向上级申请')
+      }
+
+    })
+    //分享项目
+    $('#shareProject').click(function () {
+      if (role == 1000) {
+        layer.prompt({
+          title: '请输入要分享的账号',
+        }, function (value, index, elem) {
+          $.ajax({
+            type: 'get',
+            url: url + '/admin/project/addRegisterProject.action',
+            data: 'pid=' + global.pid + '&username=' + value + '&my_username=' + username,
+            error: function (error) {
+              console.log(error)
+            },
+            success: function (res) {
+              console.log(res)
+              var res = JSON.parse(res);
+              if (res.list[0].status == 'true') {
+                alert(res.list[0].mess)
+                layer.close(index);
+              } else {
+                alert(res.list[0].mess)
+              }
+            }
+          })
+
+        });
+      } else {
+        layer.open({
+          content: '权限不足'
+        })
+      }
+    })
+    //报警推送方式选择
+    $('#tuisongAlarm').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      layer.open({
+          type: 2,
+          title: '报警推送方式选择',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width*0.9 + 'px', height-50 + 'px'],
+          content: "./alarmFang.html?pid="+global.pid+'&app='+global.app+'&sms='+global.sms+'&pname='+global.pname
+      });
+    })
+    //查看项目操作记录
+    $('#lookPro').click(function () {
+      var width = $(window).width();
+      var height = $(window).height();
+      layer.open({
+          type: 2,
+          title: '项目历史操作',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width*0.9 + 'px', height-50 + 'px'],
+          content: "./alarmDetail.html?pname="+global.pname
+      });
+      //http://p240647i77.qicp.vip//newEarlyWarn/WebProject/getUserInfo.action?my_username=13901088669
+    })
+    $('#btn_close').click(function () {
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+      parent.location.reload()
+    })
+  </script>
+</body>
+
+</html>

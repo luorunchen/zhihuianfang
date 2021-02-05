@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户信息</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js" type="text/javascript"></script>
+    <script src="../../js/FTool.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=KijP02mbMQhSR8T4Qk82f9feXBbftwie">
+    </script>
+    <link rel="stylesheet" href="../../style/weui.css">
+    <link rel="stylesheet" href="../../style/jquery-weui.css">
+    <script type="text/javascript">
+        function checkHELLO(field, rules, i, options) {
+            if (!/^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\d{8}$/i.test(field.val())) {
+                return "请输入有效的手机号码";
+            }
+        }
+    </script>
+
+
+    <link href="../../style/MDForm.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="bodyBox">
+
+        <form action="" class="form-horizontal" id="editForm" method="post">
+            <div class="formBody">
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="ComName">项目名称</label>
+                    <div class="col-xs-9">
+                        <!--//readonly="readonly"  只读-->
+                        <input class="form-control  " id="projName" name="ComName" type="text" value="" />
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserID">详细地址</label>
+                    <div class="col-xs-9">
+                        <input class="form-control validate[required]" id="address" name="UserID" type="text"
+                            value="" />
+                        <span
+                            style="position: absolute;top: 0px;right: 39px;line-height: 34px;width: 45px;text-align: center;border:none;border-radius: 10px;background:#3cf;color:#fff"
+                            id="r-result">查询</span>
+                        <input id="provincial_num" name="" type="hidden" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="RoleMC">防火员</label>
+                    <div class="col-xs-9">
+                        <input id="RoleMC" name="RoleMC" type="hidden" value="" />
+                        <input type="text" class="form-control " id="fangPeople"
+                            style="width:60%;display: inline-block">
+                        <input type="button" class="form-control " id="newFang"
+                            style="width:35%;display: inline-block;background: #3cf;color:#fff" value="新增防火员">
+                        <div style="width:100%;height:100px;overflow: auto;display: none;" id="divFangUlList">
+                            <ul class="fangUlList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="RoleMC">责任人</label>
+                    <div class="col-xs-9">
+                        <input id="RoleMC" name="RoleMC" type="hidden" value="" />
+                        <input type="text" class="form-control " id="zePeople" style="width:60%;display: inline-block">
+                        <input type="button" class="form-control " id="newZe"
+                            style="width:35%;display: inline-block;background: #3cf;color:#fff" value="新增责任人">
+                        <div style="width:100%;height:100px;overflow: auto;display: none;" id="divZeUlList">
+                            <ul class="zeUlList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserPass">所在社区</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="shequ" type="text" value="" readonly />
+                        <div style="width:100%;height:100px;overflow: auto;display: none;" id="divSheUlList">
+                            <ul class="sheUlList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserPass">所在街道</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="jiedao" type="text" value="" readonly />
+                        <div style="width:100%;height:100px;overflow: auto;display: none;" id="divJieUlList">
+                            <ul class="jieUlList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserPass">项目介绍</label>
+                    <div class="col-xs-9">
+                        <input class="form-control " id="into" name="UserPass" type="text" value="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserPass">应用场所</label>
+                    <div class="col-xs-9">
+
+                        <select class="form-control " id="chang_suo">
+                            <option value="客运站、火车站、地铁站、机场、码头">客运站、火车站、地铁站、机场、码头</option>
+                            <option value="公共供水单位">公共供水单位</option>
+                            <option value="瓶装燃气储配单位">瓶装燃气储配单位</option>
+                            <option value="瓶装燃气供应站">瓶装燃气供应站</option>
+                            <option value="寄递企业">寄递企业</option>
+                            <option value="物流企业">物流企业</option>
+                            <option value="加油站">加油站</option>
+                            <option value="宾馆、旅馆">宾馆、旅馆</option>
+                            <option value="民宿、农家乐">民宿、农家乐</option>
+                            <option value="商业综合体">商业综合体</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="学校、幼儿园">学校、幼儿园</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="网吧">网吧</option>
+                            <option value="出租房（企业员工集体宿舍）">出租房（企业员工集体宿舍）</option>
+                            <option value="娱乐场所">娱乐场所</option>
+                            <option value="工矿企业">工矿企业</option>
+                            <option value="劳动密集型企业">劳动密集型企业</option>
+                            <option value="建筑工地">建筑工地</option>
+                            <option value="高层建筑">高层建筑</option>
+                            <option value="住宅小区（老旧小区）、居民楼">住宅小区（老旧小区）、居民楼</option>
+                            <option value="教育培训机构">教育培训机构</option>
+                            <option value="医院、养老院">医院、养老院</option>
+                            <option value="商场、市场">商场、市场</option>
+                            <option value="食品生产加工小作坊">食品生产加工小作坊</option>
+                            <option value="中央厨房、大型餐饮单位、用餐配送单位">中央厨房、大型餐饮单位、用餐配送单位</option>
+                            <option value="网络餐饮、小餐饮店">网络餐饮、小餐饮店</option>
+                            <option value="农贸市场">农贸市场</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-3 " for="UserTel">备注</label>
+                    <div class="col-xs-9">
+                        <input class="form-control validate[required,funcCall[checkHELLO]]" id="beizhu" name="UserTel"
+                            type="text" value="" />
+                    </div>
+                </div>
+                <div style="width:100%;height:250px;">
+                    <div id="allmap" style="width:100%;height:250px;"></div>
+                </div>
+
+
+            </div>
+
+            <div class="formBut">
+                <div class="form-group">
+                    <div style="float:right;margin-right:30px;"> <input class="btn btn-primary" name="submitBtn"
+                            type="button" value="保存" id="btn_on" />
+                        <input class="btn btn-default" name="goBackBtn" onclick="window.top.CloseCurrWin()"
+                            type="button" value="关闭" />
+                    </div>
+                    <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+                </div>
+                <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="" />
+
+
+            </div>
+        </form>
+
+
+    </div>
+    <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-weui.js"></script>
+    <!-- <script src="../js/beifenshu.js"></script> -->
+    <script>
+        $('#fangPeople').click(function () {
+            $('#divFangUlList').toggle();
+            pro_num(0)
+        })
+        $('#zePeople').click(function () {
+            $('#divZeUlList').toggle();
+            pro_num(1)
+
+        })
+
+        function pro_num(state) { //0 防火员 1责任人
+            $.ajax({
+                tyle: 'get',
+                url: url + '/admin/project/check/getLegalFireMan.action',
+                data: 'state=' + state,
+                error: function (error) {
+                    console.log(error + '网络错误')
+                },
+                success: function (result) {
+                    var res = JSON.parse(result);
+                    console.log(res);
+                    var data = res.list[0].mess
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<li value='" + data[i].user_name + ',' + data[i].phone + "' data-pid='" +
+                            data[i].pid + "'>" + data[i].user_name + "" + data[i].phone + "</li>";
+                    }
+                    if (state == 0) {
+                        $('.fangUlList').html(html);
+                        var fangVal = document.getElementById('fangPeople')
+                        var li = $('ul.fangUlList li');
+                    } else {
+                        $('.zeUlList').html(html);
+                        var fangVal = document.getElementById('zePeople')
+                        var li = $('ul.zeUlList li');
+                    }
+                    fangVal.oninput = function () {
+                        var arr = fangVal.value;
+                        if (arr != "" || arr != null) {
+                            $.each(data, function (i, v) {
+                                li[i].style.display = "none";
+                                var rname = v.user_name;
+                                var rphone = v.phone;
+                                var rall = rname  + rphone;
+                                if (rname.indexOf(arr) != -1 || rphone.indexOf(arr) != -1 ||
+                                    rall.indexOf(arr) != -1) {
+                                    li[i].style.display = 'block'
+                                } else {}
+                            })
+                        }
+                    }
+                }
+            })
+        }
+
+        $('.fangUlList').on('click', 'li', function () {
+            var dataVal = $(this).html() //
+            var pid = $(this).attr('data-pid')
+            var val = $(this).attr('value')
+            $('#fangPeople').val(dataVal)
+            $('#fangPeople').attr('data-pid', pid)
+            $('#fangPeople').attr('value', val)
+            $('#divFangUlList').hide()
+        })
+        $('.zeUlList').on('click', 'li', function () {
+            var dataVal = $(this).html() //
+            var pid = $(this).attr('data-pid')
+            var val = $(this).attr('value')
+            $('#zePeople').val(dataVal)
+            $('#zePeople').attr('data-pid', pid)
+            $('#zePeople').attr('value', val)
+            $('#divZeUlList').hide()
+        })
+
+        $('#newFang').click(function () {
+            $.login({
+                title: '新增防火员',
+                text: '',
+                username: '', // 默认用户名
+                password: '', // 默认密码
+                onOK: function (username, tel, beizhu) {
+                    var bai_lng = sessionStorage.getItem('bai_lg')
+                    var gao_lng = sessionStorage.getItem('gao_lat')
+                    var user = localStorage.getItem('userName')
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/project/check/addLegalFireMan.action',
+                        data: 'state=0' + '&fname=' + username + '&username=' + user +
+                            '&fphone=' + tel + '&tel=' + beizhu + '&long_lat=' + gao_lng +
+                            '&long_latbai=' + bai_lng + '&ftelephone=' + '',
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        success: function (res) {
+                            var res = JSON.parse(res)
+                            var pid = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                sessionStorage.setItem('fangPid', pid)
+                                $.alert('添加成功')
+                            } else {
+                                $.alert(pid)
+                            }
+                        }
+                    })
+                },
+                onCancel: function () {}
+            });
+        })
+
+        $('#newZe').click(function () {
+            $.login({
+                title: '新增责任人',
+                text: '',
+                username: '', // 默认用户名
+                password: '', // 默认密码
+                onOK: function (username, tel, beizhu) {
+                    var bai_lng = sessionStorage.getItem('bai_lg')
+                    var gao_lng = sessionStorage.getItem('gao_lat')
+                    var user = localStorage.getItem('userName')
+                    $.ajax({
+                        type: 'get',
+                        url: url + '/admin/project/check/addLegalFireMan.action',
+                        data: 'state=1' + '&fname=' + username + '&username=' + user +
+                            '&fphone=' + tel + '&tel=' + beizhu + '&long_lat=' + gao_lng +
+                            '&long_latbai=' + bai_lng + '&ftelephone=' + '',
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        success: function (res) {
+                            var res = JSON.parse(res)
+                            var pid = res.list[0].mess;
+                            if (res.list[0].status == 'true') {
+                                sessionStorage.setItem('zePid', pid)
+                                $.alert('添加成功')
+                            } else {
+                                $.alert(pid)
+                            }
+                        }
+                    })
+                },
+                onCancel: function () {}
+            });
+        })
+
+        $('#shequ').click(function () {
+            var address = $('#address').val();
+            var code = sessionStorage.getItem('code');
+            console.log(code);
+            $('#divSheUlList').toggle()
+            sheJie(code)
+        })
+
+
+        $('#divSheUlList').on('click', 'li', function () {
+            var val = this.innerHTML;
+            console.log(val)
+            var adCode = this.attributes['data-adcode'].value;
+            // console.log(adCode)  //440309002000
+            sessionStorage.setItem('adCode', adCode)
+            $("#shequ").attr('value', val)
+            $("#shequ").attr('data-code', adCode)
+            $('#divSheUlList').css('display', 'none');
+            $('#shequ').val(val);
+            $('#jiedao').val(' ');
+            $('#jiedao').removeAttr('data-code')
+        })
+
+        $('#divJieUlList').on('click', 'li', function () {
+            var val = this.innerHTML;
+            var adCode = this.attributes['data-adcode'].value;
+            $("#jiedao").val(val)
+            $("#jiedao").attr('data-code', adCode)
+            $('#divJieUlList').css('display', 'none');
+        })
+
+        $('#jiedao').click(function () {
+            var jieInfor = $('#shequ').val();
+            if (jieInfor == "") {
+                $.alert('请先选择街道')
+            } else {
+                var code = $('#shequ').attr('data-code')
+                console.log(code)
+                var sheCode = code.substr(0, 9)
+                sheJie(sheCode)
+                $('#divJieUlList').toggle()
+            }
+        })
+
+
+        function sheJie(code) {
+            $.ajax({
+                type: 'get',
+                url: 'http://anfangapp.edog-online.com/earlyWarn/region/regionList.action',
+                data: 'code=' + code,
+                error: function (error) {
+                    console.log(error)
+                },
+                success: function (result) {
+                    var res = JSON.parse(result)
+                    console.log(res);
+                    var ahtml = "";
+                    if (res.mess.length == 0) {
+                        $.alert('请输入详细地址');
+                    } else {
+                        var adCode = res.mess;
+                        $.each(adCode, function (i, v) {
+                            ahtml += "<li data-adCode=" + v.ad_Code + ">" + v.ad_Region + "</li>";
+                        })
+                    }
+                    if (code.length == 6) {
+                        $('.sheUlList').html(ahtml)
+                    } else {
+                        $('.jieUlList').html(ahtml);
+                    }
+                }
+            })
+        }
+
+
+
+        function createMap() {
+            var map = new BMap.Map("allmap");
+            var geoc = new BMap.Geocoder(); //地址解析对象  
+            var markersArray = [];
+            var geolocation = new BMap.Geolocation();
+            var point = new BMap.Point(114.046252, 22.640817);
+            map.centerAndZoom(point, 12); // 中心点  
+            geolocation.getCurrentPosition(function (r) {
+                var address = r.address.province + r.address.city + r.address.district + r.address.street + r
+                    .address.street_number;
+                var bai_lg = r.longitude + ',' + r.latitude
+                sessionStorage.setItem('bai_lg', bai_lg)
+                var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+                $.ajax({
+                    type: 'get',
+                    url: 'https://restapi.amap.com/v3/geocode/geo',
+                    data: 'key=' + key + '&address=' + address,
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        var gao_lat = result.geocodes[0].location;
+                        sessionStorage.setItem('gao_lat', gao_lat);
+                        var code = result.geocodes[0].adcode;
+                        sessionStorage.setItem('code', code);
+                    }
+                })
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    var mk = new BMap.Marker(r.point);
+                    map.addOverlay(mk);
+                    map.panTo(r.point);
+                    map.enableScrollWheelZoom(true);
+                    // document.getElementById('lng').value = r.point.lng;  
+                    // document.getElementById('lat').value =  r.point.lat;  
+                    document.getElementById('address').value = address;
+                } else {
+                    alert('failed' + this.getStatus());
+                }
+            }, {
+                enableHighAccuracy: true
+            })
+            map.addEventListener("click", showInfo);
+            //清除标识  
+            function clearOverlays() {
+                if (markersArray) {
+                    for (var i in markersArray) {
+                        map.removeOverlay(markersArray[i])
+                    }
+                }
+            }
+            //地图上标注  
+            function addMarker(point) {
+                var marker = new BMap.Marker(point);
+                markersArray.push(marker);
+                clearOverlays();
+                map.addOverlay(marker);
+            }
+            //点击地图时间处理  
+            function showInfo(e) {
+                map.clearOverlays();
+                geoc.getLocation(e.point, function (rs) {
+                    var addComp = rs.addressComponents;
+                    var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp
+                        .streetNumber;
+                    console.log(address)
+                    // document.getElementById('lng').value = e.point.lng;  
+                    // document.getElementById('lat').value =  e.point.lat; 
+                    document.getElementById('address').value = address;
+                    var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+                    $.ajax({
+                        type: 'get',
+                        url: 'https://restapi.amap.com/v3/geocode/geo',
+                        data: 'key=' + key + '&address=' + address,
+                        error: function (error) {
+                            console.log(error)
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            var code = result.geocodes[0].adcode;
+                            sessionStorage.setItem('code', code);
+                        }
+                    })
+                });
+                addMarker(e.point);
+            }
+            var localSearch = new BMap.LocalSearch(map);
+            localSearch.enableAutoViewport(); //允许自动调节窗体大小
+            function searchByStationName() {
+                map.clearOverlays(); //清空原来的标注
+                var keyword = document.getElementById("address").value;
+                console.log(keyword);
+                var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+                $.ajax({
+                    type: 'get',
+                    url: 'https://restapi.amap.com/v3/geocode/geo',
+                    data: 'key=' + key + '&address=' + keyword,
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        var code = result.geocodes[0].adcode;
+                        sessionStorage.setItem('code', code);
+                    }
+                })
+                //setSearchCompleteCallback--->设置检索结束后的回调函数
+                localSearch.setSearchCompleteCallback(function (searchResult) {
+                    var poi = searchResult.getPoi(0); // searchResult.Ar 数组中的第一个
+                    // document.getElementById("lng").value = poi.point.lng 
+                    // document.getElementById("lat").value= poi.point.lat;
+                    map.centerAndZoom(poi.point, 13);
+                    var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point
+                    .lat)); // 创建标注，为要查询的地方对应的经纬度
+                    map.addOverlay(marker);
+                });
+                localSearch.search(keyword);
+            }
+            document.getElementById('r-result').onclick = function () {
+                searchByStationName();
+            }
+        }
+        createMap();
+
+        $('#btn_on').click(function () {
+            var projName = $('#projName').val().trim(); //项目名称
+            var projLocation = $('#address').val(); //详细地址
+            var peo_num = $('#fangPeople').val(); //防火员
+            var fireGuardId = $('#fangPeople').attr('data-pid'); //防火员id
+            var res_num = $('#zePeople').val(); //责任人
+            var legalPersonId = $('#zePeople').attr('data-pid'); //责任人id
+            var projIntroduction = $('#into').val(); //介绍
+            var projRemark = $('#beizhu').val(); //备注
+            var chang_suo = $('#chang_suo').val();
+            var jiedao = $('#jiedao').attr('data-code')
+            var username = localStorage.getItem('userName'); //登陆账号
+            var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+            if (projLocation != "") {
+                var key = "16e7b5568d36fe3ae4fb17a2deba37b0";
+                $.ajax({
+                    type: 'get',
+                    url: 'https://restapi.amap.com/v3/geocode/geo',
+                    data: 'key=' + key + '&address=' + projLocation,
+                    error: function (error) {
+                        console.log(error)
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        var long_lat = result.geocodes[0].location;
+                        sessionStorage.setItem('gao_lat', long_lat);
+                    }
+
+                })
+            }
+            if (projName.length == 0) {
+                alert('请填项目名称');
+            } else if (peo_num.length == 0) {
+                alert('请添加防火员');
+            } else if (res_num.length == 0) {
+                alert('请添加责任人');
+            } else if (jiedao == undefined) {
+                alert('请选择街道');
+            } else {
+                var str = sessionStorage.getItem('gao_lat');
+                var long_lat = str.split(",").reverse().join(",");
+                console.log(2)
+                $.ajax({
+                    type: 'get',
+                    url: url + '/admin/project/check/addProject.action',
+                    data: 'username=' + username + '&projName=' + projName + '&projLocation=' +
+                        projLocation + '&fireGuardId=' + fireGuardId + '&legalPersonId=' +
+                        legalPersonId  + '&projRemark=' +
+                        projRemark + '&long_lat=' + long_lat + '&placetype=' + chang_suo + '&code=' +
+                        jiedao ,
+                    error: function (error) {
+                        console.log(error + '网络错误')
+                    },
+                    success: function (result) {
+                        var res = JSON.parse(result);
+                        console.log(res);
+                        if (res.list[0].status == 'true') {
+                            alert(res.list[0].mess);
+                            setTimeout(function () {
+                                // window.top.CloseCurrWin();
+                                // window.top.location.reload();  //最外层页面跳转
+                                parent.location.reload(); //上一层页面跳转
+                            }, 2000)
+                        } else {
+                            alert(res.list[0].mess)
+                        }
+                    }
+                })
+            }
+        })
+
+        function RefreshClick() {
+            window.location.reload();
+        }
+    </script>
+
+</body>
+
+</html>

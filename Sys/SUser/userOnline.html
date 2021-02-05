@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>用户在线情况</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <link href="../../style/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <script src="../../js/jquery.form.js" type="text/javascript"></script>
+    <script src="../../js/FTool.js" type="text/javascript"></script>
+    <link href="../../style/MDForm.css" rel="stylesheet" />
+    <script src="../../js/echarts.min.js" charset="utf-8"></script>
+    <style>
+        #onli {
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bodyBox">
+        <div id="onli"></div>
+    </div>
+    <!--<script src="../../js/jquery.validationEngine-zh.js"></script>
+        <script src="../../js/jquery.validationEngine.js"></script>-->
+    <script src="../../js/bootstrap.min.js"></script>
+    <script>
+        var powerId = localStorage.getItem('new_role');
+        var username = localStorage.getItem('userName');
+
+        $('#btn_close').click(function () {
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+        })
+        //http://p240647i77.qicp.vip/newEarlyWarn/WebProject/RegisterOnline.action?my_username=13901088669
+        $.ajax({
+            type: 'get',
+            url: url + '/WebProject/RegisterOnline.action',
+            data: 'my_username' + username,
+            error: function (error) {
+                console.log(error)
+            },
+            success: function (res) {
+                console.log(res)
+                var offine = res.offine;
+                var online = res.online;
+                var num = res.num;
+                var myChart = echarts.init(document.getElementById('onli'));
+                option = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: ['在线', '离线']
+                    },
+                    series: [{
+                            name: '访问来源',
+                            type: 'pie',
+                            selectedMode: 'single',
+                            radius: [0, '30%'],
+
+                            label: {
+                                normal: {
+                                    position: 'inner'
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: [{
+                                    value: online,
+                                    name: '在线',
+                                    selected: true
+                                },
+                                {
+                                    value: offine,
+                                    name: '离线'
+                                },
+                            ]
+                        },
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: ['40%', '55%'],
+                            label: {
+                                normal: {
+                                    formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                                    backgroundColor: '#eee',
+                                    borderColor: '#aaa',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    rich: {
+                                        a: {
+                                            color: '#999',
+                                            lineHeight: 22,
+                                            align: 'center'
+                                        },
+                                        hr: {
+                                            borderColor: '#aaa',
+                                            width: '100%',
+                                            borderWidth: 0.5,
+                                            height: 0
+                                        },
+                                        b: {
+                                            fontSize: 16,
+                                            lineHeight: 33
+                                        },
+                                        per: {
+                                            color: '#eee',
+                                            backgroundColor: '#334455',
+                                            padding: [2, 4],
+                                            borderRadius: 2
+                                        }
+                                    }
+                                }
+                            },
+                            data: [{
+                                value: num,
+                                name: '用户总数'
+                            }, ]
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+            }
+        })
+    </script>
+
+</body>
+
+</html>

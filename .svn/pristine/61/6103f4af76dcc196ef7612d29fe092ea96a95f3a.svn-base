@@ -1,0 +1,259 @@
+﻿body {
+    background-color:#f4f6fa;
+     font-size:13px;
+}
+.left {
+    float:left;
+}
+
+.right {
+   float:right;
+}
+
+/*以下为Grid布局**/
+
+.treeGrid1 {
+    left:5px;
+    top:5px;
+    right:5px;
+    bottom:5px;
+    position:absolute;
+}
+    .treeGrid1 .treeBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 200px;
+    }
+
+    .treeGrid1 .ToolBarBox {
+       position:absolute;top:0px;left:205px;right:0px;
+    }
+
+    .treeGrid1 .Grid {
+        position:absolute;top:46px;bottom:0px;right:0px;left:205px;
+    }
+
+    .treeGrid1 .ShowBox {
+         position:absolute;top:46px;bottom:0px;right:0px;left:205px;
+        border: solid 1px #DFDFDF;
+        background-color: #fff;
+        border-radius:3px;
+        overflow:auto;
+    }
+
+
+
+  .treeGrid2 {
+    left:5px;
+    top:5px;
+    right:5px;
+    bottom:5px;
+    position:absolute;
+}
+    .treeGrid2 .treeBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 200px;
+    }
+
+    .treeGrid2 .ToolBarBox {
+       position:absolute;top:0px;left:205px;right:0px;
+    }
+     .treeGrid2 .Grid {
+       position:absolute;top:46px;bottom:0px;right:205px;left:205px;
+    }
+    .treeGrid2 .SelBox {
+        position: absolute;
+        top: 46px;
+        bottom: 0px;
+        right:0px;
+        width: 200px;
+         border: solid 1px #DFDFDF;
+        background-color: #fff;
+        border-radius:3px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+    
+    .onlyGrid1 {
+    left:5px;
+    top:5px;
+    right:5px;
+    bottom:5px;
+    position:absolute;
+}
+  
+    .onlyGrid1 .ToolBarBox {
+       position:absolute;top:0px;left:0px;right:0px;
+    }
+    .onlyGrid1 .Grid {
+        position:absolute;top:46px;bottom:0px;right:0px;left:0px;
+      
+    }
+
+    
+
+
+        .onlyGrid2 {
+    left:5px;
+    top:5px;
+    right:5px;
+    bottom:5px;
+    position:absolute;
+}
+  
+    .onlyGrid2 .ToolBarBox {
+       position:absolute;top:0px;left:0px;right:0px;
+    }
+    .onlyGrid2 .Grid {
+        position:absolute;top:46px;bottom:0px;right:205px;left:0px;
+    }
+   
+    .onlyGrid2 .SelBox {
+        position: absolute;
+        top: 46px;
+        bottom: 0px;
+        right:0px;
+        width: 200px;
+         border: solid 1px #DFDFDF;
+        background-color: #fff;
+        border-radius:3px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+
+
+    .ChkRecordGrid {
+         position:absolute;
+        left:5px;
+        top:5px;
+        right:5px;
+        bottom:5px;
+    }
+
+       .ChkRecordGrid .treeBox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 200px;
+    }
+      .ChkRecordGrid .ToolBarBox {
+       position:absolute;top:0px;left:205px;right:0px;
+    }
+
+    
+  
+    .ChkRecordGrid .Grid {
+       position:absolute;
+       top:46px;
+       bottom:0px;
+       right:0px;
+       left:205px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+    .ChkRecordGrid .Grid .panel {
+        font-family: 'Microsoft Yahei',verdana;
+        margin-bottom:5px;
+    }
+
+    .ChkRecordGrid .Grid .panel-heading {
+          line-height:40px;
+          height:40px; 
+          padding-top:0px; 
+          padding-bottom:0px; 
+          font-size:14px;
+        }
+
+
+
+     .Toolbar_SearchBox {
+        font-family: 'Microsoft Yahei',verdana;
+        position: absolute;
+        top: 3px;
+        right:20px;
+        height:35px;
+        width:500px;
+    }
+
+
+    .ChkQuestionGrid {
+         position:absolute;
+        left:5px;
+        top:5px;
+        right:5px;
+        bottom:5px;
+    }
+      
+      .ChkQuestionGrid .ToolBarBox {
+       position:absolute;top:0px;left:0px;right:0px;
+    }
+
+     .ChkQuestionGrid .SearchBox {
+        font-family: 'Microsoft Yahei',verdana;
+        position: absolute;
+        top: 3px;
+        right:20px;
+        height:35px;
+        width:500px;
+    }
+  
+    .ChkQuestionGrid .Grid {
+       position:absolute;
+       top:46px;
+       bottom:0px;
+       right:0px;
+       left:0px;
+        overflow-y:auto;
+        overflow-x:hidden;
+    }
+    .ChkQuestionGrid .Grid .panel {
+        font-family: 'Microsoft Yahei',verdana;
+        margin-bottom:5px;
+    }
+
+    .ChkQuestionGrid .Grid .panel-heading {
+          line-height:40px;
+          height:40px; 
+          padding-top:0px; 
+          padding-bottom:0px; 
+          font-size:14px;
+        }
+
+
+    .mapLayout {
+    left:5px;
+    top:5px;
+    right:5px;
+    bottom:5px;
+    position:absolute;
+}
+    .mapLayout .treeBox1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        width: 200px;
+    }
+    
+     .mapLayout .RightMenu {
+        position: absolute;
+        top: 46px;
+        bottom: 0px;
+        right:0px;
+        width: 200px;
+        overflow-y:auto;
+    }
+
+    .mapLayout .ToolBarBox {
+       position:absolute;top:0px;left:205px;right:0px;
+    }
+
+    .mapLayout .Grid {
+        position:absolute;top:46px;bottom:0px;right:205px;left:205px;
+    }

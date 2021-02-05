@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>新增社区或街道</title>
+    <link href="../../style/bootstrap.min.css" rel="stylesheet" />
+    <script src="../../js/url_zhuan.js"></script>
+    <link href="../../style/animate.css" rel="stylesheet" />
+    <script src="../../js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="../../style/layui-v2.4.5/layui/css/layer.css" />
+    <link href="../../style/Form.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../style/weui.css">
+    <link rel="stylesheet" href="../../style/jquery-weui.css">
+    <style>
+      .flexCenter{
+        width:100%;
+        display: flex;
+        justify-content: space-around;
+        margin: 5px 0;
+      }
+    </style>
+</head>
+<body>
+  <div style="    margin: 20px;" id="total">
+        <!-- <input type="text" name="" class="col-xs-8" style="float:none;" id="newJie"> -->
+  </div>
+  <div class="formBut">
+      <div class="form-group">
+          <div style="float:right;margin-right:30px;"> 
+            <input class="btn btn-primary" name="submitBtn" type="button" value="保存" id="btn_on">
+              <input class="btn btn-default" name="goBackBtn" type="button" value="关闭" id="btn_close">
+          </div>
+          <div class="checkbox" style="float:right;margin-right:30px;"> </div>
+      </div>
+      <input data-val="true" data-val-number="字段 GUID 必须是一个数字。" id="ID" name="ID" type="hidden" value="">
+
+
+  </div>
+  <script src="../../js/jquery-weui.js"></script>
+  <script>
+    var role=localStorage.getItem('role')
+    var global = (function () {
+        var search = location.search;
+        var search = decodeURI(search);
+        var global = {};
+        if (search != "") {
+            search.slice(1).split("&").forEach(function (val) {
+                var arr = val.split("=");
+                global[arr[0]] = arr[1];
+            });
+        }
+        return global;
+    })();
+    console.log(global);
+    var html="";
+    if(global.num=='0'){
+      html="新增街道名称:<input type='text' name='' class='col-xs-8' style='float:none;' id='newJie'>";
+    }else{
+      html="新增社区名称:<input type='text' name='' class='col-xs-8' style='float:none;' id='newJie'>";
+    }
+    $('#total').html(html);
+    $('#btn_on').click(function(){
+      var value=$('#newJie').val();
+      //http://p240647i77.qicp.vip/newEarlyWarn/region/HandAddCode.action?code=440309008&region=%E6%B5%8B%E8%AF%953
+      $.ajax({
+        type:'get',
+        url:url+'/region/HandAddCode.action',
+        data:'code='+global.code+'&region='+value,
+        error:function(error){console.log(error)},
+        success:function(result){
+          console.log(result)
+          if(result.status=='true'){
+            console.log(0)
+            $.alert(result.mess)
+            var index = parent.layer.getFrameIndex(window.name);
+            setTimeout(function(){
+              parent.layer.close(index);
+            },1000)
+          }else{
+            $.alert(result.mess)
+          }
+        }
+      })
+    })
+   
+    $('#btn_close').click(function(){
+      var index = parent.layer.getFrameIndex(window.name);
+      parent.layer.close(index);
+    })
+  </script>
+</body>
+</html>

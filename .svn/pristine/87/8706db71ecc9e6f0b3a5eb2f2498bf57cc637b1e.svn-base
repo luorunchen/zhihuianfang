@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../js/url_zhuan.js"></script>
+    <link rel="stylesheet" href="../../style/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style/merchant-style-89cef630c9.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <form class="form-horizontal m-t" id="editForm" novalidate="novalidate">
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>角色：</label>
+                        <div class="col-sm-3" id="jue_name">
+                            <input id="name" name="name" class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label class="col-sm-3 control-label"><span class="c-red-text">*</span>模块选择：</label>
+                        <div class="col-sm-8">
+                            <dl class="permission-list">
+                                <dt>
+                                    <label>&nbsp;配置模块</label>
+                                </dt>
+                                <dd class="jurTable">
+                                    <dl class="cl permission-list2">
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10001">&nbsp;
+                                                项目管理
+                                                <input type="hidden" id="menuAlias_10001" value="项目管理">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10002">&nbsp;
+                                                设备管理
+                                                <input type="hidden" id="menuAlias_10002" value="设备管理">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10003">&nbsp;
+                                                远程操作
+                                                <input type="hidden" id="menuAlias_10003" value="远程操作">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10004">&nbsp;
+                                                权限管理
+                                                <input type="hidden" id="menuAlias_10004" value="权限管理">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10005">&nbsp;
+                                                用户管理
+                                                <input type="hidden" id="menuAlias_10005" value="用户管理">
+                                            </label>
+                                        </dt>
+                                        <dt>
+                                            <label>
+                                                <input type="checkbox" name="thirdMenuIdList" value="10006">&nbsp;
+                                                其他
+                                                <input type="hidden" id="menuAlias_10006" value="其他">
+                                            </label>
+                                        </dt>
+                                        
+                                    </dl>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-sm-12 text-center footer-bur-fixed dibu-but-box">
+                            <a class="btn btn-success " type="button" id="save-btn">&nbsp;&nbsp;保存&nbsp;&nbsp;</a>
+                            <!-- <a class="btn btn-default " type="button" id="cancel-btn">&nbsp;&nbsp;取消&nbsp;&nbsp;</a> -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="js/jurEdit.js"></script>
+</body>
+
+</html>

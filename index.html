@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>智慧安全系统平台</title>
+  <link href="style/bootstrap.min.css" rel="stylesheet" />
+  <link href="style/animate.css" rel="stylesheet" />
+  <script src="js/jquery.min.js"></script>
+  <script src="js/url_zhuan.js"></script>
+  <script type="text/javascript" src="js/jQuery.cookie.js"></script>
+  <link href="style/style.css" rel="stylesheet" />
+  <script type="text/javascript" src="js/default.js"></script>
+  <link href="style/Style2.css" rel="stylesheet" />
+  <link href="style/jquery.fancybox.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style/weui.css">
+  <link rel="stylesheet" href="style/jquery-weui.css">
+  <script src="js/jquery.fancybox.js"></script>
+
+  <link href="style/MDStyle.css" rel="stylesheet" />
+  <style>
+    .NavBodyBox::-webkit-scrollbar {
+      /*滚动条整体样式*/
+      width: 20px;
+      /*高宽分别对应横竖滚动条的尺寸*/
+      height: 20px;
+    }
+
+    .NavBodyBox::-webkit-scrollbar-thumb {
+      /*滚动条里面小方块*/
+      border-radius: 5px;
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      background: #F7C1F7;
+    }
+
+    .NavBodyBox::-webkit-scrollbar-track {
+      /*滚动条里面轨道*/
+      -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+      border-radius: 0;
+      background: rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+
+<body>
+  <audio src="./music/6709.mp3" id="auto"></audio>
+  <div class="contentBox contentMain contentActive">
+    <div class="HeadBox">
+      <div class="WebTitle">
+        <!-- <img src="./images/login_bei.png"> -->
+        智慧安全系统平台
+      </div>
+      <div class="leftMenu userTool"><a href="javascript:void(0);" onclick="window.top.changPwd()" title="修改密码"><img
+            src="images/password.png" /></a></div>
+      <div class="rightMenu userTool">
+        <a href="javascript:;" title="注销登录" target="_top" id="outlogin"><img src="images/logout.png" /></a>
+      </div>
+    </div>
+    <div class="NavBodyBox">
+      <table class="NavTable">
+        <tr>
+          <td class="NavCell">
+            <div class="NavMenuBox">
+              <div class="LeftNavBox" style="width:125%;">
+
+                <div class="left" style="margin-left:100px;">
+                  <div class="NavTitle"> 消防管理 </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowWeb({bh:'03', id:'FireNews', title:'消防新闻', url:'https://mp.weixin.qq.com/s/st3szUr6M9fC74F1e69PRg'})">
+                      <div class="MenuItem1" style="background-color:#861aaa">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/news.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 消防新闻 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem" onclick="showMenu({bh:'WW', id:'', title:'系统设置', url:''})">
+                      <div class="MenuItem1" style="background-color:#09c4d7">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/pic.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 系统设置 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem" onclick="showMenu({bh:'06', id:'', title:'项目管理', url:''})">
+                      <div class="MenuItem2" style="background-color:#63b607">
+                        <div class="MenuTitle"> 项目管理 </div>
+                        <div class="MenuContent">
+                          <div class="MenuText"> 电气火灾项目管理，消防水项目管理，智慧型独立烟感预警项目管理 </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem" onclick="showMenu({bh:'07', id:'', title:'单位档案', url:''})">
+                      <div class="MenuItem2" style="background-color:#209301">
+                        <div class="MenuTitle">
+                          单位档案
+                        </div>
+                        <div class="MenuContent">
+                          <div class="MenuText">
+                            单位消防档案管理
+                            <!-- ，包括基本信息、平面图、消防预案、消防培训等。 -->
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div id="clear"></div>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="NavTitle"> 电动车安全管理 </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AA88', id:'DDCruhuguanli', title:'电动车入户管理', url:'40.html'})">
+                      <div class="MenuItem1" style="background-color:#1ae5ef">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/diandongche.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 电动车入户管理 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AA88', id:'CDZanquanguanli', title:'充电桩管理', url:'41.html'})">
+                      <div class="MenuItem1" style="background-color:#0ffb16">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/chongdianzhuang.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 充电桩管理 </div>
+                      </div>
+                    </div>
+                    <!--<div class="MenuItem" onclick="ShowFull({bh:'AC91', id:'PubDevice2', title:'电气火灾隐患预警分析1', url:'2.html'})">
+                    <div class="MenuItem1" style="background-color:#69aa4c">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/elec.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 电气火灾隐患预警分析 </div>
+                    </div>
+                  </div>
+                  <div class="MenuItem" onclick="ShowFull({bh:'AC92', id:'PubDevice3', title:'消防水系统预警分析', url:'3.html'})">
+                    <div class="MenuItem1" style="background-color:#b65066">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/water.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 消防水系统预警分析 </div>
+                    </div>
+                  </div>
+                  <div class="MenuItem" onclick="ShowFull({bh:'AC93', id:'PubDevice1', title:'火灾报警系统数据分析', url:'4.html'})">
+                    <div class="MenuItem1" style="background-color:#0197e4">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/firepart.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 火灾报警系统数据分析 </div>
+                    </div>
+                  </div>-->
+                    <div id="clear"></div>
+                  </div>
+
+                  <!--<div class="MenuRow">
+                  <div class="MenuItem" onclick="ShowFull({bh:'AC94', id:'PubDevice6', title:'重点部位预警分析', url:'5.html'})">
+                    <div class="MenuItem1" style="background-color:#2f2db7">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/alarm5.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 重点部位预警分析 </div>
+                    </div>
+                  </div>
+                  <div class="MenuItem" onclick="ShowFull({bh:'ACAC', id:'PubDevice9', title:'智慧型独立烟感预警分析', url:'6.html'})">
+                    <div class="MenuItem1" style="background-color:#e3b720">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/alarm1.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 智慧型独立烟感预警分析 </div>
+                    </div>
+                  </div>
+                  <div class="MenuItem" onclick="ShowFull({bh:'ACAE', id:'SGasAlarm', title:'燃气探测器报警分析', url:'7.html'})">
+                    <div class="MenuItem1" style="background-color:#de6c0f">
+                      <div class="MenuContent">
+                        <div class="MenuPic" style="background-image:url(images/firepart_1.png)"></div>
+                      </div>
+                      <div class="MenuTitle"> 燃气探测器报警分析 </div>
+                    </div>
+                  </div>  
+                  <div id="clear"></div>
+                </div>-->
+                </div>
+                <div class="right">
+                  <div class="NavTitle"> 消防物联网 </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AA88', id:'BDQuestion', title:'隐患整改进度', url:'1.html'})">
+                      <div class="MenuItem1" style="background-color:#92236b">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/question.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 隐患整改进度 </div>
+                      </div>
+                    </div>
+                    <!-- -->
+                    <div class="MenuItem" id="dashuju"
+                      onclick="ShowFull({bh:'AA88', id:'dashuju', title:'智慧安防值守中心', url:'9people.html'})">
+                      <div class="MenuItem1" style="background-color:#86AFE3">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/bigshu.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 智慧消防值守中心 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AC91', id:'PubDevice2', title:'电气火灾隐患预警分析1', url:'2.html'})">
+                      <div class="MenuItem1" style="background-color:#69aa4c">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/elec.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 电气火灾隐患预警分析 </div>
+                      </div>
+                    </div>
+                    <div id="clear"></div>
+                  </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AC92', id:'PubDevice3', title:'消防水系统预警分析', url:'3.html'})">
+                      <div class="MenuItem1" style="background-color:#b65066">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/water.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 消防水系统预警分析 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AC93', id:'PubDevice1', title:'火灾报警系统数据分析', url:'4.html'})">
+                      <div class="MenuItem1" style="background-color:#0197e4">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/firepart.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 火灾报警系统数据分析 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'AC94', id:'PubDevice6', title:'重点部位预警分析', url:'5.html'})">
+                      <div class="MenuItem1" style="background-color:#2f2db7">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/alarm5.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 重点部位预警分析 </div>
+                      </div>
+                    </div>
+                    <div id="clear"></div>
+                  </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'ACAC', id:'PubDevice9', title:'智慧型独立烟感预警分析', url:'6.html'})">
+                      <div class="MenuItem1" style="background-color:#e3b720">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/alarm1.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 智慧型独立烟感预警分析 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'ACAE', id:'SGasAlarm', title:'燃气探测器报警分析', url:'7.html'})">
+                      <div class="MenuItem1" style="background-color:#de6c0f">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/firepart_1.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 燃气探测器报警分析 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem" onclick="ShowModel({bh:'ACEm', id:'Emergency', title:'应急处理', url:'8.html'})">
+                      <div class="MenuItem1" style="background-color:#F20000">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/pub.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 应急处理 </div>
+                      </div>
+                    </div>
+                    <div id="clear"></div>
+                  </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'ACBJ', id:'BaojingFac', title:'智慧型消防报警', url:'13.html'})">
+                      <div class="MenuItem1" style="background-color:#20dae3">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/baojing.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 智慧型消防报警 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowModel({bh:'ACQJ', id:'QjingDevice', title:'设备定位全景图', url:'9.html'})">
+                      <div class="MenuItem1" style="background-color:#4caa94">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/elec.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 设备定位全景图 </div>
+                      </div>
+                    </div>
+                    <div class="MenuItem"
+                      onclick="ShowFull({bh:'ACQQ', id:'ElePowerDetaction', title:'电力系统检测', url:'12.html'})">
+                      <div class="MenuItem1" style="background-color:#6a93ce">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/ElePow.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 电力系统检测 </div>
+                      </div>
+                    </div>
+                    <!-- <div class="MenuItem"
+                      onclick="ShowFull({bh:'ACQQ', id:'Miehuo', title:'灭火器', url:'10.html'})">
+                      <div class="MenuItem1" style="background-color:#f33ea4">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/alarm_kong.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 灭火器 </div>
+                      </div>
+                    </div> -->
+                    <div id="clear"></div>
+                  </div>
+                  <div class="MenuRow">
+                    <div class="MenuItem" onclick="ShowFull({bh:'ACQQ', id:'Miehuo', title:'灭火器', url:'10.html'})">
+                      <div class="MenuItem1" style="background-color:#f33ea4">
+                        <div class="MenuContent">
+                          <div class="MenuPic" style="background-image:url(images/miehuo_logo.png)"></div>
+                        </div>
+                        <div class="MenuTitle"> 灭火器 </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="clear"></div>
+              </div>
+            </div>
+            <div id="clear"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="clear"></div>
+  </div>
+  <div class="LeftNavBox" style="left:1250px;width:400px;">
+    <div class="NavTitle"> 物联网 </div>
+    <div class="MenuRow"> </div>
+    <div class="contentBox contentReport">
+      <iframe id="reportFrm" src="" width="100%" height="100%"
+        style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;" frameborder="no" border="0" marginwidth="0"
+        marginheight="0" scrolling="yes" allowtransparency="yes"></iframe>
+    </div>
+    <div class="contentBox contentModel">
+      <div class="ModelHeadBox">
+        <div class="webTitle"></div>
+        <div class="navBack">
+          <div class="backImg" onclick="goMain();"></div>
+          <div class="backTitle">返回首页</div>
+        </div>
+      </div>
+      <div style="position:absolute;top:60px;left:0px;right:0px;bottom:0px;">
+        <iframe id="modelFrm" src="" width="100%" height="100%"
+          style="position:absolute;top:0px;left:0px;right:0px;bottom:0px;" frameborder="no" border="0" marginwidth="0"
+          marginheight="0" scrolling="yes" allowtransparency="yes"></iframe>
+      </div>
+    </div>
+    <div class="contentBox contentShow">
+      <div class="navBox">
+        <div class="navBack">
+          <div class="backImg" onclick="goMain();"></div>
+          <div class="backTitle">返回首页</div>
+        </div>
+        <ul class="navMenu">
+          <li class="naveMenuHeadItem" data-item="03">消防新闻</li>
+          <li class="naveMenuHeadItem" data-item="05">通知公告</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SNoticeReceive" data-item="0510"
+            onclick="addTabs ({ id: 'SNoticeReceive', title: '接收通知', close: true, url: '/Sys/SNoticeReceive?MenuCode=SNoticeReceive&amp;MenuMC=接收通知' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;接收通知
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SNotice" data-item="0520"
+            onclick="addTabs ({ id: 'SNotice', title: '发送通知', close: true, url: '/Sys/SNotice?MenuCode=SNotice&amp;MenuMC=发送通知' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;发送通知
+          </li>
+          <li class="naveMenuHeadItem" data-item="06">项目管理</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="DCompany" data-item="0610"
+            onclick="addTabs ({ id: 'DCompany', title: '项目管理', close: true, url:'./DDept/DCompany.html?MenuCode=DCompany&amp;MenuMC=项目管理' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;项目管理
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="DCompany" data-item="0611"
+            onclick="addTabs ({ id: 'facadmin', title: '设备管理', close: true, url:'./DDept/facadmin.html?MenuCode=facadmin&amp;MenuMC=设备管理' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;设备管理
+          </li>
+          <li class="naveMenuHeadItem" data-item="07">单位档案</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="DCompany" data-item="0710"
+            onclick="addTabs ({ id: 'Region', title: '单位档案', close: true, url:'./DDept/region.html?MenuCode=Region&amp;MenuMC=单位档案' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;单位档案
+          </li>
+          <li class="naveMenuHeadItem" data-item="10">检查工作下发</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkTmpl" data-item="1005"
+            onclick="addTabs ({ id: 'ChkTmpl', title: '检查表定义', close: true, url: '/FDefine/CChkTmpl?MenuCode=ChkTmpl&amp;MenuMC=检查表定义' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;检查表定义
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkType" data-item="1010"
+            onclick="addTabs ({ id: 'ChkType', title: '工作下发', close: true, url: '/CCheck/CType?MenuCode=ChkType&amp;MenuMC=工作下发' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;工作下发
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="CTypeSum" data-item="1020"
+            onclick="addTabs ({ id: 'CTypeSum', title: '工作进度统计', close: true, url: '/CCheck/CTypeSum?MenuCode=CTypeSum&amp;MenuMC=工作进度统计' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;工作进度统计
+          </li>
+          <li class="naveMenuHeadItem" data-item="21">检查任务落实</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkPlan" data-item="2120"
+            onclick="addTabs ({ id: 'ChkPlan', title: '检查计划制定', close: true, url: '/CCheck/CPlan?MenuCode=ChkPlan&amp;MenuMC=检查计划制定' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;检查计划制定
+          </li>
+          <li class="naveMenuHeadItem" data-item="43">巡查检查</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkRecordM" data-item="4340"
+            onclick="addTabs ({ id: 'ChkRecordM', title: '消防检查记录', close: true, url: '/CCheck/CRecordM?MenuCode=ChkRecordM&amp;MenuMC=消防检查记录' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;消防检查记录
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkQuestionWarm" data-item="4350"
+            onclick="addTabs ({ id: 'ChkQuestionWarm', title: '隐患预警', close: true, url: '/CCheck/CQuestionWarm?MenuCode=ChkQuestionWarm&amp;MenuMC=隐患预警' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;隐患预警
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ChkQuestionM" data-item="4360"
+            onclick="addTabs ({ id: 'ChkQuestionM', title: '隐患查询', close: true, url: '/CCheck/CQuestionM?MenuCode=ChkQuestionM&amp;MenuMC=隐患查询' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;隐患查询
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="FPointLst" data-item="4370"
+            onclick="addTabs ({ id: 'FPointLst', title: '火源点检查痕迹', close: true, url: '/CCheck/FPointLst?MenuCode=FPointLst&amp;MenuMC=火源点检查痕迹' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;火源点检查痕迹
+          </li>
+          <li class="naveMenuHeadItem" data-item="46">微型消防站</li>
+          <li class="naveMenuHeadItem" data-item="51">消防大培训</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="QType" data-item="5104"
+            onclick="addTabs ({ id: 'QType', title: '题库类别', close: true, url: '/QExam/QType?MenuCode=QType&amp;MenuMC=题库类别' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;题库类别
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="QChoice" data-item="5106"
+            onclick="addTabs ({ id: 'QChoice', title: '单选题库', close: true, url: '/QExam/QQuestionChoice?MenuCode=QChoice&amp;MenuMC=单选题库' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;单选题库
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="QChoiceM" data-item="5108"
+            onclick="addTabs ({ id: 'QChoiceM', title: '多选题库', close: true, url: '/QExam/QQuestionChoiceM?MenuCode=QChoiceM&amp;MenuMC=多选题库' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;多选题库
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="QYesNo" data-item="5110"
+            onclick="addTabs ({ id: 'QYesNo', title: '判断题库', close: true, url: '/QExam/QQuestionYesNo?MenuCode=QYesNo&amp;MenuMC=判断题库' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;判断题库
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="EExam" data-item="5112"
+            onclick="addTabs ({ id: 'EExam', title: '试卷配置', close: true, url: '/QExam/EExam?MenuCode=EExam&amp;MenuMC=试卷配置' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;试卷配置
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="EScore" data-item="5114"
+            onclick="addTabs ({ id: 'EScore', title: '成绩查询', close: true, url: '/QExam/EScore?MenuCode=EScore&amp;MenuMC=成绩查询' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;成绩查询
+          </li>
+          <li class="naveMenuHeadItem" data-item="53">新闻维护</li>
+          <li class="naveMenuHeadItem" data-item="54">合作商管理</li>
+          <li class="naveMenuHeadItem" data-item="55">社区管理</li>
+          <li class="naveMenuHeadItem" data-item="71">运营商维护</li>
+          <li class="naveMenuHeadItem" data-item="80">消防资源</li>
+          <li class="naveMenuHeadItem" data-item="AA">大数据分析</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="DataMap" data-item="AA01"
+            onclick="ShowFull ({ id: 'DataMap', title: '消防安全网格化管理', close: true, url: '/BDMap?MenuCode=DataMap&amp;MenuMC=消防安全网格化管理' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;消防安全网格化管理
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumMain" data-item="AA05"
+            onclick="ShowFull ({ id: 'SumMain', title: '消防管理概况', close: true, url: '/FirstPage?MenuCode=SumMain&amp;MenuMC=消防管理概况' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;消防管理概况
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="BDCompanyCheck" data-item="AA77"
+            onclick="ShowFull ({ id: 'BDCompanyCheck', title: '单位履责分析', close: true, url: '/BigData/BDCompanyCheck?MenuCode=BDCompanyCheck&amp;MenuMC=单位履责分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;单位履责分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="MapQuestion" data-item="AA85"
+            onclick="ShowFull ({ id: 'MapQuestion', title: '火灾隐患分布', close: true, url: '/BigData/QuestionMap?MenuCode=MapQuestion&amp;MenuMC=火灾隐患分布' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;火灾隐患分布
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="BDQuestion" data-item="AA88"
+            onclick="ShowFull ({ id: 'BDQuestion', title: '隐患整改进度', close: true, url: '/BigData/BDQuestion?MenuCode=BDQuestion&amp;MenuMC=隐患整改进度' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;隐患整改进度
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ComAnaly1" data-item="AA88"
+            onclick="ShowFull ({ id: 'ComAnaly1', title: '单位消防安全评估分析', close: true, url: '/BigData/ComAnaly1?MenuCode=ComAnaly1&amp;MenuMC=单位消防安全评估分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;单位消防安全评估分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubQuestionSum" data-item="AA90"
+            onclick="ShowFull ({ id: 'PubQuestionSum', title: '隐患举报分析', close: true, url: '/BigData/PubQuestionSum?MenuCode=PubQuestionSum&amp;MenuMC=隐患举报分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;隐患举报分析
+          </li>
+          <li class="naveMenuHeadItem" data-item="AB">综合报表分析</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByType" data-item="AB01"
+            onclick="addTabs ({ id: 'SumComByType', title: '云平台使用情况进度表', close: true, url: '/FReport/SumComByType?MenuCode=SumComByType&amp;MenuMC=云平台使用情况进度表' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;云平台使用情况进度表
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByIndustry" data-item="AB10"
+            onclick="addTabs ({ id: 'SumComByIndustry', title: '按行业主管统计单位', close: true, url: '/FReport/SumComByIndustry?MenuCode=SumComByIndustry&amp;MenuMC=按行业主管统计单位' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按行业主管统计单位
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByArea" data-item="AB20"
+            onclick="addTabs ({ id: 'SumComByArea', title: '按行政区划统计单位', close: true, url: '/FReport/SumComByArea?MenuCode=SumComByArea&amp;MenuMC=按行政区划统计单位' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按行政区划统计单位
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumPointByArea" data-item="AB21"
+            onclick="addTabs ({ id: 'SumPointByArea', title: '按区域统计巡查点数', close: true, url: '/FReport/SumPointByArea?MenuCode=SumPointByArea&amp;MenuMC=按区域统计巡查点数' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按区域统计巡查点数
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComBySs" data-item="AB22"
+            onclick="addTabs ({ id: 'SumComBySs', title: '按固定消防设施统计', close: true, url: '/FReport/SumComBySs?MenuCode=SumComBySs&amp;MenuMC=按固定消防设施统计' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按固定消防设施统计
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumPointByType" data-item="AB31"
+            onclick="addTabs ({ id: 'SumPointByType', title: '按类型统计巡查点', close: true, url: '/FReport/SumPointByType?MenuCode=SumPointByType&amp;MenuMC=按类型统计巡查点' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按类型统计巡查点
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByLB" data-item="AB35"
+            onclick="addTabs ({ id: 'SumComByLB', title: '按类别统计单位', close: true, url: '/FReport/SumComByLb?MenuCode=SumComByLB&amp;MenuMC=按类别统计单位' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按类别统计单位
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumQuestionByArea" data-item="AB40"
+            onclick="addTabs ({ id: 'SumQuestionByArea', title: '按行政区划统计隐患', close: true, url: '/FReport/SumQuestionByArea?MenuCode=SumQuestionByArea&amp;MenuMC=按行政区划统计隐患' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按行政区划统计隐患
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumQuestionByIndustry" data-item="AB50"
+            onclick="addTabs ({ id: 'SumQuestionByIndustry', title: '按行业主管部门统计隐患', close: true, url: '/FReport/SumQuestionByIndustry?MenuCode=SumQuestionByIndustry&amp;MenuMC=按行业主管部门统计隐患' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按行业主管部门统计隐患
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumQuestionByMonth" data-item="AB60"
+            onclick="addTabs ({ id: 'SumQuestionByMonth', title: '按月统计火灾隐患', close: true, url: '/FReport/SumQuestionByMonth?MenuCode=SumQuestionByMonth&amp;MenuMC=按月统计火灾隐患' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按月统计火灾隐患
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByAreaCheckLog" data-item="AB67"
+            onclick="addTabs ({ id: 'SumComByAreaCheckLog', title: '按时限检查单位时间段分析', close: true, url: '/FReport/SumComByAreaCheckLog?MenuCode=SumComByAreaCheckLog&amp;MenuMC=按时限检查单位时间段分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;按时限检查单位时间段分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByAreaNoCheck" data-item="AB68"
+            onclick="addTabs ({ id: 'SumComByAreaNoCheck', title: '未按时限检查单位分析', close: true, url: '/FReport/SumComByAreaNoCheck?MenuCode=SumComByAreaNoCheck&amp;MenuMC=未按时限检查单位分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;未按时限检查单位分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumPxByArea" data-item="AB70"
+            onclick="addTabs ({ id: 'SumPxByArea', title: '统计单位培训情况', close: true, url: '/FReport/SumPxByArea?MenuCode=SumPxByArea&amp;MenuMC=统计单位培训情况' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;统计单位培训情况
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumChkByIndustry" data-item="AB75"
+            onclick="addTabs ({ id: 'SumChkByIndustry', title: '行业主管部门工作量分析', close: true, url: '/FReport/SumChkByIndustury?MenuCode=SumChkByIndustry&amp;MenuMC=行业主管部门工作量分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;行业主管部门工作量分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumChkByPcs" data-item="AB77"
+            onclick="addTabs ({ id: 'SumChkByPcs', title: '本地区派出所工作量分析', close: true, url: '/FReport/SumChkByPcs?MenuCode=SumChkByPcs&amp;MenuMC=本地区派出所工作量分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;本地区派出所工作量分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumChkByUser" data-item="AB80"
+            onclick="addTabs ({ id: 'SumChkByUser', title: '单位工作人员工作量分析', close: true, url: '/FReport/SumChkByUser?MenuCode=SumChkByUser&amp;MenuMC=单位工作人员工作量分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;单位工作人员工作量分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="ScoreByDate" data-item="AB83"
+            onclick="addTabs ({ id: 'ScoreByDate', title: '消防安全评估成绩分析', close: true, url: '/FReport/ScoreByDate?MenuCode=ScoreByDate&amp;MenuMC=消防安全评估成绩分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;消防安全评估成绩分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SumComByCommunity" data-item="AB97"
+            onclick="addTabs ({ id: 'SumComByCommunity', title: '各社区工作量分析', close: true, url: '/FReport/SumComByCommunity?MenuCode=SumComByCommunity&amp;MenuMC=各社区工作量分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;各社区工作量分析
+          </li>
+          <li class="naveMenuHeadItem" data-item="AC">消防感知</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubDevice2" data-item="AC91"
+            onclick="ShowFull ({ id: 'PubDevice2', title: '电气火灾隐患预警分析', close: true, url: '/SElec?MenuCode=PubDevice2&amp;MenuMC=电气火灾隐患预警分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;电气火灾隐患预警分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubDevice3" data-item="AC92"
+            onclick="ShowFull ({ id: 'PubDevice3', title: '消防水系统预警分析', close: true, url: '/SWater?MenuCode=PubDevice3&amp;MenuMC=消防水系统预警分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;消防水系统预警分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubDevice1" data-item="AC93"
+            onclick="ShowFull ({ id: 'PubDevice1', title: '火灾报警系统数据分析', close: true, url: '/SFASAlarm?MenuCode=PubDevice1&amp;MenuMC=火灾报警系统数据分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;火灾报警系统数据分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubDevice6" data-item="AC94"
+            onclick="ShowFull ({ id: 'PubDevice6', title: '重点部位预警分析', close: true, url: '/SVideoAlarm?MenuCode=PubDevice6&amp;MenuMC=重点部位预警分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;重点部位预警分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="PubDevice9" data-item="ACAC"
+            onclick="ShowFull ({ id: 'PubDevice9', title: '智慧型独立烟感预警分析', close: true, url: '/SSmoke?MenuCode=PubDevice9&amp;MenuMC=智慧型独立烟感预警分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;智慧型独立烟感预警分析
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SGasAlarm" data-item="ACAE"
+            onclick="ShowModel ({ id: 'SGasAlarm', title: '燃气探测器报警分析', close: true, url: '/SGasAlarm?MenuCode=SGasAlarm&amp;MenuMC=燃气探测器报警分析' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;燃气探测器报警分析
+          </li>
+          <li class="naveMenuHeadItem" data-item="WW">系统设置</li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SUser" data-item="WW18"
+            onclick="addTabs ({ id: 'SUser', title: '用户管理', close: true, url: './Sys/SUser.html?MenuCode=SUser&amp;MenuMC=用户管理' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;用户管理
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SUser" data-item="WW18"
+            onclick="addTabs ({ id: 'SJur', title: '权限管理', close: true, url: './Sys/SJur.html?MenuCode=SJur&amp;MenuMC=权限管理' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;权限管理
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SUser" data-item="WW20"
+            onclick="addTabs ({ id: 'SOnline', title: '在线情况', close: true, url: './Sys/SOnline.html?MenuCode=SOnline&amp;MenuMC=在线情况' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;在线情况
+          </li>
+          <li class="naveMenuItem naveMenuClickItem" data-code="SUser" data-item="WW21" id="SXiDay"
+            onclick="addTabs ({ id: 'SXiDay', title: '系统日志', close: true, url: './Sys/SXiDay.html?MenuCode=SOnline&amp;MenuMC=系统日志' });">
+            <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>&nbsp;系统日志
+          </li>
+        </ul>
+      </div>
+      <div class="rightBodyBox">
+        <div class="contentHeadBox">
+          <div class="sysNav">
+            <ul id="mainTabNav" class="nav nav-tabs">
+              <li role="presentation" id="tab_home" class="active"><a href="#tab_First" aria-controls="home" role="tab"
+                  data-toggle="tab"><i class="icon-home"></i>首页</a></li>
+            </ul>
+          </div>
+          <div class="sysLoginDept"> </div>
+        </div>
+        <div id="mainTabContent" class="tab-content contentBodyBox ">
+          <!--调试代码开始-->
+          <!--<div role="tabpanel" class="tab-pane active" id="tab_First" >
+            <div class="navMenu" style="width:100%; height:100%;opacity: 1;background-color:rgba(0,112,184,.3);overflow: hidden;overflow-y:auto;min-width: 1000px;">
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                <div class="naveMenuHeadItem" data-item="06" style="margin:30px auto;width:100%;height:100%;">
+                      <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">项目管理</span>
+                    <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 项目管理，包括电气火灾项目、消防水项目、智慧型独立烟感项目等。</div>
+                  </div>
+                      <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+              </div>
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                <div class="naveMenuHeadItem" data-item="10" style="margin:30px auto;width:100%;height:100%;">
+                      <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">检查工作下发</span>
+                    <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 针对下级政府、行业主管、社会单位下发年度或季节性检查任务。</div>
+                  </div>
+                      <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+              </div>
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                <div class="naveMenuHeadItem" data-item="21" style="margin:30px auto;width:100%;height:100%;">
+                      <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">检查任务落实</span>
+                    <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 接收上级监管部门下发的检查工作，并制定内部检查计划。</div>
+                  </div>
+                      <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+              </div>
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                <div class="naveMenuHeadItem" data-item="43" style="margin:30px auto;width:100%;height:100%;">
+                      <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">巡查检查</span>
+                    <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 查看防火巡查检查情况，实现消防隐患的预警和整改处理。</div>
+                  </div>
+                      <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+              </div>
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                <div class="naveMenuHeadItem" data-item="46" style="margin:30px auto;width:100%;height:100%;">
+                      <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">微型消防站</span>
+                    <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 微型消防站建站情况，包括人员器材配备，并可实现远程视频查岗。</div>
+                  </div>
+                      <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+              </div>
+                  <div style="margin:0px auto;width:55%;height:auto;" >
+                    <div class="naveMenuHeadItem" data-item="51" style="margin:30px auto;width:100%;height:100%;">
+                        <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">消防大培训</span>
+                          <div style="font-size:17px;margin:15px 10px 0px    30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 可上传私有题库，也可使用共享题库配置试卷，手机扫码考试。
+                          </div>
+                        </div>
+                          <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                    </div>
+                </div>
+                <div style="margin:0px auto;width:55%;height:auto;" >
+                  <div class="naveMenuHeadItem" data-item="55" style="margin:30px auto;width:100%;height:100%;">
+                          <div style="color:#fff;width:718px; margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat top center;text-align:center;_height:170px; min-height:170px; "> <span style="font-size:21px; margin:30px auto 10px auto;text-align:center;letter-spacing:30px;  float:left; width:718px;">社区管理</span>
+                        <div style="font-size:17px;margin:15px 10px 0px 30px;line-height:30px; width:652px; float:left;word-break:break-all;letter-spacing:10px;text-align:left;padding:0 10px 0 40px;"> 可上传私有题库，也可使用共享题库配置试卷，手机扫码考试。</div>
+                      </div>
+                          <div style="width:718px;height:20px;margin:0px auto;background:url('images/leibie-bjnr.png') no-repeat 0px -255px;"></div>
+                      </div>
+                  </div>
+                </div>
+            </div>-->
+          <!--调试代码结束-->
+        </div>
+      </div>
+      <div class="footBox"> </div>
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" id="editModalDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="editModalLabel">&nbsp;</h4>
+          </div>
+          <div class="modal-body" id="editModalBody">
+            <iframe id="editModelIfm" marginheight="0" marginwidth="0" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" scrolling="no" allowtransparency="yes">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- loading
+    <div class="modal fade" id="loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      data-backdrop='static'>
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">提示</h4>
+          </div>
+          <div class="modal-body">
+            请稍候。。。<span id="result"></span>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="modal fade" id="selModal" tabindex="-1" role="dialog" aria-labelledby="selModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" id="selModalDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="selModalLabel">&nbsp;</h4>
+          </div>
+          <div class="modal-body" id="selModalBody">
+            <iframe id="selModelIfm" marginheight="0" marginwidth="0" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" scrolling="no" allowtransparency="yes">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="thirdModal" tabindex="-1" role="dialog" aria-labelledby="thirdModalLabel"
+      data-backdrop='mytest' aria-hidden="true">
+      <div class="modal-dialog" id="thirdModalDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                onclick="window.top.CloseThirdWin()">&times;</span></button>
+            <h4 class="modal-title" id="thirdModalLabel">&nbsp;</h4>
+          </div>
+          <div class="modal-body" id="thirdModalBody">
+            <iframe id="thirdModelIfm" marginheight="0" marginwidth="0" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" scrolling="no" allowtransparency="yes">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="yingModal" tabindex="-1" role="dialog" aria-labelledby="yingModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" id="yingModalDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"
+                onclick="window.top.CloseYingWin()">&times;</span></button>
+            <h4 class="modal-title" id="yingModalLabel">&nbsp;</h4>
+          </div>
+          <div class="modal-body" id="yingModalBody" style='padding:0'>
+            <iframe id="yingModelIfm" marginheight="0" marginwidth="0" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" scrolling="no" allowtransparency="yes">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="fourModal" tabindex="-1" role="dialog" aria-labelledby="fourModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" id="fourModalDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="fourModalLabel">&nbsp;</h4>
+          </div>
+          <div class="modal-body" id="fourModalBody">
+            <iframe id="fourModelIfm" marginheight="0" marginwidth="0" frameborder="no" border="0" marginwidth="0"
+              marginheight="0" scrolling="no" allowtransparency="yes">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="boxYing" style='    display: none;'>
+    <div id="playWind"></div>
+  </div>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdn.goeasy.io/goeasy.js"></script>
+  <script type="text/javascript" src="https://cdn.goeasy.io/goeasy-1.2.1.js"></script>
+  <script src="js/jquery-weui.js"></script>
+  <script src="js/ezuikit.js"></script>
+  <script>
+    var username = localStorage.getItem('userName');
+    var lat = localStorage.getItem('firstInfo')
+    //  console.log(username)
+    if (username == "" || username == null) {
+      alert('请登录后进入主页')
+      location.href = "login.html"
+    }
+    // if (lat == "" || lat == null) {
+    //   alert('未获取定位,请重新登录')
+    //   location.href = "login.html"
+    // }
+    $('#outlogin').click(function () {
+      localStorage.removeItem('role');
+      localStorage.removeItem('new_role');
+      localStorage.removeItem('region');
+      localStorage.removeItem('power');
+      localStorage.removeItem('userName');
+      setTimeout(function () {
+        location.href = "login.html"
+      }, 100)
+
+    })
+    var audio = $("#auto")[0];
+    audio.addEventListener("ended", function () {
+      if (playNum > 0) {
+        playNum--;
+        audio.play();
+      }
+    }, false);
+
+    var playAlarm = function () {
+      playNum = 3;
+      audio.play();
+    };
+
+    var userName = parseInt(localStorage.getItem('userName'));
+    var goEasy = GoEasy.getInstance({
+      host: 'hangzhou.goeasy.io',
+      appkey: goKey
+    });
+
+    goEasy.connect({
+      onSuccess: function () {  //连接成功
+        console.log("GoEasy connect successfully.") //连接成功
+      },
+      onFailed: function (error) { //连接失败
+        console.log("Failed to connect GoEasy, code:" + error.code + ",error:" + error.content);
+      },
+      onProgress: function (attempts) { //连接或自动重连中
+        console.log("GoEasy is connecting", attempts);
+      }
+    });
+
+    function goEasyTime() {
+      goEasy.subscribe({
+        channel: userName.toString(),
+        onMessage: function (message) { //这边是推送网页之后，页面的动作
+          console.log(message);
+          var res = message.content;
+
+          function addJs(filepath, callback) {
+            console.log(filepath)
+            var oJs = document.createElement("script");
+            oJs.setAttribute("src", filepath);
+            oJs.onload = callback;
+            document.getElementsByTagName("head")[0].appendChild(oJs);
+          }
+          var arr = res.split(',');
+          console.log(arr)
+          console.log(arr[0])
+          //http://192.168.0.156:8080/earlyWarn/getvideoBydevno.action?devno=
+          var str = []
+          $.ajax({
+            type: 'get',
+            url: url + '/getvideoBydevno.action',
+            data: 'devno=' + arr[0],
+            // data: 'devno=' + '0460046912308548',
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              console.log(XMLHttpRequest)
+              console.log(textStatus)
+              console.log(errorThrown)
+            },
+            success: function (res) {
+              console.log(res)
+              var data = res.mess;
+              var accessToken = res.accessToken
+              if (data == '0') {
+                console.log('暂无摄像')
+              } else {
+                $('#loading-item-0').css('display', 'none');
+                var str = []
+                $.each(data, function (i, v) {
+                  console.log(i, v)
+                  if (v.indexOf('_') != -1) {
+                    console.log(v)
+                    str.push(v)
+                  }
+                })
+                console.log(str)
+                var yanNum = str[0].split('_')[1]
+                var devNum = str[0].split('_')[0]
+                var ezuikitTalkData = {
+                  accessToken: res.accessToken, // 应用accessToken
+                  ezopen: "ezopen://" + yanNum + "@open.ys7.com/" + devNum +
+                    "/1.hd.live", // 包含设备信息的ezopen协议
+                  // decoderPath: './' // 当前页面与插件主文件ezuiit-talk相对路径
+                  decoderPath: '../lingdong' // 当前页面与插件主文件ezuiit-talk相对路径  //线上模式
+                };
+                console.log(ezuikitTalkData)
+                // var ezuikitPath = ezuikitTalkData.decoderPath + '/ezuikit.js';
+                var ezuikitPath = ezuikitTalkData.decoderPath + '/js/ezuikit.js'; //线上模式
+                console.log(ezuikitPath)
+                var startSave = false;
+                var playing = false;
+                var decoder;
+                var url = ezuikitTalkData.ezopen;
+                var accessToken = ezuikitTalkData.accessToken;
+                addJs(ezuikitPath, function () {
+                  var autoplay = 1;
+                  var audioId = 0;
+                  var templete = 2;
+                  var deviceSerial = url.split('/')[3];
+                  var channelNo = url.split('/')[4].split('.')[0];
+                  if (autoplay == '1') {
+                    init();
+                  }
+                  var width = document.documentElement.clientWidth || sessionStorage.getItem('width');
+                  var height = document.documentElement.clientHeight || sessionStorage.getItem(
+                    'height');
+                  $("#playWind").height(height - (48 * 2));
+
+                  function init() {
+                    try {
+                      decoder && decoder.stop();
+                    } catch (e) {
+                      console.log("E", e);
+                    }
+                    $("#video-hd").text(url.indexOf('hd') === -1 ? '标清' : '高清')
+                    setTimeout(() => {
+                      decoder = new EZUIKit.EZUIPlayer({
+                        id: "playWind",
+                        autoplay: true,
+                        audioId: audioId,
+                        url: url,
+                        accessToken: ezuikitTalkData.accessToken,
+                        decoderPath: ezuikitTalkData.decoderPath,
+                        width: width,
+                        height: height - (48 * 2),
+                      });
+                    }, 100);
+                  }
+
+                  function initStar() {
+                    var startSavePromise = decoder.startSave(0, (new Date() + 'video'));
+                    startSavePromise.then(function (data) {
+                      console.log("start save success", startSavePromise);
+                      $("#startSave").hide();
+                      $("#stopSave").show();
+                    })
+                      .catch(function (error) {
+                        console.log("start Save error", error)
+                      })
+                  }
+
+                  function endStart() {
+                    console.log('结束录像')
+                    var stopSavePromise = decoder.stopSave(0);
+                    stopSavePromise.then(function (data) {
+                      console.log("stop save success", stopSavePromise)
+                      $("#stopSave").hide();
+                      $("#startSave").show();
+                    })
+                      .catch(function (error) {
+                        console.log("stop Save error", error)
+                      })
+                  }
+                  setTimeout(() => {
+                    initStar()
+                  }, 2000);
+                  setTimeout(() => {
+                    endStart()
+                    stop()
+                  }, 20000);
+
+                  function stop() {
+                    var stopPromise = decoder.stop();
+                    stopPromise.then(function () {
+                      console.log("关闭成功，用户执行关闭成功后的操作");
+                    })
+
+                  }
+                })
+
+              }
+              if (arr != "") {
+                playAlarm();
+                sessionStorage.setItem('devId', arr[1]); //devId 
+                sessionStorage.setItem('devMC', arr[2]); //v.installLocation
+                sessionStorage.setItem('productNumber', arr[0]);
+                sessionStorage.setItem('DevBH', arr[1]); //devId 
+                if (arr[5] == '0') { //网关
+                  localStorage.setItem('tpage', '4')
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/wanguan.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      //./ExtApp_SFASAlarm_SFASDetail.html?devBH=25523
+                      window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devId=" +
+                        arr[1], 800, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '2') { //烟感
+                  localStorage.setItem('tpage', '6')
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/ygalarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./SSmoke_SmokeDetail.html?devId=" + arr[1],
+                        800, 600, "win",
+                        arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '3') { //电气
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/alarm2.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" +
+                        arr[1] +
+                        '&devSignature=' +
+                        arr[0], 1100, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '4') { //水压
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/alarm_hong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame("./ExtApp_Water_WaterDetail.html?devBH=" +
+                        arr[1], 800, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '5') { //消防主机
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/zhuji_red.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      localStorage.setItem('tpage', '4')
+                      window.top.OpenThirdFrame("./ExtApp_SFASAlarm_SFASDetail.html?devBH=" +
+                        arr[1], 600, 600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '6' || arr[5] == '1') { //无线气感
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/Gasalarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      localStorage.setItem('tpage', '7')
+                      window.top.OpenThirdFrame("./SGasAlarm_GasAlarm.html?devId=" + arr[1] +
+                        '&dSid=' + arr[5],
+                        800, 600, "win",
+                        '历史报警');
+                    }
+                  });
+                } else if (arr[5] == '8') { //无线液位
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/gwsxAlarm.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./ExtApp_Water_WaterDetailwatch.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '10') { // 消防门磁 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/fire_door.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devId=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '11') { // 工业报警
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/gong_hong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SGasAlarm_GasAlarm.html?devId=" + arr[1] + '&dSid=' + arr[5], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '12') { // 电力火灾探测器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/ElePowPRO.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./ElecPower_SElectric_ElecDetail.html?devBH=" + arr[1], 1100,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '15') { // 声光报警器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shengguang.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '16') { // 手动报警 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shoudong.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '18') { // 水浸报警器 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/shuiyin.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                } else if (arr[5] == '19') { // 紧急报警 
+                  $.noti({
+                    title: '报警类型:' + arr[4],
+                    text: "<p>设备号:" + arr[0] + "</p><p>设备ID:" + arr[1] + "</p><p>设备地址:" + arr[
+                      2] +
+                      "</p><p>项目名称:" +
+                      arr[3] +
+                      "</p><p><img src='./images/video_sm.png' style='width:20px;height:20px;'><a href='javascript:;' class='yingshi' style='color: #fff;'>查看视频</a></p>",
+                    media: "<img src='./images/jinji.png'>",
+                    data: {
+                      message: message
+                    },
+                    time: 30000000,
+                    onClick: function (data) {
+                      console.log(data);
+                      window.top.OpenThirdFrame(
+                        "./SSmoke_SmokeDetail.html?devBH=" + arr[1], 800,
+                        600,
+                        "win", arr[2]);
+                    }
+                  });
+                }
+              }
+
+              $('.yingshi').click(function (e) {
+                e.preventDefault();
+                if (res.mess != '0') {
+                  window.top.OpenYingFrame("./ExtApp_SVideo_yingDetail.html?devNum=" + devNum +
+                    "&yanNum=" + yanNum + "&accessToken=" + accessToken, 1100, 700, "win", "视频");
+                } else {
+                  alert('该设备的项目中没有摄像设备')
+                }
+
+              })
+            }
+          })
+
+          console.log(message.content);
+
+        }
+      });
+    }
+
+    setTimeout(function () {
+      goEasyTime();
+    }, 5000)
+  </script>
+</body>
+
+</html>

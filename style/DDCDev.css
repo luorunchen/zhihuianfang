@@ -1,0 +1,179 @@
+html, body {
+  width: 100%;
+  height: 95%;
+  font-family: 'Microsoft YaHei';
+}
+
+.elecDeviceBox {
+  position: absolute;
+  left:25%;
+  /* left: 0px; */
+  right: 0px;
+  /* top: 115px; */
+  
+}
+
+.elecWeekBox {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 100px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.elecBox {
+  width: 310px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  
+}
+
+
+.elecNoText {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+}
+
+.elecBox .elecItem {
+  width: 270px;
+  height: 155px;
+  overflow-y: hidden;
+  text-align: center;
+  border: solid 1px #ccc;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  display: table;
+  cursor: pointer;
+}
+
+
+.elecBox .elecPic {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  margin-top: 35px;
+  cursor: pointer;
+  float: left;
+  margin-left: 10px;
+}
+
+.elecBox .gasNormal {
+  background-image: url(../images/Gasusual.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.elecBox .gasOff {
+  background-image: url(../images/diandongche.png);
+  background-position: center center; 
+  background-size: 100% 100%;
+}
+
+.elecBox .gasAlarm {
+  background-image: url(../images/Gasala.png);
+  background-position: center center;
+  background-size: cover;
+}
+
+.elecBox .elecContent {
+  overflow-y: hidden;
+  padding-right: 5px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.elecBox .elecTitle {
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  padding-bottom: 2px;
+}
+
+.elecBox .leftTitle {
+  float: left;
+}
+
+.elecBox .rightTitle {
+  float: right;
+}
+
+.elecBox .lineTitle {
+  overflow: hidden;
+}
+
+.elecBox .elecAbout1 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  height: 700px;
+  background-image: url(../images/elec1.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+.elecBox .elecAbout2 {
+  margin-top: 10px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  height: 700px;
+  background-image: url(../images/elec1.jpg);
+  background-position: center center;
+  background-size: cover;
+}
+
+.elecWeekScroll {
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.weekReportItem {
+  border: solid 1px #ccc;
+  float: left;
+  margin-left: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 220px;
+  height: 80px;
+  font-size: 14px;
+  padding-top: 10px;
+  white-space: nowrap;
+}
+
+  .weekReportItem .lineText {
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+  }
+
+
+.deviceAlarmBox {
+  width: 400px;
+  height: 400px;
+  overflow-y: auto;
+  border: solid 1px #5dacd3;
+}
+
+  .deviceAlarmBox .deviceAlarmItem {
+      border-bottom: solid 1px #5dacd3;
+  }
+
+  .deviceAlarmBox .deviceResultTitle {
+      line-height: 30px;
+      font-size: 16px;
+  }
+
+  .deviceAlarmBox .deviceResultText {
+      line-height: 25px;
+      font-size: 14px;
+  }

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/Form.css" rel="stylesheet" />
+    <link href="style/ShowTable.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="bodyBox">
+        <div class="formBody">
+            <div style='text-align:center;margin-top:30px;font-size: 25px;' class="hisAlarm">设备详情</div>
+            <div class="ShowTable" style="width:auto;">
+
+            </div>
+            <div style='text-align:center;margin-top:30px;font-size: 25px;' class="hisAlarm">
+              <span> 历史报警信息</span> 
+              <button class='btn btn-info' id="daoData">导出数据</button>
+            </div>
+            <div class='alarmTable' style="width:auto;">
+
+
+            </div>
+            <div style='text-align:center;margin-top:30px;    font-size: 25px;' class="hisAlarm">设备事件</div>
+            <div class='facEvent' style="width:auto;">
+            </div>
+        </div>
+        <div class="formBut">
+            <div class="form-group">
+                <div style="float:right;margin-right:30px;"> <input class="btn btn-default" name="goBackBtn"
+                        onclick="window.top.CloseThirdWin()" type="button" value="关闭" /> </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var global = (function () {
+            var search = location.search;
+            var search = decodeURI(search);
+            var global = {};
+            if (search != "") {
+                search.slice(1).split("&").forEach(function (val) {
+                    var arr = val.split("=");
+                    global[arr[0]] = arr[1];
+                });
+            }
+            return global;
+        })();
+        console.log(global)
+        var type = parseInt(localStorage.getItem('tpage'));
+        var devId = sessionStorage.getItem('DevBH');
+        $.ajax({
+            type: 'get',
+            url: url + '/admin/device/ElecData.action',
+            dataType: 'json',
+            data: 'devId=' + global.devBH + '&type=' + type,
+            error: function (error) {
+                console.log('Ext_app_SFASA' + error);
+            },
+            success: function (result) {
+                console.log(result);
+                var data = result.DevInfo;
+                console.log(data);
+                var cdata = result.DevData;
+                console.log(cdata);
+                var dectype = data.devType;
+
+                var a = new Date(data.heartbeatTime.time);
+                // console.log(a);
+                var heartbeatTime = a.toLocaleString();
+                // console.log(heartbeatTime);
+                var html = "";
+                html =
+                    "<table class='tabBox'> <tr><td style='width:120px; ' class='tabLabel'>设备厂商</td><td colspan='3'>" +
+                    data.dVName +
+                    "</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备型号</td><td colspan='3'>" +
+                    data.dSName +
+                    "</td></tr><tr><td style='width:120px; ' class='tabLabel'>安装位置</td><td colspan='3'>" +
+                    data.installLocation +
+                    "</td></tr><tr><td style='width:120px; ' class='tabLabel'>注册时间</td><td colspan='3'>" +
+                    heartbeatTime +
+                    "</td></tr><tr><td style='width:120px; ' class='tabLabel'>产品编号</td><td colspan='3'>" +
+                    data.productNumber + "</td></tr></table>";
+                $('.ShowTable').html(html);
+
+                var html = "";
+                console.log(cdata != "");
+                console.log(cdata != null);
+                if (dectype == '5') {
+                    var mess12=result.mess12;
+                    console.log(mess12)
+                    if (mess12 != "" && mess12 != null) {
+                        $.each(mess12, function (i, data) {
+                            // console.log(v);
+                            html +=
+                        "<table class='tabBox'><tr><td style='width:120px; ' class='tabLabel'>设备类型</td><td colspan='3'>" +
+                        data.d_type +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备详情</td><td colspan='3'>" +
+                        data.desc +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备标识</td><td colspan='3'>" +
+                        data.dstr +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警类型</td><td colspan='3'>" +
+                        data.alarmType +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警时间</td><td colspan='3'>" +
+                        data.date + "</td></tr></table>"
+                        });
+                    }
+                } else {
+                    if (cdata != "" && cdata != null) {
+                        $.each(cdata, function (i, v) {
+                            // console.log(v);
+                            html +=
+                                "<table border='1' id='alarmBox' class='tabBox' style='margin-top:30px;'><tr><td style='width:120px; ' class='tabLabel'>报警位置</td><td colspan='3'>" +
+                                v.installLocation +
+                                "</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警时间</td><td colspan='3'>" +
+                                v.regdate +
+                                "</td></tr><tr><td style='width:120px; ' class='tabLabel'>报警类型</td><td colspan='3'>" +
+                                v.typeName +
+                                "</td></tr><tr><td style='width:120px; ' class='tabLabel'>地址号</td><td colspan='3'>" +
+                                v.speed +
+                                "</td></tr><tr><td style='width:120px; ' class='tabLabel'>回路号</td><td colspan='3'>" +
+                                v.height + "</td></tr></table>";
+                        });
+                    } else {
+                        var html = "";
+                        html = "<div>暂无报警信息</div>";
+                    }
+                }
+
+                $('.alarmTable').html(html);
+
+            }
+        })
+        //http://192.168.0.156:8080/earlyWarn/getBluebirdevent.action?imei=00000002000190000300009000300108
+        $.ajax({
+            type: 'get',
+            url: url + '/getBluebirdevent.action',
+            data: 'imei=' + global.pro,
+            error: function (error) {
+                console.log('Ext_app_SFASA' + error);
+            },
+            success: function (result) {
+                console.log(result)
+                var res = result.list
+                var html = '';
+                $.each(res, function (i, data) {
+                    html +=
+                        "<table class='tabBox'><tr><td style='width:120px; ' class='tabLabel'>设备类型</td><td colspan='3'>" +
+                        data.d_type +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备详情</td><td colspan='3'>" +
+                        data.desc +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>设备标识</td><td colspan='3'>" +
+                        data.dstr +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>事件类型</td><td colspan='3'>" +
+                        data.alarmType +
+                        "</td></tr><tr><td style='width:120px; ' class='tabLabel'>事件时间</td><td colspan='3'>" +
+                        data.date + "</td></tr></table>"
+                })
+                $('.facEvent').html(html)
+
+            }
+        })
+
+
+        // function formatDate(now) { 
+        //     var year=now.getFullYear();  //取得4位数的年份
+        //     var month=now.getMonth()+1;  //取得日期中的月份，其中0表示1月，11表示12月
+        //     var date=now.getDate();      //返回日期月份中的天数（1到31）
+        //     var hour=now.getHours();     //返回日期中的小时数（0到23）
+        //     var minute=now.getMinutes(); //返回日期中的分钟数（0到59）
+        //     var second=now.getSeconds(); //返回日期中的秒数（0到59）
+        //     return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+        // } 
+
+        $('#daoData').click(function(){
+            //http://anfangapp.112.74.126.51/earlyWarn/admin/device/excelAlarmValue.action?imei=00000002000190000300009000300108
+            window.open(url+"/admin/device/excelAlarmValue.action?imei="+global.pro);
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>视频</title>
+     <link href="style/bootstrap.min.css" rel="stylesheet" />
+     <script src="js/jquery.min.js"></script>
+    <script src="js/url_zhuan.js"></script>
+    <link href="style/animate.css" rel="stylesheet" />
+    <link href="style/validationEngine.jquery.css" rel="stylesheet"/>
+    <link href="style/Form.css" rel="stylesheet" />
+    <script src="js/jquery.form.js"  type="text/javascript"></script>
+    <script src="js/FTool.js"  type="text/javascript"></script>
+    <link href="style/ShowTable.css" rel="stylesheet"/>
+ 	<script src="js/getUrlParm.js"></script>
+	<script language="javascript">
+			var dev = getUrlParam("device");
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////				
+      </script>
+     <link href="style/MDForm.css" rel="stylesheet" />
+     <style>
+      
+      .title{
+        text-align: center;
+        font-size: 18px;
+      }
+     </style>
+</head>
+<body>
+    <div id="box">
+        <!--<table border="1" align="center"  width="80%" cellpadding="3" cellspacing="2">
+            <tbody align='center'>
+                <tr>
+                    <td>1 productNumber</td>
+                    <td>2  04DDEAEA2F4D80</td>
+                </tr>   
+                <tr>
+                    <td>1 installLocation</td>
+                    <td>2  天宫安防11楼B1103</td>
+                </tr>
+                <tr>
+                    <td>1 date</td>
+                    <td>2 2018-08-02 18:27:31.0</td>
+                </tr>
+                <tr>
+                    <td>1 device_name</td>
+                    <td>2 消防栓</td>
+                </tr>
+            </tbody>
+        </table>-->
+    </div>
+    <script>
+        var devId=sessionStorage.getItem('devId');
+       // console.log(devId);
+      $.ajax({
+          type:'get',
+          data:'devId='+devId,
+          dataType:'json',
+          url:url+'/admin/device/getNFCInspectionByDevId.action',
+          error:function(err){
+            console.log('ExtAPpp_SNfc'+err);
+          },
+          success:function(result){
+            console.log(result);
+            var mess=result.list[0].mess[0];
+            if(mess!=null||mess==[]){
+                console.log(1);
+                var html="";
+                html="<table border='1' align='center'  width='80%' cellpadding='3' cellspacing='2'><caption class='title'>设备详细</caption><tbody align='center'><tr><td>设备编号</td><td>"+mess.productNumber+"</td></tr><tr><td>设备位置</td><td>"+mess.installLocation+"</td></tr><tr><td>设备名称</td><td>"+mess.device_name+"</td></tr><tr><td>安装时间</td><td>"+mess.date+"</td></tr><tr><td>设备状态</td><td>"+mess.isMess+"</td></tr></tbody></table>";
+            }else{
+                var html="<div style='margin-top:20px;text-align:cemter;'>该NFC设备没有巡检记录</div>";  
+            }
+            $("#box").html(html);
+          }
+      })
+    </script>
+<!-- <div class="bodyBox">
+<div class="formBody">
+    <div class="ShowTable" style="width:100%;">
+          <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2018-03-15&nbsp;&nbsp;19:50:24</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <video controls="controls" width="400" preload="metadata" src="http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70cd.3gp"></video>
+                          <a class="video" style="display:none;" href="javascript:;"  onclick="showPlay('http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70cd.3gp')">点击播放录像</a>
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2018-03-15&nbsp;&nbsp;19:50:24</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path3/201803/15/2300040_0_5aaa5e00_70c9.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2017-11-29&nbsp;&nbsp;08:33:06</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path1/201711/29/2300040_0_5a1e0042_ad3.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+            <table class="tabBox" >
+                <tr>
+                    <td style="width: 120px;" class="tabLabel">告警时间</td>
+                    <td>2017-01-04&nbsp;&nbsp;21:01:34</td>
+                    <td style="width: 120px;" class="tabLabel">所在防区</td>
+                    <td>红外探测</td>
+                </tr>
+                    <tr>
+                        <td class="tabLabel">告警文件</td>
+                        <td colspan="3">
+                          <img width="400" src="http://vh.anxin-net.com/path2/201701/04/2300040_0_586cf22e_1b83.jpg" />
+                        </td>
+                    </tr>
+            </table>
+            <br />
+    </div>
+</div>
+<div class="formBut">
+      <div class="form-group">   
+      <div style="float:right;margin-right:30px;">     
+      <input class="btn btn-default"  name="goBackBtn" onclick="window.top.CloseThirdWin();" type="button" value="关闭" />  </div>  
+      </div>
+</div>
+<script src="js/jquery.validationEngine-zh.js"></script>
+<script src="js/jquery.validationEngine.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</div> -->
+</body>
+</html>

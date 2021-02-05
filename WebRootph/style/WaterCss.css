@@ -1,0 +1,189 @@
+﻿html, body {
+    width:100%;
+    height:100%;
+}
+.waterBox {
+    width:310px;
+    overflow:auto;
+    height:100%;
+    padding:10px;
+    background-color: #262626;
+    color:#fff;
+}
+
+
+.waterNoText {
+
+    margin-top:40px;
+    margin-left:auto;
+    margin-right:auto;
+    font-size:20px;
+}
+
+.SElec_ElecComDev {
+    position: absolute;
+    right: 59%;
+}
+
+
+    .waterBox .waterItem {
+        width:270px;
+        overflow-y:hidden;
+        text-align:center;
+        border:solid 1px #eee;
+        float:left;
+        margin-left:5px;
+        margin-top:10px;
+        border-radius:5px;
+        padding-bottom:10px;
+        box-shadow: inset 0px 0px 30px #fff;
+    }
+     .waterBox .waterPic {
+         width:120px;
+         height:120px;
+         text-align:center;
+         margin-left:auto;
+         margin-right:auto;
+         margin-top:10px;
+         cursor:pointer;
+    }
+
+.waterBox .waterNormal {   /*水压正常*/
+    background-image: url(../images/alarm.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+} 
+   .waterBox .waterOff {    /*水压离线*/
+         background-image:url(../images/alarm_hui.png);
+         background-position:center center;
+         background-size:100%;
+         background-repeat:no-repeat;
+    } 
+   .waterBox .waterAlarm {      /*水压告警*/
+         background-image:url(../images/alarm.png);
+         background-position:center center;
+         background-size:100%;
+         background-repeat:no-repeat;
+    }
+    .waterBox .yeweNormal {   /*液位正常*/
+    background-image: url(../images/gwsxNomal.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    } 
+   .waterBox .yeweOff {    /*液位离线*/
+         background-image:url(../images/gwsxHui.png);
+         background-position:center center;
+         background-size:100%;
+         background-repeat:no-repeat;
+    } 
+   .waterBox .yeweiAlarm {      /*液位告警*/
+         background-image:url(../images/gwsxAlarm.png);
+         background-position:center center;
+         background-size:100%;
+         background-repeat:no-repeat;
+    }
+
+.waterBox .splNormal {
+    background-image: url(../images/splNomal.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .splOff {
+    background-image: url(../images/splOff.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .splAlarm {
+    background-image: url(../images/splAlarm.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.waterBox .xfscNormal {
+    background-image: url(../images/xfscNomal.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .xfscOff {
+    background-image: url(../images/xfscOff.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .xfscAlarm {
+    background-image: url(../images/xfscAlarm.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.waterBox .gwsxNormal {
+    background-image: url(../images/gwsxNomal.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .gwsxOff {
+    background-image: url(../images/alarm.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.waterBox .gwsxAlarm {
+    background-image: url(../images/gwsxNomal.png);
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+} 
+
+
+
+
+
+    .waterBox .waterTitle {
+       line-height:25px;
+       padding-left:20px;
+       padding-right:20px;
+       width:100%;
+       text-align:left;
+       font-size:14px;
+    }
+      .waterBox .leftTitle {
+       float:left;
+     
+    }
+        .waterBox .rightTitle {
+       float:right;
+       
+    }
+      .waterBox .lineTitle {
+         overflow:hidden;
+    }
+      .waterBox .waterAbout1{
+          text-align:center;
+          margin-left:auto;
+          margin-right:auto;
+          width:1024px;
+          height:700px;
+            background-image:url(../images/elec1.jpg);
+           background-position:center center;
+         background-size:cover;
+      }
+        .waterBox .waterAbout2{
+            margin-top:10px;
+            text-align:center;
+          margin-left:auto;
+          margin-right:auto;
+          width:1024px;
+          height:700px;
+            background-image:url(../images/elec1.jpg);
+           background-position:center center;
+         background-size:cover;
+      }

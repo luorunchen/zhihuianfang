@@ -1,0 +1,359 @@
+
+
+var global=(function(){
+      	var search=$('#ediModelIfm').context.URL;
+        var search=decodeURI(search);
+  		var global={};		
+ 		if(search!=""){	
+      		search.slice(1).split('?')[1].split('&').forEach(	
+      			function(val){
+        			var arr=val.split("=");		
+          			global[arr[0]]=arr[1];		
+      			}
+      		);
+       	}
+    	return global;		
+ 	})();
+    console.log(global);
+    
+function edit(cp,ls){
+  //  console.log(cp);
+    var col="";    //cp(pno)  当前页数  ls(pageSize) 每页显示几行  col  
+    var state=0;
+    var kw="";
+    var value=$('#QueryMC').val() || "";
+    $.ajax({
+        type:'get',
+        url:url+'/admin/device/getAllDeviceWeb.action',
+        data:'username='+global.username+'&cp='+cp+'&col='+col+'&state='+state+'&kw='+kw+'&ls='+ls +'&deviceName='+value,
+        dataType:'json',
+        error:function(error){
+            console.log('DDept/js/details'+error);
+        },
+        success:function(result){
+           console.log(result);
+            var count=result.list[0].count;
+           console.log(count);
+           var html="";
+           html="该账号下共有<span style='color:red'>"+count+"</span>台设备";
+           $('.facTotle').html(html)
+            var num=Math.ceil(count/ls);
+            console.log(num);
+            sessionStorage.setItem('num',num);
+            var html="";
+            var udata=result.list[0].allObj;
+            
+          //  console.log(udata);
+            if(udata!=""||udata!=null){
+                $.each(udata,function(i,v){
+                    if(v.authorize=='1'){
+                        var authorize ='已授权';
+                    }else{
+                        var authorize ='未授权';
+                    }
+                    if(v.flow=='0'){
+                        var flow ='未开启流量';
+                    }else{
+                        var flow =v.flowTime || "已开启流量";
+                    }
+                    if(v.policy=='0'){
+                        var policy ='';
+                    }else{
+                        var policy=v.policy;
+                    }
+                    html+="<tr data-devId="+v.devId+" data-pNum="+v.productNumber+" data-devMC="+v.installLocation+" data-pid="+v.pid+" data-tpn="+v.typeName+"><td  class='td_center' style='width:60px;' data-val="+v.devId+">"+(i+1)+"</td><td  class='td_center' style='width:100px;' value="+v.name+">"+v.name+"</td><td  class='td_center' style='width:100px;' value="+v.installLocation+">"+v.installLocation+"</td><td  class='td_center' style='width:100px;' value="+v.dSName+">"+v.dSName+"</td><td  class='td_center' style='width:210px;' value="+v.productNumber+">"+v.productNumber+"</td><td  class='td_center' style='width:100px;' value="+v.regdate+">"+v.regdate+"</td><td  class='td_center' style='width:100px;' value="+v.heartbeatTime+">"+v.heartbeatTime+"</td><td  class='td_center' style='width:100px;' value="+v.dVName+">"+v.dVName+"</td><td  class='td_center' style='width:100px;' value="+v.authorize+">"+authorize+"</td><td  class='td_center' style='width:100px;' value="+policy+">"+policy+"</td><td  class='td_center' style='width:100px;' value="+flow+">"+flow+"</td><td class='td_center' style='width:100px;' value="+v.remark+">"+v.remark+"</td><td  class='td_center' style='width:150px;'><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'  class='btn btn-primary EditClick' data-val="+v.devId+" data-name="+v.name+" data-uAddress="+v.installLocation+"  data-dSName="+v.dSName+" data-productNumber="+v.productNumber+"    data-dVName="+v.dVName+"    data-remark="+v.remark+" ><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>编辑 </button> </div><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'    class='btn btn-danger deleClose' data-val="+v.devId+" data-name="+v.name+"><span class='glyphicon glyphicon-remove' aria-hidden='true'></span>删除 </button><button type='button' aria-expanded='false'    class='btn btn-warning accredit' data-val="+v.devId+" data-prNum="+v.productNumber+" data-name="+v.name+" data-authorize="+v.authorize+" data-flow="+v.flow+"   data-pid="+v.pid+" ><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>设置 </button> </div></td> </tr>";
+                    // if(v.authorize=='1'){
+                    //     html+="<tr><td  class='td_center' style='width:60px;' data-val="+v.devId+">"+(i+1)+"</td><td  class='td_center' style='width:100px;' value="+v.name+">"+v.name+"</td><td  class='td_center' style='width:100px;' value="+v.installLocation+">"+v.installLocation+"</td><td  class='td_center' style='width:100px;' value="+v.dSName+">"+v.dSName+"</td><td  class='td_center' style='width:210px;' value="+v.productNumber+">"+v.productNumber+"</td><td  class='td_center' style='width:100px;' value="+v.regdate+">"+v.regdate+"</td><td  class='td_center' style='width:100px;' value="+v.heartbeatTime+">"+v.heartbeatTime+"</td><td  class='td_center' style='width:100px;' value="+v.dVName+">"+v.dVName+"</td><td  class='td_center' style='width:100px;' value="+v.authorize+">已授权</td><td  class='td_center' style='width:100px;' value="+v.policy+">"+v.policy+"</td><td class='td_center' style='width:100px;' value="+v.remark+">"+v.remark+"</td><td  class='td_center' style='width:150px;'><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'  class='btn btn-primary EditClick' data-val="+v.devId+" data-name="+v.name+" data-uAddress="+v.installLocation+"  data-dSName="+v.dSName+" data-productNumber="+v.productNumber+"    data-dVName="+v.dVName+"    data-remark="+v.remark+" ><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>编辑 </button> </div><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'    class='btn btn-danger deleClose' data-val="+v.devId+" data-name="+v.name+"><span class='glyphicon glyphicon-remove' aria-hidden='true'></span>删除 </button><button type='button' aria-expanded='false'    class='btn btn-warning accredit' data-val="+v.devId+" data-name="+v.name+"><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>授权 </button> </div></td> </tr>";
+                    // }else{
+                    //     html+="<tr><td  class='td_center' style='width:60px;' data-val="+v.devId+">"+(i+1)+"</td><td  class='td_center' style='width:100px;' value="+v.name+">"+v.name+"</td><td  class='td_center' style='width:100px;' value="+v.installLocation+">"+v.installLocation+"</td><td  class='td_center' style='width:100px;' value="+v.dSName+">"+v.dSName+"</td><td  class='td_center' style='width:210px;' value="+v.productNumber+">"+v.productNumber+"</td><td  class='td_center' style='width:100px;' value="+v.regdate+">"+v.regdate+"</td><td  class='td_center' style='width:100px;' value="+v.heartbeatTime+">"+v.heartbeatTime+"</td><td  class='td_center' style='width:100px;' value="+v.dVName+">"+v.dVName+"</td><td  class='td_center' style='width:100px;' value="+v.authorize+">未授权<input type='checkbox'></td><td  class='td_center' style='width:100px;' value="+v.policy+">"+v.policy+"</td><td class='td_center' style='width:100px;' value="+v.remark+">"+v.remark+"</td><td  class='td_center' style='width:150px;'><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'  class='btn btn-primary EditClick' data-val="+v.devId+" data-name="+v.name+" data-uAddress="+v.installLocation+"  data-dSName="+v.dSName+" data-productNumber="+v.productNumber+"  data-dVName="+v.dVName+" data-remark="+v.remark+"  ><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>编辑 </button> </div><div class='btn-group btn-group-sm' role='group'><button type='button' aria-expanded='false'    class='btn btn-danger deleClose' data-val="+v.devId+" data-name="+v.name+"><span class='glyphicon glyphicon-remove' aria-hidden='true'></span>删除 </button><button type='button' aria-expanded='false'    class='btn btn-warning accredit' data-val="+v.devId+" data-prNum="+v.productNumber+"><span class='glyphicon glyphicon-thumbs-up' aria-hidden='true'></span>授权 </button> </div></td> </tr>";
+                    // }
+                    
+                })  
+                $('#GridTables').html(html);
+            }
+            
+            var html="";
+            html="共&nbsp;<i id='page-total-count' class='blue'></i>&nbsp;"+count+"条记录,当前显示第&nbsp;<i id='page-total-num' class='blue'>"+cp+"</i>&nbsp;页";
+            $("#page-total").html(html);
+
+            var pInfo = "";
+            var pno = parseInt(cp);
+            pInfo+= "<span class='FirstPno btn btn-default' >首页</span>";
+            if (pno - 2 > 0) {
+                pInfo += "<span class='' >"+(pno-2)+"</span>";
+            }
+            if (pno - 1 > 0) {
+                pInfo += "<span class='' >"+(pno-1)+"</span>";
+            }
+            pInfo += "<span class='current' >"+pno+"</span>";
+            if (pno + 1 <= num) {
+                pInfo += "<span class='' >"+(pno+1)+"</span>";
+            }
+            if (pno + 2 <= num) {
+                pInfo += "<span class='' >"+(pno+2)+"</span>";
+            }
+            pInfo+= "<span class='LastPno btn btn-default' >末页</span>"
+            $('#page-info').html(pInfo)
+            
+            $('.EditClick').click(function(){
+                console.log($(this));
+                var data=$(this).parent().parent().parent().children();
+                var devId=$(this).attr('data-val');
+                 var uName=$(this).attr('data-name');
+                var uAddress=$(this).attr('data-uAddress');
+                var uType=$(this).attr('data-dSName'); 
+                var uLoop=$(this).attr('data-productNumber');  //回路号
+                var uPnum=$(this).attr('data-productNumber');  //设备号
+                var uFirm=$(this).attr('data-dVName'); //设备产商
+                var uState=$(this).attr('data-remark');  //备注
+                var uResTime=data[5].innerHTML;  //注册时间
+                var uHeTime=data[6].innerHTML;  //心跳时间
+                // console.log(uResTime+'--'+uHeTime)
+                // console.log(uName+'----'+uAddress+'-----'+uType+'----'+uLoop+'-----'+uPnum+'----'+uResTime+'-----'+uHeTime+'-----'+uFirm+'-----'+uState);
+                var rid=localStorage.getItem('power');
+                var powerId=localStorage.getItem('new_role');
+                var width = $(window).width();
+                var height = $(window).height();
+                if(powerId == 1000 || rid.indexOf('10003005') !=-1) {
+                    layer.open({
+                        type: 2,
+                        title: '设备编辑',
+                        maxmin: true,
+                        offset: ['25px'],
+                        shadeClose: true, //点击遮罩关闭层
+                        shade: 0.5, //不显示遮罩
+                        // area: [width + 'px', height + 'px'],
+                        area: [width*0.8 + 'px', height-50 + 'px'],
+                        content: "../Sys/SUser/facility.html?uName="+uName+'&uAddress='+uAddress+'&uType='+uType+'&uLoop='+uLoop+'&uPnum='+uPnum+'&uResTime='+uResTime+'&uHeTime='+uHeTime+'&uFirm='+uFirm+'&devId='+devId+'&uState='+uState
+                    });
+                    // window.top.OpenFrame('./Sys/SUser/facility.html?uName='+uName+'&uAddress='+uAddress+'&uType='+uType+'&uLoop='+uLoop+'&uPnum='+uPnum+'&uResTime='+uResTime+'&uHeTime='+uHeTime+'&uFirm='+uFirm+'&devId='+devId+'&uState='+uState,550,350,"","项目管理设置",function(r){
+                    
+                    // })
+                }else{
+                    alert('用户无此权限,如需此权限请向上级申请')
+                }
+                
+            })
+            
+            $('.deleClose').click(function(){
+                var rid=localStorage.getItem('power');
+                var powerId=localStorage.getItem('new_role');
+                var devId=$(this).attr('data-val');
+                var name=$(this).attr('data-name');
+                if(devId==""){
+                    var devId="";
+                }else if(devId==""){
+                    var name="";
+                }
+                console.log(devId)
+                console.log(name)
+                if(powerId == 1000) {
+                    $.confirm({
+                        title: '删除后无法修复,确定删除吗',
+                        text: "删除项目名为<span style='color:red;'>"+name+"</span>的记录",
+                        onOK: function () {
+                            $.ajax({
+                                type:'get',
+                                url:url+'/admin/device/check/deleDevice.action',
+                                data:'devId='+devId+'&username='+userName +'&my_username='+username,
+                                error:function(error){console.log(error+'网络错误')},
+                                success:function(result){
+                                    var res=JSON.parse(result);
+                                    console.log(res);
+                                    if(res.list[0].status==true){
+                                        alert(res.list[0].mess);
+                                        setTimeout(function(){
+                                            window.location.reload();
+                                        },1000)
+                                    }else{
+                                        alert(res.list[0].mess)
+                                    }
+                                }
+                            })
+                        },
+                        onCancel: function () {
+                        }
+                      });
+                }else if(rid.indexOf('10003006') !=-1){
+                    alert('功能暂不开放')
+                }else{
+                    alert('用户无此权限,如需此权限请向上级申请')
+                }
+            })
+
+            $('.accredit').click(function(){
+                var data=$(this).parent().parent().parent().children();
+                console.log(data)
+                var devId=$(this).attr('data-val');
+                var prNum=$(this).attr('data-prNum');
+                var policy=data[9].innerHTML;  //保险单号
+                var flowTime=data[10].innerHTML;  //首次开启流量时间
+                var authorize=$(this).attr('data-authorize');
+                var pid=$(this).attr('data-pid'); 
+                var flow=$(this).attr('data-flow');
+                console.log(devId)
+                console.log(prNum)
+                var width = $(window).width();
+                var height = $(window).height();
+                
+                layer.open({
+                    type: 2,
+                    title: '设备命令管理',
+                    maxmin: true,
+                    offset: ['25px'],
+                    shadeClose: true, //点击遮罩关闭层
+                    shade: 0.5, //不显示遮罩
+                    area: [width*0.8 + 'px', height-50 + 'px'],
+                    content: "../Sys/SUser/facCommand.html?devSignature="+prNum+'&devId='+devId+'&policy='+policy+'&authorize='+authorize+'&flow='+flow+'&flowTime='+flowTime+'&pid='+pid
+                });
+                
+                
+                
+            })
+        }
+    })
+}
+edit(1,10);
+
+//去第几页
+$('#page-jump-go').click(function () {
+    var pageCount = sessionStorage.getItem('num');
+    var num = $('#page-jump-num').val();
+    var fenSelect=$('#page-size-select').val();
+    if(num=="" ){
+        layer.open({
+            content:'请输入页数'
+        })
+    }else{
+        if( num=="0"){
+            var num ='1'
+        }
+        if ( parseInt(num) > pageCount) {
+            $('#page-jump-num').val('')
+            layer.open({
+                type: 1,
+                offset: 'auto',
+                id: 'layerDemoauto' //防止重复弹出
+                    ,
+                content: '<div style="padding: 20px 100px;">超出最大页面数</div>',
+                btn: '关闭',
+                btnAlign: 'c' //按钮居中
+                    ,
+                shade: 0.2 //不显示遮罩
+                    ,
+                yes: function () {
+                    layer.closeAll();
+                }
+            });
+        } else {
+            $('#page-jump-num').val(num)
+            edit(num, fenSelect)
+        }
+    }
+    
+})
+//一页显示几条
+$('#page-size-select').click(function () {
+    var pageSize = $(this).val()
+    edit(1, pageSize)
+})
+//点击页数
+$(".pagination").on('click', 'span', function (e) {
+    console.log($(this));
+    var pageCount = sessionStorage.getItem('num');
+    e.preventDefault();
+    // 2.获取当前页码
+    var pno = parseInt($(this).html());
+    if($(this).html()=='首页'){
+        var pno='1';
+        console.log(pno)
+    }else if($(this).html()=='末页'){
+        console.log(2)
+        var pno=pageCount;
+    }else{
+        var pno = parseInt($(this).html());
+    // 3.调用分页函数
+    }
+    var pageSize =  parseInt($('#page-size-select').val());
+    // 3.调用分页函数
+    edit(pno, pageSize);
+})
+
+$('.Grid_bd').on('mouseenter', 'tbody tr', function () {
+    // console.log($(this));
+    $(this).addClass('hoverTr');
+});
+$('.Grid_bd').on('mouseleave', 'tbody tr', function () {
+    $(this).removeClass('hoverTr');
+})
+var timeout =null; 
+$('.Grid_bd').on('click', 'tr', function () {
+    clearTimeout(timeout);//停止单击定时事件
+    timeout= window.setTimeout(function(){//延迟单击事件触发内容  
+        console.log("this is click event");        
+    }, 200);  
+});   
+$('.Grid_bd').on('dblclick', 'tr', function () {
+    console.log($(this));
+    var pNum=$(this).attr('data-pNum');
+    var devBH=$(this).attr('data-devId');
+    var devMC=$(this).attr('data-devMC');
+    var pid=$(this).attr('data-pid');
+    var typeName=$(this).attr('data-tpn');
+    var width=$(window.parent.parent.document).width();
+    console.log(width)
+    var height=$(window.parent.parent.document).height()-150;
+    if(width >= 980){
+        var width='930';
+    }else{
+        var width=$(window.parent.document).width();
+    }
+    sessionStorage.setItem('DevBH', devBH); //devId 
+    sessionStorage.setItem('devMC', devMC); //v.installLocation
+    sessionStorage.setItem('pid', pid);
+    sessionStorage.setItem('productNumber', pNum);
+    console.log(height)
+    clearTimeout(timeout);//停止单击定时事件
+    timeout= window.setTimeout(function(){//延迟单击事件触发内容  
+        window.top.OpenThirdFrame("./ExtApp_SElectric_ElecDetail.html?devBH=" + devBH  + '&typeName=' + typeName, width, height, "win", devMC);       
+    }, 200); 
+    
+    // $(this).addClass('hoverTr');
+});     
+    
+
+     //刷新
+    function RefreshClick(){
+        window.location.reload();
+    }
+    //搜索
+    $('#BtnSearch').click(function(){
+        var value=$('#QueryMC').val();
+        console.log(value);
+        edit(1,10)
+    })
+
+    $('.accredit').click(function(){
+        $.alert('批量授权功能设计中')
+    })
+
+
+    $('.daochuFac').click(function(){
+        var width = $(window).width();
+        var height = $(window).height();
+        layer.open({
+          type: 2,
+          title: '导出设备表',
+          maxmin: true,
+          offset: ['25px'],
+          shadeClose: true, //点击遮罩关闭层
+          shade: 0.5, //不显示遮罩
+          area: [width*0.8 + 'px', height-50 + 'px'],
+          content: "../Sys/SUser/facexport.html"
+      });
+    })
+  
+  
+    
+
+ 
